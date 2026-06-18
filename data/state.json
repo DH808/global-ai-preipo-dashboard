@@ -1,0 +1,2987 @@
+{
+  "meta": {
+    "title": "Global AI Pre-IPO Pipeline Pilot",
+    "asOf": "2026-06-17",
+    "purpose": "Track global private AI / AI supply-chain companies from early growth to pre-IPO, with IPO certainty, investor access, evidence and next actions.",
+    "schemaVersion": 1,
+    "updatedAt": "2026-06-18T05:05:00Z",
+    "coverage": "v3 expanded to broader global private AI market: prior two-round universe, Korea/Japan, InterVest, AI chips, apps, infra and robotics."
+  },
+  "companies": [
+    {
+      "id": "rebellions",
+      "name": "Rebellions",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "AI Chip",
+      "subSector": "Data-center inference accelerator / RebelServer",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "high",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "very_high",
+      "accessFit": "high",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: $1.4B after Arm/Samsung Ventures round; later media indicates higher pre-IPO marks need verification",
+      "latestFunding": "Media: ~$250M Series C; additional pre-IPO reports unverified",
+      "investors": [
+        "Samsung Ventures",
+        "Arm",
+        "InterVest",
+        "SK/Sapeon ecosystem",
+        "Korean growth capital"
+      ],
+      "ipoSignals": [
+        "Korean media: KOSPI IPO preparation",
+        "Global IR ahead of IPO",
+        "Sapeon merger integration",
+        "Pre-IPO funding reports"
+      ],
+      "nextAction": "Ask Samsung Ventures + InterVest for data room: revenue/backlog, KRX preliminary review status, lead underwriter, lock-up and valuation.",
+      "tags": [
+        "Samsung",
+        "InterVest",
+        "Korea",
+        "inference",
+        "sovereign AI"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "official",
+          "note": "Official site positions RebelServer for sovereign/on-prem inference; lists Samsung/Arm/SK/KT/Aramco/AWS ecosystem logos.",
+          "url": "https://rebellions.ai/"
+        },
+        {
+          "date": "2026",
+          "type": "official",
+          "note": "RebelServer page claims on-prem sovereign AI, 2 PFLOPS FP8 with 8 RebelCards / Rebel100 chip; vLLM/PyTorch/Triton support.",
+          "url": "https://rebellions.ai/rebelserver"
+        },
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "DCD: valued at $1.4B following Arm and Samsung Ventures investment; Atom/Atom Max deployed in Japan, Saudi Arabia and US per company statement.",
+          "url": "https://www.datacenterdynamics.com/en/news/ai-chip-startup-rebellions-valued-at-14bn-following-investment-from-arm-samsung-ventures/"
+        }
+      ],
+      "notes": "Core Korea target. Investment case hinges on converting AI-chip narrative into revenue/backlog and KRX visibility.",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "targetExchange": "KOSPI/KOSDAQ TBD",
+      "leadUnderwriters": [
+        "TBD - ask Samsung Securities/Mirae/NH/KB"
+      ],
+      "krxReviewStatus": "media_signal_only_not_confirmed",
+      "lockup": "unknown",
+      "preIpoRoundStatus": "media reports - verify",
+      "contacts": [
+        "Samsung Ventures",
+        "InterVest",
+        "Samsung Securities",
+        "Mirae Asset",
+        "SK/Sapeon ecosystem"
+      ],
+      "redFlags": [
+        "Revenue/backlog not verified",
+        "Sapeon merger integration",
+        "KOSPI vs KOSDAQ unknown",
+        "Media valuation divergence"
+      ],
+      "openQuestions": [
+        "Has KRX preliminary listing review been submitted?",
+        "Who is lead underwriter?",
+        "2025/2026 revenue and backlog?",
+        "What is post-merger cap table?"
+      ]
+    },
+    {
+      "id": "furiosaai",
+      "name": "FuriosaAI",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "AI Chip",
+      "subSector": "Data-center AI accelerator",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "low",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium_high",
+      "riskLevel": "high",
+      "latestValuation": "Media: seeking up to $500M / KRW 700B pre-IPO funding; valuation not confirmed",
+      "latestFunding": "Prior C round / pre-IPO reports; verify with InterVest and advisors",
+      "investors": [
+        "InterVest",
+        "Naver",
+        "KDB",
+        "DSC Investment"
+      ],
+      "ipoSignals": [
+        "Bloomberg/DCD/BusinessKorea: pre-IPO funding before IPO",
+        "Media reports: independent path after rejecting big tech acquisition"
+      ],
+      "nextAction": "Ask InterVest whether $500M round closed, valuation, Morgan Stanley/Mirae role, RNGD production, top customers.",
+      "tags": [
+        "InterVest",
+        "Korea",
+        "AI accelerator",
+        "pre-IPO"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "portfolio",
+          "note": "InterVest official portfolio lists Furiosa AI under Semiconductor.",
+          "url": "https://www.intervest.co.kr/portfolio"
+        },
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Google News cluster: FuriosaAI seeks up to $500M / KRW 700B before IPO; needs primary verification.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "High beta. Bigger technical/customer risk than Rebellions.",
+      "dealStage": "source_round",
+      "dataRoomStatus": "need_intervest",
+      "targetExchange": "KOSDAQ/KOSPI TBD",
+      "leadUnderwriters": [
+        "Morgan Stanley? media",
+        "Mirae Asset? media"
+      ],
+      "krxReviewStatus": "unknown",
+      "preIpoRoundStatus": "$500M / KRW 700B media reports - verify"
+    },
+    {
+      "id": "deepx",
+      "name": "DeepX",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "AI Chip",
+      "subSector": "Edge AI NPU / low-power inference",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "high",
+      "revenueQuality": "medium_low",
+      "investorQuality": "medium",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: target IPO valuation around KRW 1T / ~$700M; verify",
+      "latestFunding": "Prior C round reported; IPO preparation via Reuters cluster",
+      "investors": [
+        "SkyLake",
+        "BNW",
+        "Korean local investors"
+      ],
+      "ipoSignals": [
+        "Reuters cluster: prepares public share offering",
+        "2026 IPO plan media reports"
+      ],
+      "nextAction": "Check KRX filing, lead underwriter, Hyundai/Foxconn design-win conversion, revenue by robotics/ADAS/industrial vision.",
+      "tags": [
+        "Korea",
+        "edge AI",
+        "IPO"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Reuters/Google News: Korean AI chip startup DeepX prepares public share offering.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Clear IPO signal but smaller TAM/edge market fragmentation.",
+      "dealStage": "ipo_watch",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "KOSDAQ likely - verify",
+      "krxReviewStatus": "Reuters/media public offering preparation",
+      "preIpoRoundStatus": "unknown"
+    },
+    {
+      "id": "upstage",
+      "name": "Upstage",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "AI Application",
+      "subSector": "Enterprise GenAI / document AI / Korean LLM",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium_high",
+      "riskLevel": "medium",
+      "latestValuation": "Media: Korea's first GenAI unicorn after KRW 180B raise; verify valuation and ARR",
+      "latestFunding": "Series C media reports; Amazon/AMD/Korea funds cited in news clusters",
+      "investors": [
+        "InterVest",
+        "Amazon",
+        "AMD",
+        "Korean growth/mother fund"
+      ],
+      "ipoSignals": [
+        "KoreaTechDesk: targets Korea's first generative AI IPO",
+        "Unicorn funding headlines"
+      ],
+      "nextAction": "Ask InterVest for ARR, major enterprise customers, IPO adviser, Japan/US expansion and gross margin.",
+      "tags": [
+        "InterVest",
+        "Korea",
+        "enterprise AI",
+        "LLM"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "portfolio",
+          "note": "InterVest official portfolio lists Upstage under AI.",
+          "url": "https://www.intervest.co.kr/portfolio"
+        }
+      ],
+      "notes": "Best Korean AI application candidate; less hardware risk.",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "KOSDAQ/KOSPI TBD",
+      "krxReviewStatus": "unknown"
+    },
+    {
+      "id": "panmnesia",
+      "name": "Panmnesia",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "AI Infra",
+      "subSector": "CXL memory expansion / memory pooling",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "very_high",
+      "accessFit": "medium_high",
+      "riskLevel": "medium_high",
+      "latestValuation": "Not disclosed; Series A $57-60M media reports",
+      "latestFunding": "Series A around $57-60M per KED/Blocks & Files news clusters",
+      "investors": [
+        "InterVest",
+        "Korean/semiconductor investors"
+      ],
+      "ipoSignals": [
+        "No near-term IPO signal; strategic AI memory bottleneck candidate"
+      ],
+      "nextAction": "Ask InterVest for Samsung/SK Hynix relationship, CXL switch tape-out, design wins, next-round timing.",
+      "tags": [
+        "InterVest",
+        "CXL",
+        "memory",
+        "AI infra"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "portfolio",
+          "note": "InterVest official portfolio lists Panmnesia under Semiconductor.",
+          "url": "https://www.intervest.co.kr/portfolio"
+        },
+        {
+          "date": "2024",
+          "type": "media",
+          "note": "KED/Blocks & Files clusters: Panmnesia raises ~$57-60M Series A for CXL switch chip designs.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Strategic 24-48 month pipeline, not immediate IPO."
+    },
+    {
+      "id": "nota-ai",
+      "name": "Nota AI",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "AI Infra",
+      "subSector": "On-device AI optimization / model compression",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_low",
+      "investorQuality": "medium",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Not disclosed; Series C $19.9M reported; KOSDAQ status must be confirmed",
+      "latestFunding": "Series C $19.9M PR/news cluster",
+      "investors": [
+        "InterVest",
+        "Naver D2SF",
+        "KDB/TIPS ecosystem"
+      ],
+      "ipoSignals": [
+        "KoreaTechDesk: KOSDAQ IPO journey/listing references; verify if already listed"
+      ],
+      "nextAction": "First confirm whether still private. If private, check KOSDAQ timetable, revenue and Samsung/Naver ecosystem adoption.",
+      "tags": [
+        "InterVest",
+        "on-device AI",
+        "KOSDAQ"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "portfolio",
+          "note": "InterVest official portfolio lists Nota AI under AI.",
+          "url": "https://www.intervest.co.kr/portfolio"
+        }
+      ],
+      "notes": "Conditionally core if still private; otherwise comp."
+    },
+    {
+      "id": "sakana-ai",
+      "name": "Sakana AI",
+      "country": "Japan",
+      "region": "Japan",
+      "sector": "LLM / Foundation Model",
+      "subSector": "Japan sovereign enterprise AI",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Official Series B: JPY 432B / ~$2.7B post-money",
+      "latestFunding": "Official: JPY 32B / $200M Series B; cumulative JPY 66B / $412M",
+      "investors": [
+        "MUFG",
+        "Khosla",
+        "NEA",
+        "Lux",
+        "Google",
+        "Datadog",
+        "Mitsubishi Electric",
+        "Salesforce Ventures",
+        "Citi",
+        "In-Q-Tel"
+      ],
+      "ipoSignals": [
+        "No explicit IPO timetable; high-quality Japan national champion watch"
+      ],
+      "nextAction": "Build relationship via MUFG/Mitsubishi/Khosla; ask ARR, customer contracts, secondary and listing intention.",
+      "tags": [
+        "Japan",
+        "sovereign AI",
+        "MUFG",
+        "Khosla"
+      ],
+      "evidence": [
+        {
+          "date": "2025-11",
+          "type": "official",
+          "note": "Sakana AI Series B: JPY 32B; post-money JPY 432B; investors include MUFG, Khosla, NEA, Lux, Google, Datadog, Mitsubishi Electric, Salesforce Ventures, Citi, In-Q-Tel.",
+          "url": "https://sakana.ai/series-b/"
+        }
+      ],
+      "notes": "Strategic Japan watch, not yet 18-month IPO target."
+    },
+    {
+      "id": "preferred-networks",
+      "name": "Preferred Networks",
+      "country": "Japan",
+      "region": "Japan",
+      "sector": "AI Infra",
+      "subSector": "AI chips + computing infra + foundation models + physical AI",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Not disclosed in latest official release",
+      "latestFunding": "Official: extension round brought total latest round to JPY 24B",
+      "investors": [
+        "Toyota",
+        "NTT",
+        "SBI",
+        "Mitsubishi UFJ Trust",
+        "Mizuho Bank",
+        "SMTB"
+      ],
+      "ipoSignals": [
+        "Long-standing Japan AI national champion; no confirmed near-term IPO"
+      ],
+      "nextAction": "Ask Japanese bank/industry investors for secondary or listing plans; verify MN-Core commercialization and Toyota/NTT revenue.",
+      "tags": [
+        "Japan",
+        "AI chip",
+        "Toyota",
+        "NTT",
+        "physical AI"
+      ],
+      "evidence": [
+        {
+          "date": "2025-04-30",
+          "type": "official",
+          "note": "PFN raised additional JPY 5B; latest round total JPY 24B for AI semiconductors, computing infra, generative AI foundation models and AI solutions.",
+          "url": "https://www.preferred.jp/en/news/pr20250430/"
+        }
+      ],
+      "notes": "Strategic pre-IPO/secondary watch; IPO timing less clear than Korea."
+    },
+    {
+      "id": "lambda",
+      "name": "Lambda",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "GPU cloud / AI cloud",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "high",
+      "revenueQuality": "medium",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium_high",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: ~$4B after $480M round; IPO bank hiring reports",
+      "latestFunding": "Media: $480M; pre-IPO funding discussions",
+      "investors": [
+        "Nvidia",
+        "US growth investors"
+      ],
+      "ipoSignals": [
+        "DCD/TechCrunch: hired banks for IPO",
+        "pre-IPO funding reports"
+      ],
+      "nextAction": "Source secondary/primary via US private markets and bankers; evaluate discount to last valuation.",
+      "tags": [
+        "GPU cloud",
+        "CoreWeave read-through",
+        "pre-IPO"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "DCD: Lambda hired banks in preparation for IPO; pre-IPO funding reports.",
+          "url": "https://www.datacenterdynamics.com/"
+        }
+      ],
+      "notes": "US core target already in prior memo.",
+      "dealStage": "secondary_or_preipo_sourcing",
+      "targetExchange": "US IPO likely",
+      "filingStatus": "bank hiring media signal",
+      "dataRoomStatus": "need_banker_intro"
+    },
+    {
+      "id": "databricks",
+      "name": "Databricks",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "Data + AI platform",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "high",
+      "revenueQuality": "very_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Official: Series L at $134B valuation; >$4.8B revenue run-rate",
+      "latestFunding": "Official: raising >$4B Series L",
+      "investors": [
+        "Top global growth investors",
+        "Strategic cloud ecosystem"
+      ],
+      "ipoSignals": [
+        "IPO-ready scale",
+        "positive FCF",
+        "massive private round"
+      ],
+      "nextAction": "Seek clean secondary at 15-30% discount; otherwise prepare IPO anchor relationship.",
+      "tags": [
+        "data platform",
+        "AI application",
+        "secondary"
+      ],
+      "evidence": [
+        {
+          "date": "2025-12",
+          "type": "official",
+          "note": "Databricks: >$4.8B revenue run-rate, >55% YoY, >$1B AI revenue run-rate, $134B valuation.",
+          "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-surpasses-4-8b-revenue-run-rate-growing-55-year-over-year"
+        }
+      ],
+      "notes": "Mature pre-IPO/IPO-ready benchmark.",
+      "dealStage": "secondary_sourcing",
+      "dataRoomStatus": "secondary_info_pack_needed",
+      "targetExchange": "US IPO likely",
+      "filingStatus": "not filed public",
+      "lockup": "IPO lock-up TBD"
+    },
+    {
+      "id": "mistral-ai",
+      "name": "Mistral AI",
+      "country": "France",
+      "region": "Europe",
+      "sector": "LLM / Foundation Model",
+      "subSector": "European sovereign AI / open-weight LLM",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: €11.7B to €20B valuation signals; ARR claims need verification",
+      "latestFunding": "ASML-led Series C media/official cluster; further funding talks",
+      "investors": [
+        "ASML",
+        "Nvidia-backed ecosystem",
+        "European strategic capital"
+      ],
+      "ipoSignals": [
+        "Founder says plans IPO/not for sale; no filing"
+      ],
+      "nextAction": "Wait for banker/filer signal unless pre-IPO has discount + information rights; ask ARR/gross margin/GPU obligations.",
+      "tags": [
+        "Europe",
+        "sovereign AI",
+        "ASML"
+      ],
+      "evidence": [
+        {
+          "date": "2025-09",
+          "type": "media/official",
+          "note": "ASML-backed funding and valuation signal; ARR/profitability needs primary diligence.",
+          "url": "https://mistral.ai/"
+        }
+      ],
+      "notes": "Strategic watch, not high-certainty 18-month IPO."
+    },
+    {
+      "id": "nscale",
+      "name": "Nscale",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "sector": "AI Infra",
+      "subSector": "GPU cloud / sovereign AI infrastructure",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: large 2025-2026 rounds and high valuation; verify",
+      "latestFunding": "Media: multi-billion funding rounds; verify with company/advisers",
+      "investors": [
+        "Aker",
+        "NVIDIA",
+        "Dell",
+        "Goldman Sachs",
+        "J.P. Morgan",
+        "Point72",
+        "Citadel"
+      ],
+      "ipoSignals": [
+        "Large funding scale and sovereign AI infra positioning; IPO not confirmed"
+      ],
+      "nextAction": "Verify actual equity vs debt/SAFE, capacity, customers, utilization and IPO timeline.",
+      "tags": [
+        "Europe",
+        "GPU cloud",
+        "sovereign AI"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Prior research found large Nscale funding/valuation media signals; needs primary verification.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Useful global pilot item; high capex risk."
+    },
+    {
+      "id": "deepl",
+      "name": "DeepL",
+      "country": "Germany",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "AI translation / writing SaaS",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "high",
+      "revenueQuality": "high",
+      "investorQuality": "high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Media: considering US IPO at up to ~$5B; prior valuation ~$2B",
+      "latestFunding": "2024 growth funding reported; verify via company/CB/PitchBook",
+      "investors": [
+        "Index/IVP/Benchmark style growth investors - verify"
+      ],
+      "ipoSignals": [
+        "Reuters/Bloomberg: exploring US IPO"
+      ],
+      "nextAction": "Check advisers, ARR, growth, gross margin, US vs Europe listing.",
+      "tags": [
+        "Europe",
+        "AI SaaS",
+        "IPO exploration"
+      ],
+      "evidence": [
+        {
+          "date": "2025-10",
+          "type": "media",
+          "note": "Reuters/Bloomberg cluster: DeepL considering US IPO at up to $5B valuation.",
+          "url": "https://www.reuters.com/"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "stepfun",
+      "name": "StepFun / 阶跃星辰",
+      "country": "China",
+      "region": "China/HK",
+      "sector": "LLM / Foundation Model",
+      "subSector": "Chinese LLM / multimodal / agent",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "high",
+      "revenueQuality": "low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: possible HK IPO valuation target around $12B; verify",
+      "latestFunding": "Tencent-backed media signals; verify",
+      "investors": [
+        "Tencent",
+        "Chinese growth investors"
+      ],
+      "ipoSignals": [
+        "Reuters: unwind offshore structure to pave way for IPO"
+      ],
+      "nextAction": "Check HK filing timetable, red-chip/VIE restructuring, revenue and compute cost.",
+      "tags": [
+        "China",
+        "HK IPO",
+        "LLM"
+      ],
+      "evidence": [
+        {
+          "date": "2026-04",
+          "type": "media",
+          "note": "Reuters cluster: StepFun to unwind offshore structure to pave way for IPO.",
+          "url": "https://www.reuters.com/"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "moonshot-ai",
+      "name": "Moonshot AI / 月之暗面",
+      "country": "China",
+      "region": "China/HK",
+      "sector": "LLM / Foundation Model",
+      "subSector": "Kimi / Chinese LLM application",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: ~$18-20B funding/valuation signals; verify",
+      "latestFunding": "Media: large 2026 round; verify",
+      "investors": [
+        "Alibaba/Chinese strategic investors - verify"
+      ],
+      "ipoSignals": [
+        "Bloomberg/SCMP: considering Hong Kong IPO"
+      ],
+      "nextAction": "Verify paid revenue, Kimi metrics, HK IPO preparation and valuation discipline.",
+      "tags": [
+        "China",
+        "Kimi",
+        "HK IPO"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Bloomberg/SCMP/TechCrunch clusters: Moonshot valued around $18-20B and considering HK IPO.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "country": "Canada",
+      "region": "Canada",
+      "sector": "LLM / Foundation Model",
+      "subSector": "Enterprise LLM / sovereign AI",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_high",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Official: $6.8B valuation in $500M round; media ARR ~$240M",
+      "latestFunding": "$500M funding round",
+      "investors": [
+        "Radical Ventures",
+        "Cisco",
+        "AMD",
+        "Fujitsu",
+        "PSP"
+      ],
+      "ipoSignals": [
+        "CNBC/BetaKit: IPO momentum; CFO/readiness signals"
+      ],
+      "nextAction": "Verify ARR, gross margin and IPO timeline; sovereign AI customer list.",
+      "tags": [
+        "Canada",
+        "enterprise AI",
+        "sovereign AI"
+      ],
+      "evidence": [
+        {
+          "date": "2025-08",
+          "type": "official",
+          "note": "Cohere official: raises $500M at $6.8B valuation.",
+          "url": "https://cohere.com/blog/august-2025-funding-round"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "together-ai",
+      "name": "Together AI",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Inference cloud / fine-tuning / open model platform",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: $3.3B to possible $7.5B fundraising signals; verify",
+      "latestFunding": "Series B / large 2026 financing discussion",
+      "investors": [
+        "Nvidia/NEA/Kleiner style AI investors - verify"
+      ],
+      "ipoSignals": [
+        "No clear IPO; strategic primary/growth round more likely"
+      ],
+      "nextAction": "Use Asia angle: compliant APAC inference customers; verify ARR, gross margin, KYC/RASA process.",
+      "tags": [
+        "inference",
+        "Asia GTM",
+        "RASA"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Prior research: Together AI valuation/funding media signals; IPO not clear.",
+          "url": "https://www.together.ai/"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "glean",
+      "name": "Glean",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "Enterprise search / work AI",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "high",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Reuters: ~$7.2B valuation; official ARR $200M",
+      "latestFunding": "Latest growth round media",
+      "investors": [
+        "Sequoia/Lightspeed/general growth investors - verify"
+      ],
+      "ipoSignals": [
+        "ARR scale and growth; no filing yet"
+      ],
+      "nextAction": "Check NRR, enterprise ACV, IPO banks, APAC customer angle.",
+      "tags": [
+        "enterprise AI",
+        "ARR"
+      ],
+      "evidence": [
+        {
+          "date": "2025-12",
+          "type": "official",
+          "note": "Glean official: ARR $200M, doubled in nine months.",
+          "url": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "country": "UK/US",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "AI voice / conversational agents",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "high",
+      "investorQuality": "high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Official: $11B valuation, >$330M ARR",
+      "latestFunding": "$500M Series D",
+      "investors": [
+        "Nvidia-backed/VC growth investors - verify"
+      ],
+      "ipoSignals": [
+        "CNBC: eyes IPO / official late-stage scale"
+      ],
+      "nextAction": "Verify enterprise mix, voice consent governance, gross margin, IPO adviser.",
+      "tags": [
+        "voice AI",
+        "ARR"
+      ],
+      "evidence": [
+        {
+          "date": "2026-02",
+          "type": "official",
+          "note": "ElevenLabs official: $500M Series D at $11B valuation; 2025 ARR >$330M.",
+          "url": "https://elevenlabs.io/blog/series-d"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "harvey",
+      "name": "Harvey",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "Legal AI",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "high",
+      "investorQuality": "high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: $11B valuation; ARR ~$190M reports",
+      "latestFunding": "$200M round media",
+      "investors": [
+        "OpenAI Fund/Sequoia/Kleiner style investors - verify"
+      ],
+      "ipoSignals": [
+        "ARR scale; no filing yet"
+      ],
+      "nextAction": "Verify ARR, retention, law firm vs enterprise mix, liability controls.",
+      "tags": [
+        "legal AI",
+        "vertical AI"
+      ],
+      "evidence": [
+        {
+          "date": "2026-03",
+          "type": "media",
+          "note": "Reuters/CNBC cluster: Harvey valued at $11B after $200M round; ARR reports.",
+          "url": "https://www.reuters.com/"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "synthesia",
+      "name": "Synthesia",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "AI video enterprise training/sales enablement",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_high",
+      "investorQuality": "high",
+      "strategicRelevance": "medium",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "CNBC: $4B valuation; ARR $150M, expected >$200M in 2026",
+      "latestFunding": "$200M funding + employee secondary media",
+      "investors": [
+        "Nvidia/Alphabet VC arms - media"
+      ],
+      "ipoSignals": [
+        "employee secondary, ARR scale, European AI app IPO candidate"
+      ],
+      "nextAction": "Check ARR quality, enterprise retention, gross margin and US vs Europe IPO path.",
+      "tags": [
+        "video AI",
+        "Europe"
+      ],
+      "evidence": [
+        {
+          "date": "2026-01",
+          "type": "media",
+          "note": "CNBC: Synthesia valued at $4B; ARR $150M and expects $200M+ in 2026.",
+          "url": "https://www.cnbc.com/"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "vast-data",
+      "name": "VAST Data",
+      "country": "United States / Israel",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "AI data storage / data platform",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "high",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Reuters: $30B valuation in latest funding round",
+      "latestFunding": "Media: $1B F round",
+      "investors": [
+        "Drive Capital",
+        "Access Industries",
+        "Fidelity",
+        "NEA",
+        "NVIDIA"
+      ],
+      "ipoSignals": [
+        "IPO-ready scale; no filing confirmed"
+      ],
+      "nextAction": "Verify CARR, FCF, customer concentration, CoreWeave/Crusoe exposure, secondary availability.",
+      "tags": [
+        "storage",
+        "AI data"
+      ],
+      "evidence": [
+        {
+          "date": "2026-04",
+          "type": "media",
+          "note": "Reuters: VAST Data valued at $30B latest round.",
+          "url": "https://www.reuters.com/"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "crusoe",
+      "name": "Crusoe",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "AI data center / power-to-compute",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Official: valuation above $10B",
+      "latestFunding": "Official: $1.375B Series E",
+      "investors": [
+        "Mubadala Capital",
+        "Valor Equity Partners"
+      ],
+      "ipoSignals": [
+        "large capex/growth funding, possible pre-IPO but no filing"
+      ],
+      "nextAction": "Check contracted capacity, energized MW, customer terms, project finance and IPO timeline.",
+      "tags": [
+        "power",
+        "data center",
+        "AI factory"
+      ],
+      "evidence": [
+        {
+          "date": "2025-10",
+          "type": "official",
+          "note": "Crusoe official: Series E $1.375B, valuation above $10B.",
+          "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-series-e-funding"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "cerebras",
+      "name": "Cerebras",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Chip",
+      "subSector": "Wafer-scale AI accelerator / systems",
+      "stage": "ipo_filed_then_private",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "S-1 filed in 2024; later private funding/withdrawal reports",
+      "latestFunding": "Media: large private round after S-1 withdrawal",
+      "investors": [
+        "G42 ecosystem",
+        "Foundation Capital style investors - verify"
+      ],
+      "ipoSignals": [
+        "Public S-1 filed; timing reset after withdrawal"
+      ],
+      "nextAction": "Read S-1: customer concentration, revenue, export/CFIUS risk; monitor refiling.",
+      "tags": [
+        "S-1",
+        "AI chip"
+      ],
+      "evidence": [
+        {
+          "date": "2024",
+          "type": "SEC",
+          "note": "Cerebras S-1 publicly filed; customer concentration visible.",
+          "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828024041463/cerebras-sx1.htm"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "groq",
+      "name": "Groq",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Chip",
+      "subSector": "Inference accelerator / GroqCloud",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Official: $6.9B post-money after $750M financing",
+      "latestFunding": "$750M financing in 2025; $640M Series D in 2024",
+      "investors": [
+        "BlackRock",
+        "Neuberger Berman",
+        "Cisco",
+        "Samsung Catalyst"
+      ],
+      "ipoSignals": [
+        "Large financing; no filing"
+      ],
+      "nextAction": "Verify revenue, utilization, enterprise customers, software ecosystem, IPO timing.",
+      "tags": [
+        "inference",
+        "Samsung Catalyst"
+      ],
+      "evidence": [
+        {
+          "date": "2025-09",
+          "type": "official",
+          "note": "Groq official: raises $750M at $6.9B post-money valuation.",
+          "url": "https://groq.com/newsroom/groq-raises-750-million-as-inference-demand-surges"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "hugging-face",
+      "name": "Hugging Face",
+      "country": "United States / France",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Model hub / developer platform",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "medium_low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "$4.5B valuation in 2023 Series D",
+      "latestFunding": "$235M Series D",
+      "investors": [
+        "Google",
+        "Amazon",
+        "Nvidia",
+        "Intel",
+        "AMD",
+        "Salesforce",
+        "IBM",
+        "Qualcomm"
+      ],
+      "ipoSignals": [
+        "No clear IPO; strategic ecosystem asset"
+      ],
+      "nextAction": "Check monetization, enterprise hub, cloud marketplace revenue and secondary availability.",
+      "tags": [
+        "developer platform",
+        "model hub"
+      ],
+      "evidence": [
+        {
+          "date": "2023",
+          "type": "official",
+          "note": "Hugging Face Series D announced with major strategic investors.",
+          "url": "https://huggingface.co/blog/series-d"
+        }
+      ],
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+    },
+    {
+      "id": "xai",
+      "name": "xAI",
+      "country": "United States",
+      "region": "US",
+      "sector": "LLM / Foundation Model",
+      "subSector": "Grok / Musk AI infra",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "very_high",
+      "latestValuation": "Media: very large financing / valuation; structure with X/SpaceX complex",
+      "latestFunding": "Large private financings reported",
+      "investors": [
+        "Musk ecosystem",
+        "strategic investors - verify"
+      ],
+      "ipoSignals": [
+        "No independent IPO signal; strategic/private funding"
+      ],
+      "nextAction": "Track only; not core 18-month IPO unless independent filing path emerges.",
+      "tags": [
+        "Musk",
+        "LLM",
+        "strategic watch"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity AI",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI search / answer engine",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "medium",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: $14-20B valuation range; CEO target 2028 IPO",
+      "latestFunding": "Multiple growth rounds reported",
+      "investors": [
+        "IVP/Nvidia/NEA style investors - verify"
+      ],
+      "ipoSignals": [
+        "CEO target appears beyond 18 months"
+      ],
+      "nextAction": "Monitor copyright/legal, revenue, browser/search monetization; not 18-month core.",
+      "tags": [
+        "AI search",
+        "copyright",
+        "watch"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "anysphere",
+      "name": "Anysphere / Cursor",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI coding / developer workflow",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_high",
+      "investorQuality": "high",
+      "strategicRelevance": "very_high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: ~$9.9B valuation after $900M round",
+      "latestFunding": "Large 2025 funding media",
+      "investors": [
+        "Thrive/Accel/a16z style investors - verify"
+      ],
+      "ipoSignals": [
+        "No filing; ARR growth/secondary signals"
+      ],
+      "nextAction": "Verify ARR, enterprise mix, retention, Microsoft/OpenAI competitive pressure.",
+      "tags": [
+        "AI coding",
+        "developer tools"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "runway",
+      "name": "Runway",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI video / world models",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: ~$5.3B valuation",
+      "latestFunding": "Media: $315M round",
+      "investors": [
+        "General Atlantic/Nvidia/Google style investors - verify"
+      ],
+      "ipoSignals": [
+        "No clear IPO; creative AI watch"
+      ],
+      "nextAction": "Verify enterprise revenue, copyright risk, GPU cost, Sora/Veo competition.",
+      "tags": [
+        "AI video",
+        "creative AI"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "abridge",
+      "name": "Abridge",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "Medical ambient AI",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "medium",
+      "investorQuality": "high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Media: ~$5.3B valuation after $300M Series E",
+      "latestFunding": "Series E $300M media",
+      "investors": [
+        "a16z",
+        "Khosla",
+        "healthcare investors"
+      ],
+      "ipoSignals": [
+        "No near-term IPO; vertical AI quality"
+      ],
+      "nextAction": "Verify hospital contracts, Epic/Microsoft/Nuance competitive dynamics, gross margin.",
+      "tags": [
+        "healthcare AI",
+        "ambient AI"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "grammarly",
+      "name": "Grammarly",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI productivity / writing",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "high",
+      "investorQuality": "high",
+      "strategicRelevance": "medium",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Official: >$700M annual revenue, $1B non-dilutive financing",
+      "latestFunding": "General Catalyst $1B growth financing",
+      "investors": [
+        "General Catalyst",
+        "existing investors"
+      ],
+      "ipoSignals": [
+        "Mature revenue; IPO timing unclear"
+      ],
+      "nextAction": "Check IPO intent, AI platform transition, growth, Coda integration.",
+      "tags": [
+        "productivity",
+        "revenue"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "rippling",
+      "name": "Rippling",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "HR/IT/Finance workflow with AI",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "high",
+      "investorQuality": "high",
+      "strategicRelevance": "medium",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Media: ~$16.8B valuation; CEO said IPO not imminent",
+      "latestFunding": "Growth round reported",
+      "investors": [
+        "Coatue/Greenoaks style investors - verify"
+      ],
+      "ipoSignals": [
+        "Scale ready but IPO not imminent"
+      ],
+      "nextAction": "Secondary/relationship only; not AI-pure.",
+      "tags": [
+        "workflow",
+        "SaaS"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "anduril",
+      "name": "Anduril",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI defense / autonomous systems",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: $30B+ valuation; large defense contracts",
+      "latestFunding": "Large growth rounds reported",
+      "investors": [
+        "Founders Fund",
+        "General Catalyst",
+        "defense investors"
+      ],
+      "ipoSignals": [
+        "Potential IPO but timing unclear"
+      ],
+      "nextAction": "Track defense AI IPO path, backlog, gross margin, political/export risk.",
+      "tags": [
+        "defense AI",
+        "robotics"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "neysa",
+      "name": "Neysa",
+      "country": "India",
+      "region": "India",
+      "sector": "AI Infra",
+      "subSector": "Sovereign AI cloud / GPU infra",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: Blackstone-led structured investment, ~$1.4B enterprise value",
+      "latestFunding": "Media: $1.2B structured investment incl. equity",
+      "investors": [
+        "Blackstone",
+        "Nexus",
+        "Z47/PeakXV"
+      ],
+      "ipoSignals": [
+        "India sovereign AI infra growth; IPO not yet clear"
+      ],
+      "nextAction": "Verify equity/debt split, GPU supply, government/enterprise contracts.",
+      "tags": [
+        "India",
+        "sovereign cloud"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "zutacore",
+      "name": "ZutaCore",
+      "country": "Israel",
+      "region": "Israel",
+      "sector": "AI Infra",
+      "subSector": "Two-phase direct-to-chip liquid cooling",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_low",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Media: >$100M Series C, ~$600M valuation",
+      "latestFunding": "Series C media",
+      "investors": [
+        "Mitsubishi Electric",
+        "Carrier Ventures",
+        "Samsung Ventures"
+      ],
+      "ipoSignals": [
+        "Cooling infra strategic; IPO longer dated"
+      ],
+      "nextAction": "Verify deployments, OEM certifications, Nvidia/AMD compatibility.",
+      "tags": [
+        "cooling",
+        "data center",
+        "Samsung Ventures"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "scintil",
+      "name": "Scintil Photonics",
+      "country": "France",
+      "region": "Europe",
+      "sector": "AI Infra",
+      "subSector": "Silicon photonics / DWDM optical engine",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: $58M Series B",
+      "latestFunding": "Series B reported",
+      "investors": [
+        "NVIDIA",
+        "Bosch Ventures",
+        "NGP Capital",
+        "Yotta"
+      ],
+      "ipoSignals": [
+        "Commercial ramp; likely longer IPO/M&A"
+      ],
+      "nextAction": "Verify LEAF Light yield, customer design wins, Nvidia collaboration depth.",
+      "tags": [
+        "silicon photonics",
+        "CPO"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "ayar-labs",
+      "name": "Ayar Labs",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Optical I/O / in-package optical interconnect",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Official/media: valuation above $1B; later media higher",
+      "latestFunding": "Series D $155M official, later media $500M",
+      "investors": [
+        "AMD Ventures",
+        "Intel Capital",
+        "NVIDIA",
+        "Advent"
+      ],
+      "ipoSignals": [
+        "Strategic AI optical I/O; IPO not near"
+      ],
+      "nextAction": "Verify HVM readiness, customer roadmaps, CPO/optical I/O adoption.",
+      "tags": [
+        "optical I/O",
+        "CPO"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "lightmatter",
+      "name": "Lightmatter",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Photonic interconnect / compute fabric",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: ~$4.4B valuation",
+      "latestFunding": "Large late-stage funding reported",
+      "investors": [
+        "GV/Alphabet style investors - verify"
+      ],
+      "ipoSignals": [
+        "High strategic value; IPO timing unclear"
+      ],
+      "nextAction": "Verify revenue/design wins, Passage adoption, system integration.",
+      "tags": [
+        "photonics",
+        "interconnect"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "celestial-ai",
+      "name": "Celestial AI",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Photonic Fabric / memory-compute interconnect",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Private valuation/funding media; verify",
+      "latestFunding": "Growth funding reported",
+      "investors": [
+        "AMD Ventures/Temasek style investors - verify"
+      ],
+      "ipoSignals": [
+        "Longer dated IPO/M&A"
+      ],
+      "nextAction": "Verify hyperscaler design wins and memory bottleneck economics.",
+      "tags": [
+        "photonic fabric",
+        "memory"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "d-matrix",
+      "name": "d-Matrix",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Chip",
+      "subSector": "Data-center inference accelerator",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Official: Series C $275M, valuation $2B",
+      "latestFunding": "Series C $275M",
+      "investors": [
+        "M12",
+        "Temasek style investors - verify"
+      ],
+      "ipoSignals": [
+        "Large deployments claimed; IPO longer dated"
+      ],
+      "nextAction": "Verify deployments, revenue, Corsair/JetStream/Aviator stack.",
+      "tags": [
+        "inference",
+        "AI chip"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "tenstorrent",
+      "name": "Tenstorrent",
+      "country": "Canada/US",
+      "region": "Canada",
+      "sector": "AI Chip",
+      "subSector": "AI/RISC-V processor",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "low",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Media: ~$2.6B+ valuation after ~$700M round",
+      "latestFunding": "Large funding reported",
+      "investors": [
+        "Samsung/Hyundai/Fidelity style investors - verify"
+      ],
+      "ipoSignals": [
+        "Strategic chip watch; IPO not near"
+      ],
+      "nextAction": "Verify revenue, customer tape-outs, software ecosystem, foundry.",
+      "tags": [
+        "RISC-V",
+        "AI chip"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "weights-biases",
+      "name": "Weights & Biases",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "MLOps / AI developer workflow",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "medium",
+      "investorQuality": "high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Private unicorn; valuation/revenue verify",
+      "latestFunding": "Historical funding",
+      "investors": [
+        "Insight/Coatue style investors - verify"
+      ],
+      "ipoSignals": [
+        "No clear IPO"
+      ],
+      "nextAction": "Verify ARR, enterprise retention, competition from Databricks/LangSmith.",
+      "tags": [
+        "MLOps",
+        "devtools"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "pinecone",
+      "name": "Pinecone",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Vector database",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "low",
+      "revenueQuality": "medium_low",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "medium",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Private valuation/funding historical; sale/strategic speculation",
+      "latestFunding": "Historical funding",
+      "investors": [
+        "Andreessen/ICONIQ style investors - verify"
+      ],
+      "ipoSignals": [
+        "IPO weak; M&A more likely"
+      ],
+      "nextAction": "Monitor if vector DB remains standalone or absorbed by platforms.",
+      "tags": [
+        "vector DB",
+        "M&A watch"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "scale-ai",
+      "name": "Scale AI",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "Data engine / labeling / evaluation",
+      "stage": "special_situation",
+      "status": "private",
+      "ipoSignal": "low",
+      "revenueQuality": "medium",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Meta investment altered independent IPO path",
+      "latestFunding": "Large strategic investment reported",
+      "investors": [
+        "Meta",
+        "Accel",
+        "Founders Fund"
+      ],
+      "ipoSignals": [
+        "Independent IPO path weakened"
+      ],
+      "nextAction": "Track as special situation/exclusion; customer conflicts.",
+      "tags": [
+        "data",
+        "special situation"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "wirorobotics",
+      "name": "WIRobotics",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "Robotics / Physical AI",
+      "subSector": "Wearable / humanoid robotics",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "medium",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: KRW 95B / ~$68M Series B",
+      "latestFunding": "Series B media",
+      "investors": [
+        "InterVest? verify",
+        "Korean robotics investors"
+      ],
+      "ipoSignals": [
+        "Physical AI watch"
+      ],
+      "nextAction": "Ask InterVest for ownership, Hyundai/Samsung/LG links, revenue/deployments.",
+      "tags": [
+        "robotics",
+        "physical AI"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "aniai",
+      "name": "Aniai",
+      "country": "South Korea / US",
+      "region": "Korea",
+      "sector": "Robotics / Physical AI",
+      "subSector": "Kitchen robotics / restaurant automation",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "low",
+      "investorQuality": "medium",
+      "strategicRelevance": "medium",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Media: total funding ~$19M",
+      "latestFunding": "Funding reported",
+      "investors": [
+        "InterVest",
+        "robotics investors"
+      ],
+      "ipoSignals": [
+        "Longer dated; US expansion"
+      ],
+      "nextAction": "Verify unit economics, store deployments, service margin.",
+      "tags": [
+        "robotics",
+        "restaurant automation"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "telepix",
+      "name": "TelePIX",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "Space AI",
+      "subSector": "Satellite imagery / space AI",
+      "stage": "pre_ipo",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "low",
+      "investorQuality": "medium",
+      "strategicRelevance": "medium",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: KRW 15B pre-IPO",
+      "latestFunding": "Pre-IPO investment reported",
+      "investors": [
+        "InterVest",
+        "space investors"
+      ],
+      "ipoSignals": [
+        "KOSDAQ preparation media"
+      ],
+      "nextAction": "Verify KOSDAQ timeline, defense/government contracts, imagery revenue.",
+      "tags": [
+        "space AI",
+        "KOSDAQ"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "mobilint",
+      "name": "Mobilint",
+      "country": "South Korea",
+      "region": "Korea",
+      "sector": "AI Chip",
+      "subSector": "AI NPU / semiconductor",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "medium",
+      "strategicRelevance": "medium",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Not disclosed; InterVest portfolio",
+      "latestFunding": "Historical funding verify",
+      "investors": [
+        "InterVest"
+      ],
+      "ipoSignals": [
+        "No clear IPO; Korea AI chip second tier"
+      ],
+      "nextAction": "Ask InterVest for revenue, IPO timing, Samsung/Hyundai/Naver design wins.",
+      "tags": [
+        "InterVest",
+        "AI chip"
+      ],
+      "evidence": [],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "dealStage": "sourcing",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": []
+    },
+    {
+      "id": "higgsfield",
+      "name": "Higgsfield",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI video / end-to-end video creation",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "low",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "Reuters/TechCrunch media: $1.3B valuation after latest funding",
+      "latestFunding": "Media: $80M funding round",
+      "investors": [
+        "GFT Ventures",
+        "BroadLight Capital",
+        "NextEquity Partners",
+        "AI Capital Partners",
+        "Menlo Ventures",
+        "Alpha Square Group",
+        "strategic backers - verify"
+      ],
+      "ipoSignals": [
+        "Unicorn funding; no clear IPO signal"
+      ],
+      "nextAction": "Add to creative AI watchlist; verify revenue, user retention, enterprise mix, model cost and copyright exposure.",
+      "tags": [
+        "AI video",
+        "creative AI",
+        "watch",
+        "top investor signal"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Reuters/TechCrunch news cluster: Higgsfield hit $1.3B valuation with latest funding; $80M funding reported.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Fits AI application theme but too early/IPO signal weak; high creative-video competition.",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "US IPO likely if scaled",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [
+        "No clear IPO signal",
+        "Revenue quality unverified",
+        "Highly competitive AI video market",
+        "Creative AI copyright/content-safety risk"
+      ],
+      "openQuestions": [
+        "Who led the latest $1.3B-valuation round?",
+        "Current ARR/revenue and enterprise mix?",
+        "Repeat usage / paid conversion?",
+        "Model cost per generated video?",
+        "Copyright/content safety exposure?"
+      ],
+      "topInvestorSignal": "GFT Ventures led Series A; Menlo Ventures, BroadLight Capital, NextEquity Partners, AI Capital Partners, Alpha Square Group participated. Board/person signals include Jeff Herbst (GFT), Kevin Yorn (BroadLight), Avie Tevanian (NextEquity)."
+    },
+    {
+      "id": "suno",
+      "name": "Suno",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI music generation / creator subscription",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "high",
+      "investorQuality": "high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "very_high",
+      "latestValuation": "Media: funding at ~$5B+ valuation; TechCrunch cluster: ~$300M ARR / 2M paid subscribers",
+      "latestFunding": "Media: new funding round at ~$5B+ valuation",
+      "investors": [
+        "Lightspeed Venture Partners",
+        "Nat Friedman",
+        "Daniel Gross",
+        "Matrix",
+        "Founder Collective",
+        "latest round investors - verify"
+      ],
+      "ipoSignals": [
+        "Large ARR and paid subscriber signals; no filing yet"
+      ],
+      "nextAction": "Potential core watch if ARR is real; diligence must focus on copyright litigation/settlement, gross margin and label economics.",
+      "tags": [
+        "AI music",
+        "ARR",
+        "copyright risk",
+        "top investor signal"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Google News clusters: Forbes/Economic Times report Suno funding at ~$5B+ valuation; TechCrunch cluster reports 2M paid subscribers and ~$300M ARR.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Strong revenue signal but biggest legal/copyright risk among the three; not 18-month IPO confirmed.",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "US IPO likely if scaled",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [
+        "Major copyright/litigation risk",
+        "Label licensing economics may compress gross margin",
+        "Consumer subscription churn risk",
+        "No confirmed IPO timetable"
+      ],
+      "openQuestions": [
+        "Is reported $300M ARR audited/contracted or run-rate?",
+        "Paid subscriber retention/churn?",
+        "Copyright litigation status and settlement path?",
+        "Label/revenue-share economics?",
+        "Inference/music-generation gross margin?",
+        "Latest $5B+ funding investors and terms?"
+      ],
+      "topInvestorSignal": "$125M round reported with Lightspeed Venture Partners, Nat Friedman, Daniel Gross, Matrix, Founder Collective. Later $5B+ valuation/funding media signals need investor-list verification."
+    },
+    {
+      "id": "heygen",
+      "name": "HeyGen",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI avatar video / enterprise visual storytelling",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "medium_high",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "latestValuation": "Official/media: $60M Series A at ~$500M valuation; public snippets cite ~$100M ARR but needs verification",
+      "latestFunding": "Official/blog media: $60M Series A led by Benchmark",
+      "investors": [
+        "Benchmark",
+        "Thrive Capital",
+        "BOND",
+        "Conviction",
+        "Dylan Field",
+        "Elad Gil",
+        "Aviv Nevo",
+        "Neil Mehta",
+        "SV Angel"
+      ],
+      "ipoSignals": [
+        "Profitable/ARR media snippets; no IPO signal"
+      ],
+      "nextAction": "Keep as enterprise AI video watch; verify ARR, enterprise vs SMB split, churn, gross margin and competitive position vs Synthesia.",
+      "tags": [
+        "AI video",
+        "enterprise SaaS",
+        "avatar",
+        "top investor signal"
+      ],
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official/media",
+          "note": "HeyGen official/blog snippets: $60M Series A led by Benchmark; media snippets indicate $500M valuation and profitability/ARR claims that need verification.",
+          "url": "https://www.heygen.com/blog"
+        }
+      ],
+      "notes": "Closer to SaaS quality than Higgsfield, but IPO signal not clear and valuation scale smaller than Synthesia/ElevenLabs.",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "US IPO likely if scaled",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [
+        "IPO signal weak",
+        "Scale likely below Synthesia/ElevenLabs",
+        "Avatar/video generation commoditization risk",
+        "ARR/profitability needs verification"
+      ],
+      "openQuestions": [
+        "Current ARR vs 2024 $35M ARR media/company claim?",
+        "Enterprise vs SMB/prosumer mix?",
+        "NRR/churn and paying companies quality?",
+        "Gross margin after video generation costs?",
+        "Competitive win/loss vs Synthesia?",
+        "Any secondary/pre-IPO process?"
+      ],
+      "topInvestorSignal": "Series A led by Benchmark; Thrive Capital, BOND, Conviction, Dylan Field, Elad Gil, Aviv Nevo, Neil Mehta, SV Angel participated. Victor Lazarte (Benchmark) joined board."
+    },
+    {
+      "id": "lovable",
+      "name": "Lovable",
+      "country": "Sweden",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "Vibe coding / AI-native software builder / B2B app platform",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: $6.6B valuation after $330M/€281M Series B; ARR/run-rate claims $400-500M need verification",
+      "latestFunding": "Series A: $200M led by Accel at $1.8B valuation; Series B media: $330M / $6.6B with CapitalG, Menlo, Nvidia/Alphabet VC arms",
+      "topInvestorSignal": "Accel led $200M Series A; existing investors included 20VC, byFounders, Creandum, Hummingbird, Visionaries Club. Series B media: CapitalG and Menlo Ventures, with Nvidia/Alphabet VC arms reported.",
+      "investors": [
+        "Accel",
+        "CapitalG",
+        "Menlo Ventures",
+        "20VC",
+        "byFounders",
+        "Creandum",
+        "Hummingbird",
+        "Visionaries Club",
+        "Nvidia/Alphabet VC arms - media",
+        "angel investors incl. Sebastian Siemiatkowski/Stewart Butterfield/Dharmesh Shah - media"
+      ],
+      "ipoSignals": [
+        "Very high ARR/run-rate media signals",
+        "Large Series B at $6.6B",
+        "Enterprise/B2B pivot media signal",
+        "No public IPO filing yet"
+      ],
+      "nextAction": "High-priority diligence: verify ARR quality, B2B/enterprise mix, retention, gross margin after model costs, app deployment depth, and Series B terms/secondary availability.",
+      "tags": [
+        "vibe coding",
+        "AI app builder",
+        "B2B pivot",
+        "Europe",
+        "CapitalG",
+        "Menlo",
+        "Accel"
+      ],
+      "evidence": [
+        {
+          "date": "2025-07",
+          "type": "media",
+          "note": "TechCrunch: $200M Series A led by Accel at $1.8B valuation; claimed >2.3M active users, >180K paying subscribers, $75M ARR in seven months; existing investors included 20VC, byFounders, Creandum, Hummingbird, Visionaries Club.",
+          "url": "https://techcrunch.com/2025/07/17/lovable-becomes-a-unicorn-with-200m-series-a-just-8-months-after-launch/"
+        },
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "News clusters: $330M/€281M Series B at $6.6B valuation; CapitalG, Menlo, Nvidia/Alphabet VC arms reported; ARR/run-rate claims $400-500M need primary verification.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Potentially fits strategy better than pure coding if B2B all-in-one app/service platform pivot is real. Core risk: vibe-coding market crowding, retention, production-readiness, security/compliance and model-cost gross margin.",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "US or Europe TBD",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "",
+      "contacts": [],
+      "redFlags": [
+        "Coding/vibe-coding market crowded",
+        "ARR/run-rate definitions may be usage annualized not contracted ARR",
+        "B2B enterprise pivot unverified",
+        "Production readiness/security/compliance risk",
+        "Gross margin after model/cloud costs unknown"
+      ],
+      "openQuestions": [
+        "What portion of ARR is enterprise/B2B vs prosumer/SMB?",
+        "Gross retention and NRR?",
+        "How many apps are deployed to production and still active after 90/180 days?",
+        "Does Lovable own backend/runtime/payment/hosting or just front-end generation?",
+        "Security/compliance/SOC2/data governance for enterprise?",
+        "Gross margin after model + cloud + support costs?"
+      ]
+    }
+  ],
+  "fundingRounds": [
+    {
+      "id": "rebellions-2026-pre-ipo---media",
+      "companyId": "rebellions",
+      "date": "2026",
+      "round": "Pre-IPO / media",
+      "amount": "Media: $400M / KRW 640B",
+      "valuation": "Media: $2.3B / KRW 3.4T divergent",
+      "leadInvestors": [
+        "Samsung",
+        "Ventures"
+      ],
+      "participants": [
+        "Samsung",
+        "Ventures",
+        "Arm",
+        "InterVest",
+        "SK"
+      ],
+      "sourceType": "media",
+      "confidence": "low",
+      "url": "",
+      "notes": "Conflicting media; verify with InterVest/Samsung."
+    },
+    {
+      "id": "databricks-2025-12-series-l",
+      "companyId": "databricks",
+      "date": "2025-12",
+      "round": "Series L",
+      "amount": ">$4B",
+      "valuation": "$134B",
+      "leadInvestors": [
+        "Top growth investors"
+      ],
+      "participants": [
+        "Top growth investors"
+      ],
+      "sourceType": "official",
+      "confidence": "high",
+      "url": "",
+      "notes": "Official company press release."
+    },
+    {
+      "id": "deepl-2025-10-ipo-exploration",
+      "companyId": "deepl",
+      "date": "2025-10",
+      "round": "IPO exploration",
+      "amount": "n/a",
+      "valuation": "Media: up to $5B IPO valuation",
+      "leadInvestors": [
+        "TBD"
+      ],
+      "participants": [
+        "TBD"
+      ],
+      "sourceType": "media",
+      "confidence": "medium",
+      "url": "",
+      "notes": "Reuters/Bloomberg."
+    },
+    {
+      "id": "elevenlabs-2026-02-series-d",
+      "companyId": "elevenlabs",
+      "date": "2026-02",
+      "round": "Series D",
+      "amount": "$500M",
+      "valuation": "$11B",
+      "leadInvestors": [
+        "Nvidia-backed investors"
+      ],
+      "participants": [
+        "Nvidia-backed investors"
+      ],
+      "sourceType": "official",
+      "confidence": "high",
+      "url": "",
+      "notes": "Official ARR >$330M."
+    },
+    {
+      "id": "glean-2025-12-arr-milestone",
+      "companyId": "glean",
+      "date": "2025-12",
+      "round": "ARR milestone",
+      "amount": "n/a",
+      "valuation": "Reuters: $7.2B",
+      "leadInvestors": [
+        "TBD"
+      ],
+      "participants": [
+        "TBD"
+      ],
+      "sourceType": "official/media",
+      "confidence": "high",
+      "url": "",
+      "notes": "Official ARR $200M."
+    },
+    {
+      "id": "crusoe-2025-10-series-e",
+      "companyId": "crusoe",
+      "date": "2025-10",
+      "round": "Series E",
+      "amount": "$1.375B",
+      "valuation": ">$10B",
+      "leadInvestors": [
+        "Mubadala Capital",
+        "Valor"
+      ],
+      "participants": [
+        "Mubadala Capital",
+        "Valor"
+      ],
+      "sourceType": "official",
+      "confidence": "high",
+      "url": "",
+      "notes": "Company release."
+    },
+    {
+      "id": "groq-2025-09-financing",
+      "companyId": "groq",
+      "date": "2025-09",
+      "round": "Financing",
+      "amount": "$750M",
+      "valuation": "$6.9B post-money",
+      "leadInvestors": [
+        "Disruptive",
+        "BlackRock"
+      ],
+      "participants": [
+        "Disruptive",
+        "BlackRock"
+      ],
+      "sourceType": "official",
+      "confidence": "high",
+      "url": "",
+      "notes": "Company release."
+    },
+    {
+      "id": "sakana-ai-2025-11-series-b",
+      "companyId": "sakana-ai",
+      "date": "2025-11",
+      "round": "Series B",
+      "amount": "JPY 32B / $200M",
+      "valuation": "JPY 432B / $2.7B post-money",
+      "leadInvestors": [
+        "MUFG",
+        "Khosla"
+      ],
+      "participants": [
+        "MUFG",
+        "Khosla",
+        "NEA"
+      ],
+      "sourceType": "official",
+      "confidence": "high",
+      "url": "",
+      "notes": "Company release."
+    },
+    {
+      "id": "preferred-networks-2025-04-extension-round",
+      "companyId": "preferred-networks",
+      "date": "2025-04",
+      "round": "Extension round",
+      "amount": "JPY 24B total latest round",
+      "valuation": "n/a",
+      "leadInvestors": [
+        "Mitsubishi UFJ Trust",
+        "Mizuho"
+      ],
+      "participants": [
+        "Mitsubishi UFJ Trust",
+        "Mizuho"
+      ],
+      "sourceType": "official",
+      "confidence": "high",
+      "url": "",
+      "notes": "Company release."
+    },
+    {
+      "id": "furiosaai-2026-pre-ipo-media",
+      "companyId": "furiosaai",
+      "date": "2026",
+      "round": "Pre-IPO media",
+      "amount": "Up to $500M / KRW 700B",
+      "valuation": "TBD",
+      "leadInvestors": [
+        "Morgan Stanley?",
+        "Mirae?"
+      ],
+      "participants": [
+        "Morgan Stanley?",
+        "Mirae?"
+      ],
+      "sourceType": "media",
+      "confidence": "low",
+      "url": "",
+      "notes": "Needs verification."
+    },
+    {
+      "id": "upstage-2026-series-c-media",
+      "companyId": "upstage",
+      "date": "2026",
+      "round": "Series C media",
+      "amount": "KRW 180B",
+      "valuation": "Unicorn",
+      "leadInvestors": [
+        "Amazon",
+        "AMD"
+      ],
+      "participants": [
+        "Amazon",
+        "AMD",
+        "Korea",
+        "funds"
+      ],
+      "sourceType": "media",
+      "confidence": "medium",
+      "url": "",
+      "notes": "Verify with company/InterVest."
+    },
+    {
+      "id": "higgsfield-2025-09-series-a",
+      "companyId": "higgsfield",
+      "date": "2025-09",
+      "round": "Series A",
+      "amount": "$50M",
+      "valuation": "Later media: $1.3B valuation in latest funding",
+      "leadInvestors": [
+        "GFT Ventures"
+      ],
+      "participants": [
+        "GFT Ventures",
+        "BroadLight Capital",
+        "NextEquity Partners",
+        "AI Capital Partners",
+        "Menlo Ventures",
+        "Alpha Square Group"
+      ],
+      "sourceType": "media/company",
+      "confidence": "medium",
+      "url": "",
+      "notes": "Series A investor list from Pulse2/PRNewswire cluster; latest valuation investor list still needs verification."
+    },
+    {
+      "id": "suno-2024-05-funding-round",
+      "companyId": "suno",
+      "date": "2024-05",
+      "round": "Funding round",
+      "amount": "$125M",
+      "valuation": "Media: ~$500M then later $2B-$5B+ signals",
+      "leadInvestors": [
+        "Lightspeed Venture Partners"
+      ],
+      "participants": [
+        "Lightspeed Venture Partners",
+        "Nat Friedman",
+        "Daniel Gross",
+        "Matrix",
+        "Founder Collective"
+      ],
+      "sourceType": "media/company",
+      "confidence": "medium",
+      "url": "",
+      "notes": "Investor list from VentureBeat/SiliconANGLE/MBW clusters; latest valuation/funding needs verification."
+    },
+    {
+      "id": "heygen-2024-06-series-a",
+      "companyId": "heygen",
+      "date": "2024-06",
+      "round": "Series A",
+      "amount": "$60M",
+      "valuation": ">$500M",
+      "leadInvestors": [
+        "Benchmark"
+      ],
+      "participants": [
+        "Benchmark",
+        "Thrive Capital",
+        "BOND",
+        "Conviction",
+        "Dylan Field",
+        "Elad Gil",
+        "Aviv Nevo",
+        "Neil Mehta",
+        "SV Angel"
+      ],
+      "sourceType": "media/company",
+      "confidence": "high",
+      "url": "",
+      "notes": "Investor list and ARR/profitability claims from Pulse2/FinSMEs/Bloomberg clusters; verify current ARR."
+    },
+    {
+      "id": "lovable-2025-07-series-a",
+      "companyId": "lovable",
+      "date": "2025-07",
+      "round": "Series A",
+      "amount": "$200M",
+      "valuation": "$1.8B",
+      "leadInvestors": [
+        "Accel"
+      ],
+      "participants": [
+        "Accel",
+        "20VC",
+        "byFounders",
+        "Creandum",
+        "Hummingbird",
+        "Visionaries Club"
+      ],
+      "sourceType": "media",
+      "confidence": "medium",
+      "url": "https://techcrunch.com/2025/07/17/lovable-becomes-a-unicorn-with-200m-series-a-just-8-months-after-launch/",
+      "notes": "TechCrunch; company ARR/user claims need verification."
+    },
+    {
+      "id": "lovable-2026-series-b-media",
+      "companyId": "lovable",
+      "date": "2026",
+      "round": "Series B / media",
+      "amount": "$330M / €281M",
+      "valuation": "$6.6B",
+      "leadInvestors": [
+        "CapitalG",
+        "Menlo Ventures"
+      ],
+      "participants": [
+        "CapitalG",
+        "Menlo Ventures",
+        "Nvidia/Alphabet VC arms - media"
+      ],
+      "sourceType": "media",
+      "confidence": "medium_low",
+      "url": "https://news.google.com/",
+      "notes": "Media/news clusters; verify final investor list and terms."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-001",
+      "companyId": "rebellions",
+      "title": "Confirm KRX preliminary review status and lead underwriter via Samsung/InterVest",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-002",
+      "companyId": "rebellions",
+      "title": "Request revenue/backlog/customer data room and post-Sapeon cap table",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-003",
+      "companyId": "furiosaai",
+      "title": "Verify $500M pre-IPO round status and RNGD production customers",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-004",
+      "companyId": "deepx",
+      "title": "Confirm IPO timetable and KOSDAQ/KOSPI route",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-005",
+      "companyId": "upstage",
+      "title": "Ask InterVest for ARR, enterprise customers and IPO adviser",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-006",
+      "companyId": "panmnesia",
+      "title": "Ask InterVest for Samsung/SK Hynix relationship and CXL design wins",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-007",
+      "companyId": "databricks",
+      "title": "Source clean secondary quote and net discount incl. SPV fees",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-008",
+      "companyId": "lambda",
+      "title": "Check executable secondary/pre-IPO blocks and IPO bank status",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-009",
+      "companyId": "sakana-ai",
+      "title": "Build MUFG/Mitsubishi intro; ask ARR and secondary availability",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-010",
+      "companyId": "mistral-ai",
+      "title": "Wait for banker/filer signal; ask revenue/gross margin/GPU obligations",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-25",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": ""
+    },
+    {
+      "id": "task-011",
+      "companyId": "higgsfield",
+      "title": "Verify Higgsfield revenue/ARR, enterprise customer mix and copyright/model-cost risk",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-28",
+      "status": "open",
+      "priority": "Medium",
+      "category": "diligence",
+      "notes": "Added after user asked fit with strategy."
+    },
+    {
+      "id": "task-012",
+      "companyId": "suno",
+      "title": "Check Suno copyright litigation status, ARR quality, paid subscriber retention and label settlement path",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-28",
+      "status": "open",
+      "priority": "Medium",
+      "category": "diligence",
+      "notes": "Added after user asked fit with strategy."
+    },
+    {
+      "id": "task-013",
+      "companyId": "heygen",
+      "title": "Verify HeyGen ARR/profitability, enterprise mix and whether any pre-IPO/secondary process exists",
+      "owner": "Deal Team",
+      "dueDate": "2026-06-28",
+      "status": "open",
+      "priority": "Medium",
+      "category": "diligence",
+      "notes": "Added after user asked fit with strategy."
+    },
+    {
+      "id": "task-014",
+      "companyId": "higgsfield",
+      "title": "Identify investors in latest $1.3B valuation round and request revenue/user retention data",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-02",
+      "status": "open",
+      "priority": "Medium",
+      "category": "investor_diligence",
+      "notes": "Added top investor signal follow-up."
+    },
+    {
+      "id": "task-015",
+      "companyId": "suno",
+      "title": "Build copyright-risk diligence memo: lawsuits, label settlement scenarios, ARR/gross-margin impact",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-02",
+      "status": "open",
+      "priority": "Medium",
+      "category": "investor_diligence",
+      "notes": "Added top investor signal follow-up."
+    },
+    {
+      "id": "task-016",
+      "companyId": "heygen",
+      "title": "Benchmark HeyGen vs Synthesia: ARR, enterprise mix, pricing, gross margin, IPO readiness",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-02",
+      "status": "open",
+      "priority": "Medium",
+      "category": "investor_diligence",
+      "notes": "Added top investor signal follow-up."
+    },
+    {
+      "id": "task-017",
+      "companyId": "lovable",
+      "title": "Verify Lovable ARR quality, enterprise/B2B mix and gross margin after model/cloud costs",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-05",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": "User asked investment value under crossover strategy."
+    }
+  ],
+  "interactions": [
+    {
+      "companyId": "rebellions",
+      "date": "2026-06-18",
+      "type": "system_seed",
+      "counterparty": "Hermes research",
+      "summary": "Created CRM v3 record for Rebellions.",
+      "nextStep": "Ask Samsung Ventures + InterVest for data room: revenue/backlog, KRX preliminary review status, lead underwriter, lock-up and valuation.",
+      "source": "manual_seed"
+    },
+    {
+      "companyId": "furiosaai",
+      "date": "2026-06-18",
+      "type": "system_seed",
+      "counterparty": "Hermes research",
+      "summary": "Created CRM v3 record for FuriosaAI.",
+      "nextStep": "Ask InterVest whether $500M round closed, valuation, Morgan Stanley/Mirae role, RNGD production, top customers.",
+      "source": "manual_seed"
+    },
+    {
+      "companyId": "upstage",
+      "date": "2026-06-18",
+      "type": "system_seed",
+      "counterparty": "Hermes research",
+      "summary": "Created CRM v3 record for Upstage.",
+      "nextStep": "Ask InterVest for ARR, major enterprise customers, IPO adviser, Japan/US expansion and gross margin.",
+      "source": "manual_seed"
+    },
+    {
+      "companyId": "sakana-ai",
+      "date": "2026-06-18",
+      "type": "system_seed",
+      "counterparty": "Hermes research",
+      "summary": "Created CRM v3 record for Sakana AI.",
+      "nextStep": "Build relationship via MUFG/Mitsubishi/Khosla; ask ARR, customer contracts, secondary and listing intention.",
+      "source": "manual_seed"
+    },
+    {
+      "companyId": "lambda",
+      "date": "2026-06-18",
+      "type": "system_seed",
+      "counterparty": "Hermes research",
+      "summary": "Created CRM v3 record for Lambda.",
+      "nextStep": "Source secondary/primary via US private markets and bankers; evaluate discount to last valuation.",
+      "source": "manual_seed"
+    },
+    {
+      "companyId": "databricks",
+      "date": "2026-06-18",
+      "type": "system_seed",
+      "counterparty": "Hermes research",
+      "summary": "Created CRM v3 record for Databricks.",
+      "nextStep": "Seek clean secondary at 15-30% discount; otherwise prepare IPO anchor relationship.",
+      "source": "manual_seed"
+    }
+  ]
+}

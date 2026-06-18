@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Global AI Pre-IPO Pipeline Pilot</title>
+  <link rel="stylesheet" href="style.css?v=1" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">Crossover / Pre-IPO Command Center · Pilot</div>
+      <h1>全球 AI & AI 产业链 Private Pipeline</h1>
+      <p>追踪 LLM、AI 应用、AI Infra、半导体、CXL/Memory、机器人、日韩产业链公司：IPO 确定性、投资人、证据、下一步动作。</p>
+    </div>
+    <div class="actions">
+      <button id="exportBtn">导出 Markdown</button>
+      <button id="newBtn">新增公司</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="summary" class="summary-grid"></section>
+
+    <section class="panel source-panel">
+      <div class="section-title">Data Source Coverage / 数据源接入状态</div>
+      <div id="sources" class="source-grid"></div>
+    </section>
+
+    <section class="panel controls">
+      <input id="search" placeholder="搜索公司、投资人、Samsung、InterVest、CXL、Japan..." />
+      <select id="region"><option value="">全部地区</option></select>
+      <select id="sector"><option value="">全部赛道</option></select>
+      <select id="label"><option value="">全部优先级</option></select>
+      <button id="resetBtn">重置</button>
+    </section>
+
+    <section class="panel crm-panel">
+      <div class="section-title">Deal CRM Board / 融资事件与待办</div>
+      <div class="crm-grid">
+        <div><h3>Latest Funding / Valuation Events</h3><div id="fundingBoard" class="mini-list"></div></div>
+        <div><h3>Open Deal Tasks</h3><div id="taskBoard" class="mini-list"></div></div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div class="panel table-wrap">
+        <div class="section-title">Pipeline 列表</div>
+        <table id="companyTable">
+          <thead><tr><th>Score</th><th>公司</th><th>地区</th><th>赛道</th><th>IPO</th><th>优先级</th><th>下一步</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <aside class="panel" id="detail">
+        <div class="placeholder">点击左侧公司查看详情。Pilot 已预置 Rebellions、FuriosaAI、DeepX、Upstage、Panmnesia、Sakana、PFN、Lambda、Databricks 等。</div>
+      </aside>
+    </section>
+  </main>
+
+  <dialog id="editDialog">
+    <form method="dialog" id="editForm">
+      <h2 id="formTitle">新增公司</h2>
+      <div class="form-grid">
+        <label>公司名<input name="name" required /></label>
+        <label>国家<input name="country" /></label>
+        <label>地区<input name="region" placeholder="Korea/Japan/US/Europe" /></label>
+        <label>赛道<input name="sector" placeholder="AI Chip / AI Infra" /></label>
+        <label>子赛道<input name="subSector" /></label>
+        <label>阶段<input name="stage" placeholder="pre_ipo/growth" /></label>
+        <label>IPO 信号<select name="ipoSignal"><option>high</option><option>medium_high</option><option>medium</option><option>medium_low</option><option>low</option><option>unknown</option></select></label>
+        <label>收入质量<select name="revenueQuality"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>medium_low</option><option>low</option><option>unknown</option></select></label>
+        <label>投资人质量<select name="investorQuality"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
+        <label>战略相关性<select name="strategicRelevance"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
+        <label>Access Fit<select name="accessFit"><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
+        <label>风险<select name="riskLevel"><option>low</option><option>medium</option><option>medium_high</option><option>high</option></select></label>
+      </div>
+      <label>估值/融资锚<textarea name="latestValuation"></textarea></label>
+      <label>投资人（逗号分隔）<textarea name="investors"></textarea></label>
+      <label>下一步动作<textarea name="nextAction"></textarea></label>
+      <label>备注<textarea name="notes"></textarea></label>
+      <menu>
+        <button value="cancel">取消</button>
+        <button id="saveBtn" value="default">保存</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="app.js?v=1"></script>
+</body>
+</html>

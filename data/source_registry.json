@@ -1,0 +1,66 @@
+{
+  "sources": [
+    {
+      "id": "intervest_portfolio",
+      "name": "InterVest Official Portfolio",
+      "type": "automatic official/public",
+      "status": "enabled",
+      "url": "https://www.intervest.co.kr/portfolio",
+      "refreshFrequency": "weekly",
+      "coverage": "Korean VC portfolio: AI, semiconductor, robotics, space/quantum",
+      "limitations": "Portfolio logos confirm inclusion, not current holding, valuation, revenue or IPO timing."
+    },
+    {
+      "id": "google_news_rss",
+      "name": "Google News RSS",
+      "type": "automatic public/news",
+      "status": "enabled",
+      "url": "https://news.google.com/rss/search",
+      "refreshFrequency": "daily/manual-trigger",
+      "coverage": "Company news, IPO/funding signals, media clusters",
+      "limitations": "Media signal only; must verify with company, filings, investors or bankers."
+    },
+    {
+      "id": "company_websites",
+      "name": "Company Websites / Official News",
+      "type": "automatic official/public",
+      "status": "manual_url_seed",
+      "url": "various",
+      "refreshFrequency": "manual-trigger",
+      "coverage": "Official product/funding/customer pages when URL is known",
+      "limitations": "Many pages are JS-heavy; official marketing still does not prove revenue."
+    },
+    {
+      "id": "crunchbase",
+      "name": "Crunchbase API",
+      "type": "gated/credential",
+      "status": "needs_api_key",
+      "envVar": "CRUNCHBASE_API_KEY",
+      "url": "https://data.crunchbase.com/docs/using-the-api",
+      "refreshFrequency": "daily after credential",
+      "coverage": "Funding rounds, investors, organizations, acquisitions, IPO status if subscribed",
+      "limitations": "Requires paid/authorized API key. Current MVP only detects credential presence and does not fabricate values."
+    },
+    {
+      "id": "dealroom",
+      "name": "Dealroom API",
+      "type": "gated/credential",
+      "status": "needs_api_key",
+      "envVar": "DEALROOM_API_KEY",
+      "url": "https://api.dealroom.co/",
+      "refreshFrequency": "daily after credential",
+      "coverage": "European/private company database, funding, investors, tags",
+      "limitations": "Credential/subscription required."
+    },
+    {
+      "id": "pitchbook",
+      "name": "PitchBook / CapIQ / FactSet Private Markets",
+      "type": "manual/paid overlay",
+      "status": "manual",
+      "url": "manual",
+      "refreshFrequency": "manual",
+      "coverage": "High-quality private company funding/valuation/investor data",
+      "limitations": "No free public API; enter as manual evidence or import CSV."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "global-ai-preipo-dashboard",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Global AI Pre-IPO Pipeline Pilot dashboard",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/scoring.test.js && node test/connectors.test.js",
+    "check": "node --check server.js && node --check src/scoring.js && node --check src/connectors.js && node --check public/app.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
