@@ -5,3 +5,5 @@ npm-debug.log*
 server.out.log
 server.err.log
 *.log
+*.bak_*
+IMPROVEMENT_REPORT_zh*

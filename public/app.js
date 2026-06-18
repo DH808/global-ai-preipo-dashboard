@@ -103,7 +103,7 @@ function renderTable() {
   tbody.innerHTML = state.companies.map(c => `
     <tr data-id="${esc(c.id)}">
       <td class="score ${colorClass(c.label)}">${c.score}</td>
-      <td><div class="company-name">${esc(c.name)}</div><div class="sub">${esc(c.country)} · ${esc(c.stage)}</div></td>
+      <td><div class="company-name">${esc(c.name)}</div><div class="sub">${esc(c.country)} · ${esc(c.stage)}${c.priorityTier ? ' · ' + esc(c.priorityTier) : ''}</div></td>
       <td>${esc(c.region)}</td>
       <td>${esc(c.sector)}<div class="sub">${esc(c.subSector)}</div></td>
       <td>${esc(c.ipoSignal)}</td>
@@ -121,7 +121,12 @@ async function showDetail(id) {
     <h2>${esc(c.name)}</h2>
     <div class="sub">${esc(c.country)} · ${esc(c.sector)} / ${esc(c.subSector)}</div>
     <div style="margin:10px 0"><span class="score ${colorClass(c.label)}">${c.score}</span> <span class="pill ${colorClass(c.label)}">${esc(c.label)}</span></div>
-    <div class="kv"><b>IPO 信号</b><span>${esc(c.ipoSignal)}</span></div>
+    <div class="kv"><b>IPO 信号</b><span>${esc(c.ipoSignal)}${c.priorityTier ? '<br>Priority: ' + esc(c.priorityTier) : ''}</span></div>
+    <div class="kv"><b>Recommendation</b><span>${esc(c.recommendation || c.mandateFit || 'not captured')}</span></div>
+    <div class="kv"><b>Why now</b><span>${esc(c.whyNow || 'not captured')}</span></div>
+    <div class="kv"><b>Key metrics</b><span>${esc((c.keyMetrics||[]).join('\n'))}</span></div>
+    <div class="kv"><b>Valuation view</b><span>${esc(c.valuationView || 'not captured')}</span></div>
+    <div class="kv"><b>Access route</b><span>${esc(c.routeToAccess || 'not captured')}</span></div>
     <div class="kv"><b>Deal Stage</b><span>${esc(c.dealStage || c.stage)} · Data room: ${esc(c.dataRoomStatus || 'unknown')}</span></div>
     <div class="kv"><b>IPO 进度</b><span>Exchange: ${esc(c.targetExchange || 'unknown')}<br>Underwriter: ${esc((c.leadUnderwriters||[]).join(', ') || 'unknown')}<br>Filing/Review: ${esc(c.krxReviewStatus || c.filingStatus || 'unknown')}<br>Lock-up: ${esc(c.lockup || 'unknown')}</span></div>
     <div class="kv"><b>收入质量</b><span>${esc(c.revenueQuality)}</span></div>
@@ -133,6 +138,8 @@ async function showDetail(id) {
     <div class="detail-section"><b>Open Tasks</b>${tasks.map(t=>`<div class="evidence"><b>${esc(t.title)}</b><div class="sub">${esc(t.owner)} · ${esc(t.dueDate)} · ${esc(t.status)} · ${esc(t.priority)}</div></div>`).join('') || '<p class="sub">No tasks yet.</p>'}</div>
     <div class="detail-section"><b>Interactions</b>${interactions.map(i=>`<div class="evidence"><b>${esc(i.date)} · ${esc(i.counterparty)}</b><div>${esc(i.summary)}</div><div class="sub">Next: ${esc(i.nextStep||'')}</div></div>`).join('') || '<p class="sub">No interactions yet.</p>'}</div>
     <div class="detail-section"><b>备注</b><p>${esc(c.notes)}</p></div>
+    ${c.todayDelta ? `<div class="detail-section"><b>Today delta</b><p>${esc(c.todayDelta)}</p></div>` : ''}
+    ${c.evidenceBoundary ? `<div class="detail-section"><b>Evidence boundary</b><p>${esc(c.evidenceBoundary)}</p></div>` : ''}
     <div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
     <div class="detail-section"><b>Evidence Ledger</b>${(c.evidence||[]).map(e=>`<div class="evidence"><div><span class="pill gray">${esc(e.type)}</span> ${esc(e.date||'')}</div><div>${esc(e.note)}</div>${e.url?`<a href="${esc(e.url)}" target="_blank">source</a>`:''}</div>`).join('') || '<p class="sub">No evidence yet.</p>'}</div>
     ${state.meta.readOnly ? '<div class="read-only-note">当前为只读部署：请在本机/Tailscale 版本编辑，并通过 snapshot sync 发布。</div>' : `<div class="actions"><button onclick="openEdit(selected)">编辑</button><button onclick="deleteCompany('${esc(c.id)}')">删除</button></div>`}

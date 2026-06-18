@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Global AI Pre-IPO Pipeline Pilot",
-    "asOf": "2026-06-17",
-    "purpose": "Track global private AI / AI supply-chain companies from early growth to pre-IPO, with IPO certainty, investor access, evidence and next actions.",
+    "title": "Global AI Pre-IPO / Crossover Pipeline",
+    "asOf": "2026-06-19",
+    "purpose": "Deal-team CRM for private/pre-IPO AI, AI infrastructure, semiconductor, data-center, robotics and AI supply-chain targets; prioritizes 12-36 month liquidity, revenue/deployment evidence, and actionable access routes.",
     "schemaVersion": 1,
-    "updatedAt": "2026-06-18T05:05:00Z",
-    "coverage": "v3 expanded to broader global private AI market: prior two-round universe, Korea/Japan, InterVest, AI chips, apps, infra and robotics."
+    "updatedAt": "2026-06-18T17:49:16+00:00",
+    "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list."
   },
   "companies": [
     {
@@ -497,7 +497,8 @@
       "latestFunding": "Official: raising >$4B Series L",
       "investors": [
         "Top global growth investors",
-        "Strategic cloud ecosystem"
+        "Strategic cloud ecosystem",
+        "Temasek"
       ],
       "ipoSignals": [
         "IPO-ready scale",
@@ -508,7 +509,8 @@
       "tags": [
         "data platform",
         "AI application",
-        "secondary"
+        "secondary",
+        "Temasek"
       ],
       "evidence": [
         {
@@ -523,7 +525,14 @@
       "dataRoomStatus": "secondary_info_pack_needed",
       "targetExchange": "US IPO likely",
       "filingStatus": "not filed public",
-      "lockup": "IPO lock-up TBD"
+      "lockup": "IPO lock-up TBD",
+      "topInvestorSignal": "Temasek participated in Series L per Databricks official press release.",
+      "contacts": [
+        "Temasek Databricks deal team"
+      ],
+      "priorityTier": "1 - Act Now",
+      "recommendation": "Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "mistral-ai",
@@ -809,7 +818,10 @@
           "url": "https://www.together.ai/"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "AI infra/model cloud; verify revenue before treating as pre-IPO.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "glean",
@@ -847,7 +859,10 @@
           "url": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Enterprise AI workflow app; verify ARR quality and valuation before chasing.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "elevenlabs",
@@ -923,7 +938,10 @@
           "url": "https://www.reuters.com/"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Legal AI quality high but valuation and dependency require caution.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "synthesia",
@@ -1011,20 +1029,22 @@
       "country": "United States",
       "region": "US",
       "sector": "AI Infra",
-      "subSector": "AI data center / power-to-compute",
+      "subSector": "AI cloud / data centers / power-linked compute",
       "stage": "late_growth",
       "status": "private",
-      "ipoSignal": "medium_high",
-      "revenueQuality": "medium_low",
-      "investorQuality": "high",
-      "strategicRelevance": "high",
+      "ipoSignal": "high",
+      "revenueQuality": "medium_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "very_high",
       "accessFit": "medium",
-      "riskLevel": "high",
-      "latestValuation": "Official: valuation above $10B",
-      "latestFunding": "Official: $1.375B Series E",
+      "riskLevel": "medium_high",
+      "latestValuation": "~$10B+",
+      "latestFunding": "2025 Series E $1.375B",
       "investors": [
         "Mubadala Capital",
-        "Valor Equity Partners"
+        "Valor Equity Partners",
+        "Tiger Global",
+        "Founders Fund / other major investors to verify"
       ],
       "ipoSignals": [
         "large capex/growth funding, possible pre-IPO but no filing"
@@ -1033,7 +1053,10 @@
       "tags": [
         "power",
         "data center",
-        "AI factory"
+        "AI factory",
+        "Tiger",
+        "AI cloud",
+        "neocloud"
       ],
       "evidence": [
         {
@@ -1041,9 +1064,31 @@
           "type": "official",
           "note": "Crusoe official: Series E $1.375B, valuation above $10B.",
           "url": "https://www.crusoe.ai/resources/newsroom/crusoe-announces-series-e-funding"
+        },
+        {
+          "date": "2025",
+          "type": "company/media",
+          "note": "Series E $1.375B at about/above $10B valuation; Tiger Global participant per research pass.",
+          "url": "https://www.crusoe.ai/"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+      "notes": "Already in dashboard; upgraded to Act Now after crossover screen.",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.",
+      "mandateFit": "Strong: Tiger-backed AI data center / cloud infra at $10B valuation; likely major liquidity path if execution continues.",
+      "whyNow": "AI factory / power-constrained compute is a core 2026 theme; Crusoe has raised large late-stage capital.",
+      "keyMetrics": [
+        "2025 Series E: $1.375B",
+        "Valuation: about/above $10B",
+        "AI data-center / cloud infrastructure focus"
+      ],
+      "valuationView": "High; underwriting must be project finance, contracted revenue, cost of power, customer concentration and capex recovery.",
+      "routeToAccess": "Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.",
+      "todayDelta": "Priority upgraded due to Tiger crossover validation and AI infra fit.",
+      "evidenceBoundary": "Need official round page/filings, revenue/backlog, customers, project financing terms.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "cerebras",
@@ -1051,20 +1096,22 @@
       "country": "United States",
       "region": "US",
       "sector": "AI Chip",
-      "subSector": "Wafer-scale AI accelerator / systems",
-      "stage": "ipo_filed_then_private",
+      "subSector": "Wafer-scale AI systems / inference and training",
+      "stage": "pre_ipo",
       "status": "private",
-      "ipoSignal": "medium_high",
+      "ipoSignal": "high",
       "revenueQuality": "medium",
-      "investorQuality": "high",
-      "strategicRelevance": "high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "very_high",
       "accessFit": "medium",
       "riskLevel": "high",
-      "latestValuation": "S-1 filed in 2024; later private funding/withdrawal reports",
-      "latestFunding": "Media: large private round after S-1 withdrawal",
+      "latestValuation": "2025 reported $8.1B",
+      "latestFunding": "2025 reported $1.1B Series G",
       "investors": [
         "G42 ecosystem",
-        "Foundation Capital style investors - verify"
+        "Foundation Capital style investors - verify",
+        "Tiger Global",
+        "other strategic/financial investors to verify"
       ],
       "ipoSignals": [
         "Public S-1 filed; timing reset after withdrawal"
@@ -1072,7 +1119,10 @@
       "nextAction": "Read S-1: customer concentration, revenue, export/CFIUS risk; monitor refiling.",
       "tags": [
         "S-1",
-        "AI chip"
+        "AI chip",
+        "Tiger",
+        "pre-IPO",
+        "semiconductor"
       ],
       "evidence": [
         {
@@ -1080,9 +1130,31 @@
           "type": "SEC",
           "note": "Cerebras S-1 publicly filed; customer concentration visible.",
           "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828024041463/cerebras-sx1.htm"
+        },
+        {
+          "date": "2025",
+          "type": "company/media",
+          "note": "Cerebras Series G and pre-IPO financing referenced in crossover screen; requires primary verification before IC memo.",
+          "url": "https://www.cerebras.net/"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use."
+      "notes": "Already in pipeline; moved to Act Now but with high risk.",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.",
+      "mandateFit": "Strong thematic and IPO-path fit; not as clean as software due to Nvidia competition and customer concentration.",
+      "whyNow": "Tiger-backed 2025 Series G and prior S-1 history indicate a likely eventual IPO path.",
+      "keyMetrics": [
+        "2025: reported $1.1B Series G",
+        "Valuation: $8.1B",
+        "Prior IPO/S-1 path"
+      ],
+      "valuationView": "Potentially attractive if IPO discount exists; risk-adjust heavily for customers, export controls and Nvidia moat.",
+      "routeToAccess": "Tiger Global, IPO bankers, strategic semiconductor investors.",
+      "todayDelta": "Upgraded due to Tiger pre-IPO AI chip evidence.",
+      "evidenceBoundary": "Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "groq",
@@ -1291,7 +1363,10 @@
       "lockup": "",
       "contacts": [],
       "redFlags": [],
-      "openQuestions": []
+      "openQuestions": [],
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "AI coding PMF but valuation risk is very high; follow only with discount/data access.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "runway",
@@ -1339,41 +1414,68 @@
       "country": "United States",
       "region": "US",
       "sector": "AI Application",
-      "subSector": "Medical ambient AI",
+      "subSector": "Healthcare clinical documentation AI",
       "stage": "growth",
       "status": "private",
-      "ipoSignal": "medium_low",
-      "revenueQuality": "medium",
-      "investorQuality": "high",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_high",
+      "investorQuality": "very_high",
       "strategicRelevance": "medium_high",
       "accessFit": "medium",
       "riskLevel": "medium",
-      "latestValuation": "Media: ~$5.3B valuation after $300M Series E",
-      "latestFunding": "Series E $300M media",
+      "latestValuation": "Media: multi-billion, verify",
+      "latestFunding": "2025 $250M Series D co-led by IVP/Elad Gil; CapitalG initial investment 2025",
       "investors": [
         "a16z",
         "Khosla",
-        "healthcare investors"
+        "healthcare investors",
+        "CapitalG",
+        "IVP",
+        "Elad Gil",
+        "Khosla Ventures"
       ],
       "ipoSignals": [
         "No near-term IPO; vertical AI quality"
       ],
-      "nextAction": "Verify hospital contracts, Epic/Microsoft/Nuance competitive dynamics, gross margin.",
+      "nextAction": "Ask CapitalG/Abridge for contracted ARR, hospital deployment count, NRR and compliance risk.",
       "tags": [
         "healthcare AI",
-        "ambient AI"
+        "ambient AI",
+        "CapitalG",
+        "vertical AI"
       ],
-      "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
-      "dealStage": "sourcing",
-      "dataRoomStatus": "unknown",
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official",
+          "note": "CapitalG portfolio: Abridge transforms medical conversations into clinically useful/billable notes; initial investment 2025.",
+          "url": "https://capitalg.com/portfolio/abridge/"
+        }
+      ],
+      "notes": "Existing/added from Google review.",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
       "targetExchange": "",
       "leadUnderwriters": [],
       "filingStatus": "",
       "lockup": "",
       "contacts": [],
       "redFlags": [],
-      "openQuestions": []
+      "openQuestions": [],
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Vertical AI app worth diligence; may be slightly earlier than top pre-IPO but strong enterprise deployment.",
+      "mandateFit": "Good: healthcare AI with enterprise-grade hospital deployments and CapitalG initial investment.",
+      "whyNow": "Clinical documentation is an early ROI-positive AI workflow.",
+      "keyMetrics": [
+        "CapitalG initial investment 2025",
+        "2025 Series D $250M; later funding reports exist",
+        "Adoption across major health systems to verify"
+      ],
+      "valuationView": "Need ARR, revenue per clinician, implementation cost, compliance risk.",
+      "routeToAccess": "CapitalG Abridge team, Khosla/IVP/healthcare investor network.",
+      "todayDelta": "CapitalG evidence added.",
+      "evidenceBoundary": "Need contracted ARR, hospital deployment scale, regulatory/compliance.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "grammarly",
@@ -1461,42 +1563,70 @@
       "name": "Anduril",
       "country": "United States",
       "region": "US",
-      "sector": "AI Application",
-      "subSector": "AI defense / autonomous systems",
-      "stage": "late_growth",
+      "sector": "Robotics / Physical AI",
+      "subSector": "Defense AI / autonomy / autonomous systems manufacturing",
+      "stage": "late_growth_pre_ipo",
       "status": "private",
-      "ipoSignal": "medium",
-      "revenueQuality": "medium",
-      "investorQuality": "high",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_high",
+      "investorQuality": "very_high",
       "strategicRelevance": "high",
-      "accessFit": "medium",
+      "accessFit": "medium_low",
       "riskLevel": "medium_high",
-      "latestValuation": "Media: $30B+ valuation; large defense contracts",
-      "latestFunding": "Large growth rounds reported",
+      "latestValuation": "2024 $14B",
+      "latestFunding": "2024 $1.5B Series F",
       "investors": [
         "Founders Fund",
         "General Catalyst",
-        "defense investors"
+        "defense investors",
+        "Sands Capital",
+        "Altimeter Capital",
+        "Fidelity",
+        "Baillie Gifford"
       ],
       "ipoSignals": [
         "Potential IPO but timing unclear"
       ],
-      "nextAction": "Track defense AI IPO path, backlog, gross margin, political/export risk.",
+      "nextAction": "Ask Sands/Altimeter for latest revenue/backlog, program concentration, IPO window and defense procurement risk.",
       "tags": [
         "defense AI",
-        "robotics"
+        "robotics",
+        "Sands",
+        "Altimeter",
+        "autonomy"
       ],
-      "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
-      "dealStage": "sourcing",
-      "dataRoomStatus": "unknown",
+      "evidence": [
+        {
+          "date": "2024-08",
+          "type": "official",
+          "note": "Anduril raised $1.5B to rebuild the arsenal of democracy; round co-led by Founders Fund and Sands Capital with Altimeter commitment.",
+          "url": "https://www.anduril.com/news/anduril-raises-usd1-5-billion-to-rebuild-the-arsenal-of-democracy"
+        }
+      ],
+      "notes": "Existing name upgraded with detailed crossover evidence.",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
       "targetExchange": "",
       "leadUnderwriters": [],
       "filingStatus": "",
       "lockup": "",
       "contacts": [],
       "redFlags": [],
-      "openQuestions": []
+      "openQuestions": [],
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Defense AI/autonomy; high quality but regulatory/procurement risk.",
+      "mandateFit": "Good: large late-stage round, defense AI/autonomy, manufacturing scale-up and likely eventual IPO.",
+      "whyNow": "Sands/Altimeter-backed 2024 Series F and defense AI tailwind.",
+      "keyMetrics": [
+        "2024: $1.5B Series F",
+        "Valuation: $14B",
+        "Funding supports Arsenal-1 / hyperscale defense manufacturing"
+      ],
+      "valuationView": "High quality but defense cycles/regulatory constraints; compare to public defense tech comps not SaaS.",
+      "routeToAccess": "Sands Capital, Altimeter, Founders Fund, defense banker network.",
+      "todayDelta": "Added Sands/Altimeter validation.",
+      "evidenceBoundary": "Need revenue/backlog, program concentration, IPO timing, regulatory risk.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "neysa",
@@ -1707,7 +1837,10 @@
       "lockup": "",
       "contacts": [],
       "redFlags": [],
-      "openQuestions": []
+      "openQuestions": [],
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "celestial-ai",
@@ -1768,7 +1901,8 @@
       "latestFunding": "Series C $275M",
       "investors": [
         "M12",
-        "Temasek style investors - verify"
+        "Temasek style investors - verify",
+        "Temasek"
       ],
       "ipoSignals": [
         "Large deployments claimed; IPO longer dated"
@@ -1776,7 +1910,8 @@
       "nextAction": "Verify deployments, revenue, Corsair/JetStream/Aviator stack.",
       "tags": [
         "inference",
-        "AI chip"
+        "AI chip",
+        "Temasek"
       ],
       "evidence": [],
       "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
@@ -1788,7 +1923,11 @@
       "lockup": "",
       "contacts": [],
       "redFlags": [],
-      "openQuestions": []
+      "openQuestions": [],
+      "topInvestorSignal": "Temasek co-led Series C global consortium per d-Matrix official release.",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "tenstorrent",
@@ -1950,7 +2089,10 @@
       "lockup": "",
       "contacts": [],
       "redFlags": [],
-      "openQuestions": []
+      "openQuestions": [],
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "AI data platform important, but Meta transaction complicates independent IPO path.",
+      "updatedAt": "2026-06-19"
     },
     {
       "id": "wirorobotics",
@@ -2401,7 +2543,1562 @@
         "Does Lovable own backend/runtime/payment/hosting or just front-end generation?",
         "Security/compliance/SOC2/data governance for enterprise?",
         "Gross margin after model + cloud + support costs?"
-      ]
+      ],
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "High-priority AI software-builder; investment depends entirely on ARR quality and B2B/enterprise mix.",
+      "updatedAt": "2026-06-19"
+    },
+    {
+      "id": "physicsx",
+      "name": "PhysicsX",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "Physics AI / engineering simulation / industrial AI",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "high",
+      "riskLevel": "medium",
+      "latestValuation": "Media: $2.35-2.4B valuation in $300M Temasek-led Series C",
+      "latestFunding": "$300M Series C led by Temasek",
+      "topInvestorSignal": "Temasek-backed / Temasek-led signal. Temasek; Nvidia? media; Industrial/AI investors - verify",
+      "investors": [
+        "Temasek",
+        "Nvidia? media",
+        "Industrial/AI investors - verify"
+      ],
+      "ipoSignals": [
+        "Temasek-led large round; industrial AI scale-up; no filing yet"
+      ],
+      "nextAction": "Use Temasek alumni angle for direct intro; verify revenue, customer verticals, Siemens/industrial adoption, IPO path.",
+      "tags": [
+        "industrial AI",
+        "engineering simulation",
+        "Physics AI",
+        "Temasek"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "FT/Bloomberg/TNGlobal clusters: PhysicsX raises $300M in Temasek-led deal, valuation ~$2.35-2.4B.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Strong fit for AI application in industrial/engineering, closer to B2B than consumer AI; IPO likely 24-36m not immediate.",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "",
+      "contacts": [
+        "Temasek AI/Tech team",
+        "Temasek portfolio team"
+      ],
+      "redFlags": [],
+      "openQuestions": [],
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Temasek-led industrial AI; verify software vs services revenue and industrial customer depth.",
+      "updatedAt": "2026-06-19"
+    },
+    {
+      "id": "black-forest-labs",
+      "name": "Black Forest Labs",
+      "country": "Germany",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "Image generation / visual AI foundation models",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_low",
+      "investorQuality": "high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "high",
+      "riskLevel": "high",
+      "latestValuation": "Media: $3.25B valuation after $300M Series B",
+      "latestFunding": "$300M Series B media",
+      "topInvestorSignal": "Temasek-backed / Temasek-led signal. Temasek; Nvidia?; European/US AI investors - verify",
+      "investors": [
+        "Temasek",
+        "Nvidia?",
+        "European/US AI investors - verify"
+      ],
+      "ipoSignals": [
+        "Temasek-backed Series B; used by Adobe/Canva/Meta media claims; no IPO filing"
+      ],
+      "nextAction": "Ask Temasek for revenue/licensing, enterprise/API customers, model cost and copyright posture.",
+      "tags": [
+        "visual AI",
+        "image generation",
+        "Europe",
+        "Temasek"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "TechCrunch/Sifted/TNGlobal clusters: Black Forest Labs raises $300M at $3.25B; Temasek backing reported.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Strategic watch. High model/copyright/competition risk; not near-term IPO core unless revenue licensing is strong.",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "",
+      "contacts": [
+        "Temasek AI/Tech team",
+        "Temasek portfolio team"
+      ],
+      "redFlags": [],
+      "openQuestions": [],
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Visual AI model company; need licensing revenue and copyright posture before core priority.",
+      "updatedAt": "2026-06-19"
+    },
+    {
+      "id": "cuspai",
+      "name": "CuspAI",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "AI materials discovery / chemistry search engine",
+      "stage": "growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "high",
+      "riskLevel": "medium_high",
+      "latestValuation": "Media: $520M valuation after $100M Series A; further $200M/unicorn reports need verification",
+      "latestFunding": "$100M Series A co-led by NEA and Temasek",
+      "topInvestorSignal": "Temasek-backed / Temasek-led signal. Temasek; NEA; Hyundai? media; AI/science investors",
+      "investors": [
+        "Temasek",
+        "NEA",
+        "Hyundai? media",
+        "AI/science investors"
+      ],
+      "ipoSignals": [
+        "Temasek/NEA co-led Series A; possible fast follow-on reports; no IPO filing"
+      ],
+      "nextAction": "Use Temasek + Hyundai angle; verify pharma/material customers, revenue vs research partnerships, IP ownership.",
+      "tags": [
+        "materials AI",
+        "AI science",
+        "chemistry",
+        "Temasek"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Fortune/Sifted/SiliconANGLE clusters: CuspAI raises ~$100M Series A co-led by NEA and Temasek; valuation ~$520M media.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Earlier than target but useful AI-science/materials discovery option; likely longer horizon.",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "",
+      "contacts": [
+        "Temasek AI/Tech team",
+        "Temasek portfolio team"
+      ],
+      "redFlags": [],
+      "openQuestions": [],
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "AI materials discovery; strategic but earlier-stage/longer duration.",
+      "updatedAt": "2026-06-19"
+    },
+    {
+      "id": "psiquantum",
+      "name": "PsiQuantum",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Quantum computing / fault-tolerant photonic quantum",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "high",
+      "strategicRelevance": "medium",
+      "accessFit": "high",
+      "riskLevel": "high",
+      "latestValuation": "Media: $1B Series E / $1.28B SGD; valuation needs verify",
+      "latestFunding": "$1B Series E media with Temasek backing",
+      "topInvestorSignal": "Temasek-backed / Temasek-led signal. Temasek; QIA; BlackRock? verify; Strategic/sovereign investors",
+      "investors": [
+        "Temasek",
+        "QIA",
+        "BlackRock? verify",
+        "Strategic/sovereign investors"
+      ],
+      "ipoSignals": [
+        "Large Temasek-backed quantum funding; not AI pure; long horizon"
+      ],
+      "nextAction": "Not core AI pre-IPO; track as adjacent compute infra / optionality. Ask Temasek for commercialization timeline and exit path.",
+      "tags": [
+        "quantum",
+        "compute infra",
+        "long horizon",
+        "Temasek"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "TNGlobal/Singapore Business Review clusters: Temasek backs PsiQuantum $1B Series E.",
+          "url": "https://news.google.com/"
+        }
+      ],
+      "notes": "Adjacent infrastructure, not main AI pipeline; likely longer duration and science risk.",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "unknown",
+      "targetExchange": "",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "",
+      "contacts": [
+        "Temasek AI/Tech team",
+        "Temasek portfolio team"
+      ],
+      "redFlags": [],
+      "openQuestions": [],
+      "priorityTier": "4 - Monitor / Option",
+      "recommendation": "Quantum/compute adjacent; too long-duration for core AI pre-IPO mandate.",
+      "updatedAt": "2026-06-19"
+    },
+    {
+      "id": "alphasense",
+      "name": "AlphaSense",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "Enterprise market intelligence / AI search",
+      "stage": "late_growth_pre_ipo",
+      "ipoSignal": "very_high",
+      "revenueQuality": "very_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium_high",
+      "riskLevel": "medium",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "Top priority crossover/pre-IPO AI application. Seek company/secondary/IPO-prep access now.",
+      "mandateFit": "Very strong: scaled ARR, enterprise workflow, Viking-backed, likely 12-36 month IPO candidate.",
+      "whyNow": "2026 financing at $7.5B and disclosed >$600M ARR make it one of the clearest mature AI application names.",
+      "keyMetrics": [
+        "2026: $350M financing at $7.5B valuation",
+        "Surpassed $600M ARR",
+        "2024: $650M round at $4B with Tegus acquisition context"
+      ],
+      "valuationView": "High but revenue-supported relative to many AI app peers; diligence should focus on ARR quality, margins, retention and Tegus integration.",
+      "routeToAccess": "Viking Global, BDT/MSD, existing investors, management/CFO, IPO bankers if mandated.",
+      "latestValuation": "2026: $7.5B valuation; 2024: $4B valuation",
+      "latestFunding": "2026 $350M round; 2024 $650M round / Tegus acquisition financing",
+      "investors": [
+        "Viking Global",
+        "BDT & MSD",
+        "CapitalG / prior investors to verify"
+      ],
+      "tags": [
+        "crossover",
+        "Viking",
+        "enterprise AI",
+        "ARR",
+        "$600M ARR",
+        "IPO candidate"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-03",
+          "type": "official",
+          "note": "AlphaSense raised $350M at $7.5B valuation and surpassed $600M ARR.",
+          "url": "https://www.alpha-sense.com/press/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue/"
+        },
+        {
+          "date": "2024-06",
+          "type": "official/media",
+          "note": "AlphaSense + Tegus financing at $4B valuation; Viking co-led with BDT/MSD.",
+          "url": "https://www.prnewswire.com/news-releases/alphasense-to-join-forces-with-tegus-increases-latest-valuation-to-4b-302169502.html"
+        }
+      ],
+      "notes": "今天crossover fund复盘后上调为Act Now。它是比多数AI app更成熟的pre-IPO候选。",
+      "todayDelta": "从Viking crossover投资线索中筛出；因ARR披露和估值阶梯上升，优先级上调。",
+      "evidenceBoundary": "Need detailed ARR quality, gross margin, churn/NRR, Tegus integration, IPO banker status.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask Viking/BDT/MSD for ARR quality, margins, Tegus integration, secondary availability and IPO timing."
+    },
+    {
+      "id": "kraken-technologies",
+      "name": "Kraken Technologies",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "Utility / energy AI operating system",
+      "stage": "growth_spinout",
+      "ipoSignal": "high",
+      "revenueQuality": "very_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "Top priority D1-backed non-obvious AI/data platform; pursue as energy/utility AI operating system pre-IPO candidate.",
+      "mandateFit": "Strong: scaled contracted revenue, enterprise utility accounts, D1-led spinout, energy/AI data platform relevance.",
+      "whyNow": "Standalone spinout financing creates cleaner cap table/governance and potential listing path.",
+      "keyMetrics": [
+        "2025: $1B investment led by D1",
+        "Valuation: $8.65B",
+        ">$500M contracted annual revenue",
+        "70M+ accounts served",
+        "15B+ data points processed daily"
+      ],
+      "valuationView": "More defensible than many AI app comps because revenue is contracted; need margin and growth quality.",
+      "routeToAccess": "D1 Capital, Octopus/Kraken management, Ontario Teachers/Fidelity/Durable network.",
+      "latestValuation": "$8.65B valuation",
+      "latestFunding": "2025 $1B investment / spinout financing",
+      "investors": [
+        "D1 Capital",
+        "Ontario Teachers",
+        "Fidelity",
+        "Durable Capital Partners"
+      ],
+      "tags": [
+        "D1",
+        "energy AI",
+        "utility OS",
+        "contracted revenue",
+        "Europe"
+      ],
+      "evidence": [
+        {
+          "date": "2025-12-29",
+          "type": "official",
+          "note": "Octopus Energy to spin out Kraken at $8.65B valuation; $1B investment led by D1; disclosed contracted revenue and account metrics.",
+          "url": "https://www.kraken.tech/press-releases/octopus-energy-group-to-spin-out-kraken-at-valuation-of-usd8-65bn"
+        }
+      ],
+      "notes": "Best D1-sourced new name from today. Not pure GenAI, but exactly the type of operational AI/data software with real customers that can be underwritten.",
+      "todayDelta": "New addition from D1 Capital crossover screen.",
+      "evidenceBoundary": "Need clarify revenue recognition, customer concentration, ownership after spinout and expected IPO venue/timing.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask D1 for spinout deck: contracted revenue, churn, margin, ownership and target IPO venue/timing."
+    },
+    {
+      "id": "drivenets",
+      "name": "DriveNets",
+      "country": "Israel",
+      "region": "Israel",
+      "sector": "AI Infra",
+      "subSector": "Ethernet fabric / networking for AI data centers",
+      "stage": "late_growth",
+      "ipoSignal": "high",
+      "revenueQuality": "high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "very_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.",
+      "mandateFit": "Strong: data-center networking bottleneck, >$1B secured business, cash-flow positive, crossover investors.",
+      "whyNow": "AI cluster networking is a major bottleneck; DriveNets just raised large Series D to meet AI deployment demand.",
+      "keyMetrics": [
+        "2026: $410M Series D",
+        ">$1B secured business",
+        "Cash-flow positive since 2025",
+        "Targeting Ethernet fabric for large-scale AI deployments"
+      ],
+      "valuationView": "Valuation undisclosed; likely more reasonable than hottest AI app names if revenue/backlog quality real.",
+      "routeToAccess": "D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.",
+      "latestValuation": "Not disclosed",
+      "latestFunding": "2026 $410M Series D",
+      "investors": [
+        "D1 Capital",
+        "Bessemer Venture Partners",
+        "Atreides",
+        "AMD Ventures",
+        "Red Dot"
+      ],
+      "tags": [
+        "D1",
+        "AI networking",
+        "Ethernet fabric",
+        "data center",
+        "Israel"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-01",
+          "type": "official",
+          "note": "DriveNets secured $410M Series D to meet surging demand for Ethernet fabric in large-scale AI deployments; disclosed >$1B secured business and cash-flow positive since 2025.",
+          "url": "https://drivenets.com/news-and-events/press-release/drivenets-secures-410m-series-d-to-meet-surging-demand-for-ethernet-fabric-in-large-scale-ai-deployments/"
+        }
+      ],
+      "notes": "One of the cleanest infra names from D1/Viking screen.",
+      "todayDelta": "New Act Now addition from D1 screen.",
+      "evidenceBoundary": "Need customer names, gross margin, backlog convertibility, IPO banker status.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask D1/Atreides/Bessemer for customer list, secured-business conversion, gross margin and IPO timing."
+    },
+    {
+      "id": "firmus",
+      "name": "Firmus",
+      "country": "Australia / Singapore",
+      "region": "APAC",
+      "sector": "AI Infra",
+      "subSector": "AI cloud / AI factory infrastructure",
+      "stage": "late_growth",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium",
+      "investorQuality": "very_high",
+      "strategicRelevance": "very_high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Strong APAC AI infra watch; diligence must separate AI cloud revenue from data-center capex story.",
+      "mandateFit": "Good: Coatue-led $505M strategic equity and $5.5B post-money valuation show crossover quality.",
+      "whyNow": "Coatue is moving into AI factory infrastructure; Firmus is one of the clearest APAC expressions.",
+      "keyMetrics": [
+        "2026: $505M strategic equity led by Coatue",
+        "Post-money valuation: $5.5B",
+        "Total equity raised over six months: $1.35B (company statement)"
+      ],
+      "valuationView": "Infra valuation requires customer/power/utilization evidence; not software multiple.",
+      "routeToAccess": "Coatue, Firmus management, APAC data-center/project finance contacts.",
+      "latestValuation": "2026 post-money $5.5B",
+      "latestFunding": "$505M strategic equity led by Coatue",
+      "investors": [
+        "Coatue"
+      ],
+      "tags": [
+        "Coatue",
+        "AI factory",
+        "APAC",
+        "data center"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "official",
+          "note": "Firmus announced USD $505M strategic equity led by Coatue; post-money $5.5B, total equity raised $1.35B over six months subject to closing.",
+          "url": "https://firmus.co/newsroom/firmus-raises-usdusd505-million-in-strategic-equity-investment-led-by-coatue"
+        }
+      ],
+      "notes": "New addition from Coatue screen.",
+      "todayDelta": "Added from crossover fund work.",
+      "evidenceBoundary": "Need revenue, customers, power contracts, capex financing.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask Coatue for Firmus revenue/customer/power contract diligence; separate AI cloud revenue from data-center capex story."
+    },
+    {
+      "id": "dayone-data-centers",
+      "name": "DayOne Data Centers",
+      "country": "Global / APAC-Europe",
+      "region": "Global",
+      "sector": "AI Infra",
+      "subSector": "Hyperscale data centers",
+      "stage": "late_growth",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium_low",
+      "riskLevel": "medium_high",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Track as data-center infrastructure candidate, but do not underwrite like AI software.",
+      "mandateFit": "Good infra scarcity fit; AI exposure likely through hyperscaler/data-center demand rather than direct software revenue.",
+      "whyNow": "Coatue participation in large Series C supports data-center bottleneck thesis.",
+      "keyMetrics": [
+        "2026 Series C reported >$2B",
+        "Hyperscale data center platform"
+      ],
+      "valuationView": "Need yield/capex and contract economics; likely infra-style returns.",
+      "routeToAccess": "Coatue, infrastructure funds, project finance advisors.",
+      "latestValuation": "Not verified",
+      "latestFunding": "2026 Series C reported >$2B",
+      "investors": [
+        "Coatue"
+      ],
+      "tags": [
+        "Coatue",
+        "data center",
+        "AI infra",
+        "hyperscale"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "media",
+          "note": "Research pass found Coatue participation in >$2B Series C; primary verification required.",
+          "url": "https://news.google.com/rss/search?q=%22DayOne%22%20%22Coatue%22%20%222%20billion%22%20Series%20C%20data%20centers"
+        }
+      ],
+      "notes": "Keep active but not top equity software-like candidate.",
+      "todayDelta": "Added from Coatue screen.",
+      "evidenceBoundary": "Need official round page, tenant contracts, power/capacity pipeline, valuation.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Verify Coatue round with official docs; map tenant contracts, power/capacity pipeline and likely infra exit route."
+    },
+    {
+      "id": "sierra",
+      "name": "Sierra",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "Customer-service AI agents",
+      "stage": "growth",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium_low",
+      "riskLevel": "medium_high",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "High-growth AI app to track, but valuation likely ahead of fundamentals; require ARR cohort and margin diligence.",
+      "mandateFit": "Good: $100M ARR in 7 quarters and Greenoaks-led $10B valuation round; maybe too young for immediate IPO.",
+      "whyNow": "Customer-service agents are one of the first AI workflow categories with budget and measurable ROI.",
+      "keyMetrics": [
+        "2025: $350M financing at $10B valuation (Greenoaks led)",
+        "Reached $100M ARR in 7 quarters",
+        "Customers include Deliveroo, Discord, Ramp, Rivian, SoFi, Sonos, Wayfair and others"
+      ],
+      "valuationView": "Very expensive relative to maturity; worth tracking for secondary only with discount.",
+      "routeToAccess": "Greenoaks, General Catalyst/Sierra management, enterprise customer references.",
+      "latestValuation": "2025 reported $10B",
+      "latestFunding": "2025 $350M round",
+      "investors": [
+        "Greenoaks",
+        "other prior investors to verify"
+      ],
+      "tags": [
+        "Greenoaks",
+        "AI agents",
+        "customer service",
+        "ARR"
+      ],
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official",
+          "note": "Sierra disclosed $100M ARR in seven quarters and broad enterprise customer list.",
+          "url": "https://sierra.ai/blog/100m-arr"
+        }
+      ],
+      "notes": "New addition from other crossover funds screen.",
+      "todayDelta": "Added from Greenoaks screen.",
+      "evidenceBoundary": "Need funding official page, gross margin, NRR, customer concentration, model cost.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask Greenoaks/company for ARR cohort, gross margin after model cost, customer concentration and enterprise retention."
+    },
+    {
+      "id": "parloa",
+      "name": "Parloa",
+      "country": "Germany / United States",
+      "region": "Europe",
+      "sector": "AI Application",
+      "subSector": "Agentic AI customer experience",
+      "stage": "growth",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Build relationship; attractive European AI app but probably not immediate pre-IPO.",
+      "mandateFit": "Moderate/good: Durable/Altimeter/GC-led $1B valuation round; AI CX agent category.",
+      "whyNow": "Agentic AI in customer service is budget-backed and comparable to Sierra, but Parloa is smaller.",
+      "keyMetrics": [
+        "2025: $120M Series C",
+        "Valuation: $1B",
+        "Revenue doubled since prior Series B per company statement"
+      ],
+      "valuationView": "More reasonable than Sierra if growth quality holds; likely 24-48m path.",
+      "routeToAccess": "Durable, Altimeter, General Catalyst, company management in US/EU.",
+      "latestValuation": "2025 $1B",
+      "latestFunding": "2025 $120M Series C",
+      "investors": [
+        "Durable Capital Partners",
+        "Altimeter Capital",
+        "General Catalyst",
+        "EQT Ventures"
+      ],
+      "tags": [
+        "Altimeter",
+        "Durable",
+        "AI agents",
+        "Europe"
+      ],
+      "evidence": [
+        {
+          "date": "2025-05-06",
+          "type": "official",
+          "note": "Parloa secured $120M Series C at $1B valuation led by Durable, Altimeter and General Catalyst; revenue doubled since Series B.",
+          "url": "https://www.parloa.com/parloa-in-the-press/parloa-raises-120m-series-c-to-reinvent-customer-service-with-agentic-ai/"
+        }
+      ],
+      "notes": "New addition.",
+      "todayDelta": "Added from other crossover screen.",
+      "evidenceBoundary": "Need ARR, US expansion, churn, model economics.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask Durable/Altimeter/GC for ARR, US enterprise penetration, model cost and NRR."
+    },
+    {
+      "id": "baseten",
+      "name": "Baseten",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "AI inference platform / model serving",
+      "stage": "growth",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Prioritize within Google/CapitalG sourcing; core production inference infrastructure.",
+      "mandateFit": "Good: CapitalG-backed AI inference stack, direct picks-and-shovels exposure.",
+      "whyNow": "Production inference costs/reliability are becoming a core bottleneck for AI applications.",
+      "keyMetrics": [
+        "CapitalG initial investment 2025 per CapitalG portfolio",
+        "2025 media: $150M investment backed by CapitalG"
+      ],
+      "valuationView": "Need revenue and gross margin; inferencing infra can be competitive and margin-sensitive.",
+      "routeToAccess": "CapitalG Baseten deal team; customers among AI-native app companies.",
+      "latestValuation": "Not captured",
+      "latestFunding": "2025 $150M media-reported round backed by CapitalG",
+      "investors": [
+        "CapitalG"
+      ],
+      "tags": [
+        "CapitalG",
+        "Google",
+        "AI inference",
+        "model serving"
+      ],
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official",
+          "note": "CapitalG portfolio page: Baseten is leader in inference for high-scale AI products; initial investment 2025.",
+          "url": "https://capitalg.com/portfolio/baseten/"
+        }
+      ],
+      "notes": "Added from Google/CapitalG screen.",
+      "todayDelta": "New from Google investment review.",
+      "evidenceBoundary": "Need ARR, top customers, model/cloud cost gross margin.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask CapitalG for Baseten ARR, inference gross margin, top customers and GPU/model cost exposure."
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "AI model routing / model exchange",
+      "stage": "growth",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.",
+      "mandateFit": "Good: model routing layer between apps and model providers; potential AI middleware choke point.",
+      "whyNow": "Multi-model routing, failover, cost optimization and governance are becoming enterprise needs.",
+      "keyMetrics": [
+        "CapitalG initial investment 2026",
+        "2026: $113M Series B led by CapitalG per company/BusinessWire",
+        "Reported 25T weekly tokens in funding headline, verify"
+      ],
+      "valuationView": "Potentially high strategic value, but take-rate and provider concentration determine economics.",
+      "routeToAccess": "CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.",
+      "latestValuation": "Not captured",
+      "latestFunding": "2026 $113M Series B led by CapitalG",
+      "investors": [
+        "CapitalG",
+        "NVentures",
+        "ServiceNow Ventures",
+        "MongoDB Ventures",
+        "Snowflake Ventures",
+        "Databricks Ventures"
+      ],
+      "tags": [
+        "CapitalG",
+        "Google",
+        "model routing",
+        "AI exchange"
+      ],
+      "evidence": [
+        {
+          "date": "2026",
+          "type": "official",
+          "note": "CapitalG portfolio page: OpenRouter is AI model exchange, unified API, governance/routing/cost optimization; initial investment 2026.",
+          "url": "https://capitalg.com/portfolio/openrouter/"
+        }
+      ],
+      "notes": "New from Google review.",
+      "todayDelta": "Added from CapitalG screen.",
+      "evidenceBoundary": "Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask CapitalG for OpenRouter token volume, take-rate, enterprise share and model-provider concentration."
+    },
+    {
+      "id": "clay",
+      "name": "Clay",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Application",
+      "subSector": "AI GTM / sales automation platform",
+      "stage": "growth",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium",
+      "investorQuality": "very_high",
+      "strategicRelevance": "medium_high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Track as AI-native GTM workflow; verify durable retention and enterprise mix.",
+      "mandateFit": "Moderate/good: CapitalG-led late-stage AI GTM platform, but sales automation can be crowded.",
+      "whyNow": "AI automates research/personalization/outbound workflows; Clay has strong GTM engineer mindshare.",
+      "keyMetrics": [
+        "CapitalG initial investment 2025",
+        "Media: $100M Series C led by CapitalG at $3.1B valuation"
+      ],
+      "valuationView": "Likely expensive; need ARR, NRR, SMB/prosumer vs enterprise mix.",
+      "routeToAccess": "CapitalG Clay team; GTM/adtech network.",
+      "latestValuation": "Media: $3.1B",
+      "latestFunding": "2025 $100M Series C media-reported led by CapitalG",
+      "investors": [
+        "CapitalG"
+      ],
+      "tags": [
+        "CapitalG",
+        "AI GTM",
+        "sales automation"
+      ],
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official",
+          "note": "CapitalG portfolio: Clay is leading GTM development platform using AI and automation; initial investment 2025.",
+          "url": "https://capitalg.com/portfolio/clay/"
+        }
+      ],
+      "notes": "New from Google review.",
+      "todayDelta": "Added from CapitalG screen.",
+      "evidenceBoundary": "Need ARR, churn, enterprise adoption and email/channel deliverability risk.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask CapitalG for Clay ARR, enterprise mix, churn, GTM workflow lock-in and channel/deliverability risks."
+    },
+    {
+      "id": "celero-communications",
+      "name": "Celero Communications",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Coherent DSP / optical connectivity for AI infrastructure",
+      "stage": "growth",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Good AI data-center optical/networking semiconductor watch; likely earlier than pre-IPO.",
+      "mandateFit": "Thematic fit: AI data-center optical connectivity. Less near-term liquidity than top names.",
+      "whyNow": "AI clusters need high-bandwidth, low-power optical connectivity; CapitalG initial investment 2025.",
+      "keyMetrics": [
+        "CapitalG initial investment 2025",
+        "Media: $140M raised for AI networking chip"
+      ],
+      "valuationView": "Early hardware risk; needs design wins and tapeout/production proof.",
+      "routeToAccess": "CapitalG, semiconductor/optical networking contacts.",
+      "latestValuation": "Not captured",
+      "latestFunding": "2025 $140M media-reported round",
+      "investors": [
+        "CapitalG"
+      ],
+      "tags": [
+        "CapitalG",
+        "optical",
+        "AI networking",
+        "semiconductor"
+      ],
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official",
+          "note": "CapitalG portfolio: Celero develops coherent DSP solutions for high-bandwidth, low-power optical connectivity for AI infrastructure.",
+          "url": "https://capitalg.com/portfolio/celero/"
+        }
+      ],
+      "notes": "New from Google review.",
+      "todayDelta": "Added from CapitalG/Google screen.",
+      "evidenceBoundary": "Need product stage, design wins, revenue, supply chain.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask CapitalG/Celero for product stage, design wins, tapeout/production schedule and AI data-center customer pull."
+    },
+    {
+      "id": "neye-systems",
+      "name": "nEye Systems",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Optical circuit switches for AI data centers",
+      "stage": "growth",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Track as optical switching bottleneck play; build relationship not immediate IPO.",
+      "mandateFit": "Thematic AI infra fit with CapitalG/Microsoft/NVIDIA/Micron signals; likely too early for 12-36m IPO.",
+      "whyNow": "Optical switching can reduce AI cluster bottlenecks/power; CapitalG initial investment 2025.",
+      "keyMetrics": [
+        "CapitalG initial investment 2025",
+        "BusinessWire: total funding $72.5M / latest $58M round"
+      ],
+      "valuationView": "Early; optionality high but commercialization risk.",
+      "routeToAccess": "CapitalG, M12, NVIDIA/Micron strategic networks.",
+      "latestValuation": "Not captured",
+      "latestFunding": "2025 $58M / total $72.5M reported",
+      "investors": [
+        "CapitalG",
+        "M12",
+        "Micron",
+        "NVIDIA"
+      ],
+      "tags": [
+        "CapitalG",
+        "optical switch",
+        "AI data center"
+      ],
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official",
+          "note": "CapitalG portfolio: nEye MEMS silicon photonics optical circuit switches eliminate AI processing bottlenecks; investors include CapitalG, M12, Micron, NVIDIA.",
+          "url": "https://capitalg.com/portfolio/neye/"
+        }
+      ],
+      "notes": "New from Google review.",
+      "todayDelta": "Added from CapitalG screen.",
+      "evidenceBoundary": "Need customer pilots, production schedule and TAM.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask CapitalG/nEye for hyperscaler pilots, production readiness, switch performance and revenue timeline."
+    },
+    {
+      "id": "empower-semiconductor",
+      "name": "Empower Semiconductor",
+      "country": "United States",
+      "region": "US",
+      "sector": "AI Infra",
+      "subSector": "Power management / voltage regulators for AI processors",
+      "stage": "growth",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Track as AI data-center power bottleneck semiconductor; verify design wins.",
+      "mandateFit": "Good thematic fit but not yet clear pre-IPO.",
+      "whyNow": "AI processor power delivery is a real bottleneck; CapitalG initial investment 2025.",
+      "keyMetrics": [
+        "CapitalG initial investment 2025",
+        "2025 Series D >$140M per company/media"
+      ],
+      "valuationView": "Needs revenue/design win proof; power semis multiples lower than AI software.",
+      "routeToAccess": "CapitalG, power electronics and AI server supply chain.",
+      "latestValuation": "Not captured",
+      "latestFunding": "2025 Series D >$140M",
+      "investors": [
+        "CapitalG"
+      ],
+      "tags": [
+        "CapitalG",
+        "AI power",
+        "semiconductor",
+        "data center"
+      ],
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official",
+          "note": "CapitalG portfolio: Empower powers AI processors with FinFast power management, reducing energy footprint and TCO.",
+          "url": "https://capitalg.com/portfolio/empower/"
+        }
+      ],
+      "notes": "New from Google review.",
+      "todayDelta": "Added from CapitalG screen.",
+      "evidenceBoundary": "Need design wins, gross margin, customer concentration.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask CapitalG/Empower for AI processor design wins, revenue, gross margin and power-delivery roadmap."
+    },
+    {
+      "id": "physical-intelligence",
+      "name": "Physical Intelligence",
+      "country": "United States",
+      "region": "US",
+      "sector": "Robotics / Physical AI",
+      "subSector": "General-purpose robot foundation models",
+      "stage": "growth",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "very_high",
+      "accessFit": "medium_low",
+      "riskLevel": "high",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Strategic physical AI option; not core pre-IPO unless commercial deployment accelerates.",
+      "mandateFit": "Thematic fit but likely too early and valuation-heavy for crossover mandate.",
+      "whyNow": "CapitalG initial investment 2025 and robotics foundation model narrative.",
+      "keyMetrics": [
+        "CapitalG initial investment 2025",
+        "Media: 2025 $600M at $5.6B valuation, verify"
+      ],
+      "valuationView": "Extremely option-like; underwrite as deep tech, not near-term IPO.",
+      "routeToAccess": "CapitalG, Lux/Thrive/robotics academic network.",
+      "latestValuation": "Media: ~$5.6B",
+      "latestFunding": "Media: 2025 $600M round",
+      "investors": [
+        "CapitalG",
+        "Lux Capital",
+        "Thrive / others to verify"
+      ],
+      "tags": [
+        "CapitalG",
+        "robotics",
+        "physical AI"
+      ],
+      "evidence": [
+        {
+          "date": "2025",
+          "type": "official",
+          "note": "CapitalG portfolio: Physical Intelligence is bringing general-purpose AI into the physical world; initial investment 2025.",
+          "url": "https://capitalg.com/portfolio/physical-intelligence/"
+        }
+      ],
+      "notes": "New from Google review; keep watch not top priority.",
+      "todayDelta": "Added from CapitalG screen.",
+      "evidenceBoundary": "Need revenue/deployment proof; valuation likely ahead of commercial traction.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Track commercial deployments and valuation; do not prioritize until revenue/customer evidence appears."
+    },
+    {
+      "id": "bellwether-electronics",
+      "name": "貝爾威勒 / Bellwether Electronics",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "AI Supply Chain",
+      "subSector": "AI server high-current/high-speed connectors, cable harness, pogo pin, FPCA, MIM",
+      "stage": "twse_applicant",
+      "ipoSignal": "very_high",
+      "revenueQuality": "high",
+      "investorQuality": "medium",
+      "strategicRelevance": "very_high",
+      "accessFit": "high",
+      "riskLevel": "medium",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_underwriter_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "Taiwan ESB top target. Ask Yuanta/management for allocation, customer mix and AI server exposure.",
+      "mandateFit": "Very strong Taiwan pre-IPO fit: already applied for TWSE listing, direct AI server connector exposure, strong YTD growth and EPS.",
+      "whyNow": "TWSE application filed 2026-05-26; ESB price/valuation may already reflect IPO but institutional allocation could be attractive.",
+      "keyMetrics": [
+        "TWSE listing application: 2026-05-26",
+        "Estimated ESB market cap: ~NT$80.4B as of 2026-06-18",
+        "2026 Jan-May revenue: ~NT$4.02B, YoY +181%",
+        "EPS rank data: EPS 18.04"
+      ],
+      "valuationView": "High quality but already re-rated. Need compare vs listed connector/AI server comps and check if IPO price offers discount to ESB.",
+      "routeToAccess": "Yuanta Securities lead underwriter; company management; AI server ODM/customer channel checks.",
+      "latestValuation": "ESB implied market cap approx NT$80.4B on 2026-06-18 screen",
+      "latestFunding": "TWSE application; underwriting price not yet captured",
+      "investors": [
+        "Yuanta Securities lead underwriter",
+        "public ESB investors"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "TWSE applicant",
+        "AI server connectors",
+        "Yuanta",
+        "Act Now"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TWSE applicant list: code 7861, application 1150526, lead underwriter Yuanta; TPEx open data used for revenue/EPS/price screen.",
+          "url": "https://openapi.twse.com.tw/v1/company/applylistingLocal"
+        },
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TPEx open data showed 2026 Jan-May revenue around NT$4.02B, YoY +181%, EPS 18.04, implied ESB market cap ~NT$80.4B.",
+          "url": "https://www.tpex.org.tw/openapi/"
+        }
+      ],
+      "notes": "Best Taiwan ESB/pre-IPO match from today.",
+      "todayDelta": "Promoted to Act Now after Taiwan ESB screen and backtest.",
+      "evidenceBoundary": "Need official prospectus/filing docs, AI revenue %, customer names, gross margin, IPO price.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Call Yuanta/company: AI server revenue %, top customers, gross margin, IPO price range and allocation availability."
+    },
+    {
+      "id": "hermes-testing",
+      "name": "漢測 / Hermes Testing",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "Semiconductor",
+      "subSector": "Semiconductor testing / probe cards / AI-HPC test solutions",
+      "stage": "otc_applicant",
+      "ipoSignal": "very_high",
+      "revenueQuality": "high",
+      "investorQuality": "medium",
+      "strategicRelevance": "very_high",
+      "accessFit": "high",
+      "riskLevel": "medium_high",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_underwriter_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "Act Now but valuation-sensitive. Seek underwriter allocation only if discount/earnings durability validates.",
+      "mandateFit": "Strong: applied for TPEx listing, direct AI/HPC semiconductor testing demand, strong growth and EPS.",
+      "whyNow": "TPEx listing review date captured 2026-06-10; ESB valuation is very high, so price discipline is critical.",
+      "keyMetrics": [
+        "TPEx/OTC application: 2026-04-29; review date 2026-06-10",
+        "Estimated ESB market cap: ~NT$112.4B",
+        "2026 Jan-May revenue: ~NT$1.75B, YoY +113%",
+        "EPS: 10.83"
+      ],
+      "valuationView": "Expensive. Must compare to WinWay/CHPT/FormFactor/MJC-like probe/test comps and normalize earnings.",
+      "routeToAccess": "SinoPac lead underwriter; semiconductor test/probe card channel checks.",
+      "latestValuation": "ESB implied market cap approx NT$112.4B on 2026-06-18 screen",
+      "latestFunding": "TPEx listing application; underwriting price not captured",
+      "investors": [
+        "SinoPac Securities lead underwriter",
+        "public ESB investors"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "TPEx applicant",
+        "semiconductor test",
+        "AI HPC",
+        "SinoPac"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TPEx applicant list and open data: review date 2026-06-10; revenue/EPS/market-cap calculated from TPEx open data.",
+          "url": "https://www.tpex.org.tw/openapi/"
+        }
+      ],
+      "notes": "Top Taiwan semiconductor pre-IPO candidate, but risk/reward depends on IPO/secondary price vs ESB.",
+      "todayDelta": "Promoted to Act Now after Taiwan ESB screen.",
+      "evidenceBoundary": "Need product mix, AI/HPC share, customer concentration, probe card vs service revenue, IPO price.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Call SinoPac/company: AI-HPC test mix, probe card revenue, normalized EPS, customer concentration and IPO price."
+    },
+    {
+      "id": "asrock-industrial",
+      "name": "東擎科技 / ASRock Industrial",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "AI Supply Chain",
+      "subSector": "Industrial PC / edge AI / embedded systems",
+      "stage": "twse_applicant",
+      "ipoSignal": "very_high",
+      "revenueQuality": "medium_high",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "high",
+      "accessFit": "high",
+      "riskLevel": "medium",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_underwriter_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "Act Now through Yuanta/ASRock/ASUS ecosystem; more institution-friendly but lower beta than Bellwether/Hermes Testing.",
+      "mandateFit": "Strong Taiwan pre-IPO fit with TWSE application and edge/industrial AI exposure.",
+      "whyNow": "TWSE application filed 2026-06-05.",
+      "keyMetrics": [
+        "TWSE listing application: 2026-06-05",
+        "Estimated ESB market cap: ~NT$16.9B",
+        "2026 Jan-May revenue: ~NT$1.44B, YoY +88%",
+        "EPS: 3.68"
+      ],
+      "valuationView": "More reasonable than very hot ESB semiconductor names; verify margins and AI mix.",
+      "routeToAccess": "Yuanta lead underwriter; ASRock/ASUS group; industrial PC channel checks.",
+      "latestValuation": "ESB implied market cap approx NT$16.9B",
+      "latestFunding": "TWSE application; IPO price not captured",
+      "investors": [
+        "Yuanta Securities lead underwriter",
+        "ASRock/ASUS ecosystem"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "TWSE applicant",
+        "edge AI",
+        "industrial PC",
+        "Yuanta"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TWSE applicant list: code 7710, application 1150605, lead underwriter Yuanta; TPEx screen for revenue/EPS.",
+          "url": "https://openapi.twse.com.tw/v1/company/applylistingLocal"
+        }
+      ],
+      "notes": "Top Taiwan candidate; likely cleaner path than pure hype.",
+      "todayDelta": "Added/updated from Taiwan screen.",
+      "evidenceBoundary": "Need prospectus, customer mix, edge AI revenue share, group ownership and IPO allocation details.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Call Yuanta/ASRock ecosystem: edge AI exposure, group ownership, IPO schedule and allocation path."
+    },
+    {
+      "id": "climax-technology",
+      "name": "大鵬科CLMX / Climax Technology",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "AI Supply Chain",
+      "subSector": "LEO satellite / security / high-end communication connectivity",
+      "stage": "twse_applicant",
+      "ipoSignal": "very_high",
+      "revenueQuality": "high",
+      "investorQuality": "medium",
+      "strategicRelevance": "medium_high",
+      "accessFit": "high",
+      "riskLevel": "medium",
+      "dealStage": "act_now",
+      "dataRoomStatus": "need_underwriter_intro",
+      "priorityTier": "1 - Act Now",
+      "recommendation": "Act Now if valuation is reasonable; less pure AI but strong listed-event and profitability profile.",
+      "mandateFit": "Good: already TWSE applicant, communications/LEO/security connectivity, solid EPS.",
+      "whyNow": "TWSE application and technology-enterprise designation signal near-term liquidity.",
+      "keyMetrics": [
+        "TWSE listing application: 2026-04-14",
+        "Technology enterprise note",
+        "Estimated ESB market cap: ~NT$13.3B",
+        "2026 Jan-May revenue: ~NT$2.43B, YoY +37%",
+        "EPS: 10.38"
+      ],
+      "valuationView": "Potentially more reasonable than hot semiconductor names; evaluate LEO/robotics/edge network exposure.",
+      "routeToAccess": "Fubon lead underwriter; company management; satellite/communication channel checks.",
+      "latestValuation": "ESB implied market cap approx NT$13.3B",
+      "latestFunding": "TWSE application; IPO price not captured",
+      "investors": [
+        "Fubon Securities lead underwriter"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "TWSE applicant",
+        "LEO satellite",
+        "communications",
+        "Fubon"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TWSE applicant list: code 7689, application 1150414, lead underwriter Fubon, technology enterprise note; TPEx screen for revenue/EPS.",
+          "url": "https://openapi.twse.com.tw/v1/company/applylistingLocal"
+        }
+      ],
+      "notes": "Good Taiwan event-driven candidate.",
+      "todayDelta": "Added/updated from Taiwan screen.",
+      "evidenceBoundary": "Need product/customer split, LEO exposure, IPO price and lock-up.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Call Fubon/company: LEO satellite exposure, customer mix, IPO schedule and allocation path."
+    },
+    {
+      "id": "taiwan-ai-cloud",
+      "name": "台智雲 / Taiwan AI Cloud",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "AI Infra",
+      "subSector": "Sovereign AI cloud / AI Foundry / GPU compute services",
+      "stage": "emerging_stock",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium",
+      "investorQuality": "medium_high",
+      "strategicRelevance": "very_high",
+      "accessFit": "medium_high",
+      "riskLevel": "medium_high",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Track closely as Taiwan sovereign AI cloud / ASUS ecosystem spin-off; wait for formal filing or allocation.",
+      "mandateFit": "Good strategic fit but current revenue scale still smaller and YoY negative in TPEx screen.",
+      "whyNow": "Taiwan AI sovereignty and GPU cloud buildout; market reports point to IPO planning.",
+      "keyMetrics": [
+        "Estimated ESB market cap: ~NT$9.1B",
+        "2026 Jan-May revenue: ~NT$375M, YoY -17%",
+        "EPS: 4.14",
+        "ASUS/government AI cloud narrative"
+      ],
+      "valuationView": "Strategic premium possible, but need recurring cloud revenue and utilization proof.",
+      "routeToAccess": "ASUS/ASRock ecosystem, company management, future lead underwriter.",
+      "latestValuation": "ESB implied market cap approx NT$9.1B",
+      "latestFunding": "ESB traded; formal application not captured",
+      "investors": [
+        "ASUS ecosystem / verify ownership"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "sovereign AI",
+        "GPU cloud",
+        "ASUS"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TPEx open data: code 7735, ESB price/market-cap/revenue screen; company site positions Taiwan AI Cloud as AI Foundry.",
+          "url": "https://www.twcloud.ai"
+        }
+      ],
+      "notes": "Strategic but not Act Now until revenue/filing clear.",
+      "todayDelta": "Added from Taiwan ESB screen.",
+      "evidenceBoundary": "Need GPU capacity, contracts, government vs enterprise mix, formal filing status.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Track formal filing; request GPU capacity, government/enterprise contracts, utilization and revenue mix."
+    },
+    {
+      "id": "xalloy",
+      "name": "創鉅材料 / Xalloy Advanced Materials",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "Semiconductor",
+      "subSector": "Semiconductor sputtering targets / thin-film materials / advanced packaging materials",
+      "stage": "emerging_stock",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium_high",
+      "investorQuality": "medium",
+      "strategicRelevance": "high",
+      "accessFit": "medium_high",
+      "riskLevel": "medium_high",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "High-priority Taiwan materials watch; move to Act Now if filing/underwriter emerges.",
+      "mandateFit": "Good: semiconductor materials bottleneck, advanced process/packaging relevance, large ESB market cap.",
+      "whyNow": "AI semis/advanced packaging demand raises strategic value of local advanced materials.",
+      "keyMetrics": [
+        "Estimated ESB market cap: ~NT$60.1B",
+        "2026 Jan-May revenue: ~NT$3.05B",
+        "EPS: 5.65",
+        "Official investor page describes advanced semiconductor targets/thin-film materials"
+      ],
+      "valuationView": "Expensive relative to earnings; need product/customer mix.",
+      "routeToAccess": "Company IR, materials/semiconductor supply-chain contacts, possible Yuanta/other underwriters.",
+      "latestValuation": "ESB implied market cap approx NT$60.1B",
+      "latestFunding": "ESB traded; formal application not captured",
+      "investors": [
+        "public ESB investors"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "semiconductor materials",
+        "advanced packaging"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TPEx open data and company site: semiconductor targets/thin-film materials for advanced process and packaging.",
+          "url": "https://www.xalloy.com.tw/"
+        }
+      ],
+      "notes": "Second-tier Taiwan priority after filed names.",
+      "todayDelta": "Added from Taiwan screen.",
+      "evidenceBoundary": "Need customer list, advanced node exposure, gross margin, IPO filing status.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask company/underwriter: advanced-node and advanced-packaging customer exposure, margins and IPO filing plan."
+    },
+    {
+      "id": "jtpc",
+      "name": "和淞 / JTPC",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "Semiconductor",
+      "subSector": "Specialty gas systems / fab facility equipment / semiconductor process infrastructure",
+      "stage": "emerging_stock",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "very_high",
+      "investorQuality": "medium",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium",
+      "dealStage": "active_diligence",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "2 - Active Diligence",
+      "recommendation": "Core Taiwan semiconductor infrastructure watch; seek company/underwriter read on IPO timing.",
+      "mandateFit": "Strong fundamentals and fab capex exposure; not as pure AI but institutional-quality if filing emerges.",
+      "whyNow": "AI semiconductor capacity expansion supports fab facility/specialty gas equipment demand.",
+      "keyMetrics": [
+        "Estimated ESB market cap: ~NT$48.1B",
+        "2026 Jan-May revenue: ~NT$8.21B, YoY +29%",
+        "EPS: 27.33"
+      ],
+      "valuationView": "Revenue/earnings support stronger than most ESB hype; valuation still needs comps.",
+      "routeToAccess": "Company IR, semiconductor fab facility supply-chain, future underwriter.",
+      "latestValuation": "ESB implied market cap approx NT$48.1B",
+      "latestFunding": "ESB traded; formal application not captured",
+      "investors": [
+        "public ESB investors"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "semiconductor capex",
+        "specialty gas",
+        "fab equipment"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TPEx open data screen: high revenue/EPS; public sources identify JTPC as semiconductor specialty gas/fab infrastructure supplier.",
+          "url": "https://www.tpex.org.tw/openapi/"
+        }
+      ],
+      "notes": "Likely one of the highest-quality Taiwan non-filed names.",
+      "todayDelta": "Added from Taiwan screen.",
+      "evidenceBoundary": "Need IPO plan, customer concentration, margin/cash conversion.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask company: top fab customers, recurring/service revenue, cash conversion and IPO timetable."
+    },
+    {
+      "id": "yesiang",
+      "name": "鈺祥 / Yesiang",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "Semiconductor",
+      "subSector": "AMC filters / clean-air subscription for advanced fabs",
+      "stage": "emerging_stock",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium",
+      "investorQuality": "medium",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Track advanced-process cleanroom/AMC filter play; need customer proof before Act Now.",
+      "mandateFit": "Good thematic fit: advanced-node contamination control + possible subscription model.",
+      "whyNow": "2nm/advanced fabs increase micro-contamination control importance.",
+      "keyMetrics": [
+        "Estimated ESB market cap: ~NT$47.2B",
+        "2026 Jan-May revenue: ~NT$916M, YoY +44%",
+        "EPS: 2.64",
+        "Media/company: CaaS / regenerable chemical filters"
+      ],
+      "valuationView": "Strategic but high market-cap relative to revenue; verify subscription/reuse economics.",
+      "routeToAccess": "Company management; TSMC/advanced fab supplier checks; possible underwriter.",
+      "latestValuation": "ESB implied market cap approx NT$47.2B",
+      "latestFunding": "ESB traded; formal application not captured",
+      "investors": [
+        "public ESB investors"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "advanced process",
+        "AMC filters",
+        "CaaS"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TPEx open data screen; public sources describe Yesiang as AMC filter leader for advanced fabs.",
+          "url": "https://www.yesiang.com/"
+        }
+      ],
+      "notes": "Good but valuation sensitive.",
+      "todayDelta": "Added from Taiwan screen.",
+      "evidenceBoundary": "Need customer names, subscription mix, renewal rates, gross margin.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask company: TSMC/advanced fab exposure, CaaS subscription mix, renewal/gross margin and IPO plan."
+    },
+    {
+      "id": "mg-cooling",
+      "name": "元鈦科 / MG Cooling",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "AI Supply Chain",
+      "subSector": "AI server cooling / thermal management",
+      "stage": "emerging_stock",
+      "ipoSignal": "medium_high",
+      "revenueQuality": "medium",
+      "investorQuality": "medium",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "dealStage": "relationship_building",
+      "dataRoomStatus": "need_intro",
+      "priorityTier": "3 - Build Relationship",
+      "recommendation": "Track as AI server cooling high-beta name; require customer and margin validation.",
+      "mandateFit": "Good thematic fit, but current revenue base is smaller and ESB market cap is high.",
+      "whyNow": "AI server power density pushes liquid/advanced cooling demand.",
+      "keyMetrics": [
+        "Estimated ESB market cap: ~NT$38.9B",
+        "2026 Jan-May revenue: ~NT$775M, YoY +534%",
+        "EPS: 3.49"
+      ],
+      "valuationView": "High beta; could be over-discounting future growth. Need customer concentration and sustainability.",
+      "routeToAccess": "Company IR, AI server ODM/thermal supply-chain contacts.",
+      "latestValuation": "ESB implied market cap approx NT$38.9B",
+      "latestFunding": "ESB traded",
+      "investors": [
+        "public ESB investors"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "AI cooling",
+        "thermal management"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TPEx open data screen showed strong revenue growth and high ESB valuation.",
+          "url": "https://www.mg-cooling.com/"
+        }
+      ],
+      "notes": "Watch / relationship rather than immediate buy unless data validates.",
+      "todayDelta": "Added from Taiwan screen.",
+      "evidenceBoundary": "Need product/customer mix, AI server share, gross margin and capacity.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Ask company: AI server cooling customer concentration, product roadmap, capacity and margin sustainability."
+    },
+    {
+      "id": "best-oeic",
+      "name": "元澄半導體 / Best OEIC",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "sector": "AI Infra",
+      "subSector": "Silicon photonics / CPO / OE Engine",
+      "stage": "emerging_stock",
+      "ipoSignal": "medium",
+      "revenueQuality": "low",
+      "investorQuality": "medium",
+      "strategicRelevance": "very_high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "dealStage": "monitor",
+      "dataRoomStatus": "unknown",
+      "priorityTier": "4 - Monitor / Option",
+      "recommendation": "Track as long-duration silicon photonics option; not core until revenue/design wins accelerate.",
+      "mandateFit": "Thematic fit but current revenue small; more technology option than near-term pre-IPO.",
+      "whyNow": "CPO/silicon photonics is central to AI networking roadmap, but timing uncertain.",
+      "keyMetrics": [
+        "Estimated ESB market cap: ~NT$21.5B",
+        "2026 Jan-May revenue: ~NT$61M, YoY -5%",
+        "EPS: 9.05, needs accounting/one-off check"
+      ],
+      "valuationView": "Option-like; do not underwrite on revenue multiple without design-win visibility.",
+      "routeToAccess": "Company management, Biostar/strategic investor network, optical module experts.",
+      "latestValuation": "ESB implied market cap approx NT$21.5B",
+      "latestFunding": "ESB traded",
+      "investors": [
+        "public ESB investors",
+        "Biostar relationship per media, verify"
+      ],
+      "tags": [
+        "Taiwan ESB",
+        "silicon photonics",
+        "CPO",
+        "optionality"
+      ],
+      "evidence": [
+        {
+          "date": "2026-06-18",
+          "type": "official_screen",
+          "note": "TPEx open data screen; public sources position company as silicon photonics / OEIC / CPO play.",
+          "url": "https://best-oeic.com"
+        }
+      ],
+      "notes": "Keep but not top due to revenue base.",
+      "todayDelta": "Added from Taiwan screen.",
+      "evidenceBoundary": "Need product status, design wins, revenue quality and EPS source.",
+      "status": "private",
+      "updatedAt": "2026-06-19",
+      "nextAction": "Track design wins and revenue before promoting; ask for CPO/OE Engine customer validation."
     }
   ],
   "fundingRounds": [
@@ -2737,6 +4434,184 @@
       "confidence": "medium_low",
       "url": "https://news.google.com/",
       "notes": "Media/news clusters; verify final investor list and terms."
+    },
+    {
+      "id": "physicsx-2026-series-c",
+      "companyId": "physicsx",
+      "date": "2026",
+      "round": "Series C",
+      "amount": "$300M",
+      "valuation": "$2.35-2.4B",
+      "leadInvestors": [
+        "Temasek"
+      ],
+      "participants": [
+        "Temasek"
+      ],
+      "sourceType": "media/official",
+      "confidence": "medium",
+      "url": "",
+      "notes": "Temasek-led media cluster; verify official release/data room."
+    },
+    {
+      "id": "black-forest-2026-series-b",
+      "companyId": "black-forest-labs",
+      "date": "2026",
+      "round": "Series B",
+      "amount": "$300M",
+      "valuation": "$3.25B",
+      "leadInvestors": [
+        "Temasek"
+      ],
+      "participants": [
+        "Temasek"
+      ],
+      "sourceType": "media/official",
+      "confidence": "medium",
+      "url": "",
+      "notes": "Temasek-backed media cluster; verify full investor list."
+    },
+    {
+      "id": "cuspai-2026-series-a",
+      "companyId": "cuspai",
+      "date": "2026",
+      "round": "Series A",
+      "amount": "$100M",
+      "valuation": "$520M media",
+      "leadInvestors": [
+        "NEA",
+        "Temasek"
+      ],
+      "participants": [
+        "NEA",
+        "Temasek"
+      ],
+      "sourceType": "media/official",
+      "confidence": "medium",
+      "url": "",
+      "notes": "Co-led by NEA and Temasek media cluster."
+    },
+    {
+      "id": "psiquantum-2026-series-e",
+      "companyId": "psiquantum",
+      "date": "2026",
+      "round": "Series E",
+      "amount": "$1B",
+      "valuation": "TBD",
+      "leadInvestors": [
+        "Temasek"
+      ],
+      "participants": [
+        "Temasek"
+      ],
+      "sourceType": "media/official",
+      "confidence": "medium",
+      "url": "",
+      "notes": "Temasek-backed quantum compute adjacent."
+    },
+    {
+      "companyId": "alphasense",
+      "date": "2026-06-03",
+      "round": "Growth financing",
+      "amount": "$350M",
+      "valuation": "$7.5B",
+      "participants": [
+        "Viking Global",
+        "BDT & MSD",
+        "others"
+      ],
+      "confidence": "official",
+      "notes": "Disclosed >$600M ARR."
+    },
+    {
+      "companyId": "kraken-technologies",
+      "date": "2025-12-29",
+      "round": "Spinout / strategic investment",
+      "amount": "$1B",
+      "valuation": "$8.65B",
+      "participants": [
+        "D1 Capital",
+        "Ontario Teachers",
+        "Fidelity",
+        "Durable Capital Partners"
+      ],
+      "confidence": "official",
+      "notes": ">$500M contracted annual revenue."
+    },
+    {
+      "companyId": "drivenets",
+      "date": "2026-06-01",
+      "round": "Series D",
+      "amount": "$410M",
+      "valuation": "Not disclosed",
+      "participants": [
+        "Bessemer",
+        "Atreides",
+        "D1 Capital",
+        "AMD Ventures"
+      ],
+      "confidence": "official",
+      "notes": ">$1B secured business; cash-flow positive since 2025."
+    },
+    {
+      "companyId": "firmus",
+      "date": "2026",
+      "round": "Strategic equity",
+      "amount": "$505M",
+      "valuation": "$5.5B post-money",
+      "participants": [
+        "Coatue"
+      ],
+      "confidence": "official",
+      "notes": "AI factory infrastructure / APAC."
+    },
+    {
+      "companyId": "bellwether-electronics",
+      "date": "2026-05-26",
+      "round": "TWSE listing application",
+      "amount": "TBD",
+      "valuation": "ESB implied ~NT$80.4B",
+      "participants": [
+        "Yuanta Securities"
+      ],
+      "confidence": "official_screen",
+      "notes": "AI server connectors; IPO price pending."
+    },
+    {
+      "companyId": "hermes-testing",
+      "date": "2026-04-29",
+      "round": "TPEx listing application",
+      "amount": "TBD",
+      "valuation": "ESB implied ~NT$112.4B",
+      "participants": [
+        "SinoPac Securities"
+      ],
+      "confidence": "official_screen",
+      "notes": "Semiconductor testing/probe card."
+    },
+    {
+      "companyId": "asrock-industrial",
+      "date": "2026-06-05",
+      "round": "TWSE listing application",
+      "amount": "TBD",
+      "valuation": "ESB implied ~NT$16.9B",
+      "participants": [
+        "Yuanta Securities"
+      ],
+      "confidence": "official_screen",
+      "notes": "Industrial/edge AI systems."
+    },
+    {
+      "companyId": "climax-technology",
+      "date": "2026-04-14",
+      "round": "TWSE listing application",
+      "amount": "TBD",
+      "valuation": "ESB implied ~NT$13.3B",
+      "participants": [
+        "Fubon Securities"
+      ],
+      "confidence": "official_screen",
+      "notes": "LEO/communication connectivity."
     }
   ],
   "tasks": [
@@ -2926,6 +4801,211 @@
       "priority": "High",
       "category": "diligence",
       "notes": "User asked investment value under crossover strategy."
+    },
+    {
+      "id": "task-018",
+      "companyId": "databricks",
+      "title": "Ask Temasek Databricks team for secondary/IPO view and whether alumni co-invest access exists",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-08",
+      "status": "open",
+      "priority": "High",
+      "category": "temasek_network",
+      "notes": "Temasek alumni sourcing angle."
+    },
+    {
+      "id": "task-019",
+      "companyId": "d-matrix",
+      "title": "Ask Temasek d-Matrix team for deployment/customer proof and next financing/IPO path",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-08",
+      "status": "open",
+      "priority": "High",
+      "category": "temasek_network",
+      "notes": "Temasek alumni sourcing angle."
+    },
+    {
+      "id": "task-020",
+      "companyId": "physicsx",
+      "title": "Request PhysicsX company intro via Temasek; verify revenue and industrial customer deployments",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-08",
+      "status": "open",
+      "priority": "High",
+      "category": "temasek_network",
+      "notes": "Temasek alumni sourcing angle."
+    },
+    {
+      "id": "task-021",
+      "companyId": "black-forest-labs",
+      "title": "Ask Temasek for Black Forest Labs revenue/licensing and copyright/model cost diligence",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-08",
+      "status": "open",
+      "priority": "Medium",
+      "category": "temasek_network",
+      "notes": "Temasek alumni sourcing angle."
+    },
+    {
+      "id": "task-022",
+      "companyId": "cuspai",
+      "title": "Ask Temasek/NEA for CuspAI customer contracts and next-round timing",
+      "owner": "Deal Team",
+      "dueDate": "2026-07-08",
+      "status": "open",
+      "priority": "Medium",
+      "category": "temasek_network",
+      "notes": "Temasek alumni sourcing angle."
+    },
+    {
+      "id": "alphasense-23",
+      "companyId": "alphasense",
+      "title": "Ask Viking/BDT/MSD for ARR quality, margin, IPO timeline and secondary availability",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "databricks-24",
+      "companyId": "databricks",
+      "title": "Find 15-30% discount secondary or future IPO anchor path; avoid chasing last-round price",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "kraken-technologies-25",
+      "companyId": "kraken-technologies",
+      "title": "Ask D1 for spinout deck: contracted revenue, churn, margins, ownership and IPO venue",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "crusoe-26",
+      "companyId": "crusoe",
+      "title": "Diligence contracted GPU/cloud revenue, power costs, project financing and customer concentration",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "drivenets-27",
+      "companyId": "drivenets",
+      "title": "Ask D1/Atreides for customer list, backlog conversion, gross margin and IPO timing",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "cerebras-28",
+      "companyId": "cerebras",
+      "title": "Refresh S-1/customer concentration/export-control memo before any pre-IPO discussion",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "bellwether-electronics-29",
+      "companyId": "bellwether-electronics",
+      "title": "Call Yuanta / company: AI server revenue %, top customers, gross margin, IPO price range",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "hermes-testing-30",
+      "companyId": "hermes-testing",
+      "title": "Call SinoPac / company: AI-HPC testing mix, probe card revenue, normalized EPS and IPO price",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "asrock-industrial-31",
+      "companyId": "asrock-industrial",
+      "title": "Call Yuanta / ASRock ecosystem: edge AI exposure, group ownership, IPO schedule",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "climax-technology-32",
+      "companyId": "climax-technology",
+      "title": "Call Fubon / company: LEO satellite exposure, customer mix, IPO schedule",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "firmus-33",
+      "companyId": "firmus",
+      "title": "Ask Coatue for Firmus revenue/customer/power contract diligence",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "glean-34",
+      "companyId": "glean",
+      "title": "Ask CapitalG/ICONIQ/Coatue for ARR, NRR, enterprise mix and IPO readiness",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "baseten-35",
+      "companyId": "baseten",
+      "title": "Ask CapitalG for Baseten ARR, inference gross margin, top customers",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "openrouter-36",
+      "companyId": "openrouter",
+      "title": "Ask CapitalG for OpenRouter token volume, take-rate, enterprise share and model-provider concentration",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
+    },
+    {
+      "id": "taiwan-ai-cloud-37",
+      "companyId": "taiwan-ai-cloud",
+      "title": "Track formal filing; request GPU capacity, government/enterprise contracts and utilization",
+      "priority": "High",
+      "status": "open",
+      "category": "sourcing",
+      "owner": "User / deal team",
+      "dueDate": "2026-06-30"
     }
   ],
   "interactions": [
