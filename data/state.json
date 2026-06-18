@@ -520,7 +520,7 @@
           "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-surpasses-4-8b-revenue-run-rate-growing-55-year-over-year"
         }
       ],
-      "notes": "Mature pre-IPO/IPO-ready benchmark.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.\n\nOriginal notes: Mature pre-IPO/IPO-ready benchmark.",
       "dealStage": "secondary_sourcing",
       "dataRoomStatus": "secondary_info_pack_needed",
       "targetExchange": "US IPO likely",
@@ -818,7 +818,7 @@
           "url": "https://www.together.ai/"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: AI infra/model cloud; verify revenue before treating as pre-IPO.\n\nOriginal notes: v2 expanded seed from prior two-round research; verify before IC use.",
       "priorityTier": "3 - Build Relationship",
       "recommendation": "AI infra/model cloud; verify revenue before treating as pre-IPO.",
       "updatedAt": "2026-06-19"
@@ -859,7 +859,7 @@
           "url": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Enterprise AI workflow app; verify ARR quality and valuation before chasing.\n\nOriginal notes: v2 expanded seed from prior two-round research; verify before IC use.",
       "priorityTier": "2 - Active Diligence",
       "recommendation": "Enterprise AI workflow app; verify ARR quality and valuation before chasing.",
       "updatedAt": "2026-06-19"
@@ -938,7 +938,7 @@
           "url": "https://www.reuters.com/"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Legal AI quality high but valuation and dependency require caution.\n\nOriginal notes: v2 expanded seed from prior two-round research; verify before IC use.",
       "priorityTier": "3 - Build Relationship",
       "recommendation": "Legal AI quality high but valuation and dependency require caution.",
       "updatedAt": "2026-06-19"
@@ -1072,7 +1072,7 @@
           "url": "https://www.crusoe.ai/"
         }
       ],
-      "notes": "Already in dashboard; upgraded to Act Now after crossover screen.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.\nMandate fit: Strong: Tiger-backed AI data center / cloud infra at $10B valuation; likely major liquidity path if execution continues.\nWhy now: AI factory / power-constrained compute is a core 2026 theme; Crusoe has raised large late-stage capital.\nKey metrics: 2025 Series E: $1.375B; Valuation: about/above $10B; AI data-center / cloud infrastructure focus\nValuation view: High; underwriting must be project finance, contracted revenue, cost of power, customer concentration and capex recovery.\nAccess route: Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.\nEvidence boundary: Need official round page/filings, revenue/backlog, customers, project financing terms.\n\nOriginal notes: Already in dashboard; upgraded to Act Now after crossover screen.",
       "dealStage": "act_now",
       "dataRoomStatus": "need_intro",
       "priorityTier": "1 - Act Now",
@@ -1138,7 +1138,7 @@
           "url": "https://www.cerebras.net/"
         }
       ],
-      "notes": "Already in pipeline; moved to Act Now but with high risk.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.\nMandate fit: Strong thematic and IPO-path fit; not as clean as software due to Nvidia competition and customer concentration.\nWhy now: Tiger-backed 2025 Series G and prior S-1 history indicate a likely eventual IPO path.\nKey metrics: 2025: reported $1.1B Series G; Valuation: $8.1B; Prior IPO/S-1 path\nValuation view: Potentially attractive if IPO discount exists; risk-adjust heavily for customers, export controls and Nvidia moat.\nAccess route: Tiger Global, IPO bankers, strategic semiconductor investors.\nEvidence boundary: Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.\n\nOriginal notes: Already in pipeline; moved to Act Now but with high risk.",
       "dealStage": "act_now",
       "dataRoomStatus": "need_intro",
       "priorityTier": "1 - Act Now",
@@ -1354,7 +1354,7 @@
         "developer tools"
       ],
       "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: AI coding PMF but valuation risk is very high; follow only with discount/data access.\n\nOriginal notes: v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -1452,7 +1452,7 @@
           "url": "https://capitalg.com/portfolio/abridge/"
         }
       ],
-      "notes": "Existing/added from Google review.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Vertical AI app worth diligence; may be slightly earlier than top pre-IPO but strong enterprise deployment.\nMandate fit: Good: healthcare AI with enterprise-grade hospital deployments and CapitalG initial investment.\nWhy now: Clinical documentation is an early ROI-positive AI workflow.\nKey metrics: CapitalG initial investment 2025; 2025 Series D $250M; later funding reports exist; Adoption across major health systems to verify\nValuation view: Need ARR, revenue per clinician, implementation cost, compliance risk.\nAccess route: CapitalG Abridge team, Khosla/IVP/healthcare investor network.\nEvidence boundary: Need contracted ARR, hospital deployment scale, regulatory/compliance.\n\nOriginal notes: Existing/added from Google review.",
       "dealStage": "active_diligence",
       "dataRoomStatus": "need_intro",
       "targetExchange": "",
@@ -1603,7 +1603,7 @@
           "url": "https://www.anduril.com/news/anduril-raises-usd1-5-billion-to-rebuild-the-arsenal-of-democracy"
         }
       ],
-      "notes": "Existing name upgraded with detailed crossover evidence.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Defense AI/autonomy; high quality but regulatory/procurement risk.\nMandate fit: Good: large late-stage round, defense AI/autonomy, manufacturing scale-up and likely eventual IPO.\nWhy now: Sands/Altimeter-backed 2024 Series F and defense AI tailwind.\nKey metrics: 2024: $1.5B Series F; Valuation: $14B; Funding supports Arsenal-1 / hyperscale defense manufacturing\nValuation view: High quality but defense cycles/regulatory constraints; compare to public defense tech comps not SaaS.\nAccess route: Sands Capital, Altimeter, Founders Fund, defense banker network.\nEvidence boundary: Need revenue/backlog, program concentration, IPO timing, regulatory risk.\n\nOriginal notes: Existing name upgraded with detailed crossover evidence.",
       "dealStage": "active_diligence",
       "dataRoomStatus": "need_intro",
       "targetExchange": "",
@@ -1828,7 +1828,7 @@
         "interconnect"
       ],
       "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.\n\nOriginal notes: v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -1914,7 +1914,7 @@
         "Temasek"
       ],
       "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.\n\nOriginal notes: v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -2080,7 +2080,7 @@
         "special situation"
       ],
       "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: AI data platform important, but Meta transaction complicates independent IPO path.\n\nOriginal notes: v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -2521,7 +2521,7 @@
           "url": "https://news.google.com/"
         }
       ],
-      "notes": "Potentially fits strategy better than pure coding if B2B all-in-one app/service platform pivot is real. Core risk: vibe-coding market crowding, retention, production-readiness, security/compliance and model-cost gross margin.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: High-priority AI software-builder; investment depends entirely on ARR quality and B2B/enterprise mix.\n\nOriginal notes: Potentially fits strategy better than pure coding if B2B all-in-one app/service platform pivot is real. Core risk: vibe-coding market crowding, retention, production-readiness, security/compliance and model-cost gross margin.",
       "dealStage": "active_diligence",
       "dataRoomStatus": "unknown",
       "targetExchange": "US or Europe TBD",
@@ -2589,7 +2589,7 @@
           "url": "https://news.google.com/"
         }
       ],
-      "notes": "Strong fit for AI application in industrial/engineering, closer to B2B than consumer AI; IPO likely 24-36m not immediate.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Temasek-led industrial AI; verify software vs services revenue and industrial customer depth.\n\nOriginal notes: Strong fit for AI application in industrial/engineering, closer to B2B than consumer AI; IPO likely 24-36m not immediate.",
       "dealStage": "relationship_building",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -2647,7 +2647,7 @@
           "url": "https://news.google.com/"
         }
       ],
-      "notes": "Strategic watch. High model/copyright/competition risk; not near-term IPO core unless revenue licensing is strong.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Visual AI model company; need licensing revenue and copyright posture before core priority.\n\nOriginal notes: Strategic watch. High model/copyright/competition risk; not near-term IPO core unless revenue licensing is strong.",
       "dealStage": "relationship_building",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -2706,7 +2706,7 @@
           "url": "https://news.google.com/"
         }
       ],
-      "notes": "Earlier than target but useful AI-science/materials discovery option; likely longer horizon.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: AI materials discovery; strategic but earlier-stage/longer duration.\n\nOriginal notes: Earlier than target but useful AI-science/materials discovery option; likely longer horizon.",
       "dealStage": "relationship_building",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -2765,7 +2765,7 @@
           "url": "https://news.google.com/"
         }
       ],
-      "notes": "Adjacent infrastructure, not main AI pipeline; likely longer duration and science risk.",
+      "notes": "Priority: 4 - Monitor / Option\nRecommendation: Quantum/compute adjacent; too long-duration for core AI pre-IPO mandate.\n\nOriginal notes: Adjacent infrastructure, not main AI pipeline; likely longer duration and science risk.",
       "dealStage": "relationship_building",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -2838,7 +2838,7 @@
           "url": "https://www.prnewswire.com/news-releases/alphasense-to-join-forces-with-tegus-increases-latest-valuation-to-4b-302169502.html"
         }
       ],
-      "notes": "今天crossover fund复盘后上调为Act Now。它是比多数AI app更成熟的pre-IPO候选。",
+      "notes": "Priority: 1 - Act Now\nRecommendation: Top priority crossover/pre-IPO AI application. Seek company/secondary/IPO-prep access now.\nMandate fit: Very strong: scaled ARR, enterprise workflow, Viking-backed, likely 12-36 month IPO candidate.\nWhy now: 2026 financing at $7.5B and disclosed >$600M ARR make it one of the clearest mature AI application names.\nKey metrics: 2026: $350M financing at $7.5B valuation; Surpassed $600M ARR; 2024: $650M round at $4B with Tegus acquisition context\nValuation view: High but revenue-supported relative to many AI app peers; diligence should focus on ARR quality, margins, retention and Tegus integration.\nAccess route: Viking Global, BDT/MSD, existing investors, management/CFO, IPO bankers if mandated.\nEvidence boundary: Need detailed ARR quality, gross margin, churn/NRR, Tegus integration, IPO banker status.\n\nOriginal notes: 今天crossover fund复盘后上调为Act Now。它是比多数AI app更成熟的pre-IPO候选。",
       "todayDelta": "从Viking crossover投资线索中筛出；因ARR披露和估值阶梯上升，优先级上调。",
       "evidenceBoundary": "Need detailed ARR quality, gross margin, churn/NRR, Tegus integration, IPO banker status.",
       "status": "private",
@@ -2897,7 +2897,7 @@
           "url": "https://www.kraken.tech/press-releases/octopus-energy-group-to-spin-out-kraken-at-valuation-of-usd8-65bn"
         }
       ],
-      "notes": "Best D1-sourced new name from today. Not pure GenAI, but exactly the type of operational AI/data software with real customers that can be underwritten.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: Top priority D1-backed non-obvious AI/data platform; pursue as energy/utility AI operating system pre-IPO candidate.\nMandate fit: Strong: scaled contracted revenue, enterprise utility accounts, D1-led spinout, energy/AI data platform relevance.\nWhy now: Standalone spinout financing creates cleaner cap table/governance and potential listing path.\nKey metrics: 2025: $1B investment led by D1; Valuation: $8.65B; >$500M contracted annual revenue; 70M+ accounts served; 15B+ data points processed daily\nValuation view: More defensible than many AI app comps because revenue is contracted; need margin and growth quality.\nAccess route: D1 Capital, Octopus/Kraken management, Ontario Teachers/Fidelity/Durable network.\nEvidence boundary: Need clarify revenue recognition, customer concentration, ownership after spinout and expected IPO venue/timing.\n\nOriginal notes: Best D1-sourced new name from today. Not pure GenAI, but exactly the type of operational AI/data software with real customers that can be underwritten.",
       "todayDelta": "New addition from D1 Capital crossover screen.",
       "evidenceBoundary": "Need clarify revenue recognition, customer concentration, ownership after spinout and expected IPO venue/timing.",
       "status": "private",
@@ -2956,7 +2956,7 @@
           "url": "https://drivenets.com/news-and-events/press-release/drivenets-secures-410m-series-d-to-meet-surging-demand-for-ethernet-fabric-in-large-scale-ai-deployments/"
         }
       ],
-      "notes": "One of the cleanest infra names from D1/Viking screen.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.\nMandate fit: Strong: data-center networking bottleneck, >$1B secured business, cash-flow positive, crossover investors.\nWhy now: AI cluster networking is a major bottleneck; DriveNets just raised large Series D to meet AI deployment demand.\nKey metrics: 2026: $410M Series D; >$1B secured business; Cash-flow positive since 2025; Targeting Ethernet fabric for large-scale AI deployments\nValuation view: Valuation undisclosed; likely more reasonable than hottest AI app names if revenue/backlog quality real.\nAccess route: D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.\nEvidence boundary: Need customer names, gross margin, backlog convertibility, IPO banker status.\n\nOriginal notes: One of the cleanest infra names from D1/Viking screen.",
       "todayDelta": "New Act Now addition from D1 screen.",
       "evidenceBoundary": "Need customer names, gross margin, backlog convertibility, IPO banker status.",
       "status": "private",
@@ -3009,7 +3009,7 @@
           "url": "https://firmus.co/newsroom/firmus-raises-usdusd505-million-in-strategic-equity-investment-led-by-coatue"
         }
       ],
-      "notes": "New addition from Coatue screen.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Strong APAC AI infra watch; diligence must separate AI cloud revenue from data-center capex story.\nMandate fit: Good: Coatue-led $505M strategic equity and $5.5B post-money valuation show crossover quality.\nWhy now: Coatue is moving into AI factory infrastructure; Firmus is one of the clearest APAC expressions.\nKey metrics: 2026: $505M strategic equity led by Coatue; Post-money valuation: $5.5B; Total equity raised over six months: $1.35B (company statement)\nValuation view: Infra valuation requires customer/power/utilization evidence; not software multiple.\nAccess route: Coatue, Firmus management, APAC data-center/project finance contacts.\nEvidence boundary: Need revenue, customers, power contracts, capex financing.\n\nOriginal notes: New addition from Coatue screen.",
       "todayDelta": "Added from crossover fund work.",
       "evidenceBoundary": "Need revenue, customers, power contracts, capex financing.",
       "status": "private",
@@ -3061,7 +3061,7 @@
           "url": "https://news.google.com/rss/search?q=%22DayOne%22%20%22Coatue%22%20%222%20billion%22%20Series%20C%20data%20centers"
         }
       ],
-      "notes": "Keep active but not top equity software-like candidate.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Track as data-center infrastructure candidate, but do not underwrite like AI software.\nMandate fit: Good infra scarcity fit; AI exposure likely through hyperscaler/data-center demand rather than direct software revenue.\nWhy now: Coatue participation in large Series C supports data-center bottleneck thesis.\nKey metrics: 2026 Series C reported >$2B; Hyperscale data center platform\nValuation view: Need yield/capex and contract economics; likely infra-style returns.\nAccess route: Coatue, infrastructure funds, project finance advisors.\nEvidence boundary: Need official round page, tenant contracts, power/capacity pipeline, valuation.\n\nOriginal notes: Keep active but not top equity software-like candidate.",
       "todayDelta": "Added from Coatue screen.",
       "evidenceBoundary": "Need official round page, tenant contracts, power/capacity pipeline, valuation.",
       "status": "private",
@@ -3115,7 +3115,7 @@
           "url": "https://sierra.ai/blog/100m-arr"
         }
       ],
-      "notes": "New addition from other crossover funds screen.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: High-growth AI app to track, but valuation likely ahead of fundamentals; require ARR cohort and margin diligence.\nMandate fit: Good: $100M ARR in 7 quarters and Greenoaks-led $10B valuation round; maybe too young for immediate IPO.\nWhy now: Customer-service agents are one of the first AI workflow categories with budget and measurable ROI.\nKey metrics: 2025: $350M financing at $10B valuation (Greenoaks led); Reached $100M ARR in 7 quarters; Customers include Deliveroo, Discord, Ramp, Rivian, SoFi, Sonos, Wayfair and others\nValuation view: Very expensive relative to maturity; worth tracking for secondary only with discount.\nAccess route: Greenoaks, General Catalyst/Sierra management, enterprise customer references.\nEvidence boundary: Need funding official page, gross margin, NRR, customer concentration, model cost.\n\nOriginal notes: New addition from other crossover funds screen.",
       "todayDelta": "Added from Greenoaks screen.",
       "evidenceBoundary": "Need funding official page, gross margin, NRR, customer concentration, model cost.",
       "status": "private",
@@ -3171,7 +3171,7 @@
           "url": "https://www.parloa.com/parloa-in-the-press/parloa-raises-120m-series-c-to-reinvent-customer-service-with-agentic-ai/"
         }
       ],
-      "notes": "New addition.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Build relationship; attractive European AI app but probably not immediate pre-IPO.\nMandate fit: Moderate/good: Durable/Altimeter/GC-led $1B valuation round; AI CX agent category.\nWhy now: Agentic AI in customer service is budget-backed and comparable to Sierra, but Parloa is smaller.\nKey metrics: 2025: $120M Series C; Valuation: $1B; Revenue doubled since prior Series B per company statement\nValuation view: More reasonable than Sierra if growth quality holds; likely 24-48m path.\nAccess route: Durable, Altimeter, General Catalyst, company management in US/EU.\nEvidence boundary: Need ARR, US expansion, churn, model economics.\n\nOriginal notes: New addition.",
       "todayDelta": "Added from other crossover screen.",
       "evidenceBoundary": "Need ARR, US expansion, churn, model economics.",
       "status": "private",
@@ -3223,7 +3223,7 @@
           "url": "https://capitalg.com/portfolio/baseten/"
         }
       ],
-      "notes": "Added from Google/CapitalG screen.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Prioritize within Google/CapitalG sourcing; core production inference infrastructure.\nMandate fit: Good: CapitalG-backed AI inference stack, direct picks-and-shovels exposure.\nWhy now: Production inference costs/reliability are becoming a core bottleneck for AI applications.\nKey metrics: CapitalG initial investment 2025 per CapitalG portfolio; 2025 media: $150M investment backed by CapitalG\nValuation view: Need revenue and gross margin; inferencing infra can be competitive and margin-sensitive.\nAccess route: CapitalG Baseten deal team; customers among AI-native app companies.\nEvidence boundary: Need ARR, top customers, model/cloud cost gross margin.\n\nOriginal notes: Added from Google/CapitalG screen.",
       "todayDelta": "New from Google investment review.",
       "evidenceBoundary": "Need ARR, top customers, model/cloud cost gross margin.",
       "status": "private",
@@ -3281,7 +3281,7 @@
           "url": "https://capitalg.com/portfolio/openrouter/"
         }
       ],
-      "notes": "New from Google review.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.\nMandate fit: Good: model routing layer between apps and model providers; potential AI middleware choke point.\nWhy now: Multi-model routing, failover, cost optimization and governance are becoming enterprise needs.\nKey metrics: CapitalG initial investment 2026; 2026: $113M Series B led by CapitalG per company/BusinessWire; Reported 25T weekly tokens in funding headline, verify\nValuation view: Potentially high strategic value, but take-rate and provider concentration determine economics.\nAccess route: CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.\nEvidence boundary: Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.\n\nOriginal notes: New from Google review.",
       "todayDelta": "Added from CapitalG screen.",
       "evidenceBoundary": "Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.",
       "status": "private",
@@ -3332,7 +3332,7 @@
           "url": "https://capitalg.com/portfolio/clay/"
         }
       ],
-      "notes": "New from Google review.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Track as AI-native GTM workflow; verify durable retention and enterprise mix.\nMandate fit: Moderate/good: CapitalG-led late-stage AI GTM platform, but sales automation can be crowded.\nWhy now: AI automates research/personalization/outbound workflows; Clay has strong GTM engineer mindshare.\nKey metrics: CapitalG initial investment 2025; Media: $100M Series C led by CapitalG at $3.1B valuation\nValuation view: Likely expensive; need ARR, NRR, SMB/prosumer vs enterprise mix.\nAccess route: CapitalG Clay team; GTM/adtech network.\nEvidence boundary: Need ARR, churn, enterprise adoption and email/channel deliverability risk.\n\nOriginal notes: New from Google review.",
       "todayDelta": "Added from CapitalG screen.",
       "evidenceBoundary": "Need ARR, churn, enterprise adoption and email/channel deliverability risk.",
       "status": "private",
@@ -3384,7 +3384,7 @@
           "url": "https://capitalg.com/portfolio/celero/"
         }
       ],
-      "notes": "New from Google review.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Good AI data-center optical/networking semiconductor watch; likely earlier than pre-IPO.\nMandate fit: Thematic fit: AI data-center optical connectivity. Less near-term liquidity than top names.\nWhy now: AI clusters need high-bandwidth, low-power optical connectivity; CapitalG initial investment 2025.\nKey metrics: CapitalG initial investment 2025; Media: $140M raised for AI networking chip\nValuation view: Early hardware risk; needs design wins and tapeout/production proof.\nAccess route: CapitalG, semiconductor/optical networking contacts.\nEvidence boundary: Need product stage, design wins, revenue, supply chain.\n\nOriginal notes: New from Google review.",
       "todayDelta": "Added from CapitalG/Google screen.",
       "evidenceBoundary": "Need product stage, design wins, revenue, supply chain.",
       "status": "private",
@@ -3438,7 +3438,7 @@
           "url": "https://capitalg.com/portfolio/neye/"
         }
       ],
-      "notes": "New from Google review.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Track as optical switching bottleneck play; build relationship not immediate IPO.\nMandate fit: Thematic AI infra fit with CapitalG/Microsoft/NVIDIA/Micron signals; likely too early for 12-36m IPO.\nWhy now: Optical switching can reduce AI cluster bottlenecks/power; CapitalG initial investment 2025.\nKey metrics: CapitalG initial investment 2025; BusinessWire: total funding $72.5M / latest $58M round\nValuation view: Early; optionality high but commercialization risk.\nAccess route: CapitalG, M12, NVIDIA/Micron strategic networks.\nEvidence boundary: Need customer pilots, production schedule and TAM.\n\nOriginal notes: New from Google review.",
       "todayDelta": "Added from CapitalG screen.",
       "evidenceBoundary": "Need customer pilots, production schedule and TAM.",
       "status": "private",
@@ -3490,7 +3490,7 @@
           "url": "https://capitalg.com/portfolio/empower/"
         }
       ],
-      "notes": "New from Google review.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Track as AI data-center power bottleneck semiconductor; verify design wins.\nMandate fit: Good thematic fit but not yet clear pre-IPO.\nWhy now: AI processor power delivery is a real bottleneck; CapitalG initial investment 2025.\nKey metrics: CapitalG initial investment 2025; 2025 Series D >$140M per company/media\nValuation view: Needs revenue/design win proof; power semis multiples lower than AI software.\nAccess route: CapitalG, power electronics and AI server supply chain.\nEvidence boundary: Need design wins, gross margin, customer concentration.\n\nOriginal notes: New from Google review.",
       "todayDelta": "Added from CapitalG screen.",
       "evidenceBoundary": "Need design wins, gross margin, customer concentration.",
       "status": "private",
@@ -3543,7 +3543,7 @@
           "url": "https://capitalg.com/portfolio/physical-intelligence/"
         }
       ],
-      "notes": "New from Google review; keep watch not top priority.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Strategic physical AI option; not core pre-IPO unless commercial deployment accelerates.\nMandate fit: Thematic fit but likely too early and valuation-heavy for crossover mandate.\nWhy now: CapitalG initial investment 2025 and robotics foundation model narrative.\nKey metrics: CapitalG initial investment 2025; Media: 2025 $600M at $5.6B valuation, verify\nValuation view: Extremely option-like; underwrite as deep tech, not near-term IPO.\nAccess route: CapitalG, Lux/Thrive/robotics academic network.\nEvidence boundary: Need revenue/deployment proof; valuation likely ahead of commercial traction.\n\nOriginal notes: New from Google review; keep watch not top priority.",
       "todayDelta": "Added from CapitalG screen.",
       "evidenceBoundary": "Need revenue/deployment proof; valuation likely ahead of commercial traction.",
       "status": "private",
@@ -3605,7 +3605,7 @@
           "url": "https://www.tpex.org.tw/openapi/"
         }
       ],
-      "notes": "Best Taiwan ESB/pre-IPO match from today.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: Taiwan ESB top target. Ask Yuanta/management for allocation, customer mix and AI server exposure.\nMandate fit: Very strong Taiwan pre-IPO fit: already applied for TWSE listing, direct AI server connector exposure, strong YTD growth and EPS.\nWhy now: TWSE application filed 2026-05-26; ESB price/valuation may already reflect IPO but institutional allocation could be attractive.\nKey metrics: TWSE listing application: 2026-05-26; Estimated ESB market cap: ~NT$80.4B as of 2026-06-18; 2026 Jan-May revenue: ~NT$4.02B, YoY +181%; EPS rank data: EPS 18.04\nValuation view: High quality but already re-rated. Need compare vs listed connector/AI server comps and check if IPO price offers discount to ESB.\nAccess route: Yuanta Securities lead underwriter; company management; AI server ODM/customer channel checks.\nEvidence boundary: Need official prospectus/filing docs, AI revenue %, customer names, gross margin, IPO price.\n\nOriginal notes: Best Taiwan ESB/pre-IPO match from today.",
       "todayDelta": "Promoted to Act Now after Taiwan ESB screen and backtest.",
       "evidenceBoundary": "Need official prospectus/filing docs, AI revenue %, customer names, gross margin, IPO price.",
       "status": "private",
@@ -3661,7 +3661,7 @@
           "url": "https://www.tpex.org.tw/openapi/"
         }
       ],
-      "notes": "Top Taiwan semiconductor pre-IPO candidate, but risk/reward depends on IPO/secondary price vs ESB.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: Act Now but valuation-sensitive. Seek underwriter allocation only if discount/earnings durability validates.\nMandate fit: Strong: applied for TPEx listing, direct AI/HPC semiconductor testing demand, strong growth and EPS.\nWhy now: TPEx listing review date captured 2026-06-10; ESB valuation is very high, so price discipline is critical.\nKey metrics: TPEx/OTC application: 2026-04-29; review date 2026-06-10; Estimated ESB market cap: ~NT$112.4B; 2026 Jan-May revenue: ~NT$1.75B, YoY +113%; EPS: 10.83\nValuation view: Expensive. Must compare to WinWay/CHPT/FormFactor/MJC-like probe/test comps and normalize earnings.\nAccess route: SinoPac lead underwriter; semiconductor test/probe card channel checks.\nEvidence boundary: Need product mix, AI/HPC share, customer concentration, probe card vs service revenue, IPO price.\n\nOriginal notes: Top Taiwan semiconductor pre-IPO candidate, but risk/reward depends on IPO/secondary price vs ESB.",
       "todayDelta": "Promoted to Act Now after Taiwan ESB screen.",
       "evidenceBoundary": "Need product mix, AI/HPC share, customer concentration, probe card vs service revenue, IPO price.",
       "status": "private",
@@ -3717,7 +3717,7 @@
           "url": "https://openapi.twse.com.tw/v1/company/applylistingLocal"
         }
       ],
-      "notes": "Top Taiwan candidate; likely cleaner path than pure hype.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: Act Now through Yuanta/ASRock/ASUS ecosystem; more institution-friendly but lower beta than Bellwether/Hermes Testing.\nMandate fit: Strong Taiwan pre-IPO fit with TWSE application and edge/industrial AI exposure.\nWhy now: TWSE application filed 2026-06-05.\nKey metrics: TWSE listing application: 2026-06-05; Estimated ESB market cap: ~NT$16.9B; 2026 Jan-May revenue: ~NT$1.44B, YoY +88%; EPS: 3.68\nValuation view: More reasonable than very hot ESB semiconductor names; verify margins and AI mix.\nAccess route: Yuanta lead underwriter; ASRock/ASUS group; industrial PC channel checks.\nEvidence boundary: Need prospectus, customer mix, edge AI revenue share, group ownership and IPO allocation details.\n\nOriginal notes: Top Taiwan candidate; likely cleaner path than pure hype.",
       "todayDelta": "Added/updated from Taiwan screen.",
       "evidenceBoundary": "Need prospectus, customer mix, edge AI revenue share, group ownership and IPO allocation details.",
       "status": "private",
@@ -3773,7 +3773,7 @@
           "url": "https://openapi.twse.com.tw/v1/company/applylistingLocal"
         }
       ],
-      "notes": "Good Taiwan event-driven candidate.",
+      "notes": "Priority: 1 - Act Now\nRecommendation: Act Now if valuation is reasonable; less pure AI but strong listed-event and profitability profile.\nMandate fit: Good: already TWSE applicant, communications/LEO/security connectivity, solid EPS.\nWhy now: TWSE application and technology-enterprise designation signal near-term liquidity.\nKey metrics: TWSE listing application: 2026-04-14; Technology enterprise note; Estimated ESB market cap: ~NT$13.3B; 2026 Jan-May revenue: ~NT$2.43B, YoY +37%; EPS: 10.38\nValuation view: Potentially more reasonable than hot semiconductor names; evaluate LEO/robotics/edge network exposure.\nAccess route: Fubon lead underwriter; company management; satellite/communication channel checks.\nEvidence boundary: Need product/customer split, LEO exposure, IPO price and lock-up.\n\nOriginal notes: Good Taiwan event-driven candidate.",
       "todayDelta": "Added/updated from Taiwan screen.",
       "evidenceBoundary": "Need product/customer split, LEO exposure, IPO price and lock-up.",
       "status": "private",
@@ -3827,7 +3827,7 @@
           "url": "https://www.twcloud.ai"
         }
       ],
-      "notes": "Strategic but not Act Now until revenue/filing clear.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Track closely as Taiwan sovereign AI cloud / ASUS ecosystem spin-off; wait for formal filing or allocation.\nMandate fit: Good strategic fit but current revenue scale still smaller and YoY negative in TPEx screen.\nWhy now: Taiwan AI sovereignty and GPU cloud buildout; market reports point to IPO planning.\nKey metrics: Estimated ESB market cap: ~NT$9.1B; 2026 Jan-May revenue: ~NT$375M, YoY -17%; EPS: 4.14; ASUS/government AI cloud narrative\nValuation view: Strategic premium possible, but need recurring cloud revenue and utilization proof.\nAccess route: ASUS/ASRock ecosystem, company management, future lead underwriter.\nEvidence boundary: Need GPU capacity, contracts, government vs enterprise mix, formal filing status.\n\nOriginal notes: Strategic but not Act Now until revenue/filing clear.",
       "todayDelta": "Added from Taiwan ESB screen.",
       "evidenceBoundary": "Need GPU capacity, contracts, government vs enterprise mix, formal filing status.",
       "status": "private",
@@ -3880,7 +3880,7 @@
           "url": "https://www.xalloy.com.tw/"
         }
       ],
-      "notes": "Second-tier Taiwan priority after filed names.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: High-priority Taiwan materials watch; move to Act Now if filing/underwriter emerges.\nMandate fit: Good: semiconductor materials bottleneck, advanced process/packaging relevance, large ESB market cap.\nWhy now: AI semis/advanced packaging demand raises strategic value of local advanced materials.\nKey metrics: Estimated ESB market cap: ~NT$60.1B; 2026 Jan-May revenue: ~NT$3.05B; EPS: 5.65; Official investor page describes advanced semiconductor targets/thin-film materials\nValuation view: Expensive relative to earnings; need product/customer mix.\nAccess route: Company IR, materials/semiconductor supply-chain contacts, possible Yuanta/other underwriters.\nEvidence boundary: Need customer list, advanced node exposure, gross margin, IPO filing status.\n\nOriginal notes: Second-tier Taiwan priority after filed names.",
       "todayDelta": "Added from Taiwan screen.",
       "evidenceBoundary": "Need customer list, advanced node exposure, gross margin, IPO filing status.",
       "status": "private",
@@ -3933,7 +3933,7 @@
           "url": "https://www.tpex.org.tw/openapi/"
         }
       ],
-      "notes": "Likely one of the highest-quality Taiwan non-filed names.",
+      "notes": "Priority: 2 - Active Diligence\nRecommendation: Core Taiwan semiconductor infrastructure watch; seek company/underwriter read on IPO timing.\nMandate fit: Strong fundamentals and fab capex exposure; not as pure AI but institutional-quality if filing emerges.\nWhy now: AI semiconductor capacity expansion supports fab facility/specialty gas equipment demand.\nKey metrics: Estimated ESB market cap: ~NT$48.1B; 2026 Jan-May revenue: ~NT$8.21B, YoY +29%; EPS: 27.33\nValuation view: Revenue/earnings support stronger than most ESB hype; valuation still needs comps.\nAccess route: Company IR, semiconductor fab facility supply-chain, future underwriter.\nEvidence boundary: Need IPO plan, customer concentration, margin/cash conversion.\n\nOriginal notes: Likely one of the highest-quality Taiwan non-filed names.",
       "todayDelta": "Added from Taiwan screen.",
       "evidenceBoundary": "Need IPO plan, customer concentration, margin/cash conversion.",
       "status": "private",
@@ -3987,7 +3987,7 @@
           "url": "https://www.yesiang.com/"
         }
       ],
-      "notes": "Good but valuation sensitive.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Track advanced-process cleanroom/AMC filter play; need customer proof before Act Now.\nMandate fit: Good thematic fit: advanced-node contamination control + possible subscription model.\nWhy now: 2nm/advanced fabs increase micro-contamination control importance.\nKey metrics: Estimated ESB market cap: ~NT$47.2B; 2026 Jan-May revenue: ~NT$916M, YoY +44%; EPS: 2.64; Media/company: CaaS / regenerable chemical filters\nValuation view: Strategic but high market-cap relative to revenue; verify subscription/reuse economics.\nAccess route: Company management; TSMC/advanced fab supplier checks; possible underwriter.\nEvidence boundary: Need customer names, subscription mix, renewal rates, gross margin.\n\nOriginal notes: Good but valuation sensitive.",
       "todayDelta": "Added from Taiwan screen.",
       "evidenceBoundary": "Need customer names, subscription mix, renewal rates, gross margin.",
       "status": "private",
@@ -4039,7 +4039,7 @@
           "url": "https://www.mg-cooling.com/"
         }
       ],
-      "notes": "Watch / relationship rather than immediate buy unless data validates.",
+      "notes": "Priority: 3 - Build Relationship\nRecommendation: Track as AI server cooling high-beta name; require customer and margin validation.\nMandate fit: Good thematic fit, but current revenue base is smaller and ESB market cap is high.\nWhy now: AI server power density pushes liquid/advanced cooling demand.\nKey metrics: Estimated ESB market cap: ~NT$38.9B; 2026 Jan-May revenue: ~NT$775M, YoY +534%; EPS: 3.49\nValuation view: High beta; could be over-discounting future growth. Need customer concentration and sustainability.\nAccess route: Company IR, AI server ODM/thermal supply-chain contacts.\nEvidence boundary: Need product/customer mix, AI server share, gross margin and capacity.\n\nOriginal notes: Watch / relationship rather than immediate buy unless data validates.",
       "todayDelta": "Added from Taiwan screen.",
       "evidenceBoundary": "Need product/customer mix, AI server share, gross margin and capacity.",
       "status": "private",
@@ -4093,7 +4093,7 @@
           "url": "https://best-oeic.com"
         }
       ],
-      "notes": "Keep but not top due to revenue base.",
+      "notes": "Priority: 4 - Monitor / Option\nRecommendation: Track as long-duration silicon photonics option; not core until revenue/design wins accelerate.\nMandate fit: Thematic fit but current revenue small; more technology option than near-term pre-IPO.\nWhy now: CPO/silicon photonics is central to AI networking roadmap, but timing uncertain.\nKey metrics: Estimated ESB market cap: ~NT$21.5B; 2026 Jan-May revenue: ~NT$61M, YoY -5%; EPS: 9.05, needs accounting/one-off check\nValuation view: Option-like; do not underwrite on revenue multiple without design-win visibility.\nAccess route: Company management, Biostar/strategic investor network, optical module experts.\nEvidence boundary: Need product status, design wins, revenue quality and EPS source.\n\nOriginal notes: Keep but not top due to revenue base.",
       "todayDelta": "Added from Taiwan screen.",
       "evidenceBoundary": "Need product status, design wins, revenue quality and EPS source.",
       "status": "private",
