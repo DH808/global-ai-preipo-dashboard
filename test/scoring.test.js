@@ -1,6 +1,7 @@
 const assert = require('assert');
 const {
   scoreCompany,
+  scoreBreakdown,
   labelCompany,
   filterCompanies,
   computeDashboard,
@@ -64,4 +65,11 @@ test('computeDashboard aggregates labels and heatmap', () => {
   assert(dash.byLabel['Core / Act Now'] >= 1);
   assert(dash.byRegion.Korea === 2);
   assert(dash.topCompanies[0].score >= dash.topCompanies[1].score);
+});
+
+test('scoreBreakdown exposes PM-readable factors and matches score', () => {
+  const breakdown = scoreBreakdown(core);
+  assert.equal(breakdown.score, scoreCompany(core));
+  assert(breakdown.rows.find(r => r.key === 'ipoSignal').points > 0);
+  assert(breakdown.rows.find(r => r.key === 'riskPenalty').points <= 0);
 });

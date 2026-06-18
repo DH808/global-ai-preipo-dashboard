@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Global AI Pre-IPO Pipeline Pilot</title>
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 <body>
   <header class="topbar">
@@ -32,6 +32,19 @@
         <div class="quick-chips" id="quickChips"></div>
       </div>
       <div id="priorityBoard" class="priority-grid"></div>
+    </section>
+
+    <section class="pm-grid">
+      <section class="panel delta-panel">
+        <div class="section-title">Delta View / 今日变化</div>
+        <div class="sub">PM 视角只看“今天新增、上调、降噪、待验证”的变化，不被全量表淹没。</div>
+        <div id="deltaView" class="delta-grid"></div>
+      </section>
+      <section class="panel kanban-panel">
+        <div class="section-title">Deal Kanban / 下一步动作看板</div>
+        <div class="sub">按推进状态分组，手机端横向滑动；点击公司进入 detail。</div>
+        <div id="dealKanban" class="kanban-grid"></div>
+      </section>
     </section>
 
     <section class="panel source-panel">
@@ -102,6 +115,6 @@
     </form>
   </dialog>
 
-  <script src="app.js?v=2"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

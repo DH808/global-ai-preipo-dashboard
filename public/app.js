@@ -28,6 +28,8 @@ async function load() {
   renderVintageBanner();
   renderQuickChips();
   renderPriorityBoard();
+  renderDeltaView();
+  renderDealKanban();
   applyResponsiveDefaults();
   await renderSources();
   renderFilters();
@@ -101,6 +103,56 @@ function renderPriorityBoard() {
     <p>${esc(c.recommendation || c.nextAction || c.notes || '').slice(0, 150)}</p>
   </button>`).join('');
   box.querySelectorAll('.priority-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
+}
+
+function deltaBuckets(companies) {
+  const addedNames = new Set(['AlphaSense','Kraken Technologies','Crusoe','DriveNets','Firmus','DayOne Data Centers','Baseten','OpenRouter','Abridge','PhysicsX','Black Forest Labs','CuspAI','PsiQuantum','貝爾威勒 / Bellwether','漢測 / Hermes Testing','東擎科技 / ASRock Industrial','大鵬科CLMX / Climax','和淞','創鉅材料','鈺祥','元鈦科','台智雲','元澄半導體']);
+  const added = companies.filter(c => addedNames.has(c.name) || /CapitalG|GV|Temasek|crossover|Taiwan ESB|Google/i.test([...(c.tags||[]), ...(c.investors||[]), c.notes].join(' '))).slice(0, 12);
+  const upgraded = companies.filter(c => String(c.priorityTier || '').startsWith('1') || (c.label === 'Core / Act Now' && !added.includes(c))).slice(0, 10);
+  const needsProof = companies.filter(c => /verify|confirm|核验|确认|ARR|margin|gross|customer|客户|Data room/i.test([c.nextAction, c.notes, ...(c.openQuestions||[])].join(' '))).slice(0, 10);
+  const deRisk = companies.filter(c => {
+    const riskText = [c.notes, c.nextAction, ...(c.redFlags||[])].join(' ');
+    return c.label === 'Monitor Only' || c.label === 'Low Priority' || (c.label !== 'Core / Act Now' && /risk|风险|regulatory|出口|valuation|估值过高/i.test(riskText));
+  }).slice(0, 10);
+  return [
+    ['新增/强化', added, '今天写入或显著补强的数据源/公司'],
+    ['上调优先级', upgraded, '进入 Act Now 或明确 allocation 路径'],
+    ['待验证', needsProof, '下一步必须补 ARR、margin、客户或 data room'],
+    ['降噪/谨慎', deRisk, '估值、监管、路径或证据不足，避免占用主线']
+  ];
+}
+
+function renderDeltaView() {
+  const box = $('#deltaView');
+  if (!box) return;
+  const buckets = deltaBuckets(state.companies || []);
+  box.innerHTML = buckets.map(([title, items, subtitle]) => `<div class="delta-card">
+    <div class="delta-head"><b>${esc(title)}</b><span>${items.length}</span></div>
+    <div class="sub">${esc(subtitle)}</div>
+    <div class="delta-list">${items.slice(0, 5).map(c => `<button type="button" data-id="${esc(c.id)}"><span>${esc(c.name)}</span><em>${esc(c.score)} · ${esc(c.label)}</em></button>`).join('')}</div>
+  </div>`).join('');
+  box.querySelectorAll('button[data-id]').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
+}
+
+function kanbanBucket(c) {
+  const stage = String(c.dealStage || '').toLowerCase();
+  if (c.label === 'Core / Act Now' || String(c.priorityTier || '').startsWith('1') || /act|secondary|source_round|ipo_watch/.test(stage)) return 'Act Now';
+  if (c.label === 'Strategic Watch' || /active|diligence|source/.test(stage)) return 'Active Diligence';
+  if (c.label === 'Build Relationship' || /relationship|build/.test(stage)) return 'Build Relationship';
+  return 'Monitor';
+}
+
+function renderDealKanban() {
+  const box = $('#dealKanban');
+  if (!box) return;
+  const columns = ['Act Now','Active Diligence','Build Relationship','Monitor'];
+  const grouped = Object.fromEntries(columns.map(c => [c, []]));
+  (state.companies || []).forEach(c => (grouped[kanbanBucket(c)] || grouped.Monitor).push(c));
+  box.innerHTML = columns.map(col => `<div class="kanban-col">
+    <div class="kanban-title"><b>${esc(col)}</b><span>${grouped[col].length}</span></div>
+    ${grouped[col].slice(0, 7).map(c => `<button class="kanban-item" type="button" data-id="${esc(c.id)}"><b>${esc(c.name)}</b><span>${esc(c.region)} · ${esc(c.sector)}</span><em>${esc(c.nextAction || c.recommendation || '').slice(0, 92)}</em></button>`).join('')}
+  </div>`).join('');
+  box.querySelectorAll('.kanban-item').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
 }
 
 function applyResponsiveDefaults() {
@@ -180,6 +232,19 @@ function renderMobileCards() {
   if (more) more.addEventListener('click', () => { showAllMobile = true; renderMobileCards(); });
 }
 
+function renderScoreBreakdown(c) {
+  const b = c.scoreBreakdown;
+  if (!b || !Array.isArray(b.rows)) return '<p class="sub">Score breakdown not available.</p>';
+  return `<div class="score-breakdown">
+    <div class="score-base"><span>Base</span><b>${esc(b.base)}</b></div>
+    ${b.rows.map(r => {
+      const pct = Math.min(100, Math.round(Math.abs(r.points) / Math.max(1, Math.abs(r.weight)) * 100));
+      const cls = r.points < 0 ? 'negative' : 'positive';
+      return `<div class="score-row ${cls}"><div><b>${esc(r.label)}</b><span>${esc(r.value)} · weight ${esc(r.weight)}</span></div><div class="score-bar"><i style="width:${pct}%"></i></div><em>${r.points > 0 ? '+' : ''}${esc(r.points)}</em></div>`;
+    }).join('')}
+  </div>`;
+}
+
 async function showDetail(id) {
   const data = await api('/api/company/' + encodeURIComponent(id));
   const c = data.company; selected = c;
@@ -188,6 +253,7 @@ async function showDetail(id) {
     <h2>${esc(c.name)}</h2>
     <div class="sub">${esc(c.country)} · ${esc(c.sector)} / ${esc(c.subSector)}</div>
     <div style="margin:10px 0"><span class="score ${colorClass(c.label)}">${c.score}</span> <span class="pill ${colorClass(c.label)}">${esc(c.label)}</span></div>
+    <div class="detail-section compact"><b>Score Breakdown</b>${renderScoreBreakdown(c)}</div>
     <div class="kv"><b>IPO 信号</b><span>${esc(c.ipoSignal)}${c.priorityTier ? '<br>Priority: ' + esc(c.priorityTier) : ''}</span></div>
     <div class="kv"><b>Recommendation</b><span>${esc(c.recommendation || c.mandateFit || 'not captured')}</span></div>
     <div class="kv"><b>Why now</b><span>${esc(c.whyNow || 'not captured')}</span></div>

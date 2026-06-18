@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { scoreCompany, labelCompany, filterCompanies, computeDashboard, normalizeCompany, slugify } = require('./src/scoring');
+const { scoreCompany, scoreBreakdown, labelCompany, filterCompanies, computeDashboard, normalizeCompany, slugify } = require('./src/scoring');
 const { sourceStatus, refreshInterVest, fetchCompanyNews } = require('./src/connectors');
 
 const APP_DIR = __dirname;
@@ -116,7 +116,7 @@ function mime(file) {
 async function apiState(req, res, urlObj) {
   const state = await readState();
   const filters = Object.fromEntries(urlObj.searchParams.entries());
-  const companies = filterCompanies(state.companies, filters).map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c) }));
+  const companies = filterCompanies(state.companies, filters).map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) }));
   json(res, 200, { meta: state.meta, dashboard: computeDashboard(state.companies, { tasks: state.tasks || [], fundingRounds: state.fundingRounds || [] }), companies });
 }
 
@@ -124,7 +124,7 @@ async function apiCompany(req, res, id) {
   const state = await readState();
   const c = state.companies.find(x => x.id === id);
   if (!c) return json(res, 404, { error: 'NOT_FOUND' });
-  json(res, 200, { company: { ...c, ...labelCompany(c), score: scoreCompany(c) }, fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id), tasks: (state.tasks || []).filter(t => t.companyId === c.id), interactions: (state.interactions || []).filter(i => i.companyId === c.id) });
+  json(res, 200, { company: { ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) }, fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id), tasks: (state.tasks || []).filter(t => t.companyId === c.id), interactions: (state.interactions || []).filter(i => i.companyId === c.id) });
 }
 
 function assertWritable(res) {

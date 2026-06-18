@@ -86,18 +86,24 @@ function slugify(s) {
   return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'company';
 }
 
-function scoreCompany(input) {
+function scoreBreakdown(input) {
   const c = normalizeCompany(input);
-  if (c.status !== 'private') return 0;
-  const risk = factor(c.riskLevel);
-  const raw =
-    WEIGHTS.ipoSignal * factor(c.ipoSignal) +
-    WEIGHTS.revenueQuality * factor(c.revenueQuality) +
-    WEIGHTS.investorQuality * factor(c.investorQuality) +
-    WEIGHTS.strategicRelevance * factor(c.strategicRelevance) +
-    WEIGHTS.accessFit * factor(c.accessFit) +
-    WEIGHTS.riskPenalty * risk;
-  return Math.max(0, Math.min(100, Math.round(raw + 26)));
+  const rows = [
+    { key: 'ipoSignal', label: 'IPO signal', value: c.ipoSignal, weight: WEIGHTS.ipoSignal, factor: factor(c.ipoSignal) },
+    { key: 'revenueQuality', label: 'Revenue quality', value: c.revenueQuality, weight: WEIGHTS.revenueQuality, factor: factor(c.revenueQuality) },
+    { key: 'investorQuality', label: 'Investor quality', value: c.investorQuality, weight: WEIGHTS.investorQuality, factor: factor(c.investorQuality) },
+    { key: 'strategicRelevance', label: 'Strategic relevance', value: c.strategicRelevance, weight: WEIGHTS.strategicRelevance, factor: factor(c.strategicRelevance) },
+    { key: 'accessFit', label: 'Access fit', value: c.accessFit, weight: WEIGHTS.accessFit, factor: factor(c.accessFit) },
+    { key: 'riskPenalty', label: 'Risk penalty', value: c.riskLevel, weight: WEIGHTS.riskPenalty, factor: factor(c.riskLevel), penalty: true }
+  ].map(r => ({ ...r, points: Math.round(r.weight * r.factor) }));
+  const base = 26;
+  const raw = rows.reduce((sum, r) => sum + r.points, base);
+  const score = c.status === 'private' ? Math.max(0, Math.min(100, Math.round(raw))) : 0;
+  return { base, rows, raw, score, maxPositive: base + WEIGHTS.ipoSignal + WEIGHTS.revenueQuality + WEIGHTS.investorQuality + WEIGHTS.strategicRelevance + WEIGHTS.accessFit };
+}
+
+function scoreCompany(input) {
+  return scoreBreakdown(input).score;
 }
 
 function labelCompany(input) {
@@ -152,4 +158,4 @@ function computeDashboard(companies, extras = {}) {
   };
 }
 
-module.exports = { scoreCompany, labelCompany, filterCompanies, computeDashboard, normalizeCompany, slugify };
+module.exports = { scoreCompany, scoreBreakdown, labelCompany, filterCompanies, computeDashboard, normalizeCompany, slugify };
