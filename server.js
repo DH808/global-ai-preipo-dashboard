@@ -9,12 +9,67 @@ const DATA_FILE = path.join(APP_DIR, 'data', 'state.json');
 const PUBLIC_DIR = path.join(APP_DIR, 'public');
 const HOST = process.env.HOST || '0.0.0.0';
 const PORT = Number(process.env.PORT || 8826);
+const SNAPSHOT_URL = process.env.AGENT_SNAPSHOT_URL || '';
+const SNAPSHOT_CACHE_TTL_MS = Number(process.env.SNAPSHOT_CACHE_TTL_MS || 300000);
+const SNAPSHOT_FETCH_TIMEOUT_MS = Number(process.env.SNAPSHOT_FETCH_TIMEOUT_MS || 8000);
+const ENABLE_WRITES = process.env.ENABLE_WRITES
+  ? process.env.ENABLE_WRITES === 'true'
+  : process.env.NODE_ENV !== 'production';
 
-function readState() {
+let snapshotCache = { url: '', loadedAtMs: 0, state: null, error: null };
+
+function readLocalState() {
   const text = fs.readFileSync(DATA_FILE, 'utf8');
-  const state = JSON.parse(text);
+  return hydrateState(JSON.parse(text), {
+    snapshotSource: 'local_file',
+    snapshotUrl: '',
+    snapshotLoadedAt: new Date().toISOString(),
+    snapshotError: null
+  });
+}
+
+function hydrateState(state, metaPatch = {}) {
+  state = state || {};
+  state.meta = { ...(state.meta || {}), ...metaPatch, readOnly: !ENABLE_WRITES, writesEnabled: ENABLE_WRITES };
   state.companies = (state.companies || []).map(normalizeCompany);
   return state;
+}
+
+async function fetchSnapshotState() {
+  const now = Date.now();
+  if (snapshotCache.state && snapshotCache.url === SNAPSHOT_URL && now - snapshotCache.loadedAtMs < SNAPSHOT_CACHE_TTL_MS) {
+    return snapshotCache.state;
+  }
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), SNAPSHOT_FETCH_TIMEOUT_MS);
+  try {
+    const res = await fetch(SNAPSHOT_URL, { signal: controller.signal, cache: 'no-store' });
+    if (!res.ok) throw new Error(`SNAPSHOT_HTTP_${res.status}`);
+    const remote = await res.json();
+    const state = hydrateState(remote, {
+      snapshotSource: 'remote_snapshot',
+      snapshotUrl: SNAPSHOT_URL,
+      snapshotLoadedAt: new Date().toISOString(),
+      snapshotError: null
+    });
+    snapshotCache = { url: SNAPSHOT_URL, loadedAtMs: now, state, error: null };
+    return state;
+  } catch (err) {
+    snapshotCache.error = err.message || String(err);
+    const fallback = readLocalState();
+    fallback.meta.snapshotSource = 'bundled_fallback';
+    fallback.meta.snapshotUrl = SNAPSHOT_URL;
+    fallback.meta.snapshotError = snapshotCache.error;
+    fallback.meta.snapshotLoadedAt = new Date().toISOString();
+    return fallback;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function readState() {
+  if (SNAPSHOT_URL) return fetchSnapshotState();
+  return readLocalState();
 }
 
 function writeState(state) {
@@ -22,6 +77,7 @@ function writeState(state) {
   state.meta.updatedAt = new Date().toISOString();
   state.companies = (state.companies || []).map(normalizeCompany);
   fs.writeFileSync(DATA_FILE, JSON.stringify(state, null, 2));
+  snapshotCache = { url: '', loadedAtMs: 0, state: null, error: null };
 }
 
 function json(res, status, payload) {
@@ -57,23 +113,30 @@ function mime(file) {
   return 'application/octet-stream';
 }
 
-function apiState(req, res, urlObj) {
-  const state = readState();
+async function apiState(req, res, urlObj) {
+  const state = await readState();
   const filters = Object.fromEntries(urlObj.searchParams.entries());
   const companies = filterCompanies(state.companies, filters).map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c) }));
   json(res, 200, { meta: state.meta, dashboard: computeDashboard(state.companies, { tasks: state.tasks || [], fundingRounds: state.fundingRounds || [] }), companies });
 }
 
-function apiCompany(req, res, id) {
-  const state = readState();
+async function apiCompany(req, res, id) {
+  const state = await readState();
   const c = state.companies.find(x => x.id === id);
   if (!c) return json(res, 404, { error: 'NOT_FOUND' });
   json(res, 200, { company: { ...c, ...labelCompany(c), score: scoreCompany(c) }, fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id), tasks: (state.tasks || []).filter(t => t.companyId === c.id), interactions: (state.interactions || []).filter(i => i.companyId === c.id) });
 }
 
+function assertWritable(res) {
+  if (ENABLE_WRITES) return true;
+  json(res, 403, { error: 'READ_ONLY_DEPLOYMENT', message: 'Public/production deployment is read-only. Edit the local source dashboard and publish a new snapshot.' });
+  return false;
+}
+
 async function apiSaveCompany(req, res, id) {
+  if (!assertWritable(res)) return;
   const body = JSON.parse(await readBody(req) || '{}');
-  const state = readState();
+  const state = readLocalState();
   const company = normalizeCompany({ ...body, id: id || body.id || slugify(body.name) });
   const idx = state.companies.findIndex(x => x.id === company.id);
   if (!company.name) return json(res, 400, { error: 'NAME_REQUIRED' });
@@ -83,19 +146,21 @@ async function apiSaveCompany(req, res, id) {
 }
 
 async function apiDeleteCompany(req, res, id) {
-  const state = readState();
+  if (!assertWritable(res)) return;
+  const state = readLocalState();
   const before = state.companies.length;
   state.companies = state.companies.filter(x => x.id !== id);
   writeState(state);
   json(res, 200, { ok: true, deleted: before - state.companies.length });
 }
 
-function apiExport(req, res) {
-  const state = readState();
+async function apiExport(req, res) {
+  const state = await readState();
   const companies = state.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c) })).sort((a,b)=>b.score-a.score);
   const lines = [];
   lines.push(`# ${state.meta.title || 'Global AI Pre-IPO Pipeline'}`);
   lines.push(`As-of: ${state.meta.asOf || ''}`);
+  lines.push(`Snapshot source: ${state.meta.snapshotSource || 'local'}`);
   lines.push('');
   lines.push('| Score | Label | Company | Region | Sector | IPO Signal | Latest Valuation | Next Action |');
   lines.push('|---:|---|---|---|---|---|---|---|');
@@ -103,12 +168,26 @@ function apiExport(req, res) {
   json(res, 200, { markdown: lines.join('\n') });
 }
 
+async function apiExportJson(req, res) {
+  const state = await readState();
+  json(res, 200, state);
+}
+
+async function apiExportCsv(req, res) {
+  const state = await readState();
+  const companies = state.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c) })).sort((a,b)=>b.score-a.score);
+  const cols = ['score','label','name','region','country','sector','subSector','ipoSignal','latestValuation','nextAction'];
+  const csv = [cols.join(',')].concat(companies.map(c => cols.map(k => '"' + String(c[k] ?? '').replace(/"/g,'""') + '"').join(','))).join('\n');
+  res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Cache-Control': 'no-store' });
+  res.end(csv);
+}
+
 function apiSources(req, res) {
   json(res, 200, { sources: sourceStatus(), generatedAt: new Date().toISOString() });
 }
 
-function apiCrm(req, res) {
-  const state = readState();
+async function apiCrm(req, res) {
+  const state = await readState();
   const companies = state.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c) })).sort((a,b)=>b.score-a.score);
   const companyMap = Object.fromEntries(companies.map(c => [c.id, c]));
   const fundingRounds = (state.fundingRounds || []).map(r => ({ ...r, companyName: companyMap[r.companyId]?.name || r.companyId })).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0, 50);
@@ -133,6 +212,8 @@ const server = http.createServer(async (req, res) => {
     const pathname = urlObj.pathname;
     if (req.method === 'GET' && pathname === '/api/state') return apiState(req, res, urlObj);
     if (req.method === 'GET' && pathname === '/api/export.md') return apiExport(req, res);
+    if (req.method === 'GET' && pathname === '/api/export.json') return apiExportJson(req, res);
+    if (req.method === 'GET' && pathname === '/api/export.csv') return apiExportCsv(req, res);
     if (req.method === 'GET' && pathname === '/api/sources') return apiSources(req, res);
     if (req.method === 'GET' && pathname === '/api/crm') return apiCrm(req, res);
     if (req.method === 'GET' && pathname.startsWith('/api/refresh/')) return apiRefreshSource(req, res, pathname.split('/').pop(), urlObj);
@@ -140,7 +221,7 @@ const server = http.createServer(async (req, res) => {
     if ((req.method === 'POST' || req.method === 'PUT') && pathname === '/api/company') return apiSaveCompany(req, res, null);
     if ((req.method === 'POST' || req.method === 'PUT') && pathname.startsWith('/api/company/')) return apiSaveCompany(req, res, pathname.split('/').pop());
     if (req.method === 'DELETE' && pathname.startsWith('/api/company/')) return apiDeleteCompany(req, res, pathname.split('/').pop());
-    if (req.method === 'GET' && pathname === '/api/health') return json(res, 200, { ok: true, app: 'global-ai-preipo-dashboard', ts: new Date().toISOString() });
+    if (req.method === 'GET' && pathname === '/api/health') return json(res, 200, { ok: true, app: 'global-ai-preipo-dashboard', ts: new Date().toISOString(), readOnly: !ENABLE_WRITES, snapshotUrlConfigured: Boolean(SNAPSHOT_URL) });
 
     const file = safePath(pathname);
     if (!file || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
@@ -158,4 +239,4 @@ if (require.main === module) {
   server.listen(PORT, HOST, () => console.log(`Global AI Pre-IPO Dashboard listening on http://${HOST}:${PORT}`));
 }
 
-module.exports = { server, readState, writeState };
+module.exports = { server, readState, writeState, readLocalState };

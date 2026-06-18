@@ -24,6 +24,7 @@ function qs(obj) {
 async function load() {
   state = await api('/api/state?' + qs(filters()));
   renderSummary();
+  renderVintageBanner();
   await renderSources();
   renderFilters();
   renderTable();
@@ -59,6 +60,27 @@ function renderSummary() {
     ['Updated', (state.meta.asOf || '').slice(0,10), 'Pilot vintage']
   ];
   $('#summary').innerHTML = cards.map(c => `<div class="card"><div class="label">${esc(c[0])}</div><div class="num">${esc(c[1])}</div><div class="sub">${esc(c[2])}</div></div>`).join('');
+}
+
+function renderVintageBanner() {
+  const m = state.meta || {};
+  const sourceLabel = {
+    local_file: '本机实时数据',
+    remote_snapshot: 'GitHub 快照数据',
+    bundled_fallback: 'Render 内置回退数据'
+  }[m.snapshotSource] || (m.snapshotSource || 'unknown');
+  const readOnly = m.readOnly ? '只读部署' : '可本机编辑';
+  $('#vintageBanner').innerHTML = `
+    <div class="vintage-row">
+      <div><b>Data vintage</b><div class="sub">As-of ${esc(m.asOf || m.updatedAt || 'unknown')} · loaded ${esc(m.snapshotLoadedAt || '')}</div></div>
+      <div><b>Source</b><div class="sub">${esc(sourceLabel)}${m.snapshotUrl ? ` · <a href="${esc(m.snapshotUrl)}" target="_blank">snapshot</a>` : ''}</div></div>
+      <div><b>Mode</b><div class="sub">${esc(readOnly)}${m.snapshotError ? ` · fallback: ${esc(m.snapshotError)}` : ''}</div></div>
+    </div>`;
+  const newBtn = $('#newBtn');
+  if (newBtn && m.readOnly) {
+    newBtn.disabled = true;
+    newBtn.title = 'Public/Render deployment is read-only; edit through the local Tailscale dashboard.';
+  }
 }
 
 async function renderFilters() {
@@ -113,11 +135,12 @@ async function showDetail(id) {
     <div class="detail-section"><b>备注</b><p>${esc(c.notes)}</p></div>
     <div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
     <div class="detail-section"><b>Evidence Ledger</b>${(c.evidence||[]).map(e=>`<div class="evidence"><div><span class="pill gray">${esc(e.type)}</span> ${esc(e.date||'')}</div><div>${esc(e.note)}</div>${e.url?`<a href="${esc(e.url)}" target="_blank">source</a>`:''}</div>`).join('') || '<p class="sub">No evidence yet.</p>'}</div>
-    <div class="actions"><button onclick="openEdit(selected)">编辑</button><button onclick="deleteCompany('${esc(c.id)}')">删除</button></div>
+    ${state.meta.readOnly ? '<div class="read-only-note">当前为只读部署：请在本机/Tailscale 版本编辑，并通过 snapshot sync 发布。</div>' : `<div class="actions"><button onclick="openEdit(selected)">编辑</button><button onclick="deleteCompany('${esc(c.id)}')">删除</button></div>`}
   </div>`;
 }
 
 function openEdit(c) {
+  if (state?.meta?.readOnly) return alert('当前为只读部署：请在本机/Tailscale 版本编辑。');
   const dialog = $('#editDialog'), form = $('#editForm');
   form.reset();
   form.dataset.id = c?.id || '';
@@ -132,6 +155,7 @@ function openEdit(c) {
 
 async function saveForm(ev) {
   ev.preventDefault();
+  if (state?.meta?.readOnly) return alert('当前为只读部署：请在本机/Tailscale 版本编辑。');
   const form = $('#editForm');
   const data = Object.fromEntries(new FormData(form).entries());
   data.investors = data.investors.split(',').map(s => s.trim()).filter(Boolean);
@@ -142,6 +166,7 @@ async function saveForm(ev) {
 }
 
 async function deleteCompany(id) {
+  if (state?.meta?.readOnly) return alert('当前为只读部署：请在本机/Tailscale 版本编辑。');
   if (!confirm('确定删除这个 pilot 记录？')) return;
   await api('/api/company/' + encodeURIComponent(id), { method: 'DELETE' });
   selected = null; $('#detail').innerHTML = '<div class="placeholder">已删除。点击左侧公司查看详情。</div>';
