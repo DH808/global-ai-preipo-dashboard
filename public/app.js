@@ -1,5 +1,6 @@
 let state = null;
 let selected = null;
+let showAllMobile = false;
 const $ = sel => document.querySelector(sel);
 
 async function api(path, opts) {
@@ -25,6 +26,9 @@ async function load() {
   state = await api('/api/state?' + qs(filters()));
   renderSummary();
   renderVintageBanner();
+  renderQuickChips();
+  renderPriorityBoard();
+  applyResponsiveDefaults();
   await renderSources();
   renderFilters();
   renderTable();
@@ -53,13 +57,59 @@ async function renderCrmBoards() {
 function renderSummary() {
   const d = state.dashboard;
   const cards = [
-    ['Total Private', d.privateCount, '全局 private 公司样本'],
-    ['Core', d.coreCount, '应立即推进 / Act Now'],
-    ['Funding Rounds', d.fundingRoundCount || 0, '已结构化融资事件'],
-    ['Open Tasks', d.openTasks || 0, 'deal team 待办'],
-    ['Updated', (state.meta.asOf || '').slice(0,10), 'Pilot vintage']
+    ['Private', d.privateCount, '全局 private 公司'],
+    ['Act Now', d.coreCount, '立即推进 / allocation'],
+    ['Rounds', d.fundingRoundCount || 0, '融资/估值事件'],
+    ['Tasks', d.openTasks || 0, '待办动作'],
+    ['Vintage', (state.meta.asOf || '').slice(0,10), '数据时点']
   ];
   $('#summary').innerHTML = cards.map(c => `<div class="card"><div class="label">${esc(c[0])}</div><div class="num">${esc(c[1])}</div><div class="sub">${esc(c[2])}</div></div>`).join('');
+}
+
+function renderQuickChips() {
+  const box = $('#quickChips');
+  if (!box || box.dataset.ready) return;
+  const chips = [
+    ['Act Now', { label: 'Core / Act Now' }],
+    ['Crossover', { q: 'crossover' }],
+    ['Taiwan ESB', { region: 'Taiwan' }],
+    ['CapitalG', { q: 'CapitalG' }],
+    ['Temasek', { q: 'Temasek' }],
+    ['AI Infra', { sector: 'AI Infra' }]
+  ];
+  box.innerHTML = chips.map(([name]) => `<button class="chip" type="button">${esc(name)}</button>`).join('');
+  [...box.querySelectorAll('.chip')].forEach((btn, i) => btn.addEventListener('click', () => {
+    const f = chips[i][1];
+    $('#search').value = f.q || '';
+    $('#region').value = f.region || '';
+    $('#sector').value = f.sector || '';
+    $('#label').value = f.label || '';
+    load();
+  }));
+  box.dataset.ready = '1';
+}
+
+function renderPriorityBoard() {
+  const box = $('#priorityBoard');
+  if (!box) return;
+  const isMobile = window.matchMedia('(max-width: 720px)').matches;
+  const top = (state.companies || []).slice(0, isMobile ? 6 : 10);
+  box.innerHTML = top.map((c, i) => `<button class="priority-card" type="button" data-id="${esc(c.id)}">
+    <div class="rank">#${i + 1}</div>
+    <div class="priority-main"><b>${esc(c.name)}</b><span>${esc(c.region)} · ${esc(c.sector)}</span></div>
+    <div class="priority-score ${colorClass(c.label)}">${esc(c.score)}</div>
+    <p>${esc(c.recommendation || c.nextAction || c.notes || '').slice(0, 150)}</p>
+  </button>`).join('');
+  box.querySelectorAll('.priority-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
+}
+
+function applyResponsiveDefaults() {
+  if (!window.matchMedia('(max-width: 720px)').matches) return;
+  const crm = document.querySelector('.crm-details');
+  if (crm && !crm.dataset.mobileTuned) {
+    crm.removeAttribute('open');
+    crm.dataset.mobileTuned = '1';
+  }
 }
 
 function renderVintageBanner() {
@@ -111,6 +161,23 @@ function renderTable() {
       <td>${esc(c.nextAction || '').slice(0,160)}</td>
     </tr>`).join('');
   tbody.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => showDetail(tr.dataset.id)));
+  renderMobileCards();
+}
+
+function renderMobileCards() {
+  const box = $('#mobileCards');
+  if (!box) return;
+  const isMobile = window.matchMedia('(max-width: 720px)').matches;
+  const companies = isMobile && !showAllMobile ? state.companies.slice(0, 25) : state.companies;
+  box.innerHTML = companies.map(c => `<button class="mobile-company-card" type="button" data-id="${esc(c.id)}">
+    <div class="mobile-card-top"><span class="score ${colorClass(c.label)}">${esc(c.score)}</span><span class="pill ${colorClass(c.label)}">${esc(c.label)}</span></div>
+    <h3>${esc(c.name)}</h3>
+    <div class="sub">${esc(c.country)} · ${esc(c.region)} · ${esc(c.sector)}</div>
+    <p>${esc(c.nextAction || c.recommendation || c.notes || '').slice(0, 180)}</p>
+  </button>`).join('') + (isMobile && !showAllMobile && state.companies.length > companies.length ? `<button class="load-more" type="button">显示全部 ${state.companies.length} 家</button>` : '');
+  box.querySelectorAll('.mobile-company-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
+  const more = box.querySelector('.load-more');
+  if (more) more.addEventListener('click', () => { showAllMobile = true; renderMobileCards(); });
 }
 
 async function showDetail(id) {

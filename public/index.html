@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Global AI Pre-IPO Pipeline Pilot</title>
-  <link rel="stylesheet" href="style.css?v=1" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
   <header class="topbar">
@@ -23,9 +23,22 @@
     <section id="summary" class="summary-grid"></section>
     <section id="vintageBanner" class="panel vintage-banner"></section>
 
+    <section class="panel priority-panel">
+      <div class="section-head">
+        <div>
+          <div class="section-title">PM Priority Board / 今日优先级</div>
+          <div class="sub">默认按“可行动性 + 12–36个月流动性 + 收入/部署证据 + access route”排序。</div>
+        </div>
+        <div class="quick-chips" id="quickChips"></div>
+      </div>
+      <div id="priorityBoard" class="priority-grid"></div>
+    </section>
+
     <section class="panel source-panel">
-      <div class="section-title">Data Source Coverage / 数据源接入状态</div>
-      <div id="sources" class="source-grid"></div>
+      <details>
+        <summary>Data Source Coverage / 数据源接入状态</summary>
+        <div id="sources" class="source-grid"></div>
+      </details>
     </section>
 
     <section class="panel controls">
@@ -37,11 +50,13 @@
     </section>
 
     <section class="panel crm-panel">
-      <div class="section-title">Deal CRM Board / 融资事件与待办</div>
-      <div class="crm-grid">
-        <div><h3>Latest Funding / Valuation Events</h3><div id="fundingBoard" class="mini-list"></div></div>
-        <div><h3>Open Deal Tasks</h3><div id="taskBoard" class="mini-list"></div></div>
-      </div>
+      <details class="crm-details" open>
+        <summary>Deal CRM Board / 融资事件与待办</summary>
+        <div class="crm-grid">
+          <div><h3>Latest Funding / Valuation Events</h3><div id="fundingBoard" class="mini-list"></div></div>
+          <div><h3>Open Deal Tasks</h3><div id="taskBoard" class="mini-list"></div></div>
+        </div>
+      </details>
     </section>
 
     <section class="layout">
@@ -51,6 +66,7 @@
           <thead><tr><th>Score</th><th>公司</th><th>地区</th><th>赛道</th><th>IPO</th><th>优先级</th><th>下一步</th></tr></thead>
           <tbody></tbody>
         </table>
+        <div id="mobileCards" class="mobile-cards"></div>
       </div>
       <aside class="panel" id="detail">
         <div class="placeholder">点击左侧公司查看详情。Pilot 已预置 Rebellions、FuriosaAI、DeepX、Upstage、Panmnesia、Sakana、PFN、Lambda、Databricks 等。</div>
@@ -86,6 +102,6 @@
     </form>
   </dialog>
 
-  <script src="app.js?v=1"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
