@@ -151,13 +151,61 @@ function enrichedCompany(c) {
   scored.layer = c.layer || c.sector || '';
   scored.companyDescription = companyDescription(c);
   scored.whyInTrack = c.whyInTrack || c.recommendation || c.mandateFit || c.notes || '';
-  scored.revenueScale = c.revenueScale || '未披露/待验证';
+  scored.revenueScale = c.revenueScale || '公开资料待补充';
   scored.latestAvailableValuation = latestAvailableValuation(c);
   scored.relationshipRoute = c.relationshipRoute || c.routeToAccess || c.nextAction || '';
-  scored.keyDiligence = c.keyDiligence || (c.openQuestions || []).join('; ') || c.evidenceBoundary || '';
-  scored.ipoWindow = c.ipoWindow || 'unclear';
+  scored.keyDiligence = c.keyDiligence || (c.openQuestions || []).join('; ') || '';
+  scored.ipoWindow = c.ipoWindow || '待确认';
   scored.priorityClass = priorityClass(c.priorityTier);
-  return scored;
+  return sanitizePublicCompany(scored);
+}
+
+const PUBLIC_OMIT_KEYS = new Set([
+  'evidenceBoundary','riskEvidenceBoundary','publicCommercialStatus','commercialMetricConfidence','commercialMetricSource','commercialDiligenceAsk',
+  'relationshipRouteV17','immediateAskV17','routeConfidence','liquidityReadinessV18','liquidityReadinessStatus','liquidityReadinessScore',
+  'liquidityPath','allocationStrategy','icReadinessV19','icReadinessScore','icReadinessGrade','icBlockers','dataQualityGrade','nextDecision'
+]);
+const PUBLIC_BAD_RE = /(\bv1[6-9]\b|\/Users\/mac|\.py\b|not_publicly_disclosed|publicCommercialStatus|commercialMetric|liquidityReadiness|icReadiness|evidenceBoundary|\[object Object\]|coverage_gap|placeholder|not captured|harden_v)/i;
+function publicCleanText(value) {
+  return String(value ?? '')
+    .replace(/\bv1[6-9]\b/gi, '')
+    .replace(/not_publicly_disclosed/gi, '公开资料未披露')
+    .replace(/not captured/gi, '待补充')
+    .replace(/\/Users\/mac\/[^\s,，;；)）]+/g, '内部路径已隐藏')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+function sanitizePublicValue(value) {
+  if (Array.isArray(value)) return value.map(sanitizePublicValue).filter(v => v !== undefined && v !== '');
+  if (value && typeof value === 'object') {
+    const out = {};
+    for (const [k, v] of Object.entries(value)) {
+      if (PUBLIC_OMIT_KEYS.has(k) || /sourceId/i.test(k) || /v1[6-9]/i.test(k)) continue;
+      const sv = sanitizePublicValue(v);
+      if (sv !== undefined && sv !== '') out[k] = sv;
+    }
+    return out;
+  }
+  if (typeof value === 'string') {
+    const cleaned = publicCleanText(value);
+    return cleaned;
+  }
+  return value;
+}
+function sanitizePublicCompany(c) {
+  const out = sanitizePublicValue(c) || {};
+  if (Array.isArray(out.evidence)) {
+    out.evidence = out.evidence.filter(e => !PUBLIC_BAD_RE.test(JSON.stringify(e))).map(e => ({
+      date: e.date || '', type: publicCleanText(e.type || '来源'), note: publicCleanText(e.note || ''), url: /^https?:\/\//.test(e.url || '') ? e.url : ''
+    })).filter(e => e.note);
+  }
+  if (Array.isArray(out.keyMetrics)) out.keyMetrics = out.keyMetrics.filter(x => !PUBLIC_BAD_RE.test(String(x))).map(publicCleanText);
+  return out;
+}
+function sanitizePublicStatePayload(payload) {
+  const out = sanitizePublicValue(payload) || {};
+  if (Array.isArray(out.companies)) out.companies = out.companies.map(sanitizePublicCompany);
+  return out;
 }
 
 function pipelineCompanies(state, filters = {}) {
@@ -177,7 +225,7 @@ function pipelineCompanies(state, filters = {}) {
 }
 
 function dbInfo() {
-  const info = { configured: fs.existsSync(DB_FILE), path: DB_FILE, counts: {}, status: 'missing' };
+  const info = { configured: fs.existsSync(DB_FILE), counts: {}, status: 'missing' };
   if (!info.configured) return info;
   try {
     const sql = "select 'companies' k,count(*) v from companies union all select 'investors',count(*) from investors union all select 'routes',count(*) from relationship_routes union all select 'evidence',count(*) from evidence_items union all select 'sources',count(*) from source_registry;";
@@ -195,21 +243,21 @@ async function apiPipeline(req, res, urlObj) {
   const filters = Object.fromEntries(urlObj.searchParams.entries());
   const companies = pipelineCompanies(state, filters);
   const highPriority = companies.filter(c => /^A[0-2]/.test(String(c.priorityTier || ''))).length;
-  json(res, 200, { meta: state.meta, db: dbInfo(), companies, dashboard: { total: companies.length, highPriority, openTasks: (state.tasks || []).filter(t => !['done','closed'].includes(t.status)).length, sources: (state.sourceRegistry || []).length } });
+  json(res, 200, sanitizePublicStatePayload({ meta: state.meta, db: dbInfo(), companies, dashboard: { total: companies.length, highPriority, openTasks: (state.tasks || []).filter(t => !['done','closed'].includes(t.status)).length, sources: (state.sourceRegistry || []).length } }));
 }
 
 async function apiState(req, res, urlObj) {
   const state = await readState();
   const filters = Object.fromEntries(urlObj.searchParams.entries());
   const companies = pipelineCompanies(state, filters);
-  json(res, 200, { meta: state.meta, dashboard: computeDashboard(state.companies, { tasks: state.tasks || [], fundingRounds: state.fundingRounds || [] }), companies });
+  json(res, 200, sanitizePublicStatePayload({ meta: state.meta, dashboard: computeDashboard(state.companies, { tasks: state.tasks || [], fundingRounds: state.fundingRounds || [] }), companies }));
 }
 
 async function apiCompany(req, res, id) {
   const state = await readState();
   const c = state.companies.find(x => x.id === id);
   if (!c) return json(res, 404, { error: 'NOT_FOUND' });
-  json(res, 200, { company: enrichedCompany(c), fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id), tasks: (state.tasks || []).filter(t => t.companyId === c.id), interactions: (state.interactions || []).filter(i => i.companyId === c.id), evidence: (c.evidence || []) });
+  json(res, 200, sanitizePublicStatePayload({ company: enrichedCompany(c), fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id), tasks: (state.tasks || []).filter(t => t.companyId === c.id), interactions: (state.interactions || []).filter(i => i.companyId === c.id), evidence: (c.evidence || []) }));
 }
 
 function assertWritable(res) {
@@ -241,7 +289,7 @@ async function apiDeleteCompany(req, res, id) {
 
 async function apiExport(req, res) {
   const state = await readState();
-  const companies = state.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c) })).sort((a,b)=>b.score-a.score);
+  const companies = pipelineCompanies(state, { status: 'private' }).sort((a,b)=>b.score-a.score);
   const lines = [];
   lines.push(`# ${state.meta.title || 'Global AI Pre-IPO Pipeline'}`);
   lines.push(`As-of: ${state.meta.asOf || ''}`);
@@ -255,23 +303,30 @@ async function apiExport(req, res) {
 
 async function apiExportJson(req, res) {
   const state = await readState();
-  json(res, 200, state);
+  json(res, 200, sanitizePublicStatePayload(state));
 }
 
 async function apiExportCsv(req, res) {
   const state = await readState();
-  const companies = state.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c) })).sort((a,b)=>b.score-a.score);
+  const companies = pipelineCompanies(state, { status: 'private' }).sort((a,b)=>b.score-a.score);
   const cols = ['score','label','name','region','country','sector','subSector','ipoSignal','latestValuation','nextAction'];
   const csv = [cols.join(',')].concat(companies.map(c => cols.map(k => '"' + String(c[k] ?? '').replace(/"/g,'""') + '"').join(','))).join('\n');
   res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Cache-Control': 'no-store' });
   res.end(csv);
 }
 
-function apiSources(req, res) {
-  const local = readLocalState();
-  const registry = local.sourceRegistry || [];
-  const connector = sourceStatus();
-  json(res, 200, { sources: registry.length ? registry.map(s => ({ id: s.id, name: s.name, type: s.sourceType, runtimeStatus: s.connectorStatus, coverage: s.coverage, limitations: s.limitations })) : connector, connectorSources: connector, generatedAt: new Date().toISOString() });
+async function apiSources(req, res) {
+  const state = await readState();
+  const registry = state.sourceRegistry || [];
+  const sources = registry.map((s, idx) => ({
+    id: `source-${idx + 1}`,
+    name: publicCleanText(s.name || '公开/人工来源'),
+    type: publicCleanText(s.sourceType || s.type || 'public/manual'),
+    status: /missing|credential|paid|manual/i.test(`${s.connectorStatus || ''} ${s.limitations || ''}`) ? '需人工/授权补充' : '可展示',
+    coverage: publicCleanText(s.coverage || ''),
+    limitations: publicCleanText(s.limitations || '')
+  }));
+  json(res, 200, sanitizePublicStatePayload({ sources, generatedAt: new Date().toISOString() }));
 }
 
 async function apiRelationships(req, res) {
@@ -290,7 +345,7 @@ async function apiRelationships(req, res) {
     if (/^A[0-2]/.test(String(r.priorityTier||''))) grouped[key].highPriorityCount += 1;
     if (!grouped[key].ask) grouped[key].ask = r.accessGoal;
   }
-  json(res, 200, { rows, grouped: Object.values(grouped).sort((a,b)=>b.highPriorityCount-a.highPriorityCount || b.companies.length-a.companies.length) });
+  json(res, 200, sanitizePublicStatePayload({ rows, grouped: Object.values(grouped).sort((a,b)=>b.highPriorityCount-a.highPriorityCount || b.companies.length-a.companies.length) }));
 }
 
 function hasMissing(value) {
@@ -311,7 +366,7 @@ async function apiMissingData(req, res) {
     if (hasMissing(c.ipoWindow)) missing.push('IPO window');
     return { id: c.id, name: c.name, priorityTier: c.priorityTier, layer: c.layer, missing, readiness: missing.length === 0 ? 'IC-ready draft' : missing.length <= 2 ? 'Needs quick fill' : 'Not IC-ready', nextAction: c.keyDiligence || c.nextAction || '' };
   });
-  json(res, 200, { rows, highPriorityGaps: rows.filter(r => /^A|^B1/.test(String(r.priorityTier||'')) && r.missing.length), summary: { total: rows.length, notReady: rows.filter(r => r.readiness !== 'IC-ready draft').length, noRevenue: rows.filter(r => r.missing.includes('revenue/ARR')).length, noRoute: rows.filter(r => r.missing.includes('relationship route')).length, noEvidence: rows.filter(r => r.missing.includes('evidence')).length } });
+  json(res, 200, sanitizePublicStatePayload({ rows, highPriorityGaps: rows.filter(r => /^A|^B1/.test(String(r.priorityTier||'')) && r.missing.length), summary: { total: rows.length, notReady: rows.filter(r => r.readiness !== 'IC-ready draft').length, noRevenue: rows.filter(r => r.missing.includes('revenue/ARR')).length, noRoute: rows.filter(r => r.missing.includes('relationship route')).length, noEvidence: rows.filter(r => r.missing.includes('evidence')).length } }));
 }
 
 async function apiCrm(req, res) {
@@ -320,7 +375,7 @@ async function apiCrm(req, res) {
   const companyMap = Object.fromEntries(companies.map(c => [c.id, c]));
   const fundingRounds = (state.fundingRounds || []).map(r => ({ ...r, companyName: companyMap[r.companyId]?.name || r.companyId })).sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0, 50);
   const tasks = (state.tasks || []).map(t => ({ ...t, companyName: companyMap[t.companyId]?.name || t.companyId })).sort((a,b)=>String(a.dueDate||'9999').localeCompare(String(b.dueDate||'9999')));
-  json(res, 200, { dashboard: computeDashboard(state.companies, { tasks: state.tasks || [], fundingRounds: state.fundingRounds || [] }), fundingRounds, tasks, interactions: state.interactions || [] });
+  json(res, 200, sanitizePublicStatePayload({ dashboard: computeDashboard(state.companies, { tasks: state.tasks || [], fundingRounds: state.fundingRounds || [] }), fundingRounds, tasks, interactions: state.interactions || [] }));
 }
 
 function daysUntil(dateString) {
@@ -397,7 +452,7 @@ async function apiOperatingSystem(req, res) {
   const onePagerQueue = companies.filter(c => c.label === 'Core / Act Now' || String(c.priorityTier || '').startsWith('1')).slice(0, 12).map(c => onePagerForCompany(c, tasksByCompany[c.id] || []));
   const noOwnerCore = companies.filter(c => c.label === 'Core / Act Now' && !c.owner).map(c => ({ id: c.id, name: c.name, score: c.score, nextAction: c.nextAction })).slice(0, 20);
   const thesisNoEvidence = companies.filter(c => c.label === 'Core / Act Now' && !(c.evidence || []).length).map(c => ({ id: c.id, name: c.name, score: c.score })).slice(0, 20);
-  json(res, 200, { meta: state.meta, icView: top, onePagerQueue, relationshipMap: buildRelationshipMap(companies), taskAging: taskAging.slice(0, 40), followUpRisks: { overdue: taskAging.filter(t => t.agingStatus === 'overdue'), dueSoon: taskAging.filter(t => t.agingStatus === 'due_soon').slice(0, 15), noOwnerCore, thesisNoEvidence } });
+  json(res, 200, sanitizePublicStatePayload({ meta: state.meta, icView: top, onePagerQueue, relationshipMap: buildRelationshipMap(companies), taskAging: taskAging.slice(0, 40), followUpRisks: { overdue: taskAging.filter(t => t.agingStatus === 'overdue'), dueSoon: taskAging.filter(t => t.agingStatus === 'due_soon').slice(0, 15), noOwnerCore, thesisNoEvidence } }));
 }
 
 async function apiRefreshSource(req, res, id, urlObj) {

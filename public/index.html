@@ -13,7 +13,7 @@
       <h1>全球 AI Pre-IPO / IPO 投资管线</h1>
       <p>公司第一：每一行看清公司定位、估值口径、投资人、可接触路径和下一步动作。</p>
     </div>
-    <div class="actions">
+    <div class="actions internal-only">
       <button id="exportBtn">导出 Markdown</button>
       <button id="newBtn">新增公司</button>
     </div>
@@ -64,37 +64,13 @@
         </div>
       </div>
       <aside class="panel" id="detail">
-        <div class="placeholder">点击公司查看投资人能理解的一页卡：逻辑、数据、融资、投资人、关系路径、缺口和下一步。</div>
+        <div class="empty-state">点击公司查看一页卡：投资逻辑、估值、融资、投资人、接触路径、风险和下一步。</div>
       </aside>
     </section>
 
-    <section class="panel pipeline-intro below-table-intro">
-      <div class="section-title">管线用途</div>
-      <div class="intro-grid">
-        <div><b>1. 公司池</b><span>跟踪所有 pre-IPO / late-growth / 准上市公司。</span></div>
-        <div><b>2. 投资逻辑</b><span>A0 成熟平台 + A1 架构硬瓶颈 + A2 台湾准上市供应链。</span></div>
-        <div><b>3. 关系路径</b><span>投资人、CVC、券商、承销商、secondary route。</span></div>
-        <div><b>4. 缺口管理</b><span>收入、估值、投资人、证据、IPO窗口、owner。</span></div>
-      </div>
-    </section>
-
-    <section class="panel ops-strip">
-      <div class="section-title">工作队列</div>
-      <div class="ops-grid-v6">
-        <div class="ops-block"><h3>关系路径</h3><div id="relationshipCrm" class="relationship-list"></div></div>
-        <div class="ops-block"><h3>缺口 / IC 准备度</h3><div id="missingData" class="risk-list"></div></div>
-        <div class="ops-block"><h3>来源登记</h3><div id="sourceRegistry" class="source-grid compact-sources"></div></div>
-      </div>
-    </section>
-
-    <section class="panel crm-panel">
-      <details class="crm-details">
-        <summary>融资事件 / 待办 / 审计</summary>
-        <div class="crm-grid">
-          <div><h3>最新融资 / 估值事件</h3><div id="fundingBoard" class="mini-list"></div></div>
-          <div><h3>待办事项</h3><div id="taskBoard" class="mini-list"></div></div>
-        </div>
-      </details>
+    <section class="internal-only" aria-hidden="true">
+      <div id="relationshipCrm"></div><div id="missingData"></div><div id="sourceRegistry"></div>
+      <div id="fundingBoard"></div><div id="taskBoard"></div>
     </section>
 
     <section style="display:none">
