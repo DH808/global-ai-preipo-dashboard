@@ -377,15 +377,15 @@ function renderScoreBreakdown(c) {
   </div>`;
 }
 
-async function showDetail(id) {
-  const data = await api('/api/company/' + encodeURIComponent(id));
-  const c = data.company; selected = c;
-  const rounds = data.fundingRounds || [], tasks = data.tasks || [], interactions = data.interactions || [];
-  $('#detail').innerHTML = `<div class="detail">
-    <h2>${esc(c.name)}</h2>
-    <div class="sub">${esc(c.country)} · ${esc(c.sector)} / ${esc(c.subSector)}</div>
+function detailHtml(c, rounds, tasks, interactions) {
+  return `<div class="detail">
+    <div class="detail-hero">
+      <div class="avatar big">${esc(String(c.name || '?').slice(0,1))}</div>
+      <div><h2>${esc(c.name)}</h2><div class="sub">${esc(c.country)} · ${esc(c.sector)} / ${esc(c.subSector)}</div></div>
+    </div>
     <div style="margin:10px 0"><span class="score ${colorClass(c.label)}">${c.score}</span> <span class="pill ${esc(c.priorityClass || colorClass(c.label))}">${esc(c.priorityTier || c.label)}</span></div>
-    <div class="detail-section compact"><b>Investor Pipeline Snapshot</b><div class="onepager-detail">
+    <div class="detail-tabs"><button data-tab="overview" type="button">Overview</button><button data-tab="investors" type="button">Investors</button><button data-tab="funding" type="button">Funding</button><button data-tab="work" type="button">Work</button><button data-tab="evidence" type="button">Evidence</button></div>
+    <div class="detail-section compact" data-section="overview"><b>Investor Pipeline Snapshot</b><div class="onepager-detail">
       <div><b>Company description</b><p>${esc(c.companyDescription || 'not captured')}</p></div>
       <div><b>Latest valuation</b><p>${esc(c.latestAvailableValuation || c.latestValuation || c.latestFunding || '未披露/待验证')}</p></div>
       <div><b>Why in track</b><p>${esc(c.whyInTrack || c.recommendation || c.mandateFit || 'not captured')}</p></div>
@@ -393,31 +393,56 @@ async function showDetail(id) {
       <div><b>Layer / IPO window</b><p>${esc(c.layer || c.sector)}<br>${esc(c.ipoWindow || 'unclear')}</p></div>
       <div><b>Relationship route</b><p>${esc(c.relationshipRoute || c.routeToAccess || 'not captured')}</p></div>
     </div></div>
-    <div class="detail-section compact"><b>IC One-Pager</b>${renderDetailOnePager(c, tasks)}</div>
-    <div class="detail-section compact"><b>Score Breakdown</b>${renderScoreBreakdown(c)}</div>
-    <div class="kv"><b>IPO 信号</b><span>${esc(c.ipoSignal)}${c.priorityTier ? '<br>Priority: ' + esc(c.priorityTier) : ''}</span></div>
-    <div class="kv"><b>Recommendation</b><span>${esc(c.recommendation || c.mandateFit || 'not captured')}</span></div>
-    <div class="kv"><b>Why now</b><span>${esc(c.whyNow || 'not captured')}</span></div>
-    <div class="kv"><b>Key metrics</b><span>${esc((c.keyMetrics||[]).join('\n'))}</span></div>
-    <div class="kv"><b>Valuation view</b><span>${esc(c.valuationView || 'not captured')}</span></div>
-    <div class="kv"><b>Access route</b><span>${esc(c.routeToAccess || 'not captured')}</span></div>
-    <div class="kv"><b>Deal Stage</b><span>${esc(c.dealStage || c.stage)} · Data room: ${esc(c.dataRoomStatus || 'unknown')}</span></div>
-    <div class="kv"><b>IPO 进度</b><span>Exchange: ${esc(c.targetExchange || 'unknown')}<br>Underwriter: ${esc((c.leadUnderwriters||[]).join(', ') || 'unknown')}<br>Filing/Review: ${esc(c.krxReviewStatus || c.filingStatus || 'unknown')}<br>Lock-up: ${esc(c.lockup || 'unknown')}</span></div>
-    <div class="kv"><b>收入质量</b><span>${esc(c.revenueQuality)}</span></div>
-    <div class="kv"><b>投资人</b><span>${esc((c.investors||[]).join(', '))}</span></div>
-    <div class="kv"><b>Top investor signal</b><span>${esc(c.topInvestorSignal || 'not yet captured')}</span></div>
-    <div class="kv"><b>估值/融资</b><span>${esc(c.latestValuation)}<br>${esc(c.latestFunding)}</span></div>
-    <div class="detail-section"><b>下一步动作</b><p>${esc(c.nextAction)}</p></div>
-    <div class="detail-section"><b>Funding Rounds</b>${rounds.map(r=>`<div class="evidence"><b>${esc(r.round)}</b> · ${esc(r.amount)} · ${esc(r.valuation)}<div class="sub">${esc(r.date)} · ${esc(r.confidence)} · ${esc((r.participants||[]).join(', '))}</div><div>${esc(r.notes||'')}</div></div>`).join('') || '<p class="sub">No structured funding rounds yet.</p>'}</div>
-    <div class="detail-section"><b>Open Tasks</b>${tasks.map(t=>`<div class="evidence"><b>${esc(t.title)}</b><div class="sub">${esc(t.owner)} · ${esc(t.dueDate)} · ${esc(t.status)} · ${esc(t.priority)}</div></div>`).join('') || '<p class="sub">No tasks yet.</p>'}</div>
-    <div class="detail-section"><b>Interactions</b>${interactions.map(i=>`<div class="evidence"><b>${esc(i.date)} · ${esc(i.counterparty)}</b><div>${esc(i.summary)}</div><div class="sub">Next: ${esc(i.nextStep||'')}</div></div>`).join('') || '<p class="sub">No interactions yet.</p>'}</div>
-    <div class="detail-section"><b>备注</b><p>${esc(c.notes)}</p></div>
-    ${c.todayDelta ? `<div class="detail-section"><b>Today delta</b><p>${esc(c.todayDelta)}</p></div>` : ''}
-    ${c.evidenceBoundary ? `<div class="detail-section"><b>Evidence boundary</b><p>${esc(c.evidenceBoundary)}</p></div>` : ''}
+    <div class="detail-section compact" data-section="overview"><b>IC One-Pager</b>${renderDetailOnePager(c, tasks)}</div>
+    <div class="detail-section compact" data-section="overview"><b>Score Breakdown</b>${renderScoreBreakdown(c)}</div>
+    <div class="detail-section" data-section="overview"><b>Company fields</b>
+      <div class="kv"><b>IPO 信号</b><span>${esc(c.ipoSignal)}${c.priorityTier ? '<br>Priority: ' + esc(c.priorityTier) : ''}</span></div>
+      <div class="kv"><b>Recommendation</b><span>${esc(c.recommendation || c.mandateFit || 'not captured')}</span></div>
+      <div class="kv"><b>Why now</b><span>${esc(c.whyNow || 'not captured')}</span></div>
+      <div class="kv"><b>Key metrics</b><span>${esc((c.keyMetrics||[]).join('\n'))}</span></div>
+      <div class="kv"><b>Valuation view</b><span>${esc(c.valuationView || 'not captured')}</span></div>
+      <div class="kv"><b>Access route</b><span>${esc(c.routeToAccess || 'not captured')}</span></div>
+      <div class="kv"><b>Deal Stage</b><span>${esc(c.dealStage || c.stage)} · Data room: ${esc(c.dataRoomStatus || 'unknown')}</span></div>
+      <div class="kv"><b>IPO 进度</b><span>Exchange: ${esc(c.targetExchange || 'unknown')}<br>Underwriter: ${esc((c.leadUnderwriters||[]).join(', ') || 'unknown')}<br>Filing/Review: ${esc(c.krxReviewStatus || c.filingStatus || 'unknown')}<br>Lock-up: ${esc(c.lockup || 'unknown')}</span></div>
+      <div class="kv"><b>收入质量</b><span>${esc(c.revenueQuality)}</span></div>
+      <div class="kv"><b>估值/融资</b><span>${esc(c.latestValuation)}<br>${esc(c.latestFunding)}</span></div>
+    </div>
+    <div class="detail-section" data-section="investors"><b>投资人 / Investors</b><div class="investor-chips detail-investors">${(c.investors||[]).map(x=>`<span class="investor-chip">${esc(x)}</span>`).join('')}</div><p class="sub">Quality: ${esc(c.investorDataQuality || 'existing tracker data')}</p>${c.topInvestorSignal ? `<p>${esc(c.topInvestorSignal)}</p>` : ''}</div>
+    <div class="detail-section" data-section="work"><b>下一步动作</b><p>${esc(c.nextAction)}</p></div>
+    <div class="detail-section" data-section="funding"><b>Funding Rounds</b>${rounds.map(r=>`<div class="evidence"><b>${esc(r.round)}</b> · ${esc(r.amount)} · ${esc(r.valuation)}<div class="sub">${esc(r.date)} · ${esc(r.confidence)} · ${esc((r.participants||[]).join(', '))}</div><div>${esc(r.notes||'')}</div></div>`).join('') || '<p class="sub">No structured funding rounds yet.</p>'}</div>
+    <div class="detail-section" data-section="work"><b>Open Tasks</b>${tasks.map(t=>`<div class="evidence"><b>${esc(t.title)}</b><div class="sub">${esc(t.owner)} · ${esc(t.dueDate)} · ${esc(t.status)} · ${esc(t.priority)}</div></div>`).join('') || '<p class="sub">No tasks yet.</p>'}</div>
+    <div class="detail-section" data-section="work"><b>Interactions</b>${interactions.map(i=>`<div class="evidence"><b>${esc(i.date)} · ${esc(i.counterparty)}</b><div>${esc(i.summary)}</div><div class="sub">Next: ${esc(i.nextStep||'')}</div></div>`).join('') || '<p class="sub">No interactions yet.</p>'}</div>
+    <div class="detail-section" data-section="overview"><b>备注</b><p>${esc(c.notes)}</p></div>
+    ${c.todayDelta ? `<div class="detail-section" data-section="overview"><b>Today delta</b><p>${esc(c.todayDelta)}</p></div>` : ''}
+    ${c.evidenceBoundary ? `<div class="detail-section" data-section="evidence"><b>Evidence boundary</b><p>${esc(c.evidenceBoundary)}</p></div>` : ''}
     <div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
-    <div class="detail-section"><b>Evidence Ledger</b>${(c.evidence||[]).map(e=>`<div class="evidence"><div><span class="pill gray">${esc(e.type)}</span> ${esc(e.date||'')}</div><div>${esc(e.note)}</div>${e.url?`<a href="${esc(e.url)}" target="_blank">source</a>`:''}</div>`).join('') || '<p class="sub">No evidence yet.</p>'}</div>
+    <div class="detail-section" data-section="evidence"><b>Evidence Ledger</b>${(c.evidence||[]).map(e=>`<div class="evidence"><div><span class="pill gray">${esc(e.type)}</span> ${esc(e.date||'')}</div><div>${esc(e.note)}</div>${e.url?`<a href="${esc(e.url)}" target="_blank">source</a>`:''}</div>`).join('') || '<p class="sub">No evidence yet.</p>'}</div>
     ${state.meta.readOnly ? '<div class="read-only-note">当前为只读部署：请在本机/Tailscale 版本编辑，并通过 snapshot sync 发布。</div>' : `<div class="actions"><button onclick="openEdit(selected)">编辑</button><button onclick="deleteCompany('${esc(c.id)}')">删除</button></div>`}
   </div>`;
+}
+
+function bindDetailMenus(root) {
+  root.querySelectorAll('.detail-tabs button').forEach(btn => btn.addEventListener('click', () => {
+    const target = root.querySelector(`[data-section="${btn.dataset.tab}"]`);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+}
+
+async function showDetail(id) {
+  const data = await api('/api/company/' + encodeURIComponent(id));
+  const c = data.company; selected = c;
+  const rounds = data.fundingRounds || [], tasks = data.tasks || [], interactions = data.interactions || [];
+  const html = detailHtml(c, rounds, tasks, interactions);
+  $('#detail').innerHTML = html;
+  bindDetailMenus($('#detail'));
+  const isMobile = window.matchMedia('(max-width: 720px)').matches;
+  if (isMobile && $('#companyDetailDialog')) {
+    $('#dialogDetail').innerHTML = html;
+    bindDetailMenus($('#dialogDetail'));
+    $('#companyDetailDialog').showModal();
+  } else {
+    $('#detail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function openEdit(c) {
@@ -467,4 +492,5 @@ $('#resetBtn').addEventListener('click', () => { $('#search').value=''; $('#regi
 $('#newBtn').addEventListener('click', () => openEdit(null));
 $('#exportBtn').addEventListener('click', exportMd);
 $('#saveBtn').addEventListener('click', saveForm);
+$('#detailCloseBtn')?.addEventListener('click', () => $('#companyDetailDialog')?.close());
 load().catch(err => { document.body.innerHTML = `<pre>${esc(err.stack || err)}</pre>`; });
