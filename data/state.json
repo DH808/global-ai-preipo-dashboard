@@ -4,10 +4,10 @@
     "asOf": "2026-06-19",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-06-19T12:41:38Z",
+    "updatedAt": "2026-06-19T12:56:34Z",
     "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
-    "uiVersion": "13",
+    "uiVersion": "14",
     "releaseNotes": [
       {
         "version": "v5",
@@ -37,16 +37,16 @@
       "companiesChanged": 0
     },
     "fundingEnrichment": {
-      "asOf": "2026-06-19T12:41:38Z",
-      "method": "v13 second-pass public/news/company-source enrichment for low-confidence and missing funding histories; no gated database facts fabricated",
+      "asOf": "2026-06-19T12:56:34Z",
+      "method": "v14 quality pass: multi-round histories for under-specified high-profile companies including Black Forest Labs; official/company source preferred; low confidence where only media snippets were available",
       "companies": 104,
-      "fundingRounds": 129,
+      "fundingRounds": 148,
       "companiesWithFundingPanelRecord": 104,
       "coverageGapPlaceholders": 1,
-      "highConfidenceRounds": 40,
-      "mediumOrBetterRounds": 100
+      "highConfidenceRounds": 43,
+      "mediumOrBetterRounds": 114
     },
-    "snapshotVersion": "v13-funding-gap-second-pass"
+    "snapshotVersion": "v14-funding-quality-pass"
   },
   "companies": [
     {
@@ -8942,8 +8942,8 @@
     },
     {
       "companyId": "cohere",
-      "round": "Series D",
       "date": "2024-07",
+      "round": "Series D",
       "amount": "$500M",
       "valuation": "$5.5B",
       "participants": [
@@ -8962,6 +8962,31 @@
       "url": "",
       "notes": "",
       "id": "cohere-2024-07-series-d"
+    },
+    {
+      "companyId": "cohere",
+      "date": "2023-06",
+      "round": "Series C",
+      "amount": "$270M",
+      "valuation": "$2.1B+",
+      "leadInvestors": [
+        "Inovia Capital"
+      ],
+      "participants": [
+        "NVIDIA",
+        "Oracle",
+        "Salesforce Ventures",
+        "DTCP",
+        "Mirae Asset",
+        "Schroders Capital"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "Cohere",
+      "url": "",
+      "notes": "",
+      "id": "cohere-2023-06-series-c"
     },
     {
       "companyId": "together-ai",
@@ -9053,24 +9078,72 @@
       "id": "glean-2024-09-series-e"
     },
     {
-      "id": "elevenlabs-2026-02-series-d",
       "companyId": "elevenlabs",
       "date": "2026-02",
       "round": "Series D",
       "amount": "$500M",
       "valuation": "$11B",
+      "participants": [
+        "NVIDIA-backed investors",
+        "Andreessen Horowitz",
+        "ICONIQ Growth",
+        "NEA - verify"
+      ],
+      "sourceName": "existing tracker / public news",
+      "sourceType": "company/news",
+      "confidence": "high",
+      "companyName": "ElevenLabs",
+      "leadInvestors": [],
+      "url": "",
+      "notes": "",
+      "id": "elevenlabs-2026-02-series-d"
+    },
+    {
+      "companyId": "elevenlabs",
+      "date": "2025-01",
+      "round": "Series C",
+      "amount": "$180M",
+      "valuation": "$3.3B",
       "leadInvestors": [
-        "Nvidia-backed investors"
+        "Andreessen Horowitz",
+        "ICONIQ Growth"
       ],
       "participants": [
-        "Nvidia-backed investors"
+        "NEA",
+        "World Innovation Lab",
+        "Sequoia Capital - verify"
       ],
-      "sourceType": "official",
-      "confidence": "high",
-      "url": "",
-      "notes": "Official ARR >$330M.",
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
       "companyName": "ElevenLabs",
-      "sourceName": "official"
+      "url": "",
+      "notes": "",
+      "id": "elevenlabs-2025-01-series-c"
+    },
+    {
+      "companyId": "elevenlabs",
+      "date": "2024-01",
+      "round": "Series B",
+      "amount": "$80M",
+      "valuation": "$1.1B",
+      "leadInvestors": [
+        "Andreessen Horowitz",
+        "Nat Friedman",
+        "Daniel Gross"
+      ],
+      "participants": [
+        "Sequoia Capital",
+        "SV Angel",
+        "BroadLight Capital"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "ElevenLabs",
+      "url": "",
+      "notes": "",
+      "id": "elevenlabs-2024-01-series-b"
     },
     {
       "companyId": "harvey",
@@ -9119,8 +9192,8 @@
     },
     {
       "companyId": "synthesia",
-      "round": "Series D",
       "date": "2025-01",
+      "round": "Series D",
       "amount": "$180M",
       "valuation": "$2.1B",
       "leadInvestors": [
@@ -9133,7 +9206,7 @@
         "GV",
         "MMC Ventures"
       ],
-      "sourceName": "Synthesia company announcement / Reuters",
+      "sourceName": "Synthesia / Reuters",
       "sourceType": "company/news",
       "confidence": "high",
       "companyName": "Synthesia",
@@ -9142,16 +9215,61 @@
       "id": "synthesia-2025-01-series-d"
     },
     {
+      "companyId": "synthesia",
+      "date": "2023-06",
+      "round": "Series C",
+      "amount": "$90M",
+      "valuation": "$1B",
+      "leadInvestors": [
+        "Accel"
+      ],
+      "participants": [
+        "NVIDIA",
+        "Kleiner Perkins",
+        "GV",
+        "FirstMark Capital"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "Synthesia",
+      "url": "",
+      "notes": "",
+      "id": "synthesia-2023-06-series-c"
+    },
+    {
+      "companyId": "synthesia",
+      "date": "2021-12",
+      "round": "Series B",
+      "amount": "$50M",
+      "valuation": "未披露",
+      "leadInvestors": [
+        "Kleiner Perkins"
+      ],
+      "participants": [
+        "GV",
+        "FirstMark Capital",
+        "MMC Ventures"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "Synthesia",
+      "url": "",
+      "notes": "",
+      "id": "synthesia-2021-12-series-b"
+    },
+    {
       "companyId": "vast-data",
-      "round": "Series E",
       "date": "2023-12",
+      "round": "Series E",
       "amount": "$118M",
       "valuation": "$9.1B",
       "leadInvestors": [
         "Fidelity Management & Research Company"
       ],
       "participants": [
-        "New Enterprise Associates",
+        "NEA",
         "BOND",
         "Drive Capital",
         "NVIDIA"
@@ -9165,7 +9283,28 @@
       "id": "vast-data-2023-12-series-e"
     },
     {
-      "id": "crusoe-2025-10-series-e",
+      "companyId": "vast-data",
+      "date": "2021-05",
+      "round": "Series D",
+      "amount": "$83M",
+      "valuation": "$3.7B",
+      "leadInvestors": [
+        "Tiger Global"
+      ],
+      "participants": [
+        "NEA",
+        "BOND",
+        "Drive Capital"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "VAST Data",
+      "url": "",
+      "notes": "",
+      "id": "vast-data-2021-05-series-d"
+    },
+    {
       "companyId": "crusoe",
       "date": "2025-10",
       "round": "Series E",
@@ -9173,23 +9312,46 @@
       "valuation": ">$10B",
       "leadInvestors": [
         "Mubadala Capital",
-        "Valor"
+        "Valor Equity Partners"
       ],
       "participants": [
-        "Mubadala Capital",
-        "Valor"
+        "existing tracker investors"
       ],
-      "sourceType": "official",
+      "sourceName": "Crusoe company release",
+      "sourceType": "company",
       "confidence": "high",
-      "url": "",
-      "notes": "Company release.",
       "companyName": "Crusoe",
-      "sourceName": "official"
+      "url": "",
+      "notes": "",
+      "id": "crusoe-2025-10-series-e"
+    },
+    {
+      "companyId": "crusoe",
+      "date": "2024-12",
+      "round": "Series D",
+      "amount": "$600M",
+      "valuation": "$2.8B reported",
+      "leadInvestors": [
+        "Founders Fund"
+      ],
+      "participants": [
+        "Fidelity",
+        "Long Journey Ventures",
+        "Valor Equity Partners",
+        "Lowercarbon Capital"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "Crusoe",
+      "url": "",
+      "notes": "",
+      "id": "crusoe-2024-12-series-d"
     },
     {
       "companyId": "cerebras",
-      "round": "Series F",
       "date": "2021-11",
+      "round": "Series F",
       "amount": "$250M",
       "valuation": ">$4B",
       "leadInvestors": [
@@ -9211,7 +9373,29 @@
       "id": "cerebras-2021-11-series-f"
     },
     {
-      "id": "groq-2025-09-financing",
+      "companyId": "cerebras",
+      "date": "2019-11",
+      "round": "Series E",
+      "amount": "$270M",
+      "valuation": "未披露",
+      "leadInvestors": [
+        "Alpha Wave Ventures"
+      ],
+      "participants": [
+        "Benchmark",
+        "Foundation Capital",
+        "Eclipse Ventures",
+        "Moore Strategic Ventures"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "Cerebras",
+      "url": "",
+      "notes": "",
+      "id": "cerebras-2019-11-series-e"
+    },
+    {
       "companyId": "groq",
       "date": "2025-09",
       "round": "Financing",
@@ -9222,20 +9406,44 @@
         "BlackRock"
       ],
       "participants": [
-        "Disruptive",
-        "BlackRock"
+        "existing tracker investors"
       ],
-      "sourceType": "official",
+      "sourceName": "Groq company release",
+      "sourceType": "company",
       "confidence": "high",
-      "url": "",
-      "notes": "Company release.",
       "companyName": "Groq",
-      "sourceName": "official"
+      "url": "",
+      "notes": "",
+      "id": "groq-2025-09-financing"
+    },
+    {
+      "companyId": "groq",
+      "date": "2024-08",
+      "round": "Series D",
+      "amount": "$640M",
+      "valuation": "$2.8B",
+      "leadInvestors": [
+        "BlackRock Private Equity Partners"
+      ],
+      "participants": [
+        "Cisco Investments",
+        "Samsung Catalyst Fund",
+        "Neuberger Berman",
+        "Type One Ventures",
+        "D1 Capital Partners"
+      ],
+      "sourceName": "Groq / public news",
+      "sourceType": "company/news",
+      "confidence": "high",
+      "companyName": "Groq",
+      "url": "",
+      "notes": "",
+      "id": "groq-2024-08-series-d"
     },
     {
       "companyId": "hugging-face",
-      "round": "Series D",
       "date": "2023-08",
+      "round": "Series D",
       "amount": "$235M",
       "valuation": "$4.5B",
       "participants": [
@@ -9259,9 +9467,61 @@
       "id": "hugging-face-2023-08-series-d"
     },
     {
+      "companyId": "hugging-face",
+      "date": "2022-05",
+      "round": "Series C",
+      "amount": "$100M",
+      "valuation": "$2B",
+      "leadInvestors": [
+        "Lux Capital"
+      ],
+      "participants": [
+        "Sequoia",
+        "Coatue",
+        "Addition",
+        "Betaworks",
+        "AIX Ventures"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "Hugging Face",
+      "url": "",
+      "notes": "",
+      "id": "hugging-face-2022-05-series-c"
+    },
+    {
       "companyId": "xai",
-      "round": "Series B",
+      "date": "2024-12",
+      "round": "Series C",
+      "amount": "$6B",
+      "valuation": "$45B reported",
+      "participants": [
+        "Andreessen Horowitz",
+        "BlackRock",
+        "Fidelity",
+        "Kingdom Holding",
+        "Lightspeed",
+        "MGX",
+        "Morgan Stanley",
+        "QIA",
+        "Sequoia Capital",
+        "Valor Equity Partners",
+        "Vy Capital"
+      ],
+      "sourceName": "xAI announcement / public news",
+      "sourceType": "company/news",
+      "confidence": "high",
+      "companyName": "xAI",
+      "leadInvestors": [],
+      "url": "",
+      "notes": "",
+      "id": "xai-2024-12-series-c"
+    },
+    {
+      "companyId": "xai",
       "date": "2024-05",
+      "round": "Series B",
       "amount": "$6B",
       "valuation": "$24B post-money reported",
       "participants": [
@@ -9283,8 +9543,49 @@
     },
     {
       "companyId": "perplexity",
-      "round": "Series B",
+      "date": "2025",
+      "round": "Later growth financing reported",
+      "amount": "$500M reported",
+      "valuation": "$9B reported",
+      "participants": [
+        "Institutional/growth investors - verify"
+      ],
+      "sourceName": "public media reports",
+      "sourceType": "media",
+      "confidence": "low",
+      "companyName": "Perplexity AI",
+      "leadInvestors": [],
+      "url": "",
+      "notes": "",
+      "id": "perplexity-2025-later-growth-financing-reported"
+    },
+    {
+      "companyId": "perplexity",
+      "date": "2024-04",
+      "round": "Series B extension / growth",
+      "amount": "$62.7M",
+      "valuation": "$1B+",
+      "leadInvestors": [
+        "Daniel Gross"
+      ],
+      "participants": [
+        "Stanley Druckenmiller",
+        "Y Combinator CEO Garry Tan",
+        "NVIDIA",
+        "Jeff Bezos - verify"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "Perplexity AI",
+      "url": "",
+      "notes": "",
+      "id": "perplexity-2024-04-series-b-extension-growth"
+    },
+    {
+      "companyId": "perplexity",
       "date": "2024-01",
+      "round": "Series B",
       "amount": "$73.6M",
       "valuation": "~$520M reported",
       "leadInvestors": [
@@ -9777,8 +10078,8 @@
     },
     {
       "companyId": "scale-ai",
-      "round": "Series F",
       "date": "2024-05",
+      "round": "Series F",
       "amount": "$1B",
       "valuation": "$13.8B",
       "leadInvestors": [
@@ -9799,6 +10100,31 @@
       "url": "",
       "notes": "",
       "id": "scale-ai-2024-05-series-f"
+    },
+    {
+      "companyId": "scale-ai",
+      "date": "2021-04",
+      "round": "Series E",
+      "amount": "$325M",
+      "valuation": "$7.3B",
+      "leadInvestors": [
+        "Dragoneer",
+        "Greenoaks",
+        "Tiger Global"
+      ],
+      "participants": [
+        "Founders Fund",
+        "Coatue",
+        "Index Ventures",
+        "Wellington Management"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "Scale AI",
+      "url": "",
+      "notes": "",
+      "id": "scale-ai-2021-04-series-e"
     },
     {
       "companyId": "wirorobotics",
@@ -9949,7 +10275,6 @@
       "id": "heygen-2024-06-series-a"
     },
     {
-      "id": "lovable-2026-series-b-media",
       "companyId": "lovable",
       "date": "2026",
       "round": "Series B / media",
@@ -9962,17 +10287,17 @@
       "participants": [
         "CapitalG",
         "Menlo Ventures",
-        "Nvidia/Alphabet VC arms - media"
+        "NVIDIA/Alphabet VC arms - media"
       ],
+      "sourceName": "media / news clusters",
       "sourceType": "media",
       "confidence": "medium_low",
-      "url": "https://news.google.com/",
-      "notes": "Media/news clusters; verify final investor list and terms.",
       "companyName": "Lovable",
-      "sourceName": "media"
+      "url": "",
+      "notes": "",
+      "id": "lovable-2026-series-b-media"
     },
     {
-      "id": "lovable-2025-07-series-a",
       "companyId": "lovable",
       "date": "2025-07",
       "round": "Series A",
@@ -9982,62 +10307,162 @@
         "Accel"
       ],
       "participants": [
-        "Accel",
         "20VC",
         "byFounders",
         "Creandum",
         "Hummingbird",
         "Visionaries Club"
       ],
-      "sourceType": "media",
+      "sourceName": "TechCrunch / public news",
+      "sourceType": "news",
       "confidence": "medium",
       "url": "https://techcrunch.com/2025/07/17/lovable-becomes-a-unicorn-with-200m-series-a-just-8-months-after-launch/",
-      "notes": "TechCrunch; company ARR/user claims need verification.",
       "companyName": "Lovable",
-      "sourceName": "media"
+      "notes": "",
+      "id": "lovable-2025-07-series-a"
     },
     {
-      "id": "physicsx-2026-series-c",
+      "companyId": "lovable",
+      "date": "2025-02",
+      "round": "Pre-seed / seed reported",
+      "amount": "$15M reported",
+      "valuation": "未披露",
+      "participants": [
+        "Creandum",
+        "Hummingbird",
+        "byFounders",
+        "20VC - verify"
+      ],
+      "sourceName": "public news / investor profile",
+      "sourceType": "news",
+      "confidence": "low",
+      "companyName": "Lovable",
+      "leadInvestors": [],
+      "url": "",
+      "notes": "",
+      "id": "lovable-2025-02-pre-seed-seed-reported"
+    },
+    {
       "companyId": "physicsx",
       "date": "2026",
       "round": "Series C",
       "amount": "$300M",
-      "valuation": "$2.35-2.4B",
+      "valuation": "$2.35B–$2.4B",
       "leadInvestors": [
         "Temasek"
       ],
       "participants": [
-        "Temasek"
+        "Temasek",
+        "Atomico",
+        "NVIDIA / strategic investors - verify"
       ],
-      "sourceType": "media/official",
+      "sourceName": "public news / Temasek-linked coverage",
+      "sourceType": "news",
       "confidence": "medium",
-      "url": "",
-      "notes": "Temasek-led media cluster; verify official release/data room.",
       "companyName": "PhysicsX",
-      "sourceName": "media/official"
+      "url": "",
+      "notes": "",
+      "id": "physicsx-2026-series-c"
     },
     {
-      "id": "black-forest-2026-series-b",
+      "companyId": "physicsx",
+      "date": "2025",
+      "round": "Series B",
+      "amount": "$135M reported",
+      "valuation": "approaching $1B reported",
+      "leadInvestors": [
+        "Atomico"
+      ],
+      "participants": [
+        "NVIDIA strategic backing - verify",
+        "General Catalyst"
+      ],
+      "sourceName": "public news snippets",
+      "sourceType": "news",
+      "confidence": "low",
+      "companyName": "PhysicsX",
+      "url": "",
+      "notes": "",
+      "id": "physicsx-2025-series-b"
+    },
+    {
+      "companyId": "physicsx",
+      "date": "2023-11",
+      "round": "Series A",
+      "amount": "$32M",
+      "valuation": "未披露",
+      "leadInvestors": [
+        "General Catalyst"
+      ],
+      "participants": [
+        "Standard Industries",
+        "NGP Energy Technology Partners",
+        "Radius Capital",
+        "KKR co-founder Henry Kravis - verify"
+      ],
+      "sourceName": "public news / TechCrunch-like coverage",
+      "sourceType": "news",
+      "confidence": "medium",
+      "companyName": "PhysicsX",
+      "url": "",
+      "notes": "",
+      "id": "physicsx-2023-11-series-a"
+    },
+    {
       "companyId": "black-forest-labs",
-      "date": "2026",
+      "date": "2025-12-01",
       "round": "Series B",
       "amount": "$300M",
-      "valuation": "$3.25B",
+      "valuation": "$3.25B post-money",
       "leadInvestors": [
-        "Temasek"
+        "Salesforce Ventures",
+        "Anjney Midha (AMP)"
       ],
       "participants": [
-        "Temasek"
+        "a16z",
+        "NVIDIA",
+        "Northzone",
+        "Creandum",
+        "Earlybird VC",
+        "BroadLight Capital",
+        "General Catalyst",
+        "Temasek",
+        "Bain Capital Ventures",
+        "Air Street Capital",
+        "Visionaries Club",
+        "Canva",
+        "Figma Ventures"
       ],
-      "sourceType": "media/official",
-      "confidence": "medium",
-      "url": "",
-      "notes": "Temasek-backed media cluster; verify full investor list.",
+      "sourceName": "Black Forest Labs official blog",
+      "sourceType": "company blog",
+      "url": "https://bfl.ai/blog/our-300m-series-b",
+      "confidence": "high",
+      "notes": "Official BFL post: Series B of $300M at $3.25B post-money; co-led by Salesforce Ventures and Anjney Midha (AMP).",
       "companyName": "Black Forest Labs",
-      "sourceName": "media/official"
+      "id": "black-forest-labs-2025-12-01-series-b"
     },
     {
-      "id": "cuspai-2026-series-a",
+      "companyId": "black-forest-labs",
+      "date": "2024-08",
+      "round": "Seed / company launch financing",
+      "amount": "$31M reported",
+      "valuation": "未披露",
+      "leadInvestors": [
+        "Andreessen Horowitz / a16z reported"
+      ],
+      "participants": [
+        "General Catalyst",
+        "Stuttgart/European angels and strategic AI investors - verify"
+      ],
+      "sourceName": "public launch/news coverage",
+      "sourceType": "news",
+      "confidence": "low",
+      "notes": "Public reports around launch described ~$31M seed/launch financing; official BFL site did not expose full historical cap table in this pass, so keep low confidence until primary source is attached.",
+      "companyName": "Black Forest Labs",
+      "url": "",
+      "id": "black-forest-labs-2024-08-seed-company-launch-financing"
+    },
+    {
       "companyId": "cuspai",
       "date": "2026",
       "round": "Series A",
@@ -10051,12 +10476,36 @@
         "NEA",
         "Temasek"
       ],
-      "sourceType": "media/official",
+      "sourceName": "media/official cluster",
+      "sourceType": "media/news",
       "confidence": "medium",
-      "url": "",
-      "notes": "Co-led by NEA and Temasek media cluster.",
       "companyName": "CuspAI",
-      "sourceName": "media/official"
+      "url": "",
+      "notes": "",
+      "id": "cuspai-2026-series-a"
+    },
+    {
+      "companyId": "cuspai",
+      "date": "2024-06",
+      "round": "Seed",
+      "amount": "$30M reported",
+      "valuation": "未披露",
+      "leadInvestors": [
+        "Hoxton Ventures"
+      ],
+      "participants": [
+        "Basis Set Ventures",
+        "Lightspeed Venture Partners",
+        "Eric Schmidt",
+        "Meta AI chief scientist Yann LeCun - verify"
+      ],
+      "sourceName": "public news",
+      "sourceType": "news",
+      "confidence": "low",
+      "companyName": "CuspAI",
+      "url": "",
+      "notes": "",
+      "id": "cuspai-2024-06-seed"
     },
     {
       "id": "psiquantum-2026-series-e",
