@@ -13,6 +13,39 @@ async function api(path, opts) {
 function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function colorClass(label) { return ({'Core / Act Now':'green','Strategic Watch':'blue','Build Relationship':'amber','Monitor Only':'orange','Low Priority':'red','Excluded / Comp':'gray'})[label] || 'gray'; }
 function shortText(s, n) { return esc(String(s ?? '')).slice(0, n); }
+function priorityHead(c) { return String(c.priorityTier || c.label || '').split('｜')[0].replace(/\s+.*/, '') || 'NA'; }
+function priorityTone(c) { return c.priorityClass || ({A0:'green',A1:'green',A2:'blue',B1:'amber',B2:'amber',C1:'orange',C2:'red',C3:'gray'}[priorityHead(c)] || 'gray'); }
+function readinessScore(c) {
+  let score = 0;
+  if (c.latestAvailableValuation && !/未披露|待验证|not disclosed|unknown/i.test(c.latestAvailableValuation)) score += 1;
+  if (c.revenueScale && !/未披露|待验证|unknown/i.test(c.revenueScale)) score += 1;
+  if ((c.investors || []).length) score += 1;
+  if (c.relationshipRoute) score += 1;
+  if ((c.evidence || []).length) score += 1;
+  return score;
+}
+function readinessBlocks(c) {
+  const n = readinessScore(c);
+  return `<div class="readiness" title="IC readiness ${n}/5">${[0,1,2,3,4].map(i => `<i class="${i < n ? 'filled' : ''}"></i>`).join('')}<span>${n}/5</span></div>`;
+}
+function investorChips(c, limit = 3) {
+  const arr = c.investors || [];
+  const shown = arr.slice(0, limit).map(x => `<span class="investor-chip">${esc(x)}</span>`).join('');
+  return `<div class="investor-chips">${shown}${arr.length > limit ? `<span class="investor-more">+${arr.length - limit}</span>` : ''}</div>`;
+}
+function valuationCell(c) {
+  const v = c.latestAvailableValuation || c.latestValuation || c.latestFunding || '未披露/待验证';
+  const has = !/未披露|待验证|not disclosed|unknown/i.test(v);
+  return `<div class="valuation-wrap"><b>${shortText(v, 92)}</b><div class="mini-bar ${has ? 'has-data' : 'missing'}"><i style="width:${has ? Math.min(96, 42 + Math.max(0, String(v).length % 45)) : 18}%"></i></div></div>`;
+}
+function accessType(text) {
+  const t = String(text || '').toLowerCase();
+  if (/secondary|tender|old shareholder/.test(t)) return 'Secondary';
+  if (/ipo|anchor|cornerstone|underwriter|承销/.test(t)) return 'IPO route';
+  if (/strategic|cvc|nvidia|amd|samsung|temasek/.test(t)) return 'Strategic';
+  if (/banker|broker|券商/.test(t)) return 'Banker';
+  return 'Relationship';
+}
 
 function filters() {
   return { q: $('#search').value.trim(), region: $('#region').value, sector: $('#sector').value, label: $('#label').value, status: 'private' };
@@ -30,6 +63,7 @@ async function load() {
   renderSummary();
   renderVintageBanner();
   renderQuickChips();
+  renderMvp8Sidebars();
   renderPriorityBoard();
   renderDeltaView();
   renderDealKanban();
@@ -67,13 +101,47 @@ function renderSummary() {
   const high = companies.filter(c => /^A[0-2]/.test(String(c.priorityTier || ''))).length;
   const a0 = companies.filter(c => String(c.priorityTier || '').startsWith('A0')).length;
   const db = state.meta?.sqlitePath ? 'SQLite' : (state.meta?.database || 'JSON');
+  const withValuation = companies.filter(c => c.latestAvailableValuation && !/未披露|待验证|not disclosed|unknown/i.test(c.latestAvailableValuation)).length;
   const cards = [
-    ['Companies', d.privateCount || companies.length, '追踪公司'],
-    ['A0/A1/A2', high, '高优先'],
-    ['Tasks', d.openTasks || 0, '待办'],
-    ['DB', db, '数据底座']
+    ['Companies', d.privateCount || companies.length, 'tracked'],
+    ['A0/A1/A2', high, 'high priority'],
+    ['Valuation', withValuation, 'with value'],
+    ['Tasks', d.openTasks || 0, 'open']
   ];
   $('#summary').innerHTML = cards.map(c => `<div class="card"><div class="label">${esc(c[0])}</div><div class="num">${esc(c[1])}</div><div class="sub">${esc(c[2])}</div></div>`).join('');
+}
+
+function topCounts(companies, accessor, limit = 8) {
+  const m = new Map();
+  for (const c of companies) {
+    const vals = accessor(c).filter(Boolean);
+    for (const v of vals) m.set(v, (m.get(v) || 0) + 1);
+  }
+  return [...m.entries()].sort((a,b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0]))).slice(0, limit);
+}
+
+function renderRankList(el, rows, max) {
+  if (!el) return;
+  el.innerHTML = rows.map(([name, count]) => `<button type="button" class="rank-row" data-q="${esc(name)}"><span>${esc(name)}</span><b>${esc(count)}</b><em><i style="width:${Math.max(12, Math.round(count / Math.max(1,max) * 100))}%"></i></em></button>`).join('');
+  el.querySelectorAll('[data-q]').forEach(btn => btn.addEventListener('click', () => { $('#search').value = btn.dataset.q; load(); }));
+}
+
+function renderMvp8Sidebars() {
+  const companies = state.companies || [];
+  const invRows = topCounts(companies, c => (c.investors || []).slice(0, 6), 8);
+  const layerRows = topCounts(companies, c => [c.layer || c.sector || 'Unmapped'], 8);
+  renderRankList($('#topInvestors'), invRows, invRows[0]?.[1] || 1);
+  renderRankList($('#topLayers'), layerRows, layerRows[0]?.[1] || 1);
+  const health = $('#dataHealth');
+  if (health) {
+    const rows = [
+      ['valuation', companies.filter(c => c.latestAvailableValuation && !/未披露|待验证|not disclosed|unknown/i.test(c.latestAvailableValuation)).length],
+      ['revenue', companies.filter(c => c.revenueScale && !/未披露|待验证|unknown/i.test(c.revenueScale)).length],
+      ['route', companies.filter(c => c.relationshipRoute).length],
+      ['evidence', companies.filter(c => (c.evidence || []).length).length]
+    ];
+    health.innerHTML = rows.map(([k,v]) => `<div class="health-row"><span>${esc(k)}</span><b>${esc(v)}/${companies.length}</b><em><i style="width:${Math.round(v / Math.max(1, companies.length) * 100)}%"></i></em></div>`).join('');
+  }
 }
 
 function renderQuickChips() {
@@ -251,17 +319,17 @@ function renderTable() {
   const tbody = $('#companyTable tbody');
   tbody.innerHTML = state.companies.map(c => `
     <tr data-id="${esc(c.id)}">
-      <td class="company-sticky"><div class="company-name">${esc(c.name)}</div><div class="sub">${esc(c.region)} · ${esc(c.stage || '')}</div></td>
-      <td class="description-cell">${shortText(c.companyDescription || c.description || c.notes || '', 260)}</td>
-      <td class="valuation-cell">${shortText(c.latestAvailableValuation || c.latestValuation || c.valuationView || c.latestFunding || '未披露/待验证', 180)}</td>
-      <td><span class="pill ${esc(c.priorityClass || 'gray')}">${esc(c.priorityTier || c.label)}</span></td>
-      <td>${esc(c.revenueScale || '未披露/待验证')}</td>
-      <td class="why-cell">${shortText(c.whyInTrack || c.recommendation || c.notes || '', 220)}</td>
-      <td>${esc(c.layer || c.sector)}<div class="sub">${esc(c.subSector || '')}</div></td>
-      <td>${esc(c.ipoWindow || c.ipoSignal || 'unclear')}</td>
-      <td>${shortText((c.investors||[]).join(', '), 160)}</td>
-      <td class="route-cell">${shortText(c.relationshipRoute || c.routeToAccess || '', 220)}</td>
-      <td>${shortText(c.keyDiligence || c.nextAction || '', 180)}</td>
+      <td class="company-sticky"><div class="company-cell"><div class="avatar">${esc(String(c.name || '?').slice(0,1))}</div><div><div class="company-name">${esc(c.name)}</div><div class="sub">${esc(c.region)} · ${esc(c.country || c.stage || '')}</div></div></div></td>
+      <td class="description-cell">${shortText(c.companyDescription || c.description || c.notes || '', 148)}</td>
+      <td class="valuation-cell">${valuationCell(c)}</td>
+      <td><span class="priority-badge ${esc(priorityTone(c))}">${esc(priorityHead(c))}</span><div class="sub">${shortText(String(c.priorityTier || c.label || '').replace(priorityHead(c), '').replace(/^｜/, ''), 48)}</div></td>
+      <td class="metric-cell">${shortText(c.revenueScale || 'To verify', 104)}</td>
+      <td><span class="layer-pill">${shortText(c.layer || c.sector, 58)}</span></td>
+      <td>${investorChips(c)}</td>
+      <td><span class="window-pill">${esc(c.ipoWindow || c.ipoSignal || 'unclear')}</span></td>
+      <td><div class="access-cell"><span>${esc(accessType(c.relationshipRoute || c.routeToAccess || ''))}</span><em>${shortText(c.relationshipRoute || c.routeToAccess || '', 92)}</em></div></td>
+      <td>${readinessBlocks(c)}</td>
+      <td class="next-cell">${shortText(c.keyDiligence || c.nextAction || '', 128)}</td>
     </tr>`).join('');
   tbody.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => showDetail(tr.dataset.id)));
   renderMobileCards();
@@ -273,12 +341,12 @@ function renderMobileCards() {
   const isMobile = window.matchMedia('(max-width: 720px)').matches;
   const companies = isMobile && !showAllMobile ? state.companies.slice(0, 25) : state.companies;
   box.innerHTML = companies.map(c => `<button class="mobile-company-card" type="button" data-id="${esc(c.id)}">
-    <div class="mobile-card-top"><span class="pill ${esc(c.priorityClass || 'gray')}">${esc(c.priorityTier || c.label)}</span><span class="sub">${esc(c.ipoWindow || '')}</span></div>
-    <h3>${esc(c.name)}</h3>
-    <div class="sub">${esc(c.region)} · ${esc(c.layer || c.sector)}</div>
-    <p><b>做什么:</b> ${shortText(c.companyDescription || c.notes || '', 160)}</p>
-    <p><b>估值:</b> ${shortText(c.latestAvailableValuation || c.latestValuation || c.latestFunding || '未披露/待验证', 120)}</p>
-    <p><b>Route:</b> ${shortText(c.relationshipRoute || '', 140)}</p>
+    <div class="mobile-card-top"><span class="priority-badge ${esc(priorityTone(c))}">${esc(priorityHead(c))}</span><span class="window-pill">${esc(c.ipoWindow || '')}</span></div>
+    <div class="mobile-title-row"><div class="avatar">${esc(String(c.name || '?').slice(0,1))}</div><div><h3>${esc(c.name)}</h3><div class="sub">${esc(c.region)} · ${esc(c.layer || c.sector)}</div></div></div>
+    <p class="mobile-desc">${shortText(c.companyDescription || c.notes || '', 150)}</p>
+    <div class="mobile-meta"><div><b>Valuation</b><span>${shortText(c.latestAvailableValuation || c.latestValuation || c.latestFunding || '未披露/待验证', 96)}</span></div><div><b>Readiness</b>${readinessBlocks(c)}</div></div>
+    ${investorChips(c, 2)}
+    <p class="mobile-route"><b>${esc(accessType(c.relationshipRoute || c.routeToAccess || ''))}</b> · ${shortText(c.relationshipRoute || '', 118)}</p>
   </button>`).join('') + (isMobile && !showAllMobile && state.companies.length > companies.length ? `<button class="load-more" type="button">显示全部 ${state.companies.length} 家</button>` : '');
   box.querySelectorAll('.mobile-company-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
   const more = box.querySelector('.load-more');

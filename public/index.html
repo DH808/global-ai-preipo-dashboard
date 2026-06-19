@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Global AI Pre-IPO / IPO Pipeline</title>
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
   <header class="topbar pipeline-topbar">
@@ -39,11 +39,29 @@
         </div>
         <div id="vintageBanner" class="vintage-banner inline-vintage"></div>
         <div class="quick-chips table-chips" id="quickChips"></div>
-        <table id="companyTable" class="pipeline-table excel-pipeline">
-          <thead><tr><th>Company</th><th>Company Description</th><th>Latest Available Valuation</th><th>Priority</th><th>Revenue / ARR</th><th>Why in Track</th><th>Layer</th><th>IPO Window</th><th>Main Investors</th><th>Relationship Route</th><th>Next Action</th></tr></thead>
-          <tbody></tbody>
-        </table>
-        <div id="mobileCards" class="mobile-cards"></div>
+        <div class="mvp8-report-grid">
+          <aside class="mvp8-left-rail">
+            <div class="rail-card">
+              <div class="rail-title">Top investors</div>
+              <div id="topInvestors" class="rank-list"></div>
+            </div>
+            <div class="rail-card">
+              <div class="rail-title">Top layers</div>
+              <div id="topLayers" class="rank-list"></div>
+            </div>
+            <div class="rail-card">
+              <div class="rail-title">Data health</div>
+              <div id="dataHealth" class="health-box"></div>
+            </div>
+          </aside>
+          <div class="mvp8-table-area">
+            <table id="companyTable" class="pipeline-table excel-pipeline">
+              <thead><tr><th>Company</th><th>Company Description</th><th>Latest Valuation</th><th>Priority</th><th>Revenue / ARR</th><th>Layer</th><th>Investors</th><th>IPO Window</th><th>Access Route</th><th>Readiness</th><th>Next Action</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <div id="mobileCards" class="mobile-cards"></div>
+          </div>
+        </div>
       </div>
       <aside class="panel" id="detail">
         <div class="placeholder">点击公司查看投资人能理解的一页卡：逻辑、数据、融资、投资人、关系路径、缺口和下一步。</div>
@@ -110,6 +128,6 @@
     </form>
   </dialog>
 
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>
