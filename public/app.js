@@ -93,6 +93,8 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/US IPO likely/gi, '美国 IPO 可能性较高')
     .replace(/not filed public/gi, '尚未公开申报')
     .replace(/IPO lock-up TBD/gi, 'IPO lock-up 待确认')
+    .replace(/structured from existing tracker \+ public\/manual enrichment/gi, '基于现有 tracker 与公开/手工资料结构化清洗')
+    .replace(/existing tracker data/gi, '现有 tracker 数据')
     .replace(/\s+/g, ' ')
     .trim() || fallback;
 }
@@ -133,7 +135,7 @@ function valuationLine(c) { return cleanDisplayText(c.latestValuationZh || c.lat
 function revenueLine(c) { return cleanDisplayText(c.revenueScaleZh || c.revenueScale, '未披露/待验证'); }
 function icActionLabel(c) {
   const h = priorityHead(c);
-  if (h === 'A0') return '成熟资产：持续跟踪 secondary / IPO 窗口';
+  if (h === 'A0') return '成熟资产：持续跟踪二级份额 / IPO 窗口';
   if (h === 'A1') return '架构瓶颈：优先建立关系与验证份额';
   if (h === 'A2') return '准上市供应链：跟踪申报与承销节奏';
   if (/^B/.test(h)) return '积极尽调：补关键经营与交易口径';
