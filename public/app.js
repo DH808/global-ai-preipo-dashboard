@@ -85,6 +85,14 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/customers?/gi, '客户')
     .replace(/advisers?/gi, '顾问')
     .replace(/listing intention/gi, '上市意向')
+    .replace(/clean 二级份额 quote and net 折价 incl\. SPV fees/gi, '可执行二级份额报价，并核算含 SPV 费用后的净折价')
+    .replace(/Temasek Databricks team，核验 secondary\/IPO view and whether alumni co-invest access exists/gi, 'Temasek Databricks 团队，确认二级份额 / IPO 观点及 alumni co-invest 入口是否存在')
+    .replace(/15-30% 折价 二级份额 or future IPO anchor path; avoid chasing last-round price/gi, '15–30% 折价二级份额，或未来 IPO anchor 路径；避免追逐最后一轮价格')
+    .replace(/secondary_sourcing/gi, '二级份额 sourcing')
+    .replace(/secondary_info_pack_needed/gi, '需要二级份额信息包')
+    .replace(/US IPO likely/gi, '美国 IPO 可能性较高')
+    .replace(/not filed public/gi, '尚未公开申报')
+    .replace(/IPO lock-up TBD/gi, 'IPO lock-up 待确认')
     .replace(/\s+/g, ' ')
     .trim() || fallback;
 }
