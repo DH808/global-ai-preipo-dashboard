@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Global AI Pre-IPO / IPO Pipeline</title>
-  <link rel="stylesheet" href="style.css?v=6" />
+  <link rel="stylesheet" href="style.css?v=7" />
 </head>
 <body>
   <header class="topbar pipeline-topbar">
@@ -20,20 +20,7 @@
   </header>
 
   <main>
-    <section id="summary" class="summary-grid"></section>
-    <section id="vintageBanner" class="panel vintage-banner"></section>
-
-    <section class="panel pipeline-intro">
-      <div class="section-title">Pipeline 用途 / What this dashboard is for</div>
-      <div class="intro-grid">
-        <div><b>1. 公司池</b><span>跟踪所有 pre-IPO / late-growth / 准上市公司。</span></div>
-        <div><b>2. 投资逻辑</b><span>A0 成熟平台 + A1 架构硬瓶颈 + A2 台湾准上市供应链。</span></div>
-        <div><b>3. 关系路径</b><span>投资人、CVC、券商、承销商、secondary route。</span></div>
-        <div><b>4. 缺口管理</b><span>收入、估值、投资人、证据、IPO窗口、owner。</span></div>
-      </div>
-    </section>
-
-    <section class="panel controls pipeline-controls">
+    <section class="panel controls pipeline-controls table-first-controls">
       <input id="search" placeholder="搜索公司、投资人、关系节点、技术层：Databricks / NVIDIA / Temasek / photonic..." />
       <select id="region"><option value="">全部地区</option></select>
       <select id="sector"><option value="">全部 Layer / 赛道</option></select>
@@ -43,15 +30,17 @@
 
     <section class="layout pipeline-layout">
       <div class="panel table-wrap primary-pipeline">
-        <div class="section-head compact-head">
+        <div class="section-head compact-head table-first-head">
           <div>
-            <div class="section-title">Primary Pipeline Table / 主追踪表</div>
-            <div class="sub">第一列固定公司；优先看 Priority、Why、Layer、Revenue、Valuation、Investors、Relationship Route、Next Action。</div>
+            <div class="section-title">Company Pipeline / Excel-style 主追踪表</div>
+            <div class="sub">第一页以表格为主：Company → Description → Latest Valuation → Priority → Investors / Route / Next Action。</div>
           </div>
-          <div class="quick-chips" id="quickChips"></div>
+          <div id="summary" class="summary-grid table-summary"></div>
         </div>
-        <table id="companyTable" class="pipeline-table">
-          <thead><tr><th>Company</th><th>Priority</th><th>Why in Track</th><th>Layer</th><th>IPO Window</th><th>Revenue / ARR</th><th>Valuation</th><th>Main Investors</th><th>Relationship Route</th><th>Next Action</th></tr></thead>
+        <div id="vintageBanner" class="vintage-banner inline-vintage"></div>
+        <div class="quick-chips table-chips" id="quickChips"></div>
+        <table id="companyTable" class="pipeline-table excel-pipeline">
+          <thead><tr><th>Company</th><th>Company Description</th><th>Latest Available Valuation</th><th>Priority</th><th>Revenue / ARR</th><th>Why in Track</th><th>Layer</th><th>IPO Window</th><th>Main Investors</th><th>Relationship Route</th><th>Next Action</th></tr></thead>
           <tbody></tbody>
         </table>
         <div id="mobileCards" class="mobile-cards"></div>
@@ -59,6 +48,16 @@
       <aside class="panel" id="detail">
         <div class="placeholder">点击公司查看投资人能理解的一页卡：逻辑、数据、融资、投资人、关系路径、缺口和下一步。</div>
       </aside>
+    </section>
+
+    <section class="panel pipeline-intro below-table-intro">
+      <div class="section-title">Pipeline 用途 / What this dashboard is for</div>
+      <div class="intro-grid">
+        <div><b>1. 公司池</b><span>跟踪所有 pre-IPO / late-growth / 准上市公司。</span></div>
+        <div><b>2. 投资逻辑</b><span>A0 成熟平台 + A1 架构硬瓶颈 + A2 台湾准上市供应链。</span></div>
+        <div><b>3. 关系路径</b><span>投资人、CVC、券商、承销商、secondary route。</span></div>
+        <div><b>4. 缺口管理</b><span>收入、估值、投资人、证据、IPO窗口、owner。</span></div>
+      </div>
     </section>
 
     <section class="panel ops-strip">
@@ -111,6 +110,6 @@
     </form>
   </dialog>
 
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>

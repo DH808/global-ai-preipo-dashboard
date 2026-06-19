@@ -126,11 +126,33 @@ function priorityClass(p) {
   return ({ A0: 'green', A1: 'green', A2: 'blue', B1: 'amber', B2: 'amber', C1: 'orange', C2: 'red', C3: 'gray', X: 'gray' })[head] || 'gray';
 }
 
+function firstSentence(text) {
+  const s = String(text || '').trim();
+  if (!s) return '';
+  const match = s.match(/^(.{20,220}?[.!?。！？])\s/);
+  return (match ? match[1] : s).slice(0, 220);
+}
+
+function companyDescription(c) {
+  const explicit = c.companyDescription || c.description || c.whatItDoes || c.businessDescription;
+  if (explicit) return firstSentence(explicit);
+  const layer = [c.sector, c.subSector].filter(Boolean).join(' — ');
+  if (layer) return layer.slice(0, 260);
+  const factual = firstSentence(c.productSummary || c.notes || c.mandateFit || c.recommendation || '');
+  return (factual || 'Description not captured yet.').slice(0, 260);
+}
+
+function latestAvailableValuation(c) {
+  return c.latestValuation || c.valuationView || c.latestFunding || '未披露/待验证';
+}
+
 function enrichedCompany(c) {
   const scored = { ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) };
   scored.layer = c.layer || c.sector || '';
+  scored.companyDescription = companyDescription(c);
   scored.whyInTrack = c.whyInTrack || c.recommendation || c.mandateFit || c.notes || '';
   scored.revenueScale = c.revenueScale || '未披露/待验证';
+  scored.latestAvailableValuation = latestAvailableValuation(c);
   scored.relationshipRoute = c.relationshipRoute || c.routeToAccess || c.nextAction || '';
   scored.keyDiligence = c.keyDiligence || (c.openQuestions || []).join('; ') || c.evidenceBoundary || '';
   scored.ipoWindow = c.ipoWindow || 'unclear';

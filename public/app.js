@@ -12,6 +12,7 @@ async function api(path, opts) {
 
 function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function colorClass(label) { return ({'Core / Act Now':'green','Strategic Watch':'blue','Build Relationship':'amber','Monitor Only':'orange','Low Priority':'red','Excluded / Comp':'gray'})[label] || 'gray'; }
+function shortText(s, n) { return esc(String(s ?? '')).slice(0, n); }
 
 function filters() {
   return { q: $('#search').value.trim(), region: $('#region').value, sector: $('#sector').value, label: $('#label').value, status: 'private' };
@@ -67,11 +68,10 @@ function renderSummary() {
   const a0 = companies.filter(c => String(c.priorityTier || '').startsWith('A0')).length;
   const db = state.meta?.sqlitePath ? 'SQLite' : (state.meta?.database || 'JSON');
   const cards = [
-    ['Companies', d.privateCount || companies.length, '全局追踪公司'],
-    ['A0/A1/A2', high, '最高优先 pipeline'],
-    ['A0 Mature', a0, 'Databricks类成熟pre-IPO'],
-    ['Tasks', d.openTasks || 0, '待办动作'],
-    ['DB', db, '底层数据库/快照']
+    ['Companies', d.privateCount || companies.length, '追踪公司'],
+    ['A0/A1/A2', high, '高优先'],
+    ['Tasks', d.openTasks || 0, '待办'],
+    ['DB', db, '数据底座']
   ];
   $('#summary').innerHTML = cards.map(c => `<div class="card"><div class="label">${esc(c[0])}</div><div class="num">${esc(c[1])}</div><div class="sub">${esc(c[2])}</div></div>`).join('');
 }
@@ -252,15 +252,16 @@ function renderTable() {
   tbody.innerHTML = state.companies.map(c => `
     <tr data-id="${esc(c.id)}">
       <td class="company-sticky"><div class="company-name">${esc(c.name)}</div><div class="sub">${esc(c.region)} · ${esc(c.stage || '')}</div></td>
+      <td class="description-cell">${shortText(c.companyDescription || c.description || c.notes || '', 260)}</td>
+      <td class="valuation-cell">${shortText(c.latestAvailableValuation || c.latestValuation || c.valuationView || c.latestFunding || '未披露/待验证', 180)}</td>
       <td><span class="pill ${esc(c.priorityClass || 'gray')}">${esc(c.priorityTier || c.label)}</span></td>
-      <td class="why-cell">${esc(c.whyInTrack || c.recommendation || c.notes || '').slice(0,240)}</td>
+      <td>${esc(c.revenueScale || '未披露/待验证')}</td>
+      <td class="why-cell">${shortText(c.whyInTrack || c.recommendation || c.notes || '', 220)}</td>
       <td>${esc(c.layer || c.sector)}<div class="sub">${esc(c.subSector || '')}</div></td>
       <td>${esc(c.ipoWindow || c.ipoSignal || 'unclear')}</td>
-      <td>${esc(c.revenueScale || '未披露/待验证')}</td>
-      <td>${esc(c.latestValuation || '').slice(0,120)}</td>
-      <td>${esc((c.investors||[]).join(', ')).slice(0,160)}</td>
-      <td class="route-cell">${esc(c.relationshipRoute || c.routeToAccess || '').slice(0,220)}</td>
-      <td>${esc(c.keyDiligence || c.nextAction || '').slice(0,180)}</td>
+      <td>${shortText((c.investors||[]).join(', '), 160)}</td>
+      <td class="route-cell">${shortText(c.relationshipRoute || c.routeToAccess || '', 220)}</td>
+      <td>${shortText(c.keyDiligence || c.nextAction || '', 180)}</td>
     </tr>`).join('');
   tbody.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => showDetail(tr.dataset.id)));
   renderMobileCards();
@@ -275,8 +276,9 @@ function renderMobileCards() {
     <div class="mobile-card-top"><span class="pill ${esc(c.priorityClass || 'gray')}">${esc(c.priorityTier || c.label)}</span><span class="sub">${esc(c.ipoWindow || '')}</span></div>
     <h3>${esc(c.name)}</h3>
     <div class="sub">${esc(c.region)} · ${esc(c.layer || c.sector)}</div>
-    <p><b>Why:</b> ${esc(c.whyInTrack || c.recommendation || c.notes || '').slice(0,180)}</p>
-    <p><b>Route:</b> ${esc(c.relationshipRoute || '').slice(0,160)}</p>
+    <p><b>做什么:</b> ${shortText(c.companyDescription || c.notes || '', 160)}</p>
+    <p><b>估值:</b> ${shortText(c.latestAvailableValuation || c.latestValuation || c.latestFunding || '未披露/待验证', 120)}</p>
+    <p><b>Route:</b> ${shortText(c.relationshipRoute || '', 140)}</p>
   </button>`).join('') + (isMobile && !showAllMobile && state.companies.length > companies.length ? `<button class="load-more" type="button">显示全部 ${state.companies.length} 家</button>` : '');
   box.querySelectorAll('.mobile-company-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
   const more = box.querySelector('.load-more');
@@ -316,9 +318,11 @@ async function showDetail(id) {
     <div class="sub">${esc(c.country)} · ${esc(c.sector)} / ${esc(c.subSector)}</div>
     <div style="margin:10px 0"><span class="score ${colorClass(c.label)}">${c.score}</span> <span class="pill ${esc(c.priorityClass || colorClass(c.label))}">${esc(c.priorityTier || c.label)}</span></div>
     <div class="detail-section compact"><b>Investor Pipeline Snapshot</b><div class="onepager-detail">
+      <div><b>Company description</b><p>${esc(c.companyDescription || 'not captured')}</p></div>
+      <div><b>Latest valuation</b><p>${esc(c.latestAvailableValuation || c.latestValuation || c.latestFunding || '未披露/待验证')}</p></div>
       <div><b>Why in track</b><p>${esc(c.whyInTrack || c.recommendation || c.mandateFit || 'not captured')}</p></div>
-      <div><b>Layer / IPO window</b><p>${esc(c.layer || c.sector)}<br>${esc(c.ipoWindow || 'unclear')}</p></div>
       <div><b>Revenue / ARR</b><p>${esc(c.revenueScale || '未披露/待验证')}</p></div>
+      <div><b>Layer / IPO window</b><p>${esc(c.layer || c.sector)}<br>${esc(c.ipoWindow || 'unclear')}</p></div>
       <div><b>Relationship route</b><p>${esc(c.relationshipRoute || c.routeToAccess || 'not captured')}</p></div>
     </div></div>
     <div class="detail-section compact"><b>IC One-Pager</b>${renderDetailOnePager(c, tasks)}</div>
