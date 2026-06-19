@@ -1,11 +1,13 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const childProcess = require('child_process');
 const { scoreCompany, scoreBreakdown, labelCompany, filterCompanies, computeDashboard, normalizeCompany, slugify } = require('./src/scoring');
 const { sourceStatus, refreshInterVest, fetchCompanyNews } = require('./src/connectors');
 
 const APP_DIR = __dirname;
 const DATA_FILE = path.join(APP_DIR, 'data', 'state.json');
+const DB_FILE = path.join(APP_DIR, 'data', 'pipeline.sqlite');
 const PUBLIC_DIR = path.join(APP_DIR, 'public');
 const HOST = process.env.HOST || '0.0.0.0';
 const PORT = Number(process.env.PORT || 8826);
@@ -31,7 +33,7 @@ function readLocalState() {
 function hydrateState(state, metaPatch = {}) {
   state = state || {};
   state.meta = { ...(state.meta || {}), ...metaPatch, readOnly: !ENABLE_WRITES, writesEnabled: ENABLE_WRITES };
-  state.companies = (state.companies || []).map(normalizeCompany);
+  state.companies = (state.companies || []).map(c => ({ ...normalizeCompany(c), ...c }));
   return state;
 }
 
@@ -75,7 +77,7 @@ async function readState() {
 function writeState(state) {
   state.meta = state.meta || {};
   state.meta.updatedAt = new Date().toISOString();
-  state.companies = (state.companies || []).map(normalizeCompany);
+  state.companies = (state.companies || []).map(c => ({ ...normalizeCompany(c), ...c }));
   fs.writeFileSync(DATA_FILE, JSON.stringify(state, null, 2));
   snapshotCache = { url: '', loadedAtMs: 0, state: null, error: null };
 }
@@ -113,10 +115,71 @@ function mime(file) {
   return 'application/octet-stream';
 }
 
+function priorityRank(c) {
+  const p = String(c.priorityTier || '');
+  const head = p.split('｜')[0];
+  return ({ A0: 0, A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6, C3: 7, X: 9 })[head] ?? 8;
+}
+
+function priorityClass(p) {
+  const head = String(p || '').split('｜')[0];
+  return ({ A0: 'green', A1: 'green', A2: 'blue', B1: 'amber', B2: 'amber', C1: 'orange', C2: 'red', C3: 'gray', X: 'gray' })[head] || 'gray';
+}
+
+function enrichedCompany(c) {
+  const scored = { ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) };
+  scored.layer = c.layer || c.sector || '';
+  scored.whyInTrack = c.whyInTrack || c.recommendation || c.mandateFit || c.notes || '';
+  scored.revenueScale = c.revenueScale || '未披露/待验证';
+  scored.relationshipRoute = c.relationshipRoute || c.routeToAccess || c.nextAction || '';
+  scored.keyDiligence = c.keyDiligence || (c.openQuestions || []).join('; ') || c.evidenceBoundary || '';
+  scored.ipoWindow = c.ipoWindow || 'unclear';
+  scored.priorityClass = priorityClass(c.priorityTier);
+  return scored;
+}
+
+function pipelineCompanies(state, filters = {}) {
+  const base = (state.companies || []).filter(c => {
+    if (filters.status && c.status !== filters.status) return false;
+    if (filters.region && c.region !== filters.region) return false;
+    if (filters.sector && (c.layer || c.sector) !== filters.sector && c.sector !== filters.sector) return false;
+    if (filters.label && labelCompany(c).label !== filters.label && c.priorityTier !== filters.label) return false;
+    if (filters.q) {
+      const hay = [c.name, c.legalName, c.region, c.country, c.sector, c.subSector, c.layer, c.priorityTier, c.ipoWindow, c.latestValuation, c.latestFunding, c.revenueScale, c.whyInTrack, c.relationshipRoute, c.investorGroup, c.keyDiligence, c.notes, c.nextAction, ...(c.tags || []), ...(c.investors || [])].join(' ').toLowerCase();
+      if (!hay.includes(String(filters.q).toLowerCase())) return false;
+    }
+    return true;
+  });
+  return base.map(c => enrichedCompany(normalizeCompany(c) && { ...c }))
+    .sort((a, b) => priorityRank(a) - priorityRank(b) || b.score - a.score || String(a.name).localeCompare(String(b.name)));
+}
+
+function dbInfo() {
+  const info = { configured: fs.existsSync(DB_FILE), path: DB_FILE, counts: {}, status: 'missing' };
+  if (!info.configured) return info;
+  try {
+    const sql = "select 'companies' k,count(*) v from companies union all select 'investors',count(*) from investors union all select 'routes',count(*) from relationship_routes union all select 'evidence',count(*) from evidence_items union all select 'sources',count(*) from source_registry;";
+    const out = childProcess.execFileSync('sqlite3', ['-json', DB_FILE, sql], { encoding: 'utf8', timeout: 5000 });
+    for (const row of JSON.parse(out || '[]')) info.counts[row.k] = row.v;
+    info.status = 'ok';
+  } catch (err) {
+    info.status = 'error'; info.error = err.message;
+  }
+  return info;
+}
+
+async function apiPipeline(req, res, urlObj) {
+  const state = await readState();
+  const filters = Object.fromEntries(urlObj.searchParams.entries());
+  const companies = pipelineCompanies(state, filters);
+  const highPriority = companies.filter(c => /^A[0-2]/.test(String(c.priorityTier || ''))).length;
+  json(res, 200, { meta: state.meta, db: dbInfo(), companies, dashboard: { total: companies.length, highPriority, openTasks: (state.tasks || []).filter(t => !['done','closed'].includes(t.status)).length, sources: (state.sourceRegistry || []).length } });
+}
+
 async function apiState(req, res, urlObj) {
   const state = await readState();
   const filters = Object.fromEntries(urlObj.searchParams.entries());
-  const companies = filterCompanies(state.companies, filters).map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) }));
+  const companies = pipelineCompanies(state, filters);
   json(res, 200, { meta: state.meta, dashboard: computeDashboard(state.companies, { tasks: state.tasks || [], fundingRounds: state.fundingRounds || [] }), companies });
 }
 
@@ -124,7 +187,7 @@ async function apiCompany(req, res, id) {
   const state = await readState();
   const c = state.companies.find(x => x.id === id);
   if (!c) return json(res, 404, { error: 'NOT_FOUND' });
-  json(res, 200, { company: { ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) }, fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id), tasks: (state.tasks || []).filter(t => t.companyId === c.id), interactions: (state.interactions || []).filter(i => i.companyId === c.id) });
+  json(res, 200, { company: enrichedCompany(c), fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id), tasks: (state.tasks || []).filter(t => t.companyId === c.id), interactions: (state.interactions || []).filter(i => i.companyId === c.id), evidence: (c.evidence || []) });
 }
 
 function assertWritable(res) {
@@ -183,7 +246,50 @@ async function apiExportCsv(req, res) {
 }
 
 function apiSources(req, res) {
-  json(res, 200, { sources: sourceStatus(), generatedAt: new Date().toISOString() });
+  const local = readLocalState();
+  const registry = local.sourceRegistry || [];
+  const connector = sourceStatus();
+  json(res, 200, { sources: registry.length ? registry.map(s => ({ id: s.id, name: s.name, type: s.sourceType, runtimeStatus: s.connectorStatus, coverage: s.coverage, limitations: s.limitations })) : connector, connectorSources: connector, generatedAt: new Date().toISOString() });
+}
+
+async function apiRelationships(req, res) {
+  const state = await readState();
+  const rows = [];
+  for (const c of pipelineCompanies(state, { status: 'private' })) {
+    const route = c.relationshipRoute || '';
+    if (!route) continue;
+    rows.push({ companyId: c.id, companyName: c.name, priorityTier: c.priorityTier, layer: c.layer, routeNode: c.investorGroup || (c.investors || []).slice(0, 2).join(', ') || 'unmapped', routeType: 'investor/banker/strategic', routeDescription: route, accessGoal: /^A[0-2]/.test(String(c.priorityTier||'')) ? 'secondary / primary / IPO anchor / data room' : 'relationship build / validation', owner: c.owner || 'Deal Team', nextAction: c.keyDiligence || c.nextAction || '', status: 'not_started' });
+  }
+  const grouped = {};
+  for (const r of rows) {
+    const key = r.routeNode || 'unmapped';
+    if (!grouped[key]) grouped[key] = { routeNode: key, companies: [], highPriorityCount: 0, ask: '' };
+    grouped[key].companies.push({ id: r.companyId, name: r.companyName, priorityTier: r.priorityTier });
+    if (/^A[0-2]/.test(String(r.priorityTier||''))) grouped[key].highPriorityCount += 1;
+    if (!grouped[key].ask) grouped[key].ask = r.accessGoal;
+  }
+  json(res, 200, { rows, grouped: Object.values(grouped).sort((a,b)=>b.highPriorityCount-a.highPriorityCount || b.companies.length-a.companies.length) });
+}
+
+function hasMissing(value) {
+  return !value || /未披露|待验证|not captured|unclear|to verify|待补/i.test(String(value));
+}
+
+async function apiMissingData(req, res) {
+  const state = await readState();
+  const companies = pipelineCompanies(state, { status: 'private' });
+  const rows = companies.map(c => {
+    const missing = [];
+    const revText = [c.revenueScale, c.latestValuation, c.latestFunding, ...(c.keyMetrics || [])].join(' ');
+    if (hasMissing(c.revenueScale) && !/(ARR|revenue|run-rate|contracted|CARR|secured business|收入|营收)/i.test(revText)) missing.push('revenue/ARR');
+    if (hasMissing(c.latestValuation)) missing.push('valuation');
+    if (!c.investors || !c.investors.length) missing.push('investors');
+    if (hasMissing(c.relationshipRoute)) missing.push('relationship route');
+    if (!c.evidence || !c.evidence.length) missing.push('evidence');
+    if (hasMissing(c.ipoWindow)) missing.push('IPO window');
+    return { id: c.id, name: c.name, priorityTier: c.priorityTier, layer: c.layer, missing, readiness: missing.length === 0 ? 'IC-ready draft' : missing.length <= 2 ? 'Needs quick fill' : 'Not IC-ready', nextAction: c.keyDiligence || c.nextAction || '' };
+  });
+  json(res, 200, { rows, highPriorityGaps: rows.filter(r => /^A|^B1/.test(String(r.priorityTier||'')) && r.missing.length), summary: { total: rows.length, notReady: rows.filter(r => r.readiness !== 'IC-ready draft').length, noRevenue: rows.filter(r => r.missing.includes('revenue/ARR')).length, noRoute: rows.filter(r => r.missing.includes('relationship route')).length, noEvidence: rows.filter(r => r.missing.includes('evidence')).length } });
 }
 
 async function apiCrm(req, res) {
@@ -288,10 +394,14 @@ const server = http.createServer(async (req, res) => {
     const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
     const pathname = urlObj.pathname;
     if (req.method === 'GET' && pathname === '/api/state') return apiState(req, res, urlObj);
+    if (req.method === 'GET' && pathname === '/api/pipeline') return apiPipeline(req, res, urlObj);
+    if (req.method === 'GET' && pathname === '/api/db-info') return json(res, 200, dbInfo());
     if (req.method === 'GET' && pathname === '/api/export.md') return apiExport(req, res);
     if (req.method === 'GET' && pathname === '/api/export.json') return apiExportJson(req, res);
     if (req.method === 'GET' && pathname === '/api/export.csv') return apiExportCsv(req, res);
     if (req.method === 'GET' && pathname === '/api/sources') return apiSources(req, res);
+    if (req.method === 'GET' && pathname === '/api/relationships') return apiRelationships(req, res);
+    if (req.method === 'GET' && pathname === '/api/missing-data') return apiMissingData(req, res);
     if (req.method === 'GET' && pathname === '/api/crm') return apiCrm(req, res);
     if (req.method === 'GET' && pathname === '/api/ops') return apiOperatingSystem(req, res);
     if (req.method === 'GET' && pathname.startsWith('/api/refresh/')) return apiRefreshSource(req, res, pathname.split('/').pop(), urlObj);

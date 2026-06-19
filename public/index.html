@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Global AI Pre-IPO Pipeline Pilot</title>
-  <link rel="stylesheet" href="style.css?v=5" />
+  <title>Global AI Pre-IPO / IPO Pipeline</title>
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
-  <header class="topbar">
+  <header class="topbar pipeline-topbar">
     <div>
-      <div class="eyebrow">Crossover / Pre-IPO Command Center · Pilot</div>
-      <h1>全球 AI & AI 产业链 Private Pipeline</h1>
-      <p>追踪 LLM、AI 应用、AI Infra、半导体、CXL/Memory、机器人、日韩产业链公司：IPO 确定性、投资人、证据、下一步动作。</p>
+      <div class="eyebrow">Investor Pipeline OS · Global AI Pre-IPO / IPO</div>
+      <h1>全球 AI Pre-IPO / IPO Opportunity Pipeline</h1>
+      <p>公司第一：每一行回答“这家公司为什么在追、数据是什么、谁投了、从哪里拿 deal、下一步问什么”。</p>
     </div>
     <div class="actions">
       <button id="exportBtn">导出 Markdown</button>
@@ -23,63 +23,56 @@
     <section id="summary" class="summary-grid"></section>
     <section id="vintageBanner" class="panel vintage-banner"></section>
 
-    <section class="panel priority-panel">
-      <div class="section-head">
-        <div>
-          <div class="section-title">PM Priority Board / 今日优先级</div>
-          <div class="sub">默认按“可行动性 + 12–36个月流动性 + 收入/部署证据 + access route”排序。</div>
-        </div>
-        <div class="quick-chips" id="quickChips"></div>
-      </div>
-      <div id="priorityBoard" class="priority-grid"></div>
-    </section>
-
-    <section class="pm-grid">
-      <section class="panel delta-panel">
-        <div class="section-title">Delta View / 今日变化</div>
-        <div class="sub">PM 视角只看“今天新增、上调、降噪、待验证”的变化，不被全量表淹没。</div>
-        <div id="deltaView" class="delta-grid"></div>
-      </section>
-      <section class="panel kanban-panel">
-        <div class="section-title">Deal Kanban / 下一步动作看板</div>
-        <div class="sub">按推进状态分组，手机端横向滑动；点击公司进入 detail。</div>
-        <div id="dealKanban" class="kanban-grid"></div>
-      </section>
-    </section>
-
-    <section class="panel ops-panel">
-      <div class="section-head">
-        <div>
-          <div class="section-title">PM v5 Deal Operating System / 投委与BD作战台</div>
-          <div class="sub">把 pipeline 变成日常操作系统：IC 决策、关系路径、follow-up 风险、公司 one-pager 队列。</div>
-        </div>
-      </div>
-      <div class="ops-grid">
-        <div class="ops-block ops-ic"><h3>Investment Committee View / Top 15</h3><div id="icView" class="ic-grid"></div></div>
-        <div class="ops-block"><h3>Relationship Map</h3><div id="relationshipMap" class="relationship-list"></div></div>
-        <div class="ops-block"><h3>Task Aging / Follow-up Risk</h3><div id="taskAging" class="risk-list"></div></div>
-        <div class="ops-block"><h3>One-Pager Queue</h3><div id="onePagerQueue" class="onepager-list"></div></div>
+    <section class="panel pipeline-intro">
+      <div class="section-title">Pipeline 用途 / What this dashboard is for</div>
+      <div class="intro-grid">
+        <div><b>1. 公司池</b><span>跟踪所有 pre-IPO / late-growth / 准上市公司。</span></div>
+        <div><b>2. 投资逻辑</b><span>A0 成熟平台 + A1 架构硬瓶颈 + A2 台湾准上市供应链。</span></div>
+        <div><b>3. 关系路径</b><span>投资人、CVC、券商、承销商、secondary route。</span></div>
+        <div><b>4. 缺口管理</b><span>收入、估值、投资人、证据、IPO窗口、owner。</span></div>
       </div>
     </section>
 
-    <section class="panel source-panel">
-      <details>
-        <summary>Data Source Coverage / 数据源接入状态</summary>
-        <div id="sources" class="source-grid"></div>
-      </details>
-    </section>
-
-    <section class="panel controls">
-      <input id="search" placeholder="搜索公司、投资人、Samsung、InterVest、CXL、Japan..." />
+    <section class="panel controls pipeline-controls">
+      <input id="search" placeholder="搜索公司、投资人、关系节点、技术层：Databricks / NVIDIA / Temasek / photonic..." />
       <select id="region"><option value="">全部地区</option></select>
-      <select id="sector"><option value="">全部赛道</option></select>
-      <select id="label"><option value="">全部优先级</option></select>
+      <select id="sector"><option value="">全部 Layer / 赛道</option></select>
+      <select id="label"><option value="">全部旧标签</option></select>
       <button id="resetBtn">重置</button>
     </section>
 
+    <section class="layout pipeline-layout">
+      <div class="panel table-wrap primary-pipeline">
+        <div class="section-head compact-head">
+          <div>
+            <div class="section-title">Primary Pipeline Table / 主追踪表</div>
+            <div class="sub">第一列固定公司；优先看 Priority、Why、Layer、Revenue、Valuation、Investors、Relationship Route、Next Action。</div>
+          </div>
+          <div class="quick-chips" id="quickChips"></div>
+        </div>
+        <table id="companyTable" class="pipeline-table">
+          <thead><tr><th>Company</th><th>Priority</th><th>Why in Track</th><th>Layer</th><th>IPO Window</th><th>Revenue / ARR</th><th>Valuation</th><th>Main Investors</th><th>Relationship Route</th><th>Next Action</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div id="mobileCards" class="mobile-cards"></div>
+      </div>
+      <aside class="panel" id="detail">
+        <div class="placeholder">点击公司查看投资人能理解的一页卡：逻辑、数据、融资、投资人、关系路径、缺口和下一步。</div>
+      </aside>
+    </section>
+
+    <section class="panel ops-strip">
+      <div class="section-title">Operating Queue / 工作队列</div>
+      <div class="ops-grid-v6">
+        <div class="ops-block"><h3>Relationship CRM</h3><div id="relationshipCrm" class="relationship-list"></div></div>
+        <div class="ops-block"><h3>Missing Data / IC Readiness</h3><div id="missingData" class="risk-list"></div></div>
+        <div class="ops-block"><h3>Source Registry</h3><div id="sourceRegistry" class="source-grid compact-sources"></div></div>
+      </div>
+    </section>
+
     <section class="panel crm-panel">
-      <details class="crm-details" open>
-        <summary>Deal CRM Board / 融资事件与待办</summary>
+      <details class="crm-details">
+        <summary>Funding Events / Open Tasks / Audit</summary>
         <div class="crm-grid">
           <div><h3>Latest Funding / Valuation Events</h3><div id="fundingBoard" class="mini-list"></div></div>
           <div><h3>Open Deal Tasks</h3><div id="taskBoard" class="mini-list"></div></div>
@@ -87,18 +80,9 @@
       </details>
     </section>
 
-    <section class="layout">
-      <div class="panel table-wrap">
-        <div class="section-title">Pipeline 列表</div>
-        <table id="companyTable">
-          <thead><tr><th>Score</th><th>公司</th><th>地区</th><th>赛道</th><th>IPO</th><th>优先级</th><th>下一步</th></tr></thead>
-          <tbody></tbody>
-        </table>
-        <div id="mobileCards" class="mobile-cards"></div>
-      </div>
-      <aside class="panel" id="detail">
-        <div class="placeholder">点击左侧公司查看详情。Pilot 已预置 Rebellions、FuriosaAI、DeepX、Upstage、Panmnesia、Sakana、PFN、Lambda、Databricks 等。</div>
-      </aside>
+    <section style="display:none">
+      <div id="priorityBoard"></div><div id="deltaView"></div><div id="dealKanban"></div>
+      <div id="icView"></div><div id="relationshipMap"></div><div id="taskAging"></div><div id="onePagerQueue"></div><div id="sources"></div>
     </section>
   </main>
 
@@ -123,13 +107,10 @@
       <label>投资人（逗号分隔）<textarea name="investors"></textarea></label>
       <label>下一步动作<textarea name="nextAction"></textarea></label>
       <label>备注<textarea name="notes"></textarea></label>
-      <menu>
-        <button value="cancel">取消</button>
-        <button id="saveBtn" value="default">保存</button>
-      </menu>
+      <menu><button value="cancel">取消</button><button id="saveBtn" value="default">保存</button></menu>
     </form>
   </dialog>
 
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

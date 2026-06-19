@@ -33,6 +33,7 @@ async function load() {
   renderDeltaView();
   renderDealKanban();
   renderOperatingSystem();
+  await renderPipelineOps();
   applyResponsiveDefaults();
   await renderSources();
   renderFilters();
@@ -61,12 +62,16 @@ async function renderCrmBoards() {
 
 function renderSummary() {
   const d = state.dashboard;
+  const companies = state.companies || [];
+  const high = companies.filter(c => /^A[0-2]/.test(String(c.priorityTier || ''))).length;
+  const a0 = companies.filter(c => String(c.priorityTier || '').startsWith('A0')).length;
+  const db = state.meta?.sqlitePath ? 'SQLite' : (state.meta?.database || 'JSON');
   const cards = [
-    ['Private', d.privateCount, '全局 private 公司'],
-    ['Act Now', d.coreCount, '立即推进 / allocation'],
-    ['Rounds', d.fundingRoundCount || 0, '融资/估值事件'],
+    ['Companies', d.privateCount || companies.length, '全局追踪公司'],
+    ['A0/A1/A2', high, '最高优先 pipeline'],
+    ['A0 Mature', a0, 'Databricks类成熟pre-IPO'],
     ['Tasks', d.openTasks || 0, '待办动作'],
-    ['Vintage', (state.meta.asOf || '').slice(0,10), '数据时点']
+    ['DB', db, '底层数据库/快照']
   ];
   $('#summary').innerHTML = cards.map(c => `<div class="card"><div class="label">${esc(c[0])}</div><div class="num">${esc(c[1])}</div><div class="sub">${esc(c[2])}</div></div>`).join('');
 }
@@ -75,12 +80,12 @@ function renderQuickChips() {
   const box = $('#quickChips');
   if (!box || box.dataset.ready) return;
   const chips = [
-    ['Act Now', { label: 'Core / Act Now' }],
-    ['Crossover', { q: 'crossover' }],
-    ['Taiwan ESB', { region: 'Taiwan' }],
-    ['CapitalG', { q: 'CapitalG' }],
-    ['Temasek', { q: 'Temasek' }],
-    ['AI Infra', { sector: 'AI Infra' }]
+    ['A0 Mature', { q: 'A0' }],
+    ['A1 Architecture', { q: 'A1' }],
+    ['A2 Taiwan', { q: 'A2' }],
+    ['Databricks', { q: 'Databricks' }],
+    ['NVIDIA route', { q: 'NVIDIA' }],
+    ['Missing Data', { q: '待验证' }]
   ];
   box.innerHTML = chips.map(([name]) => `<button class="chip" type="button">${esc(name)}</button>`).join('');
   [...box.querySelectorAll('.chip')].forEach((btn, i) => btn.addEventListener('click', () => {
@@ -195,6 +200,17 @@ function applyResponsiveDefaults() {
   }
 }
 
+async function renderPipelineOps() {
+  const [sources, rel, missing] = await Promise.all([api('/api/sources'), api('/api/relationships'), api('/api/missing-data')]);
+  const sbox = $('#sourceRegistry');
+  if (sbox) sbox.innerHTML = (sources.sources || []).slice(0, 8).map(s => `<div class="source-card"><b>${esc(s.name)}</b><div class="sub">${esc(s.type)}</div><span class="pill ${s.runtimeStatus === 'missing_credential' ? 'orange' : s.runtimeStatus === 'enabled_local_only' || s.runtimeStatus === 'enabled' ? 'green' : 'gray'}">${esc(s.runtimeStatus)}</span><p>${esc(s.coverage || '')}</p><div class="sub">${esc(s.limitations || '')}</div></div>`).join('');
+  const rbox = $('#relationshipCrm');
+  if (rbox) rbox.innerHTML = (rel.grouped || []).slice(0, 10).map(r => `<div class="relationship-item"><div class="relationship-head"><b>${esc(r.routeNode)}</b><span>${esc(r.highPriorityCount)} high / ${esc(r.companies.length)} total</span></div><div class="relationship-companies">${r.companies.slice(0,5).map(c => `<button type="button" data-id="${esc(c.id)}">${esc(c.name)}</button>`).join('')}</div><div class="sub">Ask: ${esc(r.ask)}</div></div>`).join('');
+  const mbox = $('#missingData');
+  if (mbox) mbox.innerHTML = `<div class="risk-metrics"><div><b>${esc(missing.summary.noRevenue)}</b><span>No revenue</span></div><div><b>${esc(missing.summary.noRoute)}</b><span>No route</span></div><div><b>${esc(missing.summary.noEvidence)}</b><span>No evidence</span></div><div><b>${esc(missing.highPriorityGaps.length)}</b><span>High-priority gaps</span></div></div>` + (missing.highPriorityGaps || []).slice(0, 8).map(r => `<button class="risk-task due_soon" type="button" data-id="${esc(r.id)}"><b>${esc(r.name)}</b><span>${esc(r.priorityTier)} · missing: ${esc(r.missing.join(', '))}</span><em>${esc(r.nextAction || '')}</em></button>`).join('');
+  document.querySelectorAll('#relationshipCrm [data-id], #missingData [data-id]').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
+}
+
 function renderVintageBanner() {
   const m = state.meta || {};
   const sourceLabel = {
@@ -235,13 +251,16 @@ function renderTable() {
   const tbody = $('#companyTable tbody');
   tbody.innerHTML = state.companies.map(c => `
     <tr data-id="${esc(c.id)}">
-      <td class="score ${colorClass(c.label)}">${c.score}</td>
-      <td><div class="company-name">${esc(c.name)}</div><div class="sub">${esc(c.country)} · ${esc(c.stage)}${c.priorityTier ? ' · ' + esc(c.priorityTier) : ''}</div></td>
-      <td>${esc(c.region)}</td>
-      <td>${esc(c.sector)}<div class="sub">${esc(c.subSector)}</div></td>
-      <td>${esc(c.ipoSignal)}</td>
-      <td><span class="pill ${colorClass(c.label)}">${esc(c.label)}</span></td>
-      <td>${esc(c.nextAction || '').slice(0,160)}</td>
+      <td class="company-sticky"><div class="company-name">${esc(c.name)}</div><div class="sub">${esc(c.region)} · ${esc(c.stage || '')}</div></td>
+      <td><span class="pill ${esc(c.priorityClass || 'gray')}">${esc(c.priorityTier || c.label)}</span></td>
+      <td class="why-cell">${esc(c.whyInTrack || c.recommendation || c.notes || '').slice(0,240)}</td>
+      <td>${esc(c.layer || c.sector)}<div class="sub">${esc(c.subSector || '')}</div></td>
+      <td>${esc(c.ipoWindow || c.ipoSignal || 'unclear')}</td>
+      <td>${esc(c.revenueScale || '未披露/待验证')}</td>
+      <td>${esc(c.latestValuation || '').slice(0,120)}</td>
+      <td>${esc((c.investors||[]).join(', ')).slice(0,160)}</td>
+      <td class="route-cell">${esc(c.relationshipRoute || c.routeToAccess || '').slice(0,220)}</td>
+      <td>${esc(c.keyDiligence || c.nextAction || '').slice(0,180)}</td>
     </tr>`).join('');
   tbody.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => showDetail(tr.dataset.id)));
   renderMobileCards();
@@ -253,10 +272,11 @@ function renderMobileCards() {
   const isMobile = window.matchMedia('(max-width: 720px)').matches;
   const companies = isMobile && !showAllMobile ? state.companies.slice(0, 25) : state.companies;
   box.innerHTML = companies.map(c => `<button class="mobile-company-card" type="button" data-id="${esc(c.id)}">
-    <div class="mobile-card-top"><span class="score ${colorClass(c.label)}">${esc(c.score)}</span><span class="pill ${colorClass(c.label)}">${esc(c.label)}</span></div>
+    <div class="mobile-card-top"><span class="pill ${esc(c.priorityClass || 'gray')}">${esc(c.priorityTier || c.label)}</span><span class="sub">${esc(c.ipoWindow || '')}</span></div>
     <h3>${esc(c.name)}</h3>
-    <div class="sub">${esc(c.country)} · ${esc(c.region)} · ${esc(c.sector)}</div>
-    <p>${esc(c.nextAction || c.recommendation || c.notes || '').slice(0, 180)}</p>
+    <div class="sub">${esc(c.region)} · ${esc(c.layer || c.sector)}</div>
+    <p><b>Why:</b> ${esc(c.whyInTrack || c.recommendation || c.notes || '').slice(0,180)}</p>
+    <p><b>Route:</b> ${esc(c.relationshipRoute || '').slice(0,160)}</p>
   </button>`).join('') + (isMobile && !showAllMobile && state.companies.length > companies.length ? `<button class="load-more" type="button">显示全部 ${state.companies.length} 家</button>` : '');
   box.querySelectorAll('.mobile-company-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
   const more = box.querySelector('.load-more');
@@ -294,7 +314,13 @@ async function showDetail(id) {
   $('#detail').innerHTML = `<div class="detail">
     <h2>${esc(c.name)}</h2>
     <div class="sub">${esc(c.country)} · ${esc(c.sector)} / ${esc(c.subSector)}</div>
-    <div style="margin:10px 0"><span class="score ${colorClass(c.label)}">${c.score}</span> <span class="pill ${colorClass(c.label)}">${esc(c.label)}</span></div>
+    <div style="margin:10px 0"><span class="score ${colorClass(c.label)}">${c.score}</span> <span class="pill ${esc(c.priorityClass || colorClass(c.label))}">${esc(c.priorityTier || c.label)}</span></div>
+    <div class="detail-section compact"><b>Investor Pipeline Snapshot</b><div class="onepager-detail">
+      <div><b>Why in track</b><p>${esc(c.whyInTrack || c.recommendation || c.mandateFit || 'not captured')}</p></div>
+      <div><b>Layer / IPO window</b><p>${esc(c.layer || c.sector)}<br>${esc(c.ipoWindow || 'unclear')}</p></div>
+      <div><b>Revenue / ARR</b><p>${esc(c.revenueScale || '未披露/待验证')}</p></div>
+      <div><b>Relationship route</b><p>${esc(c.relationshipRoute || c.routeToAccess || 'not captured')}</p></div>
+    </div></div>
     <div class="detail-section compact"><b>IC One-Pager</b>${renderDetailOnePager(c, tasks)}</div>
     <div class="detail-section compact"><b>Score Breakdown</b>${renderScoreBreakdown(c)}</div>
     <div class="kv"><b>IPO 信号</b><span>${esc(c.ipoSignal)}${c.priorityTier ? '<br>Priority: ' + esc(c.priorityTier) : ''}</span></div>
