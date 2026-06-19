@@ -4,10 +4,10 @@
     "asOf": "2026-06-19",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-06-19T15:47:25Z",
+    "updatedAt": "2026-06-19T17:37:20Z",
     "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
-    "uiVersion": "15",
+    "uiVersion": "16",
     "releaseNotes": [
       {
         "version": "v5",
@@ -46,7 +46,7 @@
       "highConfidenceRounds": 50,
       "mediumOrBetterRounds": 121
     },
-    "snapshotVersion": "v15-taiwan-esb-metrics-hardening",
+    "snapshotVersion": "v16-commercial-metrics-hardening",
     "taiwanEsbMetricHardening": {
       "asOf": "2026-06-19T15:47:25Z",
       "sourceFile": "/Users/mac/Downloads/taiwan_esb_screen_20260618.json",
@@ -54,6 +54,44 @@
       "companiesUpdated": 7,
       "fundingRoundRecordsUpgraded": 7,
       "method": "Loaded Taiwan ESB/pre-listing public-screen metrics into revenueScale/latestValuation/keyMetrics; upgraded A2 Taiwan capital-market placeholder records to official_screen confidence without fabricating VC funding."
+    },
+    "commercialMetricHardening": {
+      "asOf": "2026-06-19T17:37:20Z",
+      "sourceId": "v16_public_commercial_metric_review_20260619",
+      "companiesUpdated": 30,
+      "updatedCompanyIds": [
+        "databricks",
+        "drivenets",
+        "vast-data",
+        "weka",
+        "lambda",
+        "crusoe",
+        "ddn",
+        "hammerspace",
+        "minio",
+        "lightmatter",
+        "ayar-labs",
+        "celestial-ai",
+        "d-matrix",
+        "groq",
+        "cerebras",
+        "tenstorrent",
+        "together-ai",
+        "baseten",
+        "openrouter",
+        "panmnesia",
+        "zutacore",
+        "anyscale",
+        "arrcus",
+        "encharge-ai",
+        "etched",
+        "fireworks-ai",
+        "liquidstack",
+        "matx",
+        "modal",
+        "submer"
+      ],
+      "method": "For A0/A1/B1/B2 pre-IPO track names, convert ambiguous revenue/ARR/backlog fields into explicit public commercial status: reported metric where available, otherwise not publicly disclosed + diligence ask + source boundary. No gated DB fabrication."
     }
   },
   "companies": [
@@ -467,7 +505,7 @@
       "ipoSignals": [
         "No near-term IPO signal; strategic AI memory bottleneck candidate"
       ],
-      "nextAction": "Ask InterVest for Samsung/SK Hynix relationship, CXL switch tape-out, design wins, next-round timing.",
+      "nextAction": "Ask for CXL controller/IP customer engagements, Samsung/SK relationship, tape-out/production status, revenue/backlog and IPO horizon.",
       "tags": [
         "InterVest",
         "CXL",
@@ -486,16 +524,23 @@
           "type": "media",
           "note": "KED/Blocks & Files clusters: Panmnesia raises ~$57-60M Series A for CXL switch chip designs.",
           "url": "https://news.google.com/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue/backlog not publicly disclosed; CXL/memory architecture relevance high, but commercialization proof remains weak. Diligence ask: Ask for CXL controller/IP customer engagements, Samsung/SK relationship, tape-out/production status, revenue/backlog and IPO horizon.",
+          "url": "public Korean startup/news coverage",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "Strategic 24-48 month pipeline, not immediate IPO.",
+      "notes": "Strategic 24-48 month pipeline, not immediate IPO.\nv16 commercial metric hardening: Revenue/backlog not publicly disclosed; CXL/memory architecture relevance high, but commercialization proof remains weak. Diligence ask: Ask for CXL controller/IP customer engagements, Samsung/SK relationship, tape-out/production status, revenue/backlog and IPO horizon. Source boundary: public Korean startup/news coverage",
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI data / memory / storage plane",
       "whyInTrack": "Panmnesia — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/backlog not publicly disclosed; CXL/memory architecture relevance high, but commercialization proof remains weak.",
       "relationshipRoute": "投资人线：InterVest, Korean/semiconductor investors",
       "investorGroup": "SWF/CVC/Asia",
-      "keyDiligence": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、secondary/IPO timing。",
+      "keyDiligence": "Ask for CXL controller/IP customer engagements, Samsung/SK relationship, tape-out/production status, revenue/backlog and IPO horizon.",
       "disruptedLegacyTech": "见Layer：AI data / memory / storage plane",
       "riskEvidenceBoundary": "",
       "ipoWindow": "unclear",
@@ -509,21 +554,32 @@
         "hasValuation": false,
         "investorCount": 2,
         "evidenceCount": 2,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 数据、内存与存储层",
       "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：CXL memory expansion / memory pooling；地区：Korea",
       "latestValuationZh": "未披露; Series A $57-60M media reports",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "revenueScaleZh": "Revenue/backlog not publicly disclosed; CXL/memory architecture relevance high, but commercialization proof remains weak.",
+      "nextActionZh": "Ask for CXL controller/IP customer engagements, Samsung/SK relationship, tape-out/production status, revenue/backlog and IPO horizon.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "Strategic 24-48 month pipeline, not immediate IPO.",
+      "notesClean": "Strategic 24-48 month pipeline, not immediate IPO.\nv16 commercial metric hardening: Revenue/backlog not publicly disclosed; CXL/memory architecture relevance high, but commercialization proof remains weak. Diligence ask: Ask for CXL controller/IP customer engagements, Samsung/SK relationship, tape-out/production status, revenue/backlog and IPO horizon. Source boundary: public Korean startup/news coverage",
       "recommendationClean": "Panmnesia — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium_high"
+      "riskSummaryZh": "风险等级：medium_high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "public Korean startup/news coverage",
+      "commercialDiligenceAsk": "Ask for CXL controller/IP customer engagements, Samsung/SK relationship, tape-out/production status, revenue/backlog and IPO horizon.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=public Korean startup/news coverage; ask=Ask for CXL controller/IP customer engagements, Samsung/SK relationship, tape-out/production status, revenue/backlog and IPO horizon.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue/backlog not publicly disclosed; CXL/memory architecture relevance high, but commercialization proof remains weak."
+      ]
     },
     {
       "id": "nota-ai",
@@ -791,7 +847,7 @@
         "DCD/TechCrunch: hired banks for IPO",
         "pre-IPO funding reports"
       ],
-      "nextAction": "Source secondary/primary via US private markets and bankers; evaluate discount to last valuation.",
+      "nextAction": "Ask for contracted revenue, utilization by GPU class, customer concentration, debt/capex terms, power/site commitments, depreciation, gross margin and churn.",
       "tags": [
         "GPU cloud",
         "CoreWeave read-through",
@@ -803,9 +859,16 @@
           "type": "media",
           "note": "DCD: Lambda hired banks in preparation for IPO; pre-IPO funding reports.",
           "url": "https://www.datacenterdynamics.com/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue/utilization not publicly disclosed in v16 pass; public site exposes customer stories/pricing but not contracted ARR or GPU utilization. Treat as B1 unit-economics diligence, not revenue-proven. Diligence ask: Ask for contracted revenue, utilization by GPU class, customer concentration, debt/capex terms, power/site commitments, depreciation, gross margin and churn.",
+          "url": "https://lambdalabs.com/customer-stories",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "US core target already in prior memo.",
+      "notes": "US core target already in prior memo.\nv16 commercial metric hardening: Revenue/utilization not publicly disclosed in v16 pass; public site exposes customer stories/pricing but not contracted ARR or GPU utilization. Treat as B1 unit-economics diligence, not revenue-proven. Diligence ask: Ask for contracted revenue, utilization by GPU class, customer concentration, debt/capex terms, power/site commitments, depreciation, gross margin and churn. Source boundary: https://lambdalabs.com/customer-stories",
       "dealStage": "secondary_or_preipo_sourcing",
       "targetExchange": "US IPO likely",
       "filingStatus": "bank hiring media signal",
@@ -813,10 +876,10 @@
       "priorityTier": "B1｜Commercial Pre-IPO / 近IPO但看条款和unit economics",
       "layer": "AI cloud / power / cooling operator",
       "whyInTrack": "Lambda — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
-      "revenueScale": "Revenue/utilization not disclosed in tracker; verify GPU utilization and contracted customers",
+      "revenueScale": "Revenue/utilization not publicly disclosed in v16 pass; public site exposes customer stories/pricing but not contracted ARR or GPU utilization. Treat as B1 unit-economics diligence, not revenue-proven.",
       "relationshipRoute": "投资人线：Nvidia, US growth investors",
       "investorGroup": "Strategic Semi/AI",
-      "keyDiligence": "utilization、客户集中、contracted revenue、debt/capex、GPU折旧、power-to-site。",
+      "keyDiligence": "Ask for contracted revenue, utilization by GPU class, customer concentration, debt/capex terms, power/site commitments, depreciation, gross margin and churn.",
       "disruptedLegacyTech": "见Layer：AI cloud / power / cooling operator",
       "riskEvidenceBoundary": "",
       "ipoWindow": "24–36m",
@@ -830,21 +893,32 @@
         "hasValuation": true,
         "investorCount": 2,
         "evidenceCount": 1,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 云、供电与冷却基础设施",
       "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：GPU cloud / AI cloud；地区：US",
       "latestValuationZh": "媒体报道：~$4B after $480M round; IPO bank hiring reports",
-      "revenueScaleZh": "Revenue/utilization not disclosed in tracker; 待核验 GPU utilization and contracted customers",
-      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "revenueScaleZh": "Revenue/utilization not publicly disclosed in v16 pass; public site exposes customer stories/pricing but not contracted ARR or GPU utilization. Treat as B1 unit-economics diligence, not revenue-proven.",
+      "nextActionZh": "Ask for contracted revenue, utilization by GPU class, customer concentration, debt/capex terms, power/site commitments, depreciation, gross margin and churn.",
       "priorityZh": "B1｜商业化后期",
-      "notesClean": "US core target already in prior memo.",
+      "notesClean": "US core target already in prior memo.\nv16 commercial metric hardening: Revenue/utilization not publicly disclosed in v16 pass; public site exposes customer stories/pricing but not contracted ARR or GPU utilization. Treat as B1 unit-economics diligence, not revenue-proven. Diligence ask: Ask for contracted revenue, utilization by GPU class, customer concentration, debt/capex terms, power/site commitments, depreciation, gross margin and churn. Source boundary: https://lambdalabs.com/customer-stories",
       "recommendationClean": "Lambda — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium_high"
+      "riskSummaryZh": "风险等级：medium_high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://lambdalabs.com/customer-stories",
+      "commercialDiligenceAsk": "Ask for contracted revenue, utilization by GPU class, customer concentration, debt/capex terms, power/site commitments, depreciation, gross margin and churn.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://lambdalabs.com/customer-stories; ask=Ask for contracted revenue, utilization by GPU class, customer concentration, debt/capex terms, power/site commitments, depreciation, gross margin and churn.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue/utilization not publicly disclosed in v16 pass; public site exposes customer stories/pricing but not contracted ARR or GPU utilization. Treat as B1 unit-economics diligence, not revenue-proven."
+      ]
     },
     {
       "id": "databricks",
@@ -878,7 +952,7 @@
         "positive FCF",
         "massive private round"
       ],
-      "nextAction": "Seek clean secondary at 15-30% discount; otherwise prepare IPO anchor relationship.",
+      "nextAction": "Update with latest quarter run-rate, NRR, FCF margin, AI product mix, tender/secondary terms, banker/IPO calendar.",
       "tags": [
         "data platform",
         "AI application",
@@ -891,9 +965,16 @@
           "type": "official",
           "note": "Databricks: >$4.8B revenue run-rate, >55% YoY, >$1B AI revenue run-rate, $134B valuation.",
           "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-surpasses-4-8b-revenue-run-rate-growing-55-year-over-year"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "reported_metric / high: Official/company-public metrics already in tracker: >$4.8B revenue run-rate; AI products >$1B run-rate; positive FCF. v16 status: public revenue proof strong; still ask for current quarter growth, NRR, FCF margin, secondary clearing price and IPO timing. Diligence ask: Update with latest quarter run-rate, NRR, FCF margin, AI product mix, tender/secondary terms, banker/IPO calendar.",
+          "url": "https://www.databricks.com/company/newsroom/press-releases",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "Priority: 1 - Act Now\nRecommendation: Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.\n\nOriginal notes: Mature pre-IPO/IPO-ready benchmark.",
+      "notes": "Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.\nMature pre-IPO/IPO-ready benchmark.\nv16 commercial metric hardening: Official/company-public metrics already in tracker: >$4.8B revenue run-rate; AI products >$1B run-rate; positive FCF. v16 status: public revenue proof strong; still ask for current quarter growth, NRR, FCF margin, secondary clearing price and IPO timing. Diligence ask: Update with latest quarter run-rate, NRR, FCF margin, AI product mix, tender/secondary terms, banker/IPO calendar. Source boundary: https://www.databricks.com/company/newsroom/press-releases",
       "dealStage": "secondary_sourcing",
       "dataRoomStatus": "secondary_info_pack_needed",
       "targetExchange": "US IPO likely",
@@ -908,10 +989,10 @@
       "updatedAt": "2026-06-19",
       "layer": "Mature data+AI platform / public handoff",
       "whyInTrack": "Databricks — 大成熟pre-IPO例外：虽然不是最尖锐的硬件瓶颈，但它是data lakehouse+AI平台的public-market handoff核心资产，收入规模/FCF/IPO readiness足以保持高优先级；看点是secondary折价或IPO anchor，而不是追高last round。",
-      "revenueScale": "> $4.8B revenue run-rate; AI products >$1B run-rate; positive FCF (public/company disclosed metrics)",
+      "revenueScale": "Official/company-public metrics already in tracker: >$4.8B revenue run-rate; AI products >$1B run-rate; positive FCF. v16 status: public revenue proof strong; still ask for current quarter growth, NRR, FCF margin, secondary clearing price and IPO timing.",
       "relationshipRoute": "Temasek / ICONIQ / a16z / NEA / Microsoft / CapitalG / Fidelity / T. Rowe / Morgan Stanley-IPO route; prioritize company-approved secondary or IPO anchor.",
       "investorGroup": "Crossover/Growth; SWF/CVC/Asia; Classic VC",
-      "keyDiligence": "secondary discount 15–30%、Series L/IPO估值桥、AI products run-rate、FCF、IPO timing、lock-up和信息权。",
+      "keyDiligence": "Update with latest quarter run-rate, NRR, FCF margin, AI product mix, tender/secondary terms, banker/IPO calendar.",
       "disruptedLegacyTech": "见Layer：Mature data+AI platform / public handoff",
       "riskEvidenceBoundary": "",
       "ipoWindow": "12–24m",
@@ -924,21 +1005,32 @@
         "hasValuation": true,
         "investorCount": 8,
         "evidenceCount": 1,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "reported_metric"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "成熟数据与 AI 平台",
       "homepageDescriptionZh": "定位：成熟数据与 AI 平台；方向：Data + AI platform；地区：US",
       "latestValuationZh": "官方披露：Series L at $134B 估值; >$4.8B 收入 run-rate",
-      "revenueScaleZh": "> $4.8B 收入 run-rate; AI products >$1B run-rate; positive FCF (public/company disclosed metrics)",
-      "nextActionZh": "老股/二级份额 discount 15–30%、Series L/IPO估值桥、AI products run-rate、FCF、IPO 时间表、lock-up和信息权。",
+      "revenueScaleZh": "Official/company-public metrics already in tracker: >$4.8B revenue run-rate; AI products >$1B run-rate; positive FCF. v16 status: public revenue proof strong; still ask for current quarter growth, NRR, FCF margin, secondary clearing price and IPO timing.",
+      "nextActionZh": "Update with latest quarter run-rate, NRR, FCF margin, AI product mix, tender/secondary terms, banker/IPO calendar.",
       "priorityZh": "A0｜成熟必跟踪",
-      "notesClean": "Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.\nMature pre-IPO/IPO-ready benchmark.",
+      "notesClean": "Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.\nMature pre-IPO/IPO-ready benchmark.\nv16 commercial metric hardening: Official/company-public metrics already in tracker: >$4.8B revenue run-rate; AI products >$1B run-rate; positive FCF. v16 status: public revenue proof strong; still ask for current quarter growth, NRR, FCF margin, secondary clearing price and IPO timing. Diligence ask: Update with latest quarter run-rate, NRR, FCF margin, AI product mix, tender/secondary terms, banker/IPO calendar. Source boundary: https://www.databricks.com/company/newsroom/press-releases",
       "recommendationClean": "Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "A0｜成熟必跟踪。公司定位为成熟数据与 AI 平台；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium"
+      "riskSummaryZh": "风险等级：medium",
+      "publicCommercialStatus": "reported_metric",
+      "commercialMetricConfidence": "high",
+      "commercialMetricSource": "https://www.databricks.com/company/newsroom/press-releases",
+      "commercialDiligenceAsk": "Update with latest quarter run-rate, NRR, FCF margin, AI product mix, tender/secondary terms, banker/IPO calendar.",
+      "evidenceBoundary": " | v16 commercial metric status: reported_metric (high); source=https://www.databricks.com/company/newsroom/press-releases; ask=Update with latest quarter run-rate, NRR, FCF margin, AI product mix, tender/secondary terms, banker/IPO calendar.",
+      "keyMetrics": [
+        "v16 public commercial status: reported_metric / high — Official/company-public metrics already in tracker: >$4.8B revenue run-rate; AI products >$1B run-rate; positive FCF. v16 status: public revenue proof strong; still ask for current quarter growth, NRR, FCF margin, secondary clearing price and IPO timing."
+      ]
     },
     {
       "id": "mistral-ai",
@@ -1436,7 +1528,7 @@
       "ipoSignals": [
         "No clear IPO; strategic primary/growth round more likely"
       ],
-      "nextAction": "Use Asia angle: compliant APAC inference customers; verify ARR, gross margin, KYC/RASA process.",
+      "nextAction": "Ask for ARR, gross margin after GPU costs, utilization, top customers, model/API revenue mix, NRR and infrastructure capex commitments.",
       "tags": [
         "inference",
         "Asia GTM",
@@ -1448,18 +1540,25 @@
           "type": "media",
           "note": "Prior research: Together AI valuation/funding media signals; IPO not clear.",
           "url": "https://www.together.ai/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: ARR/revenue not publicly disclosed; financing/valuation signal exists but underwrite only after paid inference/training revenue and utilization data. Diligence ask: Ask for ARR, gross margin after GPU costs, utilization, top customers, model/API revenue mix, NRR and infrastructure capex commitments.",
+          "url": "https://www.together.ai/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "Priority: 3 - Build Relationship\nRecommendation: AI infra/model cloud; verify revenue before treating as pre-IPO.\n\nOriginal notes: v2 expanded seed from prior two-round research; verify before IC use.",
+      "notes": "AI infra/model cloud; verify revenue before treating as pre-IPO.\nv16 commercial metric hardening: ARR/revenue not publicly disclosed; financing/valuation signal exists but underwrite only after paid inference/training revenue and utilization data. Diligence ask: Ask for ARR, gross margin after GPU costs, utilization, top customers, model/API revenue mix, NRR and infrastructure capex commitments. Source boundary: https://www.together.ai/",
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "recommendation": "AI infra/model cloud; verify revenue before treating as pre-IPO.",
       "updatedAt": "2026-06-19",
       "layer": "AI Infra",
       "whyInTrack": "Together AI — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "ARR/revenue not publicly disclosed; financing/valuation signal exists but underwrite only after paid inference/training revenue and utilization data.",
       "relationshipRoute": "投资人线：Nvidia/NEA/Kleiner style AI investors - verify",
       "investorGroup": "Strategic Semi/AI; Classic VC",
-      "keyDiligence": "收入质量、客户、毛利、估值、IPO timing、relationship可执行性。",
+      "keyDiligence": "Ask for ARR, gross margin after GPU costs, utilization, top customers, model/API revenue mix, NRR and infrastructure capex commitments.",
       "disruptedLegacyTech": "见Layer：AI Infra",
       "riskEvidenceBoundary": "",
       "ipoWindow": "unclear",
@@ -1472,21 +1571,32 @@
         "hasValuation": true,
         "investorCount": 5,
         "evidenceCount": 1,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 基础设施",
       "homepageDescriptionZh": "定位：AI 基础设施；方向：Inference cloud / fine-tuning / open model platform；地区：US",
       "latestValuationZh": "媒体报道：$3.3B to possible $7.5B fundraising signals; 待核验",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "revenueScaleZh": "ARR/revenue not publicly disclosed; financing/valuation signal exists but underwrite only after paid inference/training revenue and utilization data.",
+      "nextActionZh": "Ask for ARR, gross margin after GPU costs, utilization, top customers, model/API revenue mix, NRR and infrastructure capex commitments.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "AI infra/model cloud; verify revenue before treating as pre-IPO.",
+      "notesClean": "AI infra/model cloud; verify revenue before treating as pre-IPO.\nv16 commercial metric hardening: ARR/revenue not publicly disclosed; financing/valuation signal exists but underwrite only after paid inference/training revenue and utilization data. Diligence ask: Ask for ARR, gross margin after GPU costs, utilization, top customers, model/API revenue mix, NRR and infrastructure capex commitments. Source boundary: https://www.together.ai/",
       "recommendationClean": "AI infra/model cloud; verify revenue before treating as pre-IPO.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：high"
+      "riskSummaryZh": "风险等级：high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://www.together.ai/",
+      "commercialDiligenceAsk": "Ask for ARR, gross margin after GPU costs, utilization, top customers, model/API revenue mix, NRR and infrastructure capex commitments.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://www.together.ai/; ask=Ask for ARR, gross margin after GPU costs, utilization, top customers, model/API revenue mix, NRR and infrastructure capex commitments.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — ARR/revenue not publicly disclosed; financing/valuation signal exists but underwrite only after paid inference/training revenue and utilization data."
+      ]
     },
     {
       "id": "glean",
@@ -1825,7 +1935,7 @@
       "ipoSignals": [
         "IPO-ready scale; no filing confirmed"
       ],
-      "nextAction": "Verify CARR, FCF, customer concentration, CoreWeave/Crusoe exposure, secondary availability.",
+      "nextAction": "Ask VAST/underwriters/investors for CARR/ARR, FCF status, AI/HPC customer mix, Nvidia/SuperPOD attach, net retention, and $30B valuation basis.",
       "tags": [
         "storage",
         "AI data"
@@ -1836,16 +1946,23 @@
           "type": "media",
           "note": "Reuters: VAST Data valued at $30B latest round.",
           "url": "https://www.reuters.com/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue/CARR not publicly disclosed in v16 source pass; tracker has Reuters/public valuation signal but not current ARR. v16 status: commercial proof likely strong but not underwritable without CARR/ARR/FCF disclosure. Diligence ask: Ask VAST/underwriters/investors for CARR/ARR, FCF status, AI/HPC customer mix, Nvidia/SuperPOD attach, net retention, and $30B valuation basis.",
+          "url": "/Users/mac/Downloads/preipo_v16_sources/vast_30b.md",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use.\nv16 commercial metric hardening: Revenue/CARR not publicly disclosed in v16 source pass; tracker has Reuters/public valuation signal but not current ARR. v16 status: commercial proof likely strong but not underwritable without CARR/ARR/FCF disclosure. Diligence ask: Ask VAST/underwriters/investors for CARR/ARR, FCF status, AI/HPC customer mix, Nvidia/SuperPOD attach, net retention, and $30B valuation basis. Source boundary: /Users/mac/Downloads/preipo_v16_sources/vast_30b.md",
       "priorityTier": "A1｜Core Architecture Shift / 硬瓶颈核心",
       "layer": "AI data / memory / storage plane",
       "whyInTrack": "VAST Data — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
-      "revenueScale": "CARR / revenue scale undisclosed in tracker; verify latest company reported CARR/FCF",
+      "revenueScale": "Revenue/CARR not publicly disclosed in v16 source pass; tracker has Reuters/public valuation signal but not current ARR. v16 status: commercial proof likely strong but not underwritable without CARR/ARR/FCF disclosure.",
       "relationshipRoute": "投资人线：Drive Capital, Access Industries, Fidelity, NEA, NVIDIA",
       "investorGroup": "Crossover/Growth; Strategic Semi/AI; Classic VC",
-      "keyDiligence": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、secondary/IPO timing。",
+      "keyDiligence": "Ask VAST/underwriters/investors for CARR/ARR, FCF status, AI/HPC customer mix, Nvidia/SuperPOD attach, net retention, and $30B valuation basis.",
       "disruptedLegacyTech": "见Layer：AI data / memory / storage plane",
       "riskEvidenceBoundary": "",
       "ipoWindow": "24–36m",
@@ -1859,21 +1976,32 @@
         "hasValuation": true,
         "investorCount": 5,
         "evidenceCount": 1,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 数据、内存与存储层",
       "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data storage / data platform；地区：US",
       "latestValuationZh": "Reuters 报道：$30B 估值 in latest 融资轮",
-      "revenueScaleZh": "CARR / revenue scale 未披露 in tracker; 待核验 latest company reported CARR/FCF",
-      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "revenueScaleZh": "Revenue/CARR not publicly disclosed in v16 source pass; tracker has Reuters/public valuation signal but not current ARR. v16 status: commercial proof likely strong but not underwritable without CARR/ARR/FCF disclosure.",
+      "nextActionZh": "Ask VAST/underwriters/investors for CARR/ARR, FCF status, AI/HPC customer mix, Nvidia/SuperPOD attach, net retention, and $30B valuation basis.",
       "priorityZh": "A1｜架构迁移核心",
-      "notesClean": "",
+      "notesClean": "v2 expanded seed from prior two-round research; verify before IC use.\nv16 commercial metric hardening: Revenue/CARR not publicly disclosed in v16 source pass; tracker has Reuters/public valuation signal but not current ARR. v16 status: commercial proof likely strong but not underwritable without CARR/ARR/FCF disclosure. Diligence ask: Ask VAST/underwriters/investors for CARR/ARR, FCF status, AI/HPC customer mix, Nvidia/SuperPOD attach, net retention, and $30B valuation basis. Source boundary: /Users/mac/Downloads/preipo_v16_sources/vast_30b.md",
       "recommendationClean": "VAST Data — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "A1｜架构迁移核心。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium_high"
+      "riskSummaryZh": "风险等级：medium_high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "/Users/mac/Downloads/preipo_v16_sources/vast_30b.md",
+      "commercialDiligenceAsk": "Ask VAST/underwriters/investors for CARR/ARR, FCF status, AI/HPC customer mix, Nvidia/SuperPOD attach, net retention, and $30B valuation basis.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=/Users/mac/Downloads/preipo_v16_sources/vast_30b.md; ask=Ask VAST/underwriters/investors for CARR/ARR, FCF status, AI/HPC customer mix, Nvidia/SuperPOD attach, net retention, and $30B valuation basis.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue/CARR not publicly disclosed in v16 source pass; tracker has Reuters/public valuation signal but not current ARR. v16 status: commercial proof likely strong but not underwritable without CARR/ARR/FCF disclosure."
+      ]
     },
     {
       "id": "crusoe",
@@ -1901,7 +2029,7 @@
       "ipoSignals": [
         "large capex/growth funding, possible pre-IPO but no filing"
       ],
-      "nextAction": "Check contracted capacity, energized MW, customer terms, project finance and IPO timeline.",
+      "nextAction": "Ask for contracted revenue/backlog, MW energized vs planned, tenant names/tenor, project-finance debt, power cost, GPU utilization, depreciation and gross margin.",
       "tags": [
         "power",
         "data center",
@@ -1922,9 +2050,16 @@
           "type": "company/media",
           "note": "Series E $1.375B at about/above $10B valuation; Tiger Global participant per research pass.",
           "url": "https://www.crusoe.ai/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Contracted revenue/MW energized not publicly disclosed in v16 pass; public customer/resource pages exist but do not provide ARR. Underwrite only after customer contracts, MW, debt/capex and power economics are verified. Diligence ask: Ask for contracted revenue/backlog, MW energized vs planned, tenant names/tenor, project-finance debt, power cost, GPU utilization, depreciation and gross margin.",
+          "url": "https://www.crusoe.ai/resources/customers",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "Priority: 1 - Act Now\nRecommendation: Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.\nMandate fit: Strong: Tiger-backed AI data center / cloud infra at $10B valuation; likely major liquidity path if execution continues.\nWhy now: AI factory / power-constrained compute is a core 2026 theme; Crusoe has raised large late-stage capital.\nKey metrics: 2025 Series E: $1.375B; Valuation: about/above $10B; AI data-center / cloud infrastructure focus\nValuation view: High; underwriting must be project finance, contracted revenue, cost of power, customer concentration and capex recovery.\nAccess route: Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.\nEvidence boundary: Need official round page/filings, revenue/backlog, customers, project financing terms.\n\nOriginal notes: Already in dashboard; upgraded to Act Now after crossover screen.",
+      "notes": "Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.\nStrong: Tiger-backed AI data center / cloud infra at $10B valuation; likely major liquidity path if execution continues.\nAI factory / power-constrained compute is a core 2026 theme; Crusoe has raised large late-stage capital.\nKey metrics: 2025 Series E: $1.375B; Valuation: about/above $10B; AI data-center / cloud infrastructure focus\nValuation view: High; underwriting must be project finance, contracted revenue, cost of power, customer concentration and capex recovery.\nAccess route: Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.\nEvidence boundary: Need official round page/filings, revenue/backlog, customers, project financing terms.\nAlready in dashboard; upgraded to Act Now after crossover screen.\nv16 commercial metric hardening: Contracted revenue/MW energized not publicly disclosed in v16 pass; public customer/resource pages exist but do not provide ARR. Underwrite only after customer contracts, MW, debt/capex and power economics are verified. Diligence ask: Ask for contracted revenue/backlog, MW energized vs planned, tenant names/tenor, project-finance debt, power cost, GPU utilization, depreciation and gross margin. Source boundary: https://www.crusoe.ai/resources/customers",
       "dealStage": "act_now",
       "dataRoomStatus": "need_intro",
       "priorityTier": "B1｜Commercial Pre-IPO / 近IPO但看条款和unit economics",
@@ -1934,19 +2069,20 @@
       "keyMetrics": [
         "2025 Series E: $1.375B",
         "Valuation: about/above $10B",
-        "AI data-center / cloud infrastructure focus"
+        "AI data-center / cloud infrastructure focus",
+        "v16 public commercial status: not_publicly_disclosed / medium — Contracted revenue/MW energized not publicly disclosed in v16 pass; public customer/resource pages exist but do not provide ARR. Underwrite only after customer contracts, MW, debt/capex and power economics are verified."
       ],
       "valuationView": "High; underwriting must be project finance, contracted revenue, cost of power, customer concentration and capex recovery.",
       "routeToAccess": "Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.",
       "todayDelta": "Priority upgraded due to Tiger crossover validation and AI infra fit.",
-      "evidenceBoundary": "Need official round page/filings, revenue/backlog, customers, project financing terms.",
+      "evidenceBoundary": "Need official round page/filings, revenue/backlog, customers, project financing terms. | v16 commercial metric status: not_publicly_disclosed (medium); source=https://www.crusoe.ai/resources/customers; ask=Ask for contracted revenue/backlog, MW energized vs planned, tenant names/tenor, project-finance debt, power cost, GPU utilization, depreciation and gross margin.",
       "updatedAt": "2026-06-19",
       "layer": "AI cloud / power / cooling operator",
       "whyInTrack": "Crusoe — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
-      "revenueScale": "Contracted capacity/revenue not disclosed in tracker; verify customer contracts and MW energized",
+      "revenueScale": "Contracted revenue/MW energized not publicly disclosed in v16 pass; public customer/resource pages exist but do not provide ARR. Underwrite only after customer contracts, MW, debt/capex and power economics are verified.",
       "relationshipRoute": "Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.",
       "investorGroup": "Crossover/Growth; SWF/CVC/Asia; Classic VC",
-      "keyDiligence": "utilization、客户集中、contracted revenue、debt/capex、GPU折旧、power-to-site。",
+      "keyDiligence": "Ask for contracted revenue/backlog, MW energized vs planned, tenant names/tenor, project-finance debt, power cost, GPU utilization, depreciation and gross margin.",
       "disruptedLegacyTech": "见Layer：AI cloud / power / cooling operator",
       "riskEvidenceBoundary": "Need official round page/filings, revenue/backlog, customers, project financing terms.",
       "ipoWindow": "24–36m",
@@ -1959,21 +2095,28 @@
         "hasValuation": true,
         "investorCount": 4,
         "evidenceCount": 2,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 云、供电与冷却基础设施",
       "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：AI cloud / data centers / power-linked compute；地区：US",
       "latestValuationZh": "~$10B+",
-      "revenueScaleZh": "Contracted capacity/revenue not disclosed in tracker; 待核验 customer contracts and MW energized",
-      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "revenueScaleZh": "Contracted revenue/MW energized not publicly disclosed in v16 pass; public customer/resource pages exist but do not provide ARR. Underwrite only after customer contracts, MW, debt/capex and power economics are verified.",
+      "nextActionZh": "Ask for contracted revenue/backlog, MW energized vs planned, tenant names/tenor, project-finance debt, power cost, GPU utilization, depreciation and gross margin.",
       "priorityZh": "B1｜商业化后期",
-      "notesClean": "Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.\nStrong: Tiger-backed AI data center / cloud infra at $10B valuation; likely major liquidity path if execution continues.\nAI factory / power-constrained compute is a core 2026 theme; Crusoe has raised large late-stage capital.\nKey metrics: 2025 Series E: $1.375B; Valuation: about/above $10B; AI data-center / cloud infrastructure focus\nValuation view: High; underwriting must be project finance, contracted revenue, cost of power, customer concentration and capex recovery.\nAccess route: Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.\nEvidence boundary: Need official round page/filings, revenue/backlog, customers, project financing terms.\nAlready in dashboard; upgraded to Act Now after crossover screen.",
+      "notesClean": "Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.\nStrong: Tiger-backed AI data center / cloud infra at $10B valuation; likely major liquidity path if execution continues.\nAI factory / power-constrained compute is a core 2026 theme; Crusoe has raised large late-stage capital.\nKey metrics: 2025 Series E: $1.375B; Valuation: about/above $10B; AI data-center / cloud infrastructure focus\nValuation view: High; underwriting must be project finance, contracted revenue, cost of power, customer concentration and capex recovery.\nAccess route: Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.\nEvidence boundary: Need official round page/filings, revenue/backlog, customers, project financing terms.\nAlready in dashboard; upgraded to Act Now after crossover screen.\nv16 commercial metric hardening: Contracted revenue/MW energized not publicly disclosed in v16 pass; public customer/resource pages exist but do not provide ARR. Underwrite only after customer contracts, MW, debt/capex and power economics are verified. Diligence ask: Ask for contracted revenue/backlog, MW energized vs planned, tenant names/tenor, project-finance debt, power cost, GPU utilization, depreciation and gross margin. Source boundary: https://www.crusoe.ai/resources/customers",
       "recommendationClean": "Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium_high"
+      "riskSummaryZh": "风险等级：medium_high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://www.crusoe.ai/resources/customers",
+      "commercialDiligenceAsk": "Ask for contracted revenue/backlog, MW energized vs planned, tenant names/tenor, project-finance debt, power cost, GPU utilization, depreciation and gross margin."
     },
     {
       "id": "cerebras",
@@ -2004,7 +2147,7 @@
       "ipoSignals": [
         "Public S-1 filed; timing reset after withdrawal"
       ],
-      "nextAction": "Read S-1: customer concentration, revenue, export/CFIUS risk; monitor refiling.",
+      "nextAction": "Ask for latest revenue, UAE/G42/customer concentration, WSE/CS system backlog, gross margin, IPO filing status and AI cloud recurring revenue.",
       "tags": [
         "S-1",
         "AI chip",
@@ -2024,9 +2167,16 @@
           "type": "company/media",
           "note": "Cerebras Series G and pre-IPO financing referenced in crossover screen; requires primary verification before IC memo.",
           "url": "https://www.cerebras.net/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue/customer concentration must be verified from S-1/latest financing materials; public tracker has valuation/financing but not durable revenue quality. Diligence ask: Ask for latest revenue, UAE/G42/customer concentration, WSE/CS system backlog, gross margin, IPO filing status and AI cloud recurring revenue.",
+          "url": "https://www.cerebras.ai/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "Priority: 1 - Act Now\nRecommendation: High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.\nMandate fit: Strong thematic and IPO-path fit; not as clean as software due to Nvidia competition and customer concentration.\nWhy now: Tiger-backed 2025 Series G and prior S-1 history indicate a likely eventual IPO path.\nKey metrics: 2025: reported $1.1B Series G; Valuation: $8.1B; Prior IPO/S-1 path\nValuation view: Potentially attractive if IPO discount exists; risk-adjust heavily for customers, export controls and Nvidia moat.\nAccess route: Tiger Global, IPO bankers, strategic semiconductor investors.\nEvidence boundary: Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.\n\nOriginal notes: Already in pipeline; moved to Act Now but with high risk.",
+      "notes": "High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.\nStrong thematic and IPO-path fit; not as clean as software due to Nvidia competition and customer concentration.\nTiger-backed 2025 Series G and prior S-1 history indicate a likely eventual IPO path.\nKey metrics: 2025: reported $1.1B Series G; Valuation: $8.1B; Prior IPO/S-1 path\nValuation view: Potentially attractive if IPO discount exists; risk-adjust heavily for customers, export controls and Nvidia moat.\nAccess route: Tiger Global, IPO bankers, strategic semiconductor investors.\nEvidence boundary: Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.\nAlready in pipeline; moved to Act Now but with high risk.\nv16 commercial metric hardening: Revenue/customer concentration must be verified from S-1/latest financing materials; public tracker has valuation/financing but not durable revenue quality. Diligence ask: Ask for latest revenue, UAE/G42/customer concentration, WSE/CS system backlog, gross margin, IPO filing status and AI cloud recurring revenue. Source boundary: https://www.cerebras.ai/",
       "dealStage": "act_now",
       "dataRoomStatus": "need_intro",
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
@@ -2036,19 +2186,20 @@
       "keyMetrics": [
         "2025: reported $1.1B Series G",
         "Valuation: $8.1B",
-        "Prior IPO/S-1 path"
+        "Prior IPO/S-1 path",
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue/customer concentration must be verified from S-1/latest financing materials; public tracker has valuation/financing but not durable revenue quality."
       ],
       "valuationView": "Potentially attractive if IPO discount exists; risk-adjust heavily for customers, export controls and Nvidia moat.",
       "routeToAccess": "Tiger Global, IPO bankers, strategic semiconductor investors.",
       "todayDelta": "Upgraded due to Tiger pre-IPO AI chip evidence.",
-      "evidenceBoundary": "Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.",
+      "evidenceBoundary": "Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls. | v16 commercial metric status: not_publicly_disclosed (medium); source=https://www.cerebras.ai/; ask=Ask for latest revenue, UAE/G42/customer concentration, WSE/CS system backlog, gross margin, IPO filing status and AI cloud recurring revenue.",
       "updatedAt": "2026-06-19",
       "layer": "AI silicon / accelerator",
       "whyInTrack": "Cerebras — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "Revenue/customer concentration to verify from S-1/latest financing materials",
+      "revenueScale": "Revenue/customer concentration must be verified from S-1/latest financing materials; public tracker has valuation/financing but not durable revenue quality.",
       "relationshipRoute": "Tiger Global, IPO bankers, strategic semiconductor investors.",
       "investorGroup": "Crossover/Growth",
-      "keyDiligence": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "keyDiligence": "Ask for latest revenue, UAE/G42/customer concentration, WSE/CS system backlog, gross margin, IPO filing status and AI cloud recurring revenue.",
       "disruptedLegacyTech": "见Layer：AI silicon / accelerator",
       "riskEvidenceBoundary": "Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.",
       "ipoWindow": "unclear",
@@ -2061,21 +2212,28 @@
         "hasValuation": true,
         "investorCount": 7,
         "evidenceCount": 2,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 芯片 / 加速器",
       "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：Wafer-scale AI systems / inference and training；地区：US",
       "latestValuationZh": "2025 reported $8.1B",
-      "revenueScaleZh": "Revenue/customer concentration to 待核验 from S-1/latest financing materials",
-      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "revenueScaleZh": "Revenue/customer concentration must be verified from S-1/latest financing materials; public tracker has valuation/financing but not durable revenue quality.",
+      "nextActionZh": "Ask for latest revenue, UAE/G42/customer concentration, WSE/CS system backlog, gross margin, IPO filing status and AI cloud recurring revenue.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.\nStrong thematic and IPO-path fit; not as clean as software due to Nvidia competition and customer concentration.\nTiger-backed 2025 Series G and prior S-1 history indicate a likely eventual IPO path.\nKey metrics: 2025: reported $1.1B Series G; Valuation: $8.1B; Prior IPO/S-1 path\nValuation view: Potentially attractive if IPO discount exists; risk-adjust heavily for customers, export controls and Nvidia moat.\nAccess route: Tiger Global, IPO bankers, strategic semiconductor investors.\nEvidence boundary: Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.\nAlready in pipeline; moved to Act Now but with high risk.",
+      "notesClean": "High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.\nStrong thematic and IPO-path fit; not as clean as software due to Nvidia competition and customer concentration.\nTiger-backed 2025 Series G and prior S-1 history indicate a likely eventual IPO path.\nKey metrics: 2025: reported $1.1B Series G; Valuation: $8.1B; Prior IPO/S-1 path\nValuation view: Potentially attractive if IPO discount exists; risk-adjust heavily for customers, export controls and Nvidia moat.\nAccess route: Tiger Global, IPO bankers, strategic semiconductor investors.\nEvidence boundary: Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.\nAlready in pipeline; moved to Act Now but with high risk.\nv16 commercial metric hardening: Revenue/customer concentration must be verified from S-1/latest financing materials; public tracker has valuation/financing but not durable revenue quality. Diligence ask: Ask for latest revenue, UAE/G42/customer concentration, WSE/CS system backlog, gross margin, IPO filing status and AI cloud recurring revenue. Source boundary: https://www.cerebras.ai/",
       "recommendationClean": "High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：high"
+      "riskSummaryZh": "风险等级：high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://www.cerebras.ai/",
+      "commercialDiligenceAsk": "Ask for latest revenue, UAE/G42/customer concentration, WSE/CS system backlog, gross margin, IPO filing status and AI cloud recurring revenue."
     },
     {
       "id": "groq",
@@ -2107,7 +2265,7 @@
       "ipoSignals": [
         "Large financing; no filing"
       ],
-      "nextAction": "Verify revenue, utilization, enterprise customers, software ecosystem, IPO timing.",
+      "nextAction": "Ask for GroqCloud paid inference revenue, utilization, enterprise contracts, gross margin per token, customer concentration and data-center capacity ramp.",
       "tags": [
         "inference",
         "Samsung Catalyst"
@@ -2118,16 +2276,23 @@
           "type": "official",
           "note": "Groq official: raises $750M at $6.9B post-money valuation.",
           "url": "https://groq.com/newsroom/groq-raises-750-million-as-inference-demand-surges"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue/utilization not publicly disclosed; public GroqCloud/pricing/customer-story surfaces exist and tracker has official $6.9B post-money financing, but no ARR metric. Diligence ask: Ask for GroqCloud paid inference revenue, utilization, enterprise contracts, gross margin per token, customer concentration and data-center capacity ramp.",
+          "url": "https://groq.com/groqcloud",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
+      "notes": "v2 expanded seed from prior two-round research; verify before IC use.\nv16 commercial metric hardening: Revenue/utilization not publicly disclosed; public GroqCloud/pricing/customer-story surfaces exist and tracker has official $6.9B post-money financing, but no ARR metric. Diligence ask: Ask for GroqCloud paid inference revenue, utilization, enterprise contracts, gross margin per token, customer concentration and data-center capacity ramp. Source boundary: https://groq.com/groqcloud",
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI silicon / accelerator",
       "whyInTrack": "Groq — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "Revenue/utilization not disclosed; verify GroqCloud and enterprise inference revenue",
+      "revenueScale": "Revenue/utilization not publicly disclosed; public GroqCloud/pricing/customer-story surfaces exist and tracker has official $6.9B post-money financing, but no ARR metric.",
       "relationshipRoute": "投资人线：BlackRock, Neuberger Berman, Cisco, Samsung Catalyst",
       "investorGroup": "Strategic Semi/AI; SWF/CVC/Asia",
-      "keyDiligence": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "keyDiligence": "Ask for GroqCloud paid inference revenue, utilization, enterprise contracts, gross margin per token, customer concentration and data-center capacity ramp.",
       "disruptedLegacyTech": "见Layer：AI silicon / accelerator",
       "riskEvidenceBoundary": "",
       "ipoWindow": "unclear",
@@ -2141,21 +2306,32 @@
         "hasValuation": true,
         "investorCount": 8,
         "evidenceCount": 1,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 芯片 / 加速器",
       "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：Inference accelerator / GroqCloud；地区：US",
       "latestValuationZh": "官方披露：$6.9B post-money after $750M financing",
-      "revenueScaleZh": "Revenue/utilization not disclosed; 待核验 GroqCloud and enterprise inference revenue",
-      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "revenueScaleZh": "Revenue/utilization not publicly disclosed; public GroqCloud/pricing/customer-story surfaces exist and tracker has official $6.9B post-money financing, but no ARR metric.",
+      "nextActionZh": "Ask for GroqCloud paid inference revenue, utilization, enterprise contracts, gross margin per token, customer concentration and data-center capacity ramp.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v2 expanded seed from prior two-round research; verify before IC use.\nv16 commercial metric hardening: Revenue/utilization not publicly disclosed; public GroqCloud/pricing/customer-story surfaces exist and tracker has official $6.9B post-money financing, but no ARR metric. Diligence ask: Ask for GroqCloud paid inference revenue, utilization, enterprise contracts, gross margin per token, customer concentration and data-center capacity ramp. Source boundary: https://groq.com/groqcloud",
       "recommendationClean": "Groq — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium_high"
+      "riskSummaryZh": "风险等级：medium_high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://groq.com/groqcloud",
+      "commercialDiligenceAsk": "Ask for GroqCloud paid inference revenue, utilization, enterprise contracts, gross margin per token, customer concentration and data-center capacity ramp.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://groq.com/groqcloud; ask=Ask for GroqCloud paid inference revenue, utilization, enterprise contracts, gross margin per token, customer concentration and data-center capacity ramp.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue/utilization not publicly disclosed; public GroqCloud/pricing/customer-story surfaces exist and tracker has official $6.9B post-money financing, but no ARR metric."
+      ]
     },
     {
       "id": "hugging-face",
@@ -3019,14 +3195,22 @@
       "ipoSignals": [
         "Cooling infra strategic; IPO longer dated"
       ],
-      "nextAction": "Verify deployments, OEM certifications, Nvidia/AMD compatibility.",
+      "nextAction": "Ask for installed MW, paid deployments, repeat customers, gross margin, service revenue, warranty/leakage history and data-center partner pipeline.",
       "tags": [
         "cooling",
         "data center",
         "Samsung Ventures"
       ],
-      "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue/backlog not publicly disclosed; cooling technology relevance high but unit economics/customer deployments need verification. Diligence ask: Ask for installed MW, paid deployments, repeat customers, gross margin, service revenue, warranty/leakage history and data-center partner pipeline.",
+          "url": "public news / company coverage",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.\nv16 commercial metric hardening: Revenue/backlog not publicly disclosed; cooling technology relevance high but unit economics/customer deployments need verification. Diligence ask: Ask for installed MW, paid deployments, repeat customers, gross margin, service revenue, warranty/leakage history and data-center partner pipeline. Source boundary: public news / company coverage",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -3039,10 +3223,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI cloud / power / cooling operator",
       "whyInTrack": "ZutaCore — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/backlog not publicly disclosed; cooling technology relevance high but unit economics/customer deployments need verification.",
       "relationshipRoute": "投资人线：Mitsubishi Electric, Carrier Ventures, Samsung Ventures",
       "investorGroup": "Strategic Semi/AI",
-      "keyDiligence": "utilization、客户集中、contracted revenue、debt/capex、GPU折旧、power-to-site。",
+      "keyDiligence": "Ask for installed MW, paid deployments, repeat customers, gross margin, service revenue, warranty/leakage history and data-center partner pipeline.",
       "disruptedLegacyTech": "见Layer：AI cloud / power / cooling operator",
       "riskEvidenceBoundary": "",
       "ipoWindow": "unclear",
@@ -3056,21 +3240,32 @@
         "hasValuation": true,
         "investorCount": 1,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 云、供电与冷却基础设施",
       "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：Two-phase direct-to-chip liquid cooling；地区：Israel",
       "latestValuationZh": "媒体报道：>$100M Series C, ~$600M 估值",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "revenueScaleZh": "Revenue/backlog not publicly disclosed; cooling technology relevance high but unit economics/customer deployments need verification.",
+      "nextActionZh": "Ask for installed MW, paid deployments, repeat customers, gross margin, service revenue, warranty/leakage history and data-center partner pipeline.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.\nv16 commercial metric hardening: Revenue/backlog not publicly disclosed; cooling technology relevance high but unit economics/customer deployments need verification. Diligence ask: Ask for installed MW, paid deployments, repeat customers, gross margin, service revenue, warranty/leakage history and data-center partner pipeline. Source boundary: public news / company coverage",
       "recommendationClean": "ZutaCore — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium"
+      "riskSummaryZh": "风险等级：medium",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "public news / company coverage",
+      "commercialDiligenceAsk": "Ask for installed MW, paid deployments, repeat customers, gross margin, service revenue, warranty/leakage history and data-center partner pipeline.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=public news / company coverage; ask=Ask for installed MW, paid deployments, repeat customers, gross margin, service revenue, warranty/leakage history and data-center partner pipeline.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue/backlog not publicly disclosed; cooling technology relevance high but unit economics/customer deployments need verification."
+      ]
     },
     {
       "id": "scintil",
@@ -3174,13 +3369,21 @@
       "ipoSignals": [
         "Strategic AI optical I/O; IPO not near"
       ],
-      "nextAction": "Verify HVM readiness, customer roadmaps, CPO/optical I/O adoption.",
+      "nextAction": "Ask for customer design wins, co-packaged optics production timeline, committed backlog, foundry/packaging partners, margin model and strategic investor access.",
       "tags": [
         "optical I/O",
         "CPO"
       ],
-      "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue not publicly disclosed in v16 pass; public/captcha-limited source boundary confirms Series D query path but no revenue. Treat as A1 hard-bottleneck with design-win diligence gap. Diligence ask: Ask for customer design wins, co-packaged optics production timeline, committed backlog, foundry/packaging partners, margin model and strategic investor access.",
+          "url": "https://ayarlabs.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.\nv16 commercial metric hardening: Revenue not publicly disclosed in v16 pass; public/captcha-limited source boundary confirms Series D query path but no revenue. Treat as A1 hard-bottleneck with design-win diligence gap. Diligence ask: Ask for customer design wins, co-packaged optics production timeline, committed backlog, foundry/packaging partners, margin model and strategic investor access. Source boundary: https://ayarlabs.com/",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -3193,10 +3396,10 @@
       "priorityTier": "A1｜Core Architecture Shift / 硬瓶颈核心",
       "layer": "Photonic / optical I/O / CPO",
       "whyInTrack": "Ayar Labs — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue not publicly disclosed in v16 pass; public/captcha-limited source boundary confirms Series D query path but no revenue. Treat as A1 hard-bottleneck with design-win diligence gap.",
       "relationshipRoute": "投资人线：AMD Ventures, Intel Capital, NVIDIA, Advent",
       "investorGroup": "Strategic Semi/AI",
-      "keyDiligence": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "keyDiligence": "Ask for customer design wins, co-packaged optics production timeline, committed backlog, foundry/packaging partners, margin model and strategic investor access.",
       "disruptedLegacyTech": "见Layer：Photonic / optical I/O / CPO",
       "riskEvidenceBoundary": "",
       "ipoWindow": "24–36m",
@@ -3210,21 +3413,32 @@
         "hasValuation": true,
         "investorCount": 3,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "光互连 / 硅光 / CPO",
       "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Optical I/O / in-package optical interconnect；地区：US",
       "latestValuationZh": "Official/media: 估值 above $1B; later media higher",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "revenueScaleZh": "Revenue not publicly disclosed in v16 pass; public/captcha-limited source boundary confirms Series D query path but no revenue. Treat as A1 hard-bottleneck with design-win diligence gap.",
+      "nextActionZh": "Ask for customer design wins, co-packaged optics production timeline, committed backlog, foundry/packaging partners, margin model and strategic investor access.",
       "priorityZh": "A1｜架构迁移核心",
-      "notesClean": "",
+      "notesClean": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.\nv16 commercial metric hardening: Revenue not publicly disclosed in v16 pass; public/captcha-limited source boundary confirms Series D query path but no revenue. Treat as A1 hard-bottleneck with design-win diligence gap. Diligence ask: Ask for customer design wins, co-packaged optics production timeline, committed backlog, foundry/packaging partners, margin model and strategic investor access. Source boundary: https://ayarlabs.com/",
       "recommendationClean": "Ayar Labs — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "A1｜架构迁移核心。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：high"
+      "riskSummaryZh": "风险等级：high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://ayarlabs.com/",
+      "commercialDiligenceAsk": "Ask for customer design wins, co-packaged optics production timeline, committed backlog, foundry/packaging partners, margin model and strategic investor access.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://ayarlabs.com/; ask=Ask for customer design wins, co-packaged optics production timeline, committed backlog, foundry/packaging partners, margin model and strategic investor access.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue not publicly disclosed in v16 pass; public/captcha-limited source boundary confirms Series D query path but no revenue. Treat as A1 hard-bottleneck with design-win diligence gap."
+      ]
     },
     {
       "id": "lightmatter",
@@ -3254,13 +3468,21 @@
       "ipoSignals": [
         "High strategic value; IPO timing unclear"
       ],
-      "nextAction": "Verify revenue/design wins, Passage adoption, system integration.",
+      "nextAction": "Ask for Passage design wins, production timing, committed revenue/backlog, customer names under NDA, margin model, optical I/O attach rate and IPO path.",
       "tags": [
         "photonics",
         "interconnect"
       ],
-      "evidence": [],
-      "notes": "Priority: 2 - Active Diligence\nRecommendation: Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.\n\nOriginal notes: v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / high: Revenue/backlog not publicly disclosed; official press release confirms $400M Series D and $4.4B valuation, but not commercial revenue. v16 status: architecture-critical, revenue proof still data-room item. Diligence ask: Ask for Passage design wins, production timing, committed revenue/backlog, customer names under NDA, margin model, optical I/O attach rate and IPO path.",
+          "url": "https://lightmatter.co/press-releases/lightmatter-raises-400m-series-d",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
+      "notes": "Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.\nv16 commercial metric hardening: Revenue/backlog not publicly disclosed; official press release confirms $400M Series D and $4.4B valuation, but not commercial revenue. v16 status: architecture-critical, revenue proof still data-room item. Diligence ask: Ask for Passage design wins, production timing, committed revenue/backlog, customer names under NDA, margin model, optical I/O attach rate and IPO path. Source boundary: https://lightmatter.co/press-releases/lightmatter-raises-400m-series-d",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -3275,10 +3497,10 @@
       "updatedAt": "2026-06-19",
       "layer": "Photonic / optical I/O / CPO",
       "whyInTrack": "Lightmatter — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/backlog not publicly disclosed; official press release confirms $400M Series D and $4.4B valuation, but not commercial revenue. v16 status: architecture-critical, revenue proof still data-room item.",
       "relationshipRoute": "投资人线：GV/Alphabet style investors - verify",
       "investorGroup": "Classic VC",
-      "keyDiligence": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "keyDiligence": "Ask for Passage design wins, production timing, committed revenue/backlog, customer names under NDA, margin model, optical I/O attach rate and IPO path.",
       "disruptedLegacyTech": "见Layer：Photonic / optical I/O / CPO",
       "riskEvidenceBoundary": "",
       "ipoWindow": "24–36m",
@@ -3291,21 +3513,32 @@
         "hasValuation": true,
         "investorCount": 6,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "光互连 / 硅光 / CPO",
       "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic interconnect / compute fabric；地区：US",
       "latestValuationZh": "媒体报道：~$4.4B 估值",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "revenueScaleZh": "Revenue/backlog not publicly disclosed; official press release confirms $400M Series D and $4.4B valuation, but not commercial revenue. v16 status: architecture-critical, revenue proof still data-room item.",
+      "nextActionZh": "Ask for Passage design wins, production timing, committed revenue/backlog, customer names under NDA, margin model, optical I/O attach rate and IPO path.",
       "priorityZh": "A1｜架构迁移核心",
-      "notesClean": "Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.",
+      "notesClean": "Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.\nv16 commercial metric hardening: Revenue/backlog not publicly disclosed; official press release confirms $400M Series D and $4.4B valuation, but not commercial revenue. v16 status: architecture-critical, revenue proof still data-room item. Diligence ask: Ask for Passage design wins, production timing, committed revenue/backlog, customer names under NDA, margin model, optical I/O attach rate and IPO path. Source boundary: https://lightmatter.co/press-releases/lightmatter-raises-400m-series-d",
       "recommendationClean": "Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "A1｜架构迁移核心。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：high"
+      "riskSummaryZh": "风险等级：high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "high",
+      "commercialMetricSource": "https://lightmatter.co/press-releases/lightmatter-raises-400m-series-d",
+      "commercialDiligenceAsk": "Ask for Passage design wins, production timing, committed revenue/backlog, customer names under NDA, margin model, optical I/O attach rate and IPO path.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (high); source=https://lightmatter.co/press-releases/lightmatter-raises-400m-series-d; ask=Ask for Passage design wins, production timing, committed revenue/backlog, customer names under NDA, margin model, optical I/O attach rate and IPO path.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / high — Revenue/backlog not publicly disclosed; official press release confirms $400M Series D and $4.4B valuation, but not commercial revenue. v16 status: architecture-critical, revenue proof still data-room item."
+      ]
     },
     {
       "id": "celestial-ai",
@@ -3333,13 +3566,21 @@
       "ipoSignals": [
         "Longer dated IPO/M&A"
       ],
-      "nextAction": "Verify hyperscaler design wins and memory bottleneck economics.",
+      "nextAction": "Ask for Photonic Fabric design wins, committed revenue, customer qualification status, production timeline, gross margin and valuation basis.",
       "tags": [
         "photonic fabric",
         "memory"
       ],
-      "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue not publicly disclosed in v16 pass; public source path was noisy/Marvell-routed and did not provide company revenue. Treat as A1 photonic fabric candidate requiring customer/backlog proof. Diligence ask: Ask for Photonic Fabric design wins, committed revenue, customer qualification status, production timeline, gross margin and valuation basis.",
+          "url": "https://www.celestial.ai/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.\nv16 commercial metric hardening: Revenue not publicly disclosed in v16 pass; public source path was noisy/Marvell-routed and did not provide company revenue. Treat as A1 photonic fabric candidate requiring customer/backlog proof. Diligence ask: Ask for Photonic Fabric design wins, committed revenue, customer qualification status, production timeline, gross margin and valuation basis. Source boundary: https://www.celestial.ai/",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -3352,10 +3593,10 @@
       "priorityTier": "A1｜Core Architecture Shift / 硬瓶颈核心",
       "layer": "Photonic / optical I/O / CPO",
       "whyInTrack": "Celestial AI — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue not publicly disclosed in v16 pass; public source path was noisy/Marvell-routed and did not provide company revenue. Treat as A1 photonic fabric candidate requiring customer/backlog proof.",
       "relationshipRoute": "投资人线：AMD Ventures/Temasek style investors - verify",
       "investorGroup": "Strategic Semi/AI; SWF/CVC/Asia",
-      "keyDiligence": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "keyDiligence": "Ask for Photonic Fabric design wins, committed revenue, customer qualification status, production timeline, gross margin and valuation basis.",
       "disruptedLegacyTech": "见Layer：Photonic / optical I/O / CPO",
       "riskEvidenceBoundary": "",
       "ipoWindow": "24–36m",
@@ -3369,21 +3610,32 @@
         "hasValuation": true,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "光互连 / 硅光 / CPO",
       "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic Fabric / memory-compute interconnect；地区：US",
       "latestValuationZh": "Private 估值/funding media; 待核验",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "revenueScaleZh": "Revenue not publicly disclosed in v16 pass; public source path was noisy/Marvell-routed and did not provide company revenue. Treat as A1 photonic fabric candidate requiring customer/backlog proof.",
+      "nextActionZh": "Ask for Photonic Fabric design wins, committed revenue, customer qualification status, production timeline, gross margin and valuation basis.",
       "priorityZh": "A1｜架构迁移核心",
-      "notesClean": "",
+      "notesClean": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.\nv16 commercial metric hardening: Revenue not publicly disclosed in v16 pass; public source path was noisy/Marvell-routed and did not provide company revenue. Treat as A1 photonic fabric candidate requiring customer/backlog proof. Diligence ask: Ask for Photonic Fabric design wins, committed revenue, customer qualification status, production timeline, gross margin and valuation basis. Source boundary: https://www.celestial.ai/",
       "recommendationClean": "Celestial AI — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "A1｜架构迁移核心。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：high"
+      "riskSummaryZh": "风险等级：high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://www.celestial.ai/",
+      "commercialDiligenceAsk": "Ask for Photonic Fabric design wins, committed revenue, customer qualification status, production timeline, gross margin and valuation basis.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://www.celestial.ai/; ask=Ask for Photonic Fabric design wins, committed revenue, customer qualification status, production timeline, gross margin and valuation basis.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue not publicly disclosed in v16 pass; public source path was noisy/Marvell-routed and did not provide company revenue. Treat as A1 photonic fabric candidate requiring customer/backlog proof."
+      ]
     },
     {
       "id": "d-matrix",
@@ -3412,14 +3664,22 @@
       "ipoSignals": [
         "Large deployments claimed; IPO longer dated"
       ],
-      "nextAction": "Verify deployments, revenue, Corsair/JetStream/Aviator stack.",
+      "nextAction": "Ask for Corsair shipment status, customer pilots vs production, software stack maturity, revenue/backlog, TCO vs GPU and Temasek/strategic access route.",
       "tags": [
         "inference",
         "AI chip",
         "Temasek"
       ],
-      "evidence": [],
-      "notes": "Priority: 2 - Active Diligence\nRecommendation: Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.\n\nOriginal notes: v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue/customer production not publicly disclosed in v16 pass; tracker has Series C $275M / $2B valuation, but commercial revenue remains diligence item. Diligence ask: Ask for Corsair shipment status, customer pilots vs production, software stack maturity, revenue/backlog, TCO vs GPU and Temasek/strategic access route.",
+          "url": "https://www.d-matrix.ai/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
+      "notes": "Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.\nv16 commercial metric hardening: Revenue/customer production not publicly disclosed in v16 pass; tracker has Series C $275M / $2B valuation, but commercial revenue remains diligence item. Diligence ask: Ask for Corsair shipment status, customer pilots vs production, software stack maturity, revenue/backlog, TCO vs GPU and Temasek/strategic access route. Source boundary: https://www.d-matrix.ai/",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -3435,10 +3695,10 @@
       "updatedAt": "2026-06-19",
       "layer": "AI silicon / accelerator",
       "whyInTrack": "d-Matrix — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/customer production not publicly disclosed in v16 pass; tracker has Series C $275M / $2B valuation, but commercial revenue remains diligence item.",
       "relationshipRoute": "投资人线：M12, Temasek style investors - verify, Temasek",
       "investorGroup": "SWF/CVC/Asia",
-      "keyDiligence": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "keyDiligence": "Ask for Corsair shipment status, customer pilots vs production, software stack maturity, revenue/backlog, TCO vs GPU and Temasek/strategic access route.",
       "disruptedLegacyTech": "见Layer：AI silicon / accelerator",
       "riskEvidenceBoundary": "",
       "ipoWindow": "unclear",
@@ -3451,21 +3711,32 @@
         "hasValuation": true,
         "investorCount": 5,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 芯片 / 加速器",
       "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：Data-center inference accelerator；地区：US",
       "latestValuationZh": "官方披露：Series C $275M, 估值 $2B",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "revenueScaleZh": "Revenue/customer production not publicly disclosed in v16 pass; tracker has Series C $275M / $2B valuation, but commercial revenue remains diligence item.",
+      "nextActionZh": "Ask for Corsair shipment status, customer pilots vs production, software stack maturity, revenue/backlog, TCO vs GPU and Temasek/strategic access route.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.",
+      "notesClean": "Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.\nv16 commercial metric hardening: Revenue/customer production not publicly disclosed in v16 pass; tracker has Series C $275M / $2B valuation, but commercial revenue remains diligence item. Diligence ask: Ask for Corsair shipment status, customer pilots vs production, software stack maturity, revenue/backlog, TCO vs GPU and Temasek/strategic access route. Source boundary: https://www.d-matrix.ai/",
       "recommendationClean": "Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium_high"
+      "riskSummaryZh": "风险等级：medium_high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://www.d-matrix.ai/",
+      "commercialDiligenceAsk": "Ask for Corsair shipment status, customer pilots vs production, software stack maturity, revenue/backlog, TCO vs GPU and Temasek/strategic access route.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://www.d-matrix.ai/; ask=Ask for Corsair shipment status, customer pilots vs production, software stack maturity, revenue/backlog, TCO vs GPU and Temasek/strategic access route.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue/customer production not publicly disclosed in v16 pass; tracker has Series C $275M / $2B valuation, but commercial revenue remains diligence item."
+      ]
     },
     {
       "id": "tenstorrent",
@@ -3493,13 +3764,21 @@
       "ipoSignals": [
         "Strategic chip watch; IPO not near"
       ],
-      "nextAction": "Verify revenue, customer tape-outs, software ecosystem, foundry.",
+      "nextAction": "Ask for customer contracts, chip shipments, IP/licensing revenue, automotive/edge design wins, gross margin, and next financing/IPO path.",
       "tags": [
         "RISC-V",
         "AI chip"
       ],
-      "evidence": [],
-      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.",
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue/backlog not publicly disclosed; financing/strategic investor signal exists, but production silicon revenue and licensing revenue are diligence items. Diligence ask: Ask for customer contracts, chip shipments, IP/licensing revenue, automotive/edge design wins, gross margin, and next financing/IPO path.",
+          "url": "https://tenstorrent.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
+      "notes": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.\nv16 commercial metric hardening: Revenue/backlog not publicly disclosed; financing/strategic investor signal exists, but production silicon revenue and licensing revenue are diligence items. Diligence ask: Ask for customer contracts, chip shipments, IP/licensing revenue, automotive/edge design wins, gross margin, and next financing/IPO path. Source boundary: https://tenstorrent.com/",
       "dealStage": "sourcing",
       "dataRoomStatus": "unknown",
       "targetExchange": "",
@@ -3512,10 +3791,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI silicon / accelerator",
       "whyInTrack": "Tenstorrent — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/backlog not publicly disclosed; financing/strategic investor signal exists, but production silicon revenue and licensing revenue are diligence items.",
       "relationshipRoute": "投资人线：Samsung/Hyundai/Fidelity style investors - verify",
       "investorGroup": "Crossover/Growth; Strategic Semi/AI",
-      "keyDiligence": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "keyDiligence": "Ask for customer contracts, chip shipments, IP/licensing revenue, automotive/edge design wins, gross margin, and next financing/IPO path.",
       "disruptedLegacyTech": "见Layer：AI silicon / accelerator",
       "riskEvidenceBoundary": "",
       "ipoWindow": "unclear",
@@ -3529,21 +3808,32 @@
         "hasValuation": true,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 芯片 / 加速器",
       "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：AI/RISC-V processor；地区：Canada",
       "latestValuationZh": "媒体报道：~$2.6B+ 估值 after ~$700M round",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "revenueScaleZh": "Revenue/backlog not publicly disclosed; financing/strategic investor signal exists, but production silicon revenue and licensing revenue are diligence items.",
+      "nextActionZh": "Ask for customer contracts, chip shipments, IP/licensing revenue, automotive/edge design wins, gross margin, and next financing/IPO path.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v3 expanded global AI private market CRM seed; verify with primary sources before IC use.\nv16 commercial metric hardening: Revenue/backlog not publicly disclosed; financing/strategic investor signal exists, but production silicon revenue and licensing revenue are diligence items. Diligence ask: Ask for customer contracts, chip shipments, IP/licensing revenue, automotive/edge design wins, gross margin, and next financing/IPO path. Source boundary: https://tenstorrent.com/",
       "recommendationClean": "Tenstorrent — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：high"
+      "riskSummaryZh": "风险等级：high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://tenstorrent.com/",
+      "commercialDiligenceAsk": "Ask for customer contracts, chip shipments, IP/licensing revenue, automotive/edge design wins, gross margin, and next financing/IPO path.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://tenstorrent.com/; ask=Ask for customer contracts, chip shipments, IP/licensing revenue, automotive/edge design wins, gross margin, and next financing/IPO path.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue/backlog not publicly disclosed; financing/strategic investor signal exists, but production silicon revenue and licensing revenue are diligence items."
+      ]
     },
     {
       "id": "weights-biases",
@@ -5103,7 +5393,8 @@
         "2026: $410M Series D",
         ">$1B secured business",
         "Cash-flow positive since 2025",
-        "Targeting Ethernet fabric for large-scale AI deployments"
+        "Targeting Ethernet fabric for large-scale AI deployments",
+        "v16 public commercial status: reported_backlog / medium — Company/media-reported commercial proof in tracker: >$1B secured business; cash-flow positive since 2025. v16 status: strong backlog/secured-business proof, but needs customer concentration and revenue recognition schedule."
       ],
       "valuationView": "Valuation undisclosed; likely more reasonable than hottest AI app names if revenue/backlog quality real.",
       "routeToAccess": "D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.",
@@ -5129,20 +5420,27 @@
           "type": "official",
           "note": "DriveNets secured $410M Series D to meet surging demand for Ethernet fabric in large-scale AI deployments; disclosed >$1B secured business and cash-flow positive since 2025.",
           "url": "https://drivenets.com/news-and-events/press-release/drivenets-secures-410m-series-d-to-meet-surging-demand-for-ethernet-fabric-in-large-scale-ai-deployments/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "reported_backlog / medium: Company/media-reported commercial proof in tracker: >$1B secured business; cash-flow positive since 2025. v16 status: strong backlog/secured-business proof, but needs customer concentration and revenue recognition schedule. Diligence ask: Ask for secured-business contract tenor, realized revenue by year, customer concentration, gross margin, cash-flow definition, and AI networking exposure.",
+          "url": "https://drivenets.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "Priority: 1 - Act Now\nRecommendation: High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.\nMandate fit: Strong: data-center networking bottleneck, >$1B secured business, cash-flow positive, crossover investors.\nWhy now: AI cluster networking is a major bottleneck; DriveNets just raised large Series D to meet AI deployment demand.\nKey metrics: 2026: $410M Series D; >$1B secured business; Cash-flow positive since 2025; Targeting Ethernet fabric for large-scale AI deployments\nValuation view: Valuation undisclosed; likely more reasonable than hottest AI app names if revenue/backlog quality real.\nAccess route: D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.\nEvidence boundary: Need customer names, gross margin, backlog convertibility, IPO banker status.\n\nOriginal notes: One of the cleanest infra names from D1/Viking screen.",
+      "notes": "High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.\nStrong: data-center networking bottleneck, >$1B secured business, cash-flow positive, crossover investors.\nAI cluster networking is a major bottleneck; DriveNets just raised large Series D to meet AI deployment demand.\nKey metrics: 2026: $410M Series D; >$1B secured business; Cash-flow positive since 2025; Targeting Ethernet fabric for large-scale AI deployments\nValuation view: Valuation undisclosed; likely more reasonable than hottest AI app names if revenue/backlog quality real.\nAccess route: D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.\nEvidence boundary: Need customer names, gross margin, backlog convertibility, IPO banker status.\nOne of the cleanest infra names from D1/Viking screen.\nv16 commercial metric hardening: Company/media-reported commercial proof in tracker: >$1B secured business; cash-flow positive since 2025. v16 status: strong backlog/secured-business proof, but needs customer concentration and revenue recognition schedule. Diligence ask: Ask for secured-business contract tenor, realized revenue by year, customer concentration, gross margin, cash-flow definition, and AI networking exposure. Source boundary: https://drivenets.com/",
       "todayDelta": "New Act Now addition from D1 screen.",
-      "evidenceBoundary": "Need customer names, gross margin, backlog convertibility, IPO banker status.",
+      "evidenceBoundary": "Need customer names, gross margin, backlog convertibility, IPO banker status. | v16 commercial metric status: reported_backlog (medium); source=https://drivenets.com/; ask=Ask for secured-business contract tenor, realized revenue by year, customer concentration, gross margin, cash-flow definition, and AI networking exposure.",
       "status": "private",
       "updatedAt": "2026-06-19",
-      "nextAction": "Ask D1/Atreides/Bessemer for customer list, secured-business conversion, gross margin and IPO timing.",
+      "nextAction": "Ask for secured-business contract tenor, realized revenue by year, customer concentration, gross margin, cash-flow definition, and AI networking exposure.",
       "layer": "AI Ethernet / fabric / network OS",
       "whyInTrack": "DriveNets — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
-      "revenueScale": "> $1B secured business; cash-flow positive since 2025 (company/media)",
+      "revenueScale": "Company/media-reported commercial proof in tracker: >$1B secured business; cash-flow positive since 2025. v16 status: strong backlog/secured-business proof, but needs customer concentration and revenue recognition schedule.",
       "relationshipRoute": "D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.",
       "investorGroup": "Crossover/Growth; Strategic Semi/AI",
-      "keyDiligence": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "keyDiligence": "Ask for secured-business contract tenor, realized revenue by year, customer concentration, gross margin, cash-flow definition, and AI networking exposure.",
       "disruptedLegacyTech": "见Layer：AI Ethernet / fabric / network OS",
       "riskEvidenceBoundary": "Need customer names, gross margin, backlog convertibility, IPO banker status.",
       "ipoWindow": "24–36m",
@@ -5155,21 +5453,28 @@
         "hasValuation": false,
         "investorCount": 5,
         "evidenceCount": 1,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "reported_backlog"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 集群网络与互连",
       "homepageDescriptionZh": "定位：AI 集群网络与互连；方向：Ethernet fabric / networking for AI data centers；地区：Israel",
       "latestValuationZh": "未披露",
-      "revenueScaleZh": "> $1B secured business; cash-flow positive since 2025 (公司/媒体口径)",
-      "nextActionZh": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "revenueScaleZh": "Company/media-reported commercial proof in tracker: >$1B secured business; cash-flow positive since 2025. v16 status: strong backlog/secured-business proof, but needs customer concentration and revenue recognition schedule.",
+      "nextActionZh": "Ask for secured-business contract tenor, realized revenue by year, customer concentration, gross margin, cash-flow definition, and AI networking exposure.",
       "priorityZh": "A1｜架构迁移核心",
-      "notesClean": "High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.\nStrong: data-center networking bottleneck, >$1B secured business, cash-flow positive, crossover investors.\nAI cluster networking is a major bottleneck; DriveNets just raised large Series D to meet AI deployment demand.\nKey metrics: 2026: $410M Series D; >$1B secured business; Cash-flow positive since 2025; Targeting Ethernet fabric for large-scale AI deployments\nValuation view: Valuation undisclosed; likely more reasonable than hottest AI app names if revenue/backlog quality real.\nAccess route: D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.\nEvidence boundary: Need customer names, gross margin, backlog convertibility, IPO banker status.\nOne of the cleanest infra names from D1/Viking screen.",
+      "notesClean": "High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.\nStrong: data-center networking bottleneck, >$1B secured business, cash-flow positive, crossover investors.\nAI cluster networking is a major bottleneck; DriveNets just raised large Series D to meet AI deployment demand.\nKey metrics: 2026: $410M Series D; >$1B secured business; Cash-flow positive since 2025; Targeting Ethernet fabric for large-scale AI deployments\nValuation view: Valuation undisclosed; likely more reasonable than hottest AI app names if revenue/backlog quality real.\nAccess route: D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.\nEvidence boundary: Need customer names, gross margin, backlog convertibility, IPO banker status.\nOne of the cleanest infra names from D1/Viking screen.\nv16 commercial metric hardening: Company/media-reported commercial proof in tracker: >$1B secured business; cash-flow positive since 2025. v16 status: strong backlog/secured-business proof, but needs customer concentration and revenue recognition schedule. Diligence ask: Ask for secured-business contract tenor, realized revenue by year, customer concentration, gross margin, cash-flow definition, and AI networking exposure. Source boundary: https://drivenets.com/",
       "recommendationClean": "High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "A1｜架构迁移核心。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium"
+      "riskSummaryZh": "风险等级：medium",
+      "publicCommercialStatus": "reported_backlog",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://drivenets.com/",
+      "commercialDiligenceAsk": "Ask for secured-business contract tenor, realized revenue by year, customer concentration, gross margin, cash-flow definition, and AI networking exposure."
     },
     {
       "id": "firmus",
@@ -5542,7 +5847,8 @@
       "whyNow": "Production inference costs/reliability are becoming a core bottleneck for AI applications.",
       "keyMetrics": [
         "CapitalG initial investment 2025 per CapitalG portfolio",
-        "2025 media: $150M investment backed by CapitalG"
+        "2025 media: $150M investment backed by CapitalG",
+        "v16 public commercial status: not_publicly_disclosed / medium — ARR/revenue not publicly disclosed in v16 pass; AI inference platform positioning is clear but commercial scale remains diligence item."
       ],
       "valuationView": "Need revenue and gross margin; inferencing infra can be competitive and margin-sensitive.",
       "routeToAccess": "CapitalG Baseten deal team; customers among AI-native app companies.",
@@ -5567,20 +5873,27 @@
           "type": "official",
           "note": "CapitalG portfolio page: Baseten is leader in inference for high-scale AI products; initial investment 2025.",
           "url": "https://capitalg.com/portfolio/baseten/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: ARR/revenue not publicly disclosed in v16 pass; AI inference platform positioning is clear but commercial scale remains diligence item. Diligence ask: Ask for ARR, enterprise customer count, inference volume, GPU gross margin, retention, and model deployment workload mix.",
+          "url": "https://www.baseten.co/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "Priority: 2 - Active Diligence\nRecommendation: Prioritize within Google/CapitalG sourcing; core production inference infrastructure.\nMandate fit: Good: CapitalG-backed AI inference stack, direct picks-and-shovels exposure.\nWhy now: Production inference costs/reliability are becoming a core bottleneck for AI applications.\nKey metrics: CapitalG initial investment 2025 per CapitalG portfolio; 2025 media: $150M investment backed by CapitalG\nValuation view: Need revenue and gross margin; inferencing infra can be competitive and margin-sensitive.\nAccess route: CapitalG Baseten deal team; customers among AI-native app companies.\nEvidence boundary: Need ARR, top customers, model/cloud cost gross margin.\n\nOriginal notes: Added from Google/CapitalG screen.",
+      "notes": "Prioritize within Google/CapitalG sourcing; core production inference infrastructure.\nGood: CapitalG-backed AI inference stack, direct picks-and-shovels exposure.\nProduction inference costs/reliability are becoming a core bottleneck for AI applications.\nKey metrics: CapitalG initial investment 2025 per CapitalG portfolio; 2025 media: $150M investment backed by CapitalG\nValuation view: Need revenue and gross margin; inferencing infra can be competitive and margin-sensitive.\nAccess route: CapitalG Baseten deal team; customers among AI-native app companies.\nEvidence boundary: Need ARR, top customers, model/cloud cost gross margin.\nAdded from Google/CapitalG screen.\nv16 commercial metric hardening: ARR/revenue not publicly disclosed in v16 pass; AI inference platform positioning is clear but commercial scale remains diligence item. Diligence ask: Ask for ARR, enterprise customer count, inference volume, GPU gross margin, retention, and model deployment workload mix. Source boundary: https://www.baseten.co/",
       "todayDelta": "New from Google investment review.",
-      "evidenceBoundary": "Need ARR, top customers, model/cloud cost gross margin.",
+      "evidenceBoundary": "Need ARR, top customers, model/cloud cost gross margin. | v16 commercial metric status: not_publicly_disclosed (medium); source=https://www.baseten.co/; ask=Ask for ARR, enterprise customer count, inference volume, GPU gross margin, retention, and model deployment workload mix.",
       "status": "private",
       "updatedAt": "2026-06-19",
-      "nextAction": "Ask CapitalG for Baseten ARR, inference gross margin, top customers and GPU/model cost exposure.",
+      "nextAction": "Ask for ARR, enterprise customer count, inference volume, GPU gross margin, retention, and model deployment workload mix.",
       "layer": "AI Infra",
       "whyInTrack": "Baseten — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "ARR/revenue not publicly disclosed in v16 pass; AI inference platform positioning is clear but commercial scale remains diligence item.",
       "relationshipRoute": "CapitalG Baseten deal team; customers among AI-native app companies.",
       "investorGroup": "Classic VC",
-      "keyDiligence": "收入质量、客户、毛利、估值、IPO timing、relationship可执行性。",
+      "keyDiligence": "Ask for ARR, enterprise customer count, inference volume, GPU gross margin, retention, and model deployment workload mix.",
       "disruptedLegacyTech": "见Layer：AI Infra",
       "riskEvidenceBoundary": "Need ARR, top customers, model/cloud cost gross margin.",
       "ipoWindow": "unclear",
@@ -5593,21 +5906,28 @@
         "hasValuation": true,
         "investorCount": 5,
         "evidenceCount": 1,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 基础设施",
       "homepageDescriptionZh": "定位：AI 基础设施；方向：AI inference platform / model serving；地区：US",
       "latestValuationZh": "Not captured",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "revenueScaleZh": "ARR/revenue not publicly disclosed in v16 pass; AI inference platform positioning is clear but commercial scale remains diligence item.",
+      "nextActionZh": "Ask for ARR, enterprise customer count, inference volume, GPU gross margin, retention, and model deployment workload mix.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "Prioritize within Google/CapitalG sourcing; core production inference infrastructure.\nGood: CapitalG-backed AI inference stack, direct picks-and-shovels exposure.\nProduction inference costs/reliability are becoming a core bottleneck for AI applications.\nKey metrics: CapitalG initial investment 2025 per CapitalG portfolio; 2025 media: $150M investment backed by CapitalG\nValuation view: Need revenue and gross margin; inferencing infra can be competitive and margin-sensitive.\nAccess route: CapitalG Baseten deal team; customers among AI-native app companies.\nEvidence boundary: Need ARR, top customers, model/cloud cost gross margin.\nAdded from Google/CapitalG screen.",
+      "notesClean": "Prioritize within Google/CapitalG sourcing; core production inference infrastructure.\nGood: CapitalG-backed AI inference stack, direct picks-and-shovels exposure.\nProduction inference costs/reliability are becoming a core bottleneck for AI applications.\nKey metrics: CapitalG initial investment 2025 per CapitalG portfolio; 2025 media: $150M investment backed by CapitalG\nValuation view: Need revenue and gross margin; inferencing infra can be competitive and margin-sensitive.\nAccess route: CapitalG Baseten deal team; customers among AI-native app companies.\nEvidence boundary: Need ARR, top customers, model/cloud cost gross margin.\nAdded from Google/CapitalG screen.\nv16 commercial metric hardening: ARR/revenue not publicly disclosed in v16 pass; AI inference platform positioning is clear but commercial scale remains diligence item. Diligence ask: Ask for ARR, enterprise customer count, inference volume, GPU gross margin, retention, and model deployment workload mix. Source boundary: https://www.baseten.co/",
       "recommendationClean": "Prioritize within Google/CapitalG sourcing; core production inference infrastructure.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium"
+      "riskSummaryZh": "风险等级：medium",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://www.baseten.co/",
+      "commercialDiligenceAsk": "Ask for ARR, enterprise customer count, inference volume, GPU gross margin, retention, and model deployment workload mix."
     },
     {
       "id": "openrouter",
@@ -5632,7 +5952,8 @@
       "keyMetrics": [
         "CapitalG initial investment 2026",
         "2026: $113M Series B led by CapitalG per company/BusinessWire",
-        "Reported 25T weekly tokens in funding headline, verify"
+        "Reported 25T weekly tokens in funding headline, verify",
+        "v16 public commercial status: not_publicly_disclosed / medium — Public homepage exposes model marketplace/pricing-like surfaces but no company revenue/GMV disclosure. Treat as B2 active diligence around routing volume, take-rate and margin."
       ],
       "valuationView": "Potentially high strategic value, but take-rate and provider concentration determine economics.",
       "routeToAccess": "CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.",
@@ -5653,20 +5974,27 @@
           "type": "official",
           "note": "CapitalG portfolio page: OpenRouter is AI model exchange, unified API, governance/routing/cost optimization; initial investment 2026.",
           "url": "https://capitalg.com/portfolio/openrouter/"
+        },
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Public homepage exposes model marketplace/pricing-like surfaces but no company revenue/GMV disclosure. Treat as B2 active diligence around routing volume, take-rate and margin. Diligence ask: Ask for GMV/API spend routed, take rate, gross margin after provider costs, developer/customer concentration, model provider contracts and enterprise traction.",
+          "url": "https://openrouter.ai/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
         }
       ],
-      "notes": "Priority: 2 - Active Diligence\nRecommendation: Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.\nMandate fit: Good: model routing layer between apps and model providers; potential AI middleware choke point.\nWhy now: Multi-model routing, failover, cost optimization and governance are becoming enterprise needs.\nKey metrics: CapitalG initial investment 2026; 2026: $113M Series B led by CapitalG per company/BusinessWire; Reported 25T weekly tokens in funding headline, verify\nValuation view: Potentially high strategic value, but take-rate and provider concentration determine economics.\nAccess route: CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.\nEvidence boundary: Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.\n\nOriginal notes: New from Google review.",
+      "notes": "Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.\nGood: model routing layer between apps and model providers; potential AI middleware choke point.\nMulti-model routing, failover, cost optimization and governance are becoming enterprise needs.\nKey metrics: CapitalG initial investment 2026; 2026: $113M Series B led by CapitalG per company/BusinessWire; Reported 25T weekly tokens in funding headline, verify\nValuation view: Potentially high strategic value, but take-rate and provider concentration determine economics.\nAccess route: CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.\nEvidence boundary: Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.\nNew from Google review.\nv16 commercial metric hardening: Public homepage exposes model marketplace/pricing-like surfaces but no company revenue/GMV disclosure. Treat as B2 active diligence around routing volume, take-rate and margin. Diligence ask: Ask for GMV/API spend routed, take rate, gross margin after provider costs, developer/customer concentration, model provider contracts and enterprise traction. Source boundary: https://openrouter.ai/",
       "todayDelta": "Added from CapitalG screen.",
-      "evidenceBoundary": "Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.",
+      "evidenceBoundary": "Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts. | v16 commercial metric status: not_publicly_disclosed (medium); source=https://openrouter.ai/; ask=Ask for GMV/API spend routed, take rate, gross margin after provider costs, developer/customer concentration, model provider contracts and enterprise traction.",
       "status": "private",
       "updatedAt": "2026-06-19",
-      "nextAction": "Ask CapitalG for OpenRouter token volume, take-rate, enterprise share and model-provider concentration.",
+      "nextAction": "Ask for GMV/API spend routed, take rate, gross margin after provider costs, developer/customer concentration, model provider contracts and enterprise traction.",
       "layer": "AI Infra",
       "whyInTrack": "OpenRouter — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Public homepage exposes model marketplace/pricing-like surfaces but no company revenue/GMV disclosure. Treat as B2 active diligence around routing volume, take-rate and margin.",
       "relationshipRoute": "CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.",
       "investorGroup": "Classic VC",
-      "keyDiligence": "收入质量、客户、毛利、估值、IPO timing、relationship可执行性。",
+      "keyDiligence": "Ask for GMV/API spend routed, take rate, gross margin after provider costs, developer/customer concentration, model provider contracts and enterprise traction.",
       "disruptedLegacyTech": "见Layer：AI Infra",
       "riskEvidenceBoundary": "Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.",
       "ipoWindow": "unclear",
@@ -5679,21 +6007,28 @@
         "hasValuation": true,
         "investorCount": 1,
         "evidenceCount": 1,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 基础设施",
       "homepageDescriptionZh": "定位：AI 基础设施；方向：AI model routing / model exchange；地区：US",
       "latestValuationZh": "Not captured",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "revenueScaleZh": "Public homepage exposes model marketplace/pricing-like surfaces but no company revenue/GMV disclosure. Treat as B2 active diligence around routing volume, take-rate and margin.",
+      "nextActionZh": "Ask for GMV/API spend routed, take rate, gross margin after provider costs, developer/customer concentration, model provider contracts and enterprise traction.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.\nGood: model routing layer between apps and model providers; potential AI middleware choke point.\nMulti-model routing, failover, cost optimization and governance are becoming enterprise needs.\nKey metrics: CapitalG initial investment 2026; 2026: $113M Series B led by CapitalG per company/BusinessWire; Reported 25T weekly tokens in funding headline, verify\nValuation view: Potentially high strategic value, but take-rate and provider concentration determine economics.\nAccess route: CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.\nEvidence boundary: Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.\nNew from Google review.",
+      "notesClean": "Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.\nGood: model routing layer between apps and model providers; potential AI middleware choke point.\nMulti-model routing, failover, cost optimization and governance are becoming enterprise needs.\nKey metrics: CapitalG initial investment 2026; 2026: $113M Series B led by CapitalG per company/BusinessWire; Reported 25T weekly tokens in funding headline, verify\nValuation view: Potentially high strategic value, but take-rate and provider concentration determine economics.\nAccess route: CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.\nEvidence boundary: Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.\nNew from Google review.\nv16 commercial metric hardening: Public homepage exposes model marketplace/pricing-like surfaces but no company revenue/GMV disclosure. Treat as B2 active diligence around routing volume, take-rate and margin. Diligence ask: Ask for GMV/API spend routed, take rate, gross margin after provider costs, developer/customer concentration, model provider contracts and enterprise traction. Source boundary: https://openrouter.ai/",
       "recommendationClean": "Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险等级：medium_high"
+      "riskSummaryZh": "风险等级：medium_high",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://openrouter.ai/",
+      "commercialDiligenceAsk": "Ask for GMV/API spend routed, take rate, gross margin after provider costs, developer/customer concentration, model provider contracts and enterprise traction."
     },
     {
       "id": "clay",
@@ -7122,7 +7457,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: ARR/revenue scale is not available as a public number in v16 pass; source review confirms Series E / $1.6B valuation page and AI/HPC/NVIDIA architecture positioning, not revenue disclosure. Diligence ask: Ask for ARR/CARR, AI/HPC revenue mix, DGX/SuperPOD customer count, gross margin, NRR, FCF path, and IPO readiness.",
+          "url": "https://www.weka.io/press-releases/weka-raises-140-million-in-series-e-funding-at-1-6-billion-valuation/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "AI storage",
         "GPU data pipeline",
@@ -7139,10 +7482,10 @@
       "priorityTier": "A1｜Core Architecture Shift / 硬瓶颈核心",
       "layer": "AI data / memory / storage plane",
       "whyInTrack": "WEKA — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
-      "revenueScale": "Revenue scale undisclosed; verify ARR/CARR and AI/HPC customer mix",
+      "revenueScale": "ARR/revenue scale is not available as a public number in v16 pass; source review confirms Series E / $1.6B valuation page and AI/HPC/NVIDIA architecture positioning, not revenue disclosure.",
       "relationshipRoute": "Valor / NVIDIA / HPE / Micron / storage ecosystem; ask secondary brokers for approved blocks",
       "investorGroup": "Crossover/Growth; Strategic Semi/AI",
-      "keyDiligence": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、secondary/IPO timing。",
+      "keyDiligence": "Ask for ARR/CARR, AI/HPC revenue mix, DGX/SuperPOD customer count, gross margin, NRR, FCF path, and IPO readiness.",
       "disruptedLegacyTech": "见Layer：AI data / memory / storage plane",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "24–36m",
@@ -7150,7 +7493,7 @@
       "subSector": "AI data / memory / storage plane",
       "latestValuation": "Series E valuation ~$1.6B (2024 public reports)",
       "latestFunding": "Series E $140M; Series D $135M; earlier rounds incl. HPE/NVIDIA/Qualcomm/Western Digital",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for ARR/CARR, AI/HPC revenue mix, DGX/SuperPOD customer count, gross margin, NRR, FCF path, and IPO readiness.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI data / memory / storage plane — AI data / memory / storage plane",
       "latestAvailableValuation": "Series E valuation ~$1.6B (2024 public reports)",
@@ -7161,21 +7504,33 @@
         "hasValuation": true,
         "investorCount": 6,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 数据、内存与存储层",
       "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
       "latestValuationZh": "Series E 估值 ~$1.6B (2024 public reports)",
-      "revenueScaleZh": "Revenue scale 未披露; 待核验 ARR/CARR and AI/HPC customer mix",
-      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "revenueScaleZh": "ARR/revenue scale is not available as a public number in v16 pass; source review confirms Series E / $1.6B valuation page and AI/HPC/NVIDIA architecture positioning, not revenue disclosure.",
+      "nextActionZh": "Ask for ARR/CARR, AI/HPC revenue mix, DGX/SuperPOD customer count, gross margin, NRR, FCF path, and IPO readiness.",
       "priorityZh": "A1｜架构迁移核心",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: ARR/revenue scale not captured as a public number in v16 pass; source review confirms Series E / $1.6B valuation page and AI/HPC/NVIDIA architecture positioning, not revenue disclosure. Diligence ask: Ask for ARR/CARR, AI/HPC revenue mix, DGX/SuperPOD customer count, gross margin, NRR, FCF path, and IPO readiness. Source boundary: https://www.weka.io/press-releases/weka-raises-140-million-in-series-e-funding-at-1-6-billion-valuation/",
       "recommendationClean": "WEKA — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "A1｜架构迁移核心。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://www.weka.io/press-releases/weka-raises-140-million-in-series-e-funding-at-1-6-billion-valuation/",
+      "commercialDiligenceAsk": "Ask for ARR/CARR, AI/HPC revenue mix, DGX/SuperPOD customer count, gross margin, NRR, FCF path, and IPO readiness.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://www.weka.io/press-releases/weka-raises-140-million-in-series-e-funding-at-1-6-billion-valuation/; ask=Ask for ARR/CARR, AI/HPC revenue mix, DGX/SuperPOD customer count, gross margin, NRR, FCF path, and IPO readiness.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — ARR/revenue scale is not available as a public number in v16 pass; source review confirms Series E / $1.6B valuation page and AI/HPC/NVIDIA architecture positioning, not revenue disclosure."
+      ],
+      "notes": "v16 commercial metric hardening: ARR/revenue scale not captured as a public number in v16 pass; source review confirms Series E / $1.6B valuation page and AI/HPC/NVIDIA architecture positioning, not revenue disclosure. Diligence ask: Ask for ARR/CARR, AI/HPC revenue mix, DGX/SuperPOD customer count, gross margin, NRR, FCF path, and IPO readiness. Source boundary: https://www.weka.io/press-releases/weka-raises-140-million-in-series-e-funding-at-1-6-billion-valuation/"
     },
     {
       "id": "ddn",
@@ -7184,7 +7539,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Private revenue not publicly disclosed in v16 pass; DDN public customer/resource pages support mature enterprise/HPC/AI footprint but do not expose AI-storage revenue scale. Diligence ask: Ask for AI-storage revenue, growth, EBITDA/FCF, top AI customers, Nvidia/SuperPOD attachment, customer concentration and IPO/secondary plan.",
+          "url": "https://www.ddn.com/resources/customers/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "AI storage",
         "HPC",
@@ -7199,10 +7562,10 @@
       "priorityTier": "B1｜Commercial Pre-IPO / 近IPO但看条款和unit economics",
       "layer": "AI data / memory / storage plane",
       "whyInTrack": "DDN — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Private revenue not publicly disclosed in v16 pass; DDN public customer/resource pages support mature enterprise/HPC/AI footprint but do not expose AI-storage revenue scale.",
       "relationshipRoute": "NVIDIA DGX/SuperPOD channel, HPC customers, bankers/owners; not typical VC secondary",
       "investorGroup": "Strategic Semi/AI",
-      "keyDiligence": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、secondary/IPO timing。",
+      "keyDiligence": "Ask for AI-storage revenue, growth, EBITDA/FCF, top AI customers, Nvidia/SuperPOD attachment, customer concentration and IPO/secondary plan.",
       "disruptedLegacyTech": "见Layer：AI data / memory / storage plane",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "24–36m",
@@ -7210,7 +7573,7 @@
       "subSector": "AI data / memory / storage plane",
       "latestValuation": "Private; valuation not disclosed",
       "latestFunding": "Private company; classic VC round history not the main route",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for AI-storage revenue, growth, EBITDA/FCF, top AI customers, Nvidia/SuperPOD attachment, customer concentration and IPO/secondary plan.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI data / memory / storage plane — AI data / memory / storage plane",
       "latestAvailableValuation": "Private; valuation not disclosed",
@@ -7221,21 +7584,33 @@
         "hasValuation": false,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 数据、内存与存储层",
       "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
       "latestValuationZh": "Private; 估值 not disclosed",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "revenueScaleZh": "Private revenue not publicly disclosed in v16 pass; DDN public customer/resource pages support mature enterprise/HPC/AI footprint but do not expose AI-storage revenue scale.",
+      "nextActionZh": "Ask for AI-storage revenue, growth, EBITDA/FCF, top AI customers, Nvidia/SuperPOD attachment, customer concentration and IPO/secondary plan.",
       "priorityZh": "B1｜商业化后期",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Private revenue not publicly disclosed in v16 pass; DDN public customer/resource pages support mature enterprise/HPC/AI footprint but do not expose AI-storage revenue scale. Diligence ask: Ask for AI-storage revenue, growth, EBITDA/FCF, top AI customers, Nvidia/SuperPOD attachment, customer concentration and IPO/secondary plan. Source boundary: https://www.ddn.com/resources/customers/",
       "recommendationClean": "DDN — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://www.ddn.com/resources/customers/",
+      "commercialDiligenceAsk": "Ask for AI-storage revenue, growth, EBITDA/FCF, top AI customers, Nvidia/SuperPOD attachment, customer concentration and IPO/secondary plan.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://www.ddn.com/resources/customers/; ask=Ask for AI-storage revenue, growth, EBITDA/FCF, top AI customers, Nvidia/SuperPOD attachment, customer concentration and IPO/secondary plan.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Private revenue not publicly disclosed in v16 pass; DDN public customer/resource pages support mature enterprise/HPC/AI footprint but do not expose AI-storage revenue scale."
+      ],
+      "notes": "v16 commercial metric hardening: Private revenue not publicly disclosed in v16 pass; DDN public customer/resource pages support mature enterprise/HPC/AI footprint but do not expose AI-storage revenue scale. Diligence ask: Ask for AI-storage revenue, growth, EBITDA/FCF, top AI customers, Nvidia/SuperPOD attachment, customer concentration and IPO/secondary plan. Source boundary: https://www.ddn.com/resources/customers/"
     },
     {
       "id": "hammerspace",
@@ -7244,7 +7619,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: Revenue/ARR not publicly disclosed in v16 pass; public customer/news pages show enterprise data orchestration positioning, but no ARR/FCF metric. Diligence ask: Ask for ARR, AI/HPC customer mix, cloud/on-prem split, gross margin, storage attach rate, NRR, and financing/IPO path.",
+          "url": "https://hammerspace.com/customers/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "AI data orchestration",
         "storage"
@@ -7257,10 +7640,10 @@
       "priorityTier": "B1｜Commercial Pre-IPO / 近IPO但看条款和unit economics",
       "layer": "AI data / memory / storage plane",
       "whyInTrack": "Hammerspace — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/ARR not publicly disclosed in v16 pass; public customer/news pages show enterprise data orchestration positioning, but no ARR/FCF metric.",
       "relationshipRoute": "Prosperity7 / ARK / data platform ecosystem",
       "investorGroup": "Crossover/Growth; Strategic Semi/AI; SWF/CVC/Asia",
-      "keyDiligence": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、secondary/IPO timing。",
+      "keyDiligence": "Ask for ARR, AI/HPC customer mix, cloud/on-prem split, gross margin, storage attach rate, NRR, and financing/IPO path.",
       "disruptedLegacyTech": "见Layer：AI data / memory / storage plane",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "24–36m",
@@ -7268,7 +7651,7 @@
       "subSector": "AI data / memory / storage plane",
       "latestValuation": "待验证",
       "latestFunding": "2025 Series B / $100M media-funding signals待核验",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for ARR, AI/HPC customer mix, cloud/on-prem split, gross margin, storage attach rate, NRR, and financing/IPO path.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI data / memory / storage plane — AI data / memory / storage plane",
       "latestAvailableValuation": "待验证",
@@ -7279,21 +7662,33 @@
         "hasValuation": false,
         "investorCount": 3,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 数据、内存与存储层",
       "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "revenueScaleZh": "Revenue/ARR not publicly disclosed in v16 pass; public customer/news pages show enterprise data orchestration positioning, but no ARR/FCF metric.",
+      "nextActionZh": "Ask for ARR, AI/HPC customer mix, cloud/on-prem split, gross margin, storage attach rate, NRR, and financing/IPO path.",
       "priorityZh": "B1｜商业化后期",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue/ARR not publicly disclosed in v16 pass; public customer/news pages show enterprise data orchestration positioning, but no ARR/FCF metric. Diligence ask: Ask for ARR, AI/HPC customer mix, cloud/on-prem split, gross margin, storage attach rate, NRR, and financing/IPO path. Source boundary: https://hammerspace.com/customers/",
       "recommendationClean": "Hammerspace — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://hammerspace.com/customers/",
+      "commercialDiligenceAsk": "Ask for ARR, AI/HPC customer mix, cloud/on-prem split, gross margin, storage attach rate, NRR, and financing/IPO path.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://hammerspace.com/customers/; ask=Ask for ARR, AI/HPC customer mix, cloud/on-prem split, gross margin, storage attach rate, NRR, and financing/IPO path.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — Revenue/ARR not publicly disclosed in v16 pass; public customer/news pages show enterprise data orchestration positioning, but no ARR/FCF metric."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue/ARR not publicly disclosed in v16 pass; public customer/news pages show enterprise data orchestration positioning, but no ARR/FCF metric. Diligence ask: Ask for ARR, AI/HPC customer mix, cloud/on-prem split, gross margin, storage attach rate, NRR, and financing/IPO path. Source boundary: https://hammerspace.com/customers/"
     },
     {
       "id": "minio",
@@ -7302,7 +7697,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / medium: ARR not publicly disclosed in v16 pass; public blog/source confirms historic $103M Series B/unicorn financing and current AIStor positioning, not current revenue. Diligence ask: Ask for subscription ARR, enterprise customer count, AIStor conversion, gross margin, NRR, open-source-to-paid conversion and liquidity path.",
+          "url": "https://blog.min.io/minio-raises-103-million-series-b/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "object storage",
         "open-source",
@@ -7318,10 +7721,10 @@
       "priorityTier": "B1｜Commercial Pre-IPO / 近IPO但看条款和unit economics",
       "layer": "AI data / memory / storage plane",
       "whyInTrack": "MinIO — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "ARR not publicly disclosed in v16 pass; public blog/source confirms historic $103M Series B/unicorn financing and current AIStor positioning, not current revenue.",
       "relationshipRoute": "Intel / SoftBank / Dell Capital / open-source storage network",
       "investorGroup": "Strategic Semi/AI; Classic VC",
-      "keyDiligence": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、secondary/IPO timing。",
+      "keyDiligence": "Ask for subscription ARR, enterprise customer count, AIStor conversion, gross margin, NRR, open-source-to-paid conversion and liquidity path.",
       "disruptedLegacyTech": "见Layer：AI data / memory / storage plane",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "24–36m",
@@ -7329,7 +7732,7 @@
       "subSector": "AI data / memory / storage plane",
       "latestValuation": "2022 unicorn valuation ~$1B public reports",
       "latestFunding": "2022 Series B $103M",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for subscription ARR, enterprise customer count, AIStor conversion, gross margin, NRR, open-source-to-paid conversion and liquidity path.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI data / memory / storage plane — AI data / memory / storage plane",
       "latestAvailableValuation": "2022 unicorn valuation ~$1B public reports",
@@ -7340,21 +7743,33 @@
         "hasValuation": true,
         "investorCount": 5,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 数据、内存与存储层",
       "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
       "latestValuationZh": "2022 unicorn 估值 ~$1B public reports",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "revenueScaleZh": "ARR not publicly disclosed in v16 pass; public blog/source confirms historic $103M Series B/unicorn financing and current AIStor positioning, not current revenue.",
+      "nextActionZh": "Ask for subscription ARR, enterprise customer count, AIStor conversion, gross margin, NRR, open-source-to-paid conversion and liquidity path.",
       "priorityZh": "B1｜商业化后期",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: ARR not publicly disclosed in v16 pass; public blog/source confirms historic $103M Series B/unicorn financing and current AIStor positioning, not current revenue. Diligence ask: Ask for subscription ARR, enterprise customer count, AIStor conversion, gross margin, NRR, open-source-to-paid conversion and liquidity path. Source boundary: https://blog.min.io/minio-raises-103-million-series-b/",
       "recommendationClean": "MinIO — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "medium",
+      "commercialMetricSource": "https://blog.min.io/minio-raises-103-million-series-b/",
+      "commercialDiligenceAsk": "Ask for subscription ARR, enterprise customer count, AIStor conversion, gross margin, NRR, open-source-to-paid conversion and liquidity path.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (medium); source=https://blog.min.io/minio-raises-103-million-series-b/; ask=Ask for subscription ARR, enterprise customer count, AIStor conversion, gross margin, NRR, open-source-to-paid conversion and liquidity path.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / medium — ARR not publicly disclosed in v16 pass; public blog/source confirms historic $103M Series B/unicorn financing and current AIStor positioning, not current revenue."
+      ],
+      "notes": "v16 commercial metric hardening: ARR not publicly disclosed in v16 pass; public blog/source confirms historic $103M Series B/unicorn financing and current AIStor positioning, not current revenue. Diligence ask: Ask for subscription ARR, enterprise customer count, AIStor conversion, gross margin, NRR, open-source-to-paid conversion and liquidity path. Source boundary: https://blog.min.io/minio-raises-103-million-series-b/"
     },
     {
       "id": "anyscale",
@@ -7363,7 +7778,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: ARR/revenue not publicly disclosed; Ray ecosystem relevance remains, but public commercialization metric is not available. Diligence ask: Ask for ARR, enterprise customers, Ray adoption-to-paid conversion, gross margin and retention.",
+          "url": "https://www.anyscale.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "Ray",
         "distributed compute",
@@ -7380,10 +7803,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI Infra",
       "whyInTrack": "Anyscale — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "ARR/revenue not publicly disclosed; Ray ecosystem relevance remains, but public commercialization metric is not available.",
       "relationshipRoute": "a16z / NEA / Ray ecosystem; check commercial ARR vs open-source adoption",
       "investorGroup": "Strategic Semi/AI; Classic VC",
-      "keyDiligence": "收入质量、客户、毛利、估值、IPO timing、relationship可执行性。",
+      "keyDiligence": "Ask for ARR, enterprise customers, Ray adoption-to-paid conversion, gross margin and retention.",
       "disruptedLegacyTech": "见Layer：AI Infra",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7391,7 +7814,7 @@
       "subSector": "AI Infra",
       "latestValuation": "待验证",
       "latestFunding": "Growth funding / unicorn-stage history; latest data待核验",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for ARR, enterprise customers, Ray adoption-to-paid conversion, gross margin and retention.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI Infra — AI Infra",
       "latestAvailableValuation": "待验证",
@@ -7402,21 +7825,33 @@
         "hasValuation": false,
         "investorCount": 6,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 基础设施",
       "homepageDescriptionZh": "定位：AI 基础设施；方向：AI Infra；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "revenueScaleZh": "ARR/revenue not publicly disclosed; Ray ecosystem relevance remains, but public commercialization metric is not available.",
+      "nextActionZh": "Ask for ARR, enterprise customers, Ray adoption-to-paid conversion, gross margin and retention.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: ARR/revenue not publicly disclosed; Ray ecosystem relevance remains, but public commercialization metric not captured. Diligence ask: Ask for ARR, enterprise customers, Ray adoption-to-paid conversion, gross margin and retention. Source boundary: https://www.anyscale.com/",
       "recommendationClean": "Anyscale — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://www.anyscale.com/",
+      "commercialDiligenceAsk": "Ask for ARR, enterprise customers, Ray adoption-to-paid conversion, gross margin and retention.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://www.anyscale.com/; ask=Ask for ARR, enterprise customers, Ray adoption-to-paid conversion, gross margin and retention.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — ARR/revenue not publicly disclosed; Ray ecosystem relevance remains, but public commercialization metric is not available."
+      ],
+      "notes": "v16 commercial metric hardening: ARR/revenue not publicly disclosed; Ray ecosystem relevance remains, but public commercialization metric not captured. Diligence ask: Ask for ARR, enterprise customers, Ray adoption-to-paid conversion, gross margin and retention. Source boundary: https://www.anyscale.com/"
     },
     {
       "id": "arrcus",
@@ -7425,7 +7860,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue/backlog not publicly disclosed; AI networking relevance requires customer/design-win proof. Diligence ask: Ask for AI/data-center customers, ARR/backlog, routing software gross margin and strategic routes.",
+          "url": "https://www.arrcus.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "AI networking",
         "network OS",
@@ -7442,10 +7885,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI Ethernet / fabric / network OS",
       "whyInTrack": "Arrcus — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/backlog not publicly disclosed; AI networking relevance requires customer/design-win proof.",
       "relationshipRoute": "NVIDIA / Prosperity7 / Lightspeed / Hitachi Ventures",
       "investorGroup": "Strategic Semi/AI; SWF/CVC/Asia; Classic VC",
-      "keyDiligence": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "keyDiligence": "Ask for AI/data-center customers, ARR/backlog, routing software gross margin and strategic routes.",
       "disruptedLegacyTech": "见Layer：AI Ethernet / fabric / network OS",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7453,7 +7896,7 @@
       "subSector": "AI Ethernet / fabric / network OS",
       "latestValuation": "待验证",
       "latestFunding": "2023 $50M Series D; 2024 $30M strategic investment",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for AI/data-center customers, ARR/backlog, routing software gross margin and strategic routes.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI Ethernet / fabric / network OS — AI Ethernet / fabric / network OS",
       "latestAvailableValuation": "待验证",
@@ -7464,21 +7907,33 @@
         "hasValuation": false,
         "investorCount": 6,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 集群网络与互连",
       "homepageDescriptionZh": "定位：AI 集群网络与互连；方向：AI Ethernet / fabric / network OS；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "revenueScaleZh": "Revenue/backlog not publicly disclosed; AI networking relevance requires customer/design-win proof.",
+      "nextActionZh": "Ask for AI/data-center customers, ARR/backlog, routing software gross margin and strategic routes.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue/backlog not publicly disclosed; AI networking relevance requires customer/design-win proof. Diligence ask: Ask for AI/data-center customers, ARR/backlog, routing software gross margin and strategic routes. Source boundary: https://www.arrcus.com/",
       "recommendationClean": "Arrcus — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://www.arrcus.com/",
+      "commercialDiligenceAsk": "Ask for AI/data-center customers, ARR/backlog, routing software gross margin and strategic routes.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://www.arrcus.com/; ask=Ask for AI/data-center customers, ARR/backlog, routing software gross margin and strategic routes.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue/backlog not publicly disclosed; AI networking relevance requires customer/design-win proof."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue/backlog not publicly disclosed; AI networking relevance requires customer/design-win proof. Diligence ask: Ask for AI/data-center customers, ARR/backlog, routing software gross margin and strategic routes. Source boundary: https://www.arrcus.com/"
     },
     {
       "id": "encharge-ai",
@@ -7487,7 +7942,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue not publicly disclosed; analog in-memory AI chip remains pre-commercial/early commercial diligence. Diligence ask: Ask for tape-out, sampling, design wins, revenue/backlog and manufacturing path.",
+          "url": "https://www.enchargeai.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "AI chip",
         "edge/inference",
@@ -7502,10 +7965,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI data / memory / storage plane",
       "whyInTrack": "EnCharge AI — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue not publicly disclosed; analog in-memory AI chip remains pre-commercial/early commercial diligence.",
       "relationshipRoute": "Samsung Ventures / Tiger / strategic semiconductor route",
       "investorGroup": "Crossover/Growth; Strategic Semi/AI",
-      "keyDiligence": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、secondary/IPO timing。",
+      "keyDiligence": "Ask for tape-out, sampling, design wins, revenue/backlog and manufacturing path.",
       "disruptedLegacyTech": "见Layer：AI data / memory / storage plane",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7513,7 +7976,7 @@
       "subSector": "AI data / memory / storage plane",
       "latestValuation": "待验证",
       "latestFunding": "Growth/Series B media and PitchBook profile; exact latest round待核验",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for tape-out, sampling, design wins, revenue/backlog and manufacturing path.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI data / memory / storage plane — AI data / memory / storage plane",
       "latestAvailableValuation": "待验证",
@@ -7524,21 +7987,33 @@
         "hasValuation": false,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 数据、内存与存储层",
       "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "revenueScaleZh": "Revenue not publicly disclosed; analog in-memory AI chip remains pre-commercial/early commercial diligence.",
+      "nextActionZh": "Ask for tape-out, sampling, design wins, revenue/backlog and manufacturing path.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue not publicly disclosed; analog in-memory AI chip remains pre-commercial/early commercial diligence. Diligence ask: Ask for tape-out, sampling, design wins, revenue/backlog and manufacturing path. Source boundary: https://www.enchargeai.com/",
       "recommendationClean": "EnCharge AI — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://www.enchargeai.com/",
+      "commercialDiligenceAsk": "Ask for tape-out, sampling, design wins, revenue/backlog and manufacturing path.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://www.enchargeai.com/; ask=Ask for tape-out, sampling, design wins, revenue/backlog and manufacturing path.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue not publicly disclosed; analog in-memory AI chip remains pre-commercial/early commercial diligence."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue not publicly disclosed; analog in-memory AI chip remains pre-commercial/early commercial diligence. Diligence ask: Ask for tape-out, sampling, design wins, revenue/backlog and manufacturing path. Source boundary: https://www.enchargeai.com/"
     },
     {
       "id": "etched",
@@ -7547,7 +8022,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue/backlog not publicly disclosed; Sohu ASIC thesis requires customer commitment and production timing proof. Diligence ask: Ask for customer commitments, silicon status, software stack, capacity, pricing and revenue recognition.",
+          "url": "https://www.etched.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "AI chip",
         "transformer ASIC",
@@ -7564,10 +8047,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI silicon / accelerator",
       "whyInTrack": "Etched — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/backlog not publicly disclosed; Sohu ASIC thesis requires customer commitment and production timing proof.",
       "relationshipRoute": "Primary / Positive Sum / AI chip angel network; needs silicon/customer validation",
       "investorGroup": "Classic VC",
-      "keyDiligence": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "keyDiligence": "Ask for customer commitments, silicon status, software stack, capacity, pricing and revenue recognition.",
       "disruptedLegacyTech": "见Layer：AI silicon / accelerator",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7575,7 +8058,7 @@
       "subSector": "AI silicon / accelerator",
       "latestValuation": "待验证",
       "latestFunding": "2024 Series A around $120M public reports",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for customer commitments, silicon status, software stack, capacity, pricing and revenue recognition.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI silicon / accelerator — AI silicon / accelerator",
       "latestAvailableValuation": "待验证",
@@ -7586,21 +8069,33 @@
         "hasValuation": false,
         "investorCount": 6,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 芯片 / 加速器",
       "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：AI silicon / accelerator；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "revenueScaleZh": "Revenue/backlog not publicly disclosed; Sohu ASIC thesis requires customer commitment and production timing proof.",
+      "nextActionZh": "Ask for customer commitments, silicon status, software stack, capacity, pricing and revenue recognition.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue/backlog not publicly disclosed; Sohu ASIC thesis requires customer commitment and production timing proof. Diligence ask: Ask for customer commitments, silicon status, software stack, capacity, pricing and revenue recognition. Source boundary: https://www.etched.com/",
       "recommendationClean": "Etched — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://www.etched.com/",
+      "commercialDiligenceAsk": "Ask for customer commitments, silicon status, software stack, capacity, pricing and revenue recognition.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://www.etched.com/; ask=Ask for customer commitments, silicon status, software stack, capacity, pricing and revenue recognition.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue/backlog not publicly disclosed; Sohu ASIC thesis requires customer commitment and production timing proof."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue/backlog not publicly disclosed; Sohu ASIC thesis requires customer commitment and production timing proof. Diligence ask: Ask for customer commitments, silicon status, software stack, capacity, pricing and revenue recognition. Source boundary: https://www.etched.com/"
     },
     {
       "id": "fireworks-ai",
@@ -7609,7 +8104,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue/ARR not publicly disclosed; inference platform diligence needs customer and margin proof. Diligence ask: Ask for ARR, inference volume, GPU cost structure, customer concentration and NRR.",
+          "url": "https://fireworks.ai/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "inference",
         "model serving",
@@ -7624,10 +8127,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI Infra",
       "whyInTrack": "Fireworks AI — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/ARR not publicly disclosed; inference platform diligence needs customer and margin proof.",
       "relationshipRoute": "Benchmark / Sequoia / inference platform customer network",
       "investorGroup": "Crossover/Growth; Classic VC",
-      "keyDiligence": "收入质量、客户、毛利、估值、IPO timing、relationship可执行性。",
+      "keyDiligence": "Ask for ARR, inference volume, GPU cost structure, customer concentration and NRR.",
       "disruptedLegacyTech": "见Layer：AI Infra",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7635,7 +8138,7 @@
       "subSector": "AI Infra",
       "latestValuation": "待验证",
       "latestFunding": "Series B/C and valuation media signals; exact latest round待核验",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for ARR, inference volume, GPU cost structure, customer concentration and NRR.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI Infra — AI Infra",
       "latestAvailableValuation": "待验证",
@@ -7646,21 +8149,33 @@
         "hasValuation": false,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 基础设施",
       "homepageDescriptionZh": "定位：AI 基础设施；方向：AI Infra；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "revenueScaleZh": "Revenue/ARR not publicly disclosed; inference platform diligence needs customer and margin proof.",
+      "nextActionZh": "Ask for ARR, inference volume, GPU cost structure, customer concentration and NRR.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue/ARR not publicly disclosed; inference platform diligence needs customer and margin proof. Diligence ask: Ask for ARR, inference volume, GPU cost structure, customer concentration and NRR. Source boundary: https://fireworks.ai/",
       "recommendationClean": "Fireworks AI — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://fireworks.ai/",
+      "commercialDiligenceAsk": "Ask for ARR, inference volume, GPU cost structure, customer concentration and NRR.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://fireworks.ai/; ask=Ask for ARR, inference volume, GPU cost structure, customer concentration and NRR.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue/ARR not publicly disclosed; inference platform diligence needs customer and margin proof."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue/ARR not publicly disclosed; inference platform diligence needs customer and margin proof. Diligence ask: Ask for ARR, inference volume, GPU cost structure, customer concentration and NRR. Source boundary: https://fireworks.ai/"
     },
     {
       "id": "liquidstack",
@@ -7669,7 +8184,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue/backlog not publicly disclosed; cooling infra relevance high but paid deployment/MW pipeline needs proof. Diligence ask: Ask for MW deployed, revenue/backlog, hyperscaler/neocloud customers, gross margin and installation/service economics.",
+          "url": "https://liquidstack.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "liquid cooling",
         "AI data center"
@@ -7683,10 +8206,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI cloud / power / cooling operator",
       "whyInTrack": "LiquidStack — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/backlog not publicly disclosed; cooling infra relevance high but paid deployment/MW pipeline needs proof.",
       "relationshipRoute": "Data center cooling strategics / project developers",
       "investorGroup": "待映射",
-      "keyDiligence": "utilization、客户集中、contracted revenue、debt/capex、GPU折旧、power-to-site。",
+      "keyDiligence": "Ask for MW deployed, revenue/backlog, hyperscaler/neocloud customers, gross margin and installation/service economics.",
       "disruptedLegacyTech": "见Layer：AI cloud / power / cooling operator",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7694,7 +8217,7 @@
       "subSector": "AI cloud / power / cooling operator",
       "latestValuation": "待验证",
       "latestFunding": "Funding/strategic investors待核验",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for MW deployed, revenue/backlog, hyperscaler/neocloud customers, gross margin and installation/service economics.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI cloud / power / cooling operator — AI cloud / power / cooling operator",
       "latestAvailableValuation": "待验证",
@@ -7705,21 +8228,33 @@
         "hasValuation": false,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 云、供电与冷却基础设施",
       "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：AI cloud / power / cooling operator；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "revenueScaleZh": "Revenue/backlog not publicly disclosed; cooling infra relevance high but paid deployment/MW pipeline needs proof.",
+      "nextActionZh": "Ask for MW deployed, revenue/backlog, hyperscaler/neocloud customers, gross margin and installation/service economics.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue/backlog not publicly disclosed; cooling infra relevance high but paid deployment/MW pipeline needs proof. Diligence ask: Ask for MW deployed, revenue/backlog, hyperscaler/neocloud customers, gross margin and installation/service economics. Source boundary: https://liquidstack.com/",
       "recommendationClean": "LiquidStack — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://liquidstack.com/",
+      "commercialDiligenceAsk": "Ask for MW deployed, revenue/backlog, hyperscaler/neocloud customers, gross margin and installation/service economics.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://liquidstack.com/; ask=Ask for MW deployed, revenue/backlog, hyperscaler/neocloud customers, gross margin and installation/service economics.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue/backlog not publicly disclosed; cooling infra relevance high but paid deployment/MW pipeline needs proof."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue/backlog not publicly disclosed; cooling infra relevance high but paid deployment/MW pipeline needs proof. Diligence ask: Ask for MW deployed, revenue/backlog, hyperscaler/neocloud customers, gross margin and installation/service economics. Source boundary: https://liquidstack.com/"
     },
     {
       "id": "matx",
@@ -7728,7 +8263,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue not publicly disclosed; AI silicon status likely early, needs production/customer proof. Diligence ask: Ask for chip status, customer design wins, revenue/backlog, power/performance claims and manufacturing route.",
+          "url": "https://www.matx.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "AI chip",
         "early-growth"
@@ -7742,10 +8285,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI silicon / accelerator",
       "whyInTrack": "MatX — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue not publicly disclosed; AI silicon status likely early, needs production/customer proof.",
       "relationshipRoute": "AI chip VC network; verify round and silicon roadmap",
       "investorGroup": "Crossover/Growth; Classic VC",
-      "keyDiligence": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "keyDiligence": "Ask for chip status, customer design wins, revenue/backlog, power/performance claims and manufacturing route.",
       "disruptedLegacyTech": "见Layer：AI silicon / accelerator",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7753,7 +8296,7 @@
       "subSector": "AI silicon / accelerator",
       "latestValuation": "待验证",
       "latestFunding": "2026 large funding media reports; exact source待核验",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for chip status, customer design wins, revenue/backlog, power/performance claims and manufacturing route.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI silicon / accelerator — AI silicon / accelerator",
       "latestAvailableValuation": "待验证",
@@ -7764,21 +8307,33 @@
         "hasValuation": false,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 芯片 / 加速器",
       "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：AI silicon / accelerator；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "revenueScaleZh": "Revenue not publicly disclosed; AI silicon status likely early, needs production/customer proof.",
+      "nextActionZh": "Ask for chip status, customer design wins, revenue/backlog, power/performance claims and manufacturing route.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue not publicly disclosed; AI silicon status likely early, needs production/customer proof. Diligence ask: Ask for chip status, customer design wins, revenue/backlog, power/performance claims and manufacturing route. Source boundary: https://www.matx.com/",
       "recommendationClean": "MatX — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://www.matx.com/",
+      "commercialDiligenceAsk": "Ask for chip status, customer design wins, revenue/backlog, power/performance claims and manufacturing route.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://www.matx.com/; ask=Ask for chip status, customer design wins, revenue/backlog, power/performance claims and manufacturing route.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue not publicly disclosed; AI silicon status likely early, needs production/customer proof."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue not publicly disclosed; AI silicon status likely early, needs production/customer proof. Diligence ask: Ask for chip status, customer design wins, revenue/backlog, power/performance claims and manufacturing route. Source boundary: https://www.matx.com/"
     },
     {
       "id": "modal",
@@ -7787,7 +8342,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue/ARR not publicly disclosed; developer cloud traction needs paid usage and margin proof. Diligence ask: Ask for ARR, active paying teams, workload volume, GPU/CPU gross margin, retention and enterprise conversion.",
+          "url": "https://modal.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "serverless GPU",
         "developer infra"
@@ -7801,10 +8364,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI Infra",
       "whyInTrack": "Modal — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/ARR not publicly disclosed; developer cloud traction needs paid usage and margin proof.",
       "relationshipRoute": "Redpoint / Amplify / Lux; ask revenue scale and enterprise adoption",
       "investorGroup": "待映射",
-      "keyDiligence": "收入质量、客户、毛利、估值、IPO timing、relationship可执行性。",
+      "keyDiligence": "Ask for ARR, active paying teams, workload volume, GPU/CPU gross margin, retention and enterprise conversion.",
       "disruptedLegacyTech": "见Layer：AI Infra",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7812,7 +8375,7 @@
       "subSector": "AI Infra",
       "latestValuation": "待验证",
       "latestFunding": "2025 $87M Series B public company blog",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for ARR, active paying teams, workload volume, GPU/CPU gross margin, retention and enterprise conversion.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI Infra — AI Infra",
       "latestAvailableValuation": "待验证",
@@ -7823,21 +8386,33 @@
         "hasValuation": false,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 基础设施",
       "homepageDescriptionZh": "定位：AI 基础设施；方向：AI Infra；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "revenueScaleZh": "Revenue/ARR not publicly disclosed; developer cloud traction needs paid usage and margin proof.",
+      "nextActionZh": "Ask for ARR, active paying teams, workload volume, GPU/CPU gross margin, retention and enterprise conversion.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue/ARR not publicly disclosed; developer cloud traction needs paid usage and margin proof. Diligence ask: Ask for ARR, active paying teams, workload volume, GPU/CPU gross margin, retention and enterprise conversion. Source boundary: https://modal.com/",
       "recommendationClean": "Modal — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://modal.com/",
+      "commercialDiligenceAsk": "Ask for ARR, active paying teams, workload volume, GPU/CPU gross margin, retention and enterprise conversion.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://modal.com/; ask=Ask for ARR, active paying teams, workload volume, GPU/CPU gross margin, retention and enterprise conversion.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue/ARR not publicly disclosed; developer cloud traction needs paid usage and margin proof."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue/ARR not publicly disclosed; developer cloud traction needs paid usage and margin proof. Diligence ask: Ask for ARR, active paying teams, workload volume, GPU/CPU gross margin, retention and enterprise conversion. Source boundary: https://modal.com/"
     },
     {
       "id": "submer",
@@ -7846,7 +8421,15 @@
       "country": "",
       "region": "US",
       "stage": "private",
-      "evidence": [],
+      "evidence": [
+        {
+          "date": "2026-06-19",
+          "type": "v16_public_commercial_metric_review",
+          "note": "not_publicly_disclosed / low: Revenue/backlog not publicly disclosed; immersion cooling relevance requires deployment economics. Diligence ask: Ask for MW deployed, backlog, customer mix, installation/service margins and repeat orders.",
+          "url": "https://submer.com/",
+          "sourceId": "v16_public_commercial_metric_review_20260619"
+        }
+      ],
       "tags": [
         "immersion cooling",
         "power/cooling"
@@ -7860,10 +8443,10 @@
       "priorityTier": "B2｜Active Diligence / 技术重要需商业验证",
       "layer": "AI cloud / power / cooling operator",
       "whyInTrack": "Submer — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
-      "revenueScale": "未披露/待验证",
+      "revenueScale": "Revenue/backlog not publicly disclosed; immersion cooling relevance requires deployment economics.",
       "relationshipRoute": "European climate infra funds / data center operators",
       "investorGroup": "待映射",
-      "keyDiligence": "utilization、客户集中、contracted revenue、debt/capex、GPU折旧、power-to-site。",
+      "keyDiligence": "Ask for MW deployed, backlog, customer mix, installation/service margins and repeat orders.",
       "disruptedLegacyTech": "见Layer：AI cloud / power / cooling operator",
       "riskEvidenceBoundary": "待补官方/公司/融资文件。",
       "ipoWindow": "unclear",
@@ -7871,7 +8454,7 @@
       "subSector": "AI cloud / power / cooling operator",
       "latestValuation": "待验证",
       "latestFunding": "Series B / growth financing public reports待核验",
-      "nextAction": "补官方融资、客户/design win、收入规模、IPO/secondary路径。",
+      "nextAction": "Ask for MW deployed, backlog, customer mix, installation/service margins and repeat orders.",
       "updatedAt": "2026-06-19",
       "companyDescription": "AI cloud / power / cooling operator — AI cloud / power / cooling operator",
       "latestAvailableValuation": "待验证",
@@ -7882,21 +8465,33 @@
         "hasValuation": false,
         "investorCount": 4,
         "evidenceCount": 0,
-        "hasRoute": true
+        "hasRoute": true,
+        "hasRevenueScale": true,
+        "v16CommercialMetricLoaded": true,
+        "v16CommercialStatus": "not_publicly_disclosed"
       },
       "enrichedAsOf": "2026-06-19",
       "layerZh": "AI 云、供电与冷却基础设施",
       "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：AI cloud / power / cooling operator；地区：US",
       "latestValuationZh": "待验证",
-      "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "revenueScaleZh": "Revenue/backlog not publicly disclosed; immersion cooling relevance requires deployment economics.",
+      "nextActionZh": "Ask for MW deployed, backlog, customer mix, installation/service margins and repeat orders.",
       "priorityZh": "B2｜积极尽调",
-      "notesClean": "",
+      "notesClean": "v16 commercial metric hardening: Revenue/backlog not publicly disclosed; immersion cooling relevance requires deployment economics. Diligence ask: Ask for MW deployed, backlog, customer mix, installation/service margins and repeat orders. Source boundary: https://submer.com/",
       "recommendationClean": "Submer — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
-      "riskSummaryZh": "风险暂未整理"
+      "riskSummaryZh": "风险暂未整理",
+      "publicCommercialStatus": "not_publicly_disclosed",
+      "commercialMetricConfidence": "low",
+      "commercialMetricSource": "https://submer.com/",
+      "commercialDiligenceAsk": "Ask for MW deployed, backlog, customer mix, installation/service margins and repeat orders.",
+      "evidenceBoundary": " | v16 commercial metric status: not_publicly_disclosed (low); source=https://submer.com/; ask=Ask for MW deployed, backlog, customer mix, installation/service margins and repeat orders.",
+      "keyMetrics": [
+        "v16 public commercial status: not_publicly_disclosed / low — Revenue/backlog not publicly disclosed; immersion cooling relevance requires deployment economics."
+      ],
+      "notes": "v16 commercial metric hardening: Revenue/backlog not publicly disclosed; immersion cooling relevance requires deployment economics. Diligence ask: Ask for MW deployed, backlog, customer mix, installation/service margins and repeat orders. Source boundary: https://submer.com/"
     },
     {
       "id": "avicena",
@@ -12523,6 +13118,18 @@
       "refreshFrequency": "manual / before IC review",
       "coverage": "Taiwan ESB/pre-listing names: code, price, capital, implied market cap, YTD revenue, YoY, EPS, application status/date, website.",
       "limitations": "Local public-screen snapshot; must refresh from TWSE/TPEx/ESB official pages before trade or IC memo. Market cap is screen-implied, not a financing round."
+    },
+    {
+      "id": "v16_public_commercial_metric_review_20260619",
+      "name": "v16 public commercial metric review for A0/A1/B1/B2 pre-IPO names",
+      "type": "manual public-source review",
+      "sourceType": "manual public-source review",
+      "status": "enabled",
+      "connectorStatus": "manual_public_review",
+      "url": "/Users/mac/Downloads/preipo_v16_sources",
+      "refreshFrequency": "manual / before IC review",
+      "coverage": "High-priority AI pre-IPO names: public revenue/ARR/backlog/unit-economics status and diligence asks.",
+      "limitations": "Not a paid private-market database. Many private companies do not disclose revenue/ARR/backlog; those are explicitly marked not publicly disclosed rather than estimated."
     }
   ]
 }
