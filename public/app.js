@@ -469,6 +469,31 @@ function renderDetailOnePager(c, tasks) {
   </div>`;
 }
 
+function fundingConfidenceClass(conf) {
+  const c = String(conf || '').toLowerCase();
+  if (/high|official/.test(c)) return 'green';
+  if (/medium/.test(c)) return 'amber';
+  return 'gray';
+}
+function fundingTimeline(rounds) {
+  if (!rounds.length) return '<p class="sub">暂无结构化融资轮次。</p>';
+  return `<div class="funding-timeline">${rounds.map((r, idx)=>`
+    <article class="funding-event ${esc(fundingConfidenceClass(r.confidence))}">
+      <div class="funding-dot">${idx + 1}</div>
+      <div class="funding-body">
+        <div class="funding-head"><div><b>${esc(cleanDisplayText(r.round, '轮次待确认'))}</b><span>${esc(cleanDisplayText(r.date, '日期待确认'))}</span></div><em class="pill ${esc(fundingConfidenceClass(r.confidence))}">${esc(cleanDisplayText(r.confidence, 'low'))}</em></div>
+        <div class="funding-grid">
+          <div><span>融资额</span><b>${esc(cleanDisplayText(r.amount, '未披露'))}</b></div>
+          <div><span>估值</span><b>${esc(cleanDisplayText(r.valuation, '未披露'))}</b></div>
+        </div>
+        <div class="funding-investors"><span>Lead</span>${(r.leadInvestors||[]).length ? (r.leadInvestors||[]).map(x=>`<i>${esc(x)}</i>`).join('') : '<i>未披露/待确认</i>'}</div>
+        <div class="funding-investors"><span>Participants</span>${(r.participants||[]).length ? (r.participants||[]).slice(0,14).map(x=>`<i>${esc(x)}</i>`).join('') : '<i>未披露/待确认</i>'}</div>
+        <div class="funding-source"><span>来源：${esc(cleanDisplayText(r.sourceName || r.sourceType, '待确认'))}</span>${r.url ? `<a href="${esc(r.url)}" target="_blank">source</a>` : ''}</div>
+        ${r.notes ? `<p>${esc(cleanDisplayText(r.notes, ''))}</p>` : ''}
+      </div>
+    </article>`).join('')}</div>`;
+}
+
 function renderScoreBreakdown(c) {
   const b = c.scoreBreakdown;
   if (!b || !Array.isArray(b.rows)) return '<p class="sub">暂无评分拆解。</p>';
@@ -539,8 +564,12 @@ function detailHtml(c, rounds, tasks, interactions) {
     </section>
 
     <section class="detail-section memo-section" data-section="funding">
-      <div class="memo-section-title"><span>06</span><b>融资与估值事件</b></div>
-      ${rounds.map(r=>`<div class="evidence memo-evidence"><b>${esc(cleanDisplayText(r.round, '轮次待确认'))}</b><div class="memo-kv-inline"><span>金额：${esc(cleanDisplayText(r.amount, '待确认'))}</span><span>估值：${esc(cleanDisplayText(r.valuation, '待确认'))}</span><span>日期：${esc(cleanDisplayText(r.date, '待确认'))}</span></div><div class="sub">置信度：${esc(cleanDisplayText(r.confidence, '待确认'))} · 参与方：${esc(cleanDisplayText((r.participants||[]).join(', '), '待确认'))}</div>${r.notes?`<p>${esc(cleanDisplayText(r.notes))}</p>`:''}</div>`).join('') || '<p class="sub">暂无结构化融资轮次。</p>'}
+      <div class="memo-section-title"><span>06</span><b>融资历史</b></div>
+      <div class="memo-funding-summary">
+        ${metricTile('已结构化轮次', `${rounds.length} 轮`, 'blue')}
+        ${metricTile('最高置信度', rounds.some(r=>/high|official/i.test(r.confidence)) ? 'High / Official' : (rounds.some(r=>/medium/i.test(r.confidence)) ? 'Medium' : 'Low / 待补'), 'amber')}
+      </div>
+      ${fundingTimeline(rounds)}
     </section>
 
     <section class="detail-section memo-section" data-section="work">
