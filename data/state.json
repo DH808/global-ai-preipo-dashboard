@@ -4,7 +4,7 @@
     "asOf": "2026-06-19",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-06-19T10:45:14.466Z",
+    "updatedAt": "2026-06-19T11:43:59.220Z",
     "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
     "uiVersion": "6",
@@ -29,6 +29,12 @@
       "enrichedInvestors": 1,
       "descriptionsAdded": 0,
       "latestAvailableValuationsAdded": 0
+    },
+    "presentationLanguage": {
+      "asOf": "2026-06-19",
+      "language": "zh-CN",
+      "method": "cleaned homepage/detail presentation text from existing fields only; no external facts added",
+      "companiesChanged": 0
     }
   },
   "companies": [
@@ -142,7 +148,19 @@
         "evidenceCount": 3,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：Data-center inference accelerator / RebelServer；地区：Korea",
+      "latestValuationZh": "媒体报道：$1.4B after Arm/Samsung Ventures round; later media indicates higher pre-IPO marks need verification",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Core Korea target. Investment case hinges on converting AI-chip narrative into revenue/backlog and KRX visibility.",
+      "recommendationClean": "Rebellions — Core Korea target. Investment case hinges on converting AI-chip narrative into revenue/backlog and KRX visibility.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "furiosaai",
@@ -226,7 +244,19 @@
         "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：Data-center AI accelerator；地区：Korea",
+      "latestValuationZh": "媒体报道：seeking up to $500M / KRW 700B pre-IPO funding; 估值 not confirmed",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "High beta. Bigger technical/customer risk than Rebellions.",
+      "recommendationClean": "FuriosaAI — High beta. Bigger technical/customer risk than Rebellions.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "deepx",
@@ -295,7 +325,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：Edge AI NPU / low-power inference；地区：Korea",
+      "latestValuationZh": "媒体报道：target IPO 估值 around KRW 1T / ~$700M; 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Clear IPO signal but smaller TAM/edge market fragmentation.",
+      "recommendationClean": "DeepX — Clear IPO signal but smaller TAM/edge market fragmentation.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "upstage",
@@ -368,7 +410,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Enterprise GenAI / document AI / Korean LLM；地区：Korea",
+      "latestValuationZh": "媒体报道：Korea's first GenAI unicorn after KRW 180B raise; 待核验 估值 and ARR",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Best Korean AI application candidate; less hardware risk.",
+      "recommendationClean": "Upstage — Best Korean AI application candidate; less hardware risk.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "panmnesia",
@@ -438,7 +492,19 @@
         "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 数据、内存与存储层",
+      "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：CXL memory expansion / memory pooling；地区：Korea",
+      "latestValuationZh": "未披露; Series A $57-60M media reports",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "Strategic 24-48 month pipeline, not immediate IPO.",
+      "recommendationClean": "Panmnesia — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "nota-ai",
@@ -502,7 +568,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：On-device AI optimization / model compression；地区：Korea",
+      "latestValuationZh": "未披露; Series C $19.9M reported; KOSDAQ status must be confirmed",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Conditionally core if still private; otherwise comp.",
+      "recommendationClean": "Nota AI — Conditionally core if still private; otherwise comp.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "sakana-ai",
@@ -573,7 +651,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "大模型 / 基础模型",
+      "homepageDescriptionZh": "定位：大模型 / 基础模型；方向：Japan sovereign enterprise AI；地区：Japan",
+      "latestValuationZh": "Official Series B: JPY 432B / ~$2.7B post-money",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Strategic Japan watch, not yet 18-month IPO target.",
+      "recommendationClean": "Sakana AI — Strategic Japan watch, not yet 18-month IPO target.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "preferred-networks",
@@ -643,7 +733,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "大模型 / 基础模型",
+      "homepageDescriptionZh": "定位：大模型 / 基础模型；方向：AI chips + computing infra + foundation models + physical AI；地区：Japan",
+      "latestValuationZh": "未披露 in latest official release",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Strategic pre-IPO/secondary watch; IPO timing less clear than Korea.",
+      "recommendationClean": "Preferred Networks — Strategic pre-IPO/secondary watch; IPO timing less clear than Korea.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "lambda",
@@ -711,7 +813,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：GPU cloud / AI cloud；地区：US",
+      "latestValuationZh": "媒体报道：~$4B after $480M round; IPO bank hiring reports",
+      "revenueScaleZh": "Revenue/utilization not disclosed in tracker; 待核验 GPU utilization and contracted customers",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "B1｜商业化后期",
+      "notesClean": "US core target already in prior memo.",
+      "recommendationClean": "Lambda — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "databricks",
@@ -793,7 +907,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "成熟数据与 AI 平台",
+      "homepageDescriptionZh": "定位：成熟数据与 AI 平台；方向：Data + AI platform；地区：US",
+      "latestValuationZh": "官方披露：Series L at $134B 估值; >$4.8B 收入 run-rate",
+      "revenueScaleZh": "> $4.8B 收入 run-rate; AI products >$1B run-rate; positive FCF (public/company disclosed metrics)",
+      "nextActionZh": "老股/二级份额 discount 15–30%、Series L/IPO估值桥、AI products run-rate、FCF、IPO 时间表、lock-up和信息权。",
+      "priorityZh": "A0｜成熟必跟踪",
+      "notesClean": "Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.\nMature pre-IPO/IPO-ready benchmark.",
+      "recommendationClean": "Highest-maturity AI/data platform; pursue secondary/IPO allocation only with price discipline.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A0｜成熟必跟踪。公司定位为成熟数据与 AI 平台；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "mistral-ai",
@@ -862,7 +988,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "大模型 / 基础模型",
+      "homepageDescriptionZh": "定位：大模型 / 基础模型；方向：European sovereign AI / open-weight LLM；地区：Europe",
+      "latestValuationZh": "媒体报道：€11.7B to €20B 估值 signals; ARR claims need verification",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Strategic watch, not high-certainty 18-month IPO.",
+      "recommendationClean": "Mistral AI — Strategic watch, not high-certainty 18-month IPO.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "nscale",
@@ -930,7 +1068,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：GPU cloud / sovereign AI infrastructure；地区：Europe",
+      "latestValuationZh": "媒体报道：large 2025-2026 rounds and high 估值; 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Useful global pilot item; high capex risk.",
+      "recommendationClean": "Nscale — Useful global pilot item; high capex risk.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "deepl",
@@ -994,7 +1144,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI translation / writing SaaS；地区：Europe",
+      "latestValuationZh": "媒体报道：considering US IPO at up to ~$5B; prior 估值 ~$2B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "",
+      "recommendationClean": "DeepL — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "stepfun",
@@ -1059,7 +1221,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "大模型 / 基础模型",
+      "homepageDescriptionZh": "定位：大模型 / 基础模型；方向：Chinese LLM / multimodal / agent；地区：China/HK",
+      "latestValuationZh": "媒体报道：possible HK IPO 估值 target around $12B; 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "StepFun / 阶跃星辰 —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "moonshot-ai",
@@ -1125,7 +1299,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Kimi / Chinese LLM application；地区：China/HK",
+      "latestValuationZh": "媒体报道：~$18-20B funding/估值 signals; 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Moonshot AI / 月之暗面 —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "cohere",
@@ -1190,7 +1376,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "大模型 / 基础模型",
+      "homepageDescriptionZh": "定位：大模型 / 基础模型；方向：Enterprise LLM / sovereign AI；地区：Canada",
+      "latestValuationZh": "官方披露：$6.8B 估值 in $500M round; media ARR ~$240M",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Cohere —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "together-ai",
@@ -1257,7 +1455,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：Inference cloud / fine-tuning / open model platform；地区：US",
+      "latestValuationZh": "媒体报道：$3.3B to possible $7.5B fundraising signals; 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "AI infra/model cloud; verify revenue before treating as pre-IPO.",
+      "recommendationClean": "AI infra/model cloud; verify revenue before treating as pre-IPO.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "glean",
@@ -1323,7 +1533,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Enterprise search / work AI；地区：US",
+      "latestValuationZh": "Reuters 报道：~$7.2B 估值; official ARR $200M",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Enterprise AI workflow app; verify ARR quality and valuation before chasing.",
+      "recommendationClean": "Enterprise AI workflow app; verify ARR quality and valuation before chasing.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "elevenlabs",
@@ -1388,7 +1610,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI voice / conversational agents；地区：Europe",
+      "latestValuationZh": "官方披露：$11B 估值, >$330M ARR",
+      "revenueScaleZh": ">$330M ARR",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "",
+      "recommendationClean": "ElevenLabs — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "harvey",
@@ -1454,7 +1688,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Legal AI；地区：US",
+      "latestValuationZh": "媒体报道：$11B 估值; ARR ~$190M reports",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Legal AI quality high but valuation and dependency require caution.",
+      "recommendationClean": "Legal AI quality high but valuation and dependency require caution.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "synthesia",
@@ -1519,7 +1765,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI video enterprise training/sales enablement；地区：Europe",
+      "latestValuationZh": "CNBC: $4B 估值; ARR $150M, expected >$200M in 2026",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "",
+      "recommendationClean": "Synthesia — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "vast-data",
@@ -1584,7 +1842,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 数据、内存与存储层",
+      "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data storage / data platform；地区：US",
+      "latestValuationZh": "Reuters 报道：$30B 估值 in latest 融资轮",
+      "revenueScaleZh": "CARR / revenue scale 未披露 in tracker; 待核验 latest company reported CARR/FCF",
+      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "priorityZh": "A1｜架构迁移核心",
+      "notesClean": "",
+      "recommendationClean": "VAST Data — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A1｜架构迁移核心。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "crusoe",
@@ -1672,7 +1942,19 @@
         "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：AI cloud / data centers / power-linked compute；地区：US",
+      "latestValuationZh": "~$10B+",
+      "revenueScaleZh": "Contracted capacity/revenue not disclosed in tracker; 待核验 customer contracts and MW energized",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "B1｜商业化后期",
+      "notesClean": "Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.\nStrong: Tiger-backed AI data center / cloud infra at $10B valuation; likely major liquidity path if execution continues.\nAI factory / power-constrained compute is a core 2026 theme; Crusoe has raised large late-stage capital.\nKey metrics: 2025 Series E: $1.375B; Valuation: about/above $10B; AI data-center / cloud infrastructure focus\nValuation view: High; underwriting must be project finance, contracted revenue, cost of power, customer concentration and capex recovery.\nAccess route: Tiger Global, Founders/VC investors, project finance lenders, data center customer ecosystem.\nEvidence boundary: Need official round page/filings, revenue/backlog, customers, project financing terms.\nAlready in dashboard; upgraded to Act Now after crossover screen.",
+      "recommendationClean": "Top AI infra target; pursue project-finance and customer-contract diligence, not just equity round.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "cerebras",
@@ -1762,7 +2044,19 @@
         "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：Wafer-scale AI systems / inference and training；地区：US",
+      "latestValuationZh": "2025 reported $8.1B",
+      "revenueScaleZh": "Revenue/customer concentration to 待核验 from S-1/latest financing materials",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.\nStrong thematic and IPO-path fit; not as clean as software due to Nvidia competition and customer concentration.\nTiger-backed 2025 Series G and prior S-1 history indicate a likely eventual IPO path.\nKey metrics: 2025: reported $1.1B Series G; Valuation: $8.1B; Prior IPO/S-1 path\nValuation view: Potentially attractive if IPO discount exists; risk-adjust heavily for customers, export controls and Nvidia moat.\nAccess route: Tiger Global, IPO bankers, strategic semiconductor investors.\nEvidence boundary: Need latest S-1/withdrawal status, revenue/customer concentration, Saudi/UAE exposure, export controls.\nAlready in pipeline; moved to Act Now but with high risk.",
+      "recommendationClean": "High-priority semiconductor pre-IPO watch; pursue only with full customer concentration/export-control diligence.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "groq",
@@ -1830,7 +2124,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：Inference accelerator / GroqCloud；地区：US",
+      "latestValuationZh": "官方披露：$6.9B post-money after $750M financing",
+      "revenueScaleZh": "Revenue/utilization not disclosed; 待核验 GroqCloud and enterprise inference revenue",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "Groq — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "hugging-face",
@@ -1898,7 +2204,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：Model hub / developer platform；地区：US",
+      "latestValuationZh": "$4.5B 估值 in 2023 Series D",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Hugging Face —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "xai",
@@ -1968,7 +2286,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "大模型 / 基础模型",
+      "homepageDescriptionZh": "定位：大模型 / 基础模型；方向：Grok / Musk AI infra；地区：US",
+      "latestValuationZh": "媒体报道：very large financing / 估值; structure with X/SpaceX complex",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "X｜Exclude / public, acquired or not clean pre-IPO",
+      "notesClean": "",
+      "recommendationClean": "xAI —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "X｜Exclude / public, acquired or not clean pre-IPO。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：very_high"
     },
     {
       "id": "perplexity",
@@ -2037,7 +2367,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI search / answer engine；地区：US",
+      "latestValuationZh": "媒体报道：$14-20B 估值 range; CEO target 2028 IPO",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "",
+      "recommendationClean": "Perplexity AI — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "anysphere",
@@ -2104,7 +2446,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI coding / developer workflow；地区：US",
+      "latestValuationZh": "媒体报道：~$9.9B 估值 after $900M round",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "AI coding PMF but valuation risk is very high; follow only with discount/data access.",
+      "recommendationClean": "AI coding PMF but valuation risk is very high; follow only with discount/data access.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "runway",
@@ -2170,7 +2524,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI video / world models；地区：US",
+      "latestValuationZh": "媒体报道：~$5.3B 估值",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "",
+      "recommendationClean": "Runway — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "abridge",
@@ -2259,7 +2625,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Healthcare clinical documentation AI；地区：US",
+      "latestValuationZh": "媒体报道：multi-billion, 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Vertical AI app worth diligence; may be slightly earlier than top pre-IPO but strong enterprise deployment.\nGood: healthcare AI with enterprise-grade hospital deployments and CapitalG initial investment.\nClinical documentation is an early ROI-positive AI workflow.\nKey metrics: CapitalG initial investment 2025; 2025 Series D $250M; later funding reports exist; Adoption across major health systems to verify\nValuation view: Need ARR, revenue per clinician, implementation cost, compliance risk.\nAccess route: CapitalG Abridge team, Khosla/IVP/healthcare investor network.\nEvidence boundary: Need contracted ARR, hospital deployment scale, regulatory/compliance.\nExisting/added from Google review.",
+      "recommendationClean": "Vertical AI app worth diligence; may be slightly earlier than top pre-IPO but strong enterprise deployment.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "grammarly",
@@ -2323,7 +2701,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI productivity / writing；地区：US",
+      "latestValuationZh": "官方披露：>$700M annual revenue, $1B non-dilutive financing",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "",
+      "recommendationClean": "Grammarly — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "rippling",
@@ -2390,7 +2780,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：HR/IT/Finance workflow with AI；地区：US",
+      "latestValuationZh": "媒体报道：~$16.8B 估值; CEO said IPO not imminent",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "",
+      "recommendationClean": "Rippling — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "anduril",
@@ -2481,7 +2883,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "机器人 / Physical AI",
+      "homepageDescriptionZh": "定位：机器人 / Physical AI；方向：Defense AI / autonomy / autonomous systems manufacturing；地区：US",
+      "latestValuationZh": "2024 $14B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Defense AI/autonomy; high quality but regulatory/procurement risk.\nGood: large late-stage round, defense AI/autonomy, manufacturing scale-up and likely eventual IPO.\nSands/Altimeter-backed 2024 Series F and defense AI tailwind.\nKey metrics: 2024: $1.5B Series F; Valuation: $14B; Funding supports Arsenal-1 / hyperscale defense manufacturing\nValuation view: High quality but defense cycles/regulatory constraints; compare to public defense tech comps not SaaS.\nAccess route: Sands Capital, Altimeter, Founders Fund, defense banker network.\nEvidence boundary: Need revenue/backlog, program concentration, IPO timing, regulatory risk.\nExisting name upgraded with detailed crossover evidence.",
+      "recommendationClean": "Defense AI/autonomy; high quality but regulatory/procurement risk.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为机器人 / Physical AI；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "neysa",
@@ -2549,7 +2963,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：Sovereign AI cloud / GPU infra；地区：India",
+      "latestValuationZh": "媒体报道：Blackstone-led structured investment, ~$1.4B enterprise value",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Neysa —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "zutacore",
@@ -2613,7 +3039,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：Two-phase direct-to-chip liquid cooling；地区：Israel",
+      "latestValuationZh": "媒体报道：>$100M Series C, ~$600M 估值",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "ZutaCore — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "scintil",
@@ -2678,7 +3116,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Silicon photonics / DWDM optical engine；地区：Europe",
+      "latestValuationZh": "媒体报道：$58M Series B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Scintil Photonics —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "ayar-labs",
@@ -2743,7 +3193,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Optical I/O / in-package optical interconnect；地区：US",
+      "latestValuationZh": "Official/media: 估值 above $1B; later media higher",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "A1｜架构迁移核心",
+      "notesClean": "",
+      "recommendationClean": "Ayar Labs — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A1｜架构迁移核心。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "lightmatter",
@@ -2812,7 +3274,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic interconnect / compute fabric；地区：US",
+      "latestValuationZh": "媒体报道：~$4.4B 估值",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "A1｜架构迁移核心",
+      "notesClean": "Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.",
+      "recommendationClean": "Photonic AI compute/interconnect; validate commercialization and 2026 round/IPO path.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A1｜架构迁移核心。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "celestial-ai",
@@ -2878,7 +3352,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic Fabric / memory-compute interconnect；地区：US",
+      "latestValuationZh": "Private 估值/funding media; 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "A1｜架构迁移核心",
+      "notesClean": "",
+      "recommendationClean": "Celestial AI — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A1｜架构迁移核心。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "d-matrix",
@@ -2948,7 +3434,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：Data-center inference accelerator；地区：US",
+      "latestValuationZh": "官方披露：Series C $275M, 估值 $2B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.",
+      "recommendationClean": "Temasek-linked AI inference chip; pursue deployment/revenue/backlog diligence.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "tenstorrent",
@@ -3014,7 +3512,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：AI/RISC-V processor；地区：Canada",
+      "latestValuationZh": "媒体报道：~$2.6B+ 估值 after ~$700M round",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "Tenstorrent — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "weights-biases",
@@ -3080,7 +3590,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：MLOps / AI developer workflow；地区：US",
+      "latestValuationZh": "Private unicorn; 估值/revenue 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Weights & Biases —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "pinecone",
@@ -3146,7 +3668,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：Vector database；地区：US",
+      "latestValuationZh": "Private 估值/funding historical; sale/strategic speculation",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Pinecone —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "scale-ai",
@@ -3217,7 +3751,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Data engine / labeling / evaluation；地区：US",
+      "latestValuationZh": "Meta investment altered independent IPO path",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "X｜Exclude / public, acquired or not clean pre-IPO",
+      "notesClean": "AI data platform important, but Meta transaction complicates independent IPO path.",
+      "recommendationClean": "AI data platform important, but Meta transaction complicates independent IPO path.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "X｜Exclude / public, acquired or not clean pre-IPO。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "wirorobotics",
@@ -3281,7 +3827,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "机器人 / Physical AI",
+      "homepageDescriptionZh": "定位：机器人 / Physical AI；方向：Wearable / humanoid robotics；地区：Korea",
+      "latestValuationZh": "媒体报道：KRW 95B / ~$68M Series B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "WIRobotics —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为机器人 / Physical AI；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "aniai",
@@ -3345,7 +3903,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "机器人 / Physical AI",
+      "homepageDescriptionZh": "定位：机器人 / Physical AI；方向：Kitchen robotics / restaurant automation；地区：Korea",
+      "latestValuationZh": "媒体报道：total funding ~$19M",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Aniai —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为机器人 / Physical AI；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "telepix",
@@ -3409,7 +3979,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "空间与卫星 AI",
+      "homepageDescriptionZh": "定位：空间与卫星 AI；方向：Satellite imagery / space AI；地区：Korea",
+      "latestValuationZh": "媒体报道：KRW 15B pre-IPO",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "TelePIX —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为空间与卫星 AI；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "mobilint",
@@ -3472,7 +4054,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：AI NPU / semiconductor；地区：Korea",
+      "latestValuationZh": "未披露; InterVest portfolio",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "",
+      "recommendationClean": "Mobilint —",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "higgsfield",
@@ -3560,7 +4154,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI video / end-to-end video creation；地区：US",
+      "latestValuationZh": "Reuters/TechCrunch media: $1.3B 估值 after latest funding",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Fits AI application theme but too early/IPO signal weak; high creative-video competition.",
+      "recommendationClean": "Higgsfield — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "suno",
@@ -3649,7 +4255,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI music generation / creator subscription；地区：US",
+      "latestValuationZh": "媒体报道：funding at ~$5B+ 估值; TechCrunch cluster: ~$300M ARR / 2M paid subscribers",
+      "revenueScaleZh": "~$300M ARR",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Strong revenue signal but biggest legal/copyright risk among the three; not 18-month IPO confirmed.",
+      "recommendationClean": "Suno — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：very_high"
     },
     {
       "id": "heygen",
@@ -3742,7 +4360,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI avatar video / enterprise visual storytelling；地区：US",
+      "latestValuationZh": "Official/media: $60M Series A at ~$500M 估值; public snippets cite ~$100M ARR but needs verification",
+      "revenueScaleZh": "~$100M ARR",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Closer to SaaS quality than Higgsfield, but IPO signal not clear and valuation scale smaller than Synthesia/ElevenLabs.",
+      "recommendationClean": "HeyGen — 应用层/工作流层：可能有好公司，但模型层、agent、系统-of-record和平台层边界不稳，暂不作为主IPO机会。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "lovable",
@@ -3847,7 +4477,19 @@
         "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Vibe coding / AI-native software builder / B2B app platform；地区：Europe",
+      "latestValuationZh": "媒体报道：$6.6B 估值 after $330M/€281M Series B; ARR/run-rate claims $400-500M need verification",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "High-priority AI software-builder; investment depends entirely on ARR quality and B2B/enterprise mix.\nPotentially fits strategy better than pure coding if B2B all-in-one app/service platform pivot is real. Core risk: vibe-coding market crowding, retention, production-readiness, security/compliance and model-cost gross margin.",
+      "recommendationClean": "High-priority AI software-builder; investment depends entirely on ARR quality and B2B/enterprise mix.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "physicsx",
@@ -3928,7 +4570,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Physics AI / engineering simulation / industrial AI；地区：Europe",
+      "latestValuationZh": "媒体报道：$2.35-2.4B 估值 in $300M Temasek-led Series C",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Temasek-led industrial AI; verify software vs services revenue and industrial customer depth.\nStrong fit for AI application in industrial/engineering, closer to B2B than consumer AI; IPO likely 24-36m not immediate.",
+      "recommendationClean": "Temasek-led industrial AI; verify software vs services revenue and industrial customer depth.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "black-forest-labs",
@@ -4010,7 +4664,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Image generation / visual AI foundation models；地区：Europe",
+      "latestValuationZh": "媒体报道：$3.25B 估值 after $300M Series B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Visual AI model company; need licensing revenue and copyright posture before core priority.\nStrategic watch. High model/copyright/competition risk; not near-term IPO core unless revenue licensing is strong.",
+      "recommendationClean": "Visual AI model company; need licensing revenue and copyright posture before core priority.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "cuspai",
@@ -4090,7 +4756,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI materials discovery / chemistry search engine；地区：Europe",
+      "latestValuationZh": "媒体报道：$520M 估值 after $100M Series A; further $200M/unicorn reports need verification",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "AI materials discovery; strategic but earlier-stage/longer duration.\nEarlier than target but useful AI-science/materials discovery option; likely longer horizon.",
+      "recommendationClean": "AI materials discovery; strategic but earlier-stage/longer duration.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "psiquantum",
@@ -4174,7 +4852,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Quantum computing / fault-tolerant photonic quantum；地区：US",
+      "latestValuationZh": "媒体报道：$1B Series E / $1.28B SGD; 估值 needs 待核验",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Quantum/compute adjacent; too long-duration for core AI pre-IPO mandate.\nAdjacent infrastructure, not main AI pipeline; likely longer duration and science risk.",
+      "recommendationClean": "Quantum/compute adjacent; too long-duration for core AI pre-IPO mandate.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "alphasense",
@@ -4264,7 +4954,19 @@
         "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Enterprise market intelligence / AI search；地区：US",
+      "latestValuationZh": "2026: $7.5B 估值; 2024: $4B 估值",
+      "revenueScaleZh": "> $600M ARR (disclosed/media); needs ARR quality and retention verification",
+      "nextActionZh": "证明proprietary content/workflow lock-in、NRR、gross margin after AI costs、AI agent替代风险。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Top priority crossover/pre-IPO AI application. Seek company/secondary/IPO-prep access now.\nVery strong: scaled ARR, enterprise workflow, Viking-backed, likely 12-36 month IPO candidate.\n2026 financing at $7.5B and disclosed >$600M ARR make it one of the clearest mature AI application names.\nKey metrics: 2026: $350M financing at $7.5B valuation; Surpassed $600M ARR; 2024: $650M round at $4B with Tegus acquisition context\nValuation view: High but revenue-supported relative to many AI app peers; diligence should focus on ARR quality, margins, retention and Tegus integration.\nAccess route: Viking Global, BDT/MSD, existing investors, management/CFO, IPO bankers if mandated.\nEvidence boundary: Need detailed ARR quality, gross margin, churn/NRR, Tegus integration, IPO banker status.\n今天crossover fund复盘后上调为Act Now。它是比多数AI app更成熟的pre-IPO候选。",
+      "recommendationClean": "Top priority crossover/pre-IPO AI application. Seek company/secondary/IPO-prep access now.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "kraken-technologies",
@@ -4344,7 +5046,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Utility / energy AI operating system；地区：Europe",
+      "latestValuationZh": "$8.65B 估值",
+      "revenueScaleZh": "> $500M contracted annual revenue; 70M+ accounts served",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Top priority D1-backed non-obvious AI/data platform; pursue as energy/utility AI operating system pre-IPO candidate.\nStrong: scaled contracted revenue, enterprise utility accounts, D1-led spinout, energy/AI data platform relevance.\nStandalone spinout financing creates cleaner cap table/governance and potential listing path.\nKey metrics: 2025: $1B investment led by D1; Valuation: $8.65B; >$500M contracted annual revenue; 70M+ accounts served; 15B+ data points processed daily\nValuation view: More defensible than many AI app comps because revenue is contracted; need margin and growth quality.\nAccess route: D1 Capital, Octopus/Kraken management, Ontario Teachers/Fidelity/Durable network.\nEvidence boundary: Need clarify revenue recognition, customer concentration, ownership after spinout and expected IPO venue/timing.\nBest D1-sourced new name from today. Not pure GenAI, but exactly the type of operational AI/data software with real customers that can be underwritten.",
+      "recommendationClean": "Top priority D1-backed non-obvious AI/data platform; pursue as energy/utility AI operating system pre-IPO candidate.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "drivenets",
@@ -4424,7 +5138,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 集群网络与互连",
+      "homepageDescriptionZh": "定位：AI 集群网络与互连；方向：Ethernet fabric / networking for AI data centers；地区：Israel",
+      "latestValuationZh": "未披露",
+      "revenueScaleZh": "> $1B secured business; cash-flow positive since 2025 (公司/媒体口径)",
+      "nextActionZh": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "priorityZh": "A1｜架构迁移核心",
+      "notesClean": "High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.\nStrong: data-center networking bottleneck, >$1B secured business, cash-flow positive, crossover investors.\nAI cluster networking is a major bottleneck; DriveNets just raised large Series D to meet AI deployment demand.\nKey metrics: 2026: $410M Series D; >$1B secured business; Cash-flow positive since 2025; Targeting Ethernet fabric for large-scale AI deployments\nValuation view: Valuation undisclosed; likely more reasonable than hottest AI app names if revenue/backlog quality real.\nAccess route: D1 as existing investor, Atreides/Bessemer-led round, AMD/Red Dot strategic network.\nEvidence boundary: Need customer names, gross margin, backlog convertibility, IPO banker status.\nOne of the cleanest infra names from D1/Viking screen.",
+      "recommendationClean": "High-priority AI infrastructure target; pursue via D1/Atreides/Bessemer and hyperscaler networking contacts.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A1｜架构迁移核心。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "firmus",
@@ -4498,7 +5224,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：AI cloud / AI factory infrastructure；地区：APAC",
+      "latestValuationZh": "2026 post-money $5.5B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Strong APAC AI infra watch; diligence must separate AI cloud revenue from data-center capex story.\nGood: Coatue-led $505M strategic equity and $5.5B post-money valuation show crossover quality.\nCoatue is moving into AI factory infrastructure; Firmus is one of the clearest APAC expressions.\nKey metrics: 2026: $505M strategic equity led by Coatue; Post-money valuation: $5.5B; Total equity raised over six months: $1.35B (company statement)\nValuation view: Infra valuation requires customer/power/utilization evidence; not software multiple.\nAccess route: Coatue, Firmus management, APAC data-center/project finance contacts.\nEvidence boundary: Need revenue, customers, power contracts, capex financing.\nNew addition from Coatue screen.",
+      "recommendationClean": "Strong APAC AI infra watch; diligence must separate AI cloud revenue from data-center capex story.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "dayone-data-centers",
@@ -4571,7 +5309,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：Hyperscale data centers；地区：Global",
+      "latestValuationZh": "Not verified",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Track as data-center infrastructure candidate, but do not underwrite like AI software.\nGood infra scarcity fit; AI exposure likely through hyperscaler/data-center demand rather than direct software revenue.\nCoatue participation in large Series C supports data-center bottleneck thesis.\nKey metrics: 2026 Series C reported >$2B; Hyperscale data center platform\nValuation view: Need yield/capex and contract economics; likely infra-style returns.\nAccess route: Coatue, infrastructure funds, project finance advisors.\nEvidence boundary: Need official round page, tenant contracts, power/capacity pipeline, valuation.\nKeep active but not top equity software-like candidate.",
+      "recommendationClean": "Track as data-center infrastructure candidate, but do not underwrite like AI software.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "sierra",
@@ -4649,7 +5399,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Customer-service AI agents；地区：US",
+      "latestValuationZh": "2025 reported $10B",
+      "revenueScaleZh": "$100M ARR",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "High-growth AI app to track, but valuation likely ahead of fundamentals; require ARR cohort and margin diligence.\nGood: $100M ARR in 7 quarters and Greenoaks-led $10B valuation round; maybe too young for immediate IPO.\nCustomer-service agents are one of the first AI workflow categories with budget and measurable ROI.\nKey metrics: 2025: $350M financing at $10B valuation (Greenoaks led); Reached $100M ARR in 7 quarters; Customers include Deliveroo, Discord, Ramp, Rivian, SoFi, Sonos, Wayfair and others\nValuation view: Very expensive relative to maturity; worth tracking for secondary only with discount.\nAccess route: Greenoaks, General Catalyst/Sierra management, enterprise customer references.\nEvidence boundary: Need funding official page, gross margin, NRR, customer concentration, model cost.\nNew addition from other crossover funds screen.",
+      "recommendationClean": "High-growth AI app to track, but valuation likely ahead of fundamentals; require ARR cohort and margin diligence.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "parloa",
@@ -4725,7 +5487,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Agentic AI customer experience；地区：Europe",
+      "latestValuationZh": "2025 $1B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Build relationship; attractive European AI app but probably not immediate pre-IPO.\nModerate/good: Durable/Altimeter/GC-led $1B valuation round; AI CX agent category.\nAgentic AI in customer service is budget-backed and comparable to Sierra, but Parloa is smaller.\nKey metrics: 2025: $120M Series C; Valuation: $1B; Revenue doubled since prior Series B per company statement\nValuation view: More reasonable than Sierra if growth quality holds; likely 24-48m path.\nAccess route: Durable, Altimeter, General Catalyst, company management in US/EU.\nEvidence boundary: Need ARR, US expansion, churn, model economics.\nNew addition.",
+      "recommendationClean": "Build relationship; attractive European AI app but probably not immediate pre-IPO.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "baseten",
@@ -4802,7 +5576,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：AI inference platform / model serving；地区：US",
+      "latestValuationZh": "Not captured",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "Prioritize within Google/CapitalG sourcing; core production inference infrastructure.\nGood: CapitalG-backed AI inference stack, direct picks-and-shovels exposure.\nProduction inference costs/reliability are becoming a core bottleneck for AI applications.\nKey metrics: CapitalG initial investment 2025 per CapitalG portfolio; 2025 media: $150M investment backed by CapitalG\nValuation view: Need revenue and gross margin; inferencing infra can be competitive and margin-sensitive.\nAccess route: CapitalG Baseten deal team; customers among AI-native app companies.\nEvidence boundary: Need ARR, top customers, model/cloud cost gross margin.\nAdded from Google/CapitalG screen.",
+      "recommendationClean": "Prioritize within Google/CapitalG sourcing; core production inference infrastructure.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "openrouter",
@@ -4876,7 +5662,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：AI model routing / model exchange；地区：US",
+      "latestValuationZh": "Not captured",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.\nGood: model routing layer between apps and model providers; potential AI middleware choke point.\nMulti-model routing, failover, cost optimization and governance are becoming enterprise needs.\nKey metrics: CapitalG initial investment 2026; 2026: $113M Series B led by CapitalG per company/BusinessWire; Reported 25T weekly tokens in funding headline, verify\nValuation view: Potentially high strategic value, but take-rate and provider concentration determine economics.\nAccess route: CapitalG OpenRouter deal team; NVentures/ServiceNow/MongoDB/Snowflake/Databricks Ventures network.\nEvidence boundary: Need GMV/token volume, net revenue/take-rate, enterprise share, provider contracts.\nNew from Google review.",
+      "recommendationClean": "Strategic AI infra watch; pursue through CapitalG if token volume/take-rate are real.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "clay",
@@ -4951,7 +5749,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 应用 / 工作流层",
+      "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：AI GTM / sales automation platform；地区：US",
+      "latestValuationZh": "媒体报道：$3.1B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "priorityZh": "C2｜应用层观察",
+      "notesClean": "Track as AI-native GTM workflow; verify durable retention and enterprise mix.\nModerate/good: CapitalG-led late-stage AI GTM platform, but sales automation can be crowded.\nAI automates research/personalization/outbound workflows; Clay has strong GTM engineer mindshare.\nKey metrics: CapitalG initial investment 2025; Media: $100M Series C led by CapitalG at $3.1B valuation\nValuation view: Likely expensive; need ARR, NRR, SMB/prosumer vs enterprise mix.\nAccess route: CapitalG Clay team; GTM/adtech network.\nEvidence boundary: Need ARR, churn, enterprise adoption and email/channel deliverability risk.\nNew from Google review.",
+      "recommendationClean": "Track as AI-native GTM workflow; verify durable retention and enterprise mix.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "celero-communications",
@@ -5024,7 +5834,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Coherent DSP / optical connectivity for AI infrastructure；地区：US",
+      "latestValuationZh": "Not captured",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Good AI data-center optical/networking semiconductor watch; likely earlier than pre-IPO.\nThematic fit: AI data-center optical connectivity. Less near-term liquidity than top names.\nAI clusters need high-bandwidth, low-power optical connectivity; CapitalG initial investment 2025.\nKey metrics: CapitalG initial investment 2025; Media: $140M raised for AI networking chip\nValuation view: Early hardware risk; needs design wins and tapeout/production proof.\nAccess route: CapitalG, semiconductor/optical networking contacts.\nEvidence boundary: Need product stage, design wins, revenue, supply chain.\nNew from Google review.",
+      "recommendationClean": "Good AI data-center optical/networking semiconductor watch; likely earlier than pre-IPO.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "neye-systems",
@@ -5099,7 +5921,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Optical circuit switches for AI data centers；地区：US",
+      "latestValuationZh": "Not captured",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Track as optical switching bottleneck play; build relationship not immediate IPO.\nThematic AI infra fit with CapitalG/Microsoft/NVIDIA/Micron signals; likely too early for 12-36m IPO.\nOptical switching can reduce AI cluster bottlenecks/power; CapitalG initial investment 2025.\nKey metrics: CapitalG initial investment 2025; BusinessWire: total funding $72.5M / latest $58M round\nValuation view: Early; optionality high but commercialization risk.\nAccess route: CapitalG, M12, NVIDIA/Micron strategic networks.\nEvidence boundary: Need customer pilots, production schedule and TAM.\nNew from Google review.",
+      "recommendationClean": "Track as optical switching bottleneck play; build relationship not immediate IPO.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "empower-semiconductor",
@@ -5172,7 +6006,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：Power management / voltage regulators for AI processors；地区：US",
+      "latestValuationZh": "Not captured",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Track as AI data-center power bottleneck semiconductor; verify design wins.\nGood thematic fit but not yet clear pre-IPO.\nAI processor power delivery is a real bottleneck; CapitalG initial investment 2025.\nKey metrics: CapitalG initial investment 2025; 2025 Series D >$140M per company/media\nValuation view: Needs revenue/design win proof; power semis multiples lower than AI software.\nAccess route: CapitalG, power electronics and AI server supply chain.\nEvidence boundary: Need design wins, gross margin, customer concentration.\nNew from Google review.",
+      "recommendationClean": "Track as AI data-center power bottleneck semiconductor; verify design wins.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "physical-intelligence",
@@ -5249,7 +6095,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "大模型 / 基础模型",
+      "homepageDescriptionZh": "定位：大模型 / 基础模型；方向：General-purpose robot foundation models；地区：US",
+      "latestValuationZh": "媒体报道：~$5.6B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Strategic physical AI option; not core pre-IPO unless commercial deployment accelerates.\nThematic fit but likely too early and valuation-heavy for crossover mandate.\nCapitalG initial investment 2025 and robotics foundation model narrative.\nKey metrics: CapitalG initial investment 2025; Media: 2025 $600M at $5.6B valuation, verify\nValuation view: Extremely option-like; underwrite as deep tech, not near-term IPO.\nAccess route: CapitalG, Lux/Thrive/robotics academic network.\nEvidence boundary: Need revenue/deployment proof; valuation likely ahead of commercial traction.\nNew from Google review; keep watch not top priority.",
+      "recommendationClean": "Strategic physical AI option; not core pre-IPO unless commercial deployment accelerates.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "bellwether-electronics",
@@ -5332,7 +6190,19 @@
         "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 硬件供应链 / 准上市",
+      "homepageDescriptionZh": "定位：AI 硬件供应链 / 准上市；方向：AI server high-current/high-speed connectors, cable harness, pogo pin, FPCA, MIM；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$80.4B on 2026-06-18 screen",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "A2｜准上市供应链",
+      "notesClean": "Taiwan ESB top target. Ask Yuanta/management for allocation, customer mix and AI server exposure.\nVery strong Taiwan pre-IPO fit: already applied for TWSE listing, direct AI server connector exposure, strong YTD growth and EPS.\nTWSE application filed 2026-05-26; ESB price/valuation may already reflect IPO but institutional allocation could be attractive.\nKey metrics: TWSE listing application: 2026-05-26; Estimated ESB market cap: ~NT$80.4B as of 2026-06-18; 2026 Jan-May revenue: ~NT$4.02B, YoY +181%; EPS rank data: EPS 18.04\nValuation view: High quality but already re-rated. Need compare vs listed connector/AI server comps and check if IPO price offers discount to ESB.\nAccess route: Yuanta Securities lead underwriter; company management; AI server ODM/customer channel checks.\nEvidence boundary: Need official prospectus/filing docs, AI revenue %, customer names, gross margin, IPO price.\nBest Taiwan ESB/pre-IPO match from today.",
+      "recommendationClean": "Taiwan ESB top target. Ask Yuanta/management for allocation, customer mix and AI server exposure.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A2｜准上市供应链。公司定位为AI 硬件供应链 / 准上市；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "hermes-testing",
@@ -5409,7 +6279,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 硬件供应链 / 准上市",
+      "homepageDescriptionZh": "定位：AI 硬件供应链 / 准上市；方向：Semiconductor testing / probe cards / AI-HPC test solutions；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$112.4B on 2026-06-18 screen",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "A2｜准上市供应链",
+      "notesClean": "Act Now but valuation-sensitive. Seek underwriter allocation only if discount/earnings durability validates.\nStrong: applied for TPEx listing, direct AI/HPC semiconductor testing demand, strong growth and EPS.\nTPEx listing review date captured 2026-06-10; ESB valuation is very high, so price discipline is critical.\nKey metrics: TPEx/OTC application: 2026-04-29; review date 2026-06-10; Estimated ESB market cap: ~NT$112.4B; 2026 Jan-May revenue: ~NT$1.75B, YoY +113%; EPS: 10.83\nValuation view: Expensive. Must compare to WinWay/CHPT/FormFactor/MJC-like probe/test comps and normalize earnings.\nAccess route: SinoPac lead underwriter; semiconductor test/probe card channel checks.\nEvidence boundary: Need product mix, AI/HPC share, customer concentration, probe card vs service revenue, IPO price.\nTop Taiwan semiconductor pre-IPO candidate, but risk/reward depends on IPO/secondary price vs ESB.",
+      "recommendationClean": "Act Now but valuation-sensitive. Seek underwriter allocation only if discount/earnings durability validates.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A2｜准上市供应链。公司定位为AI 硬件供应链 / 准上市；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "asrock-industrial",
@@ -5487,7 +6369,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 硬件供应链 / 准上市",
+      "homepageDescriptionZh": "定位：AI 硬件供应链 / 准上市；方向：Industrial PC / edge AI / embedded systems；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$16.9B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "A2｜准上市供应链",
+      "notesClean": "Act Now through Yuanta/ASRock/ASUS ecosystem; more institution-friendly but lower beta than Bellwether/Hermes Testing.\nStrong Taiwan pre-IPO fit with TWSE application and edge/industrial AI exposure.\nTWSE application filed 2026-06-05.\nKey metrics: TWSE listing application: 2026-06-05; Estimated ESB market cap: ~NT$16.9B; 2026 Jan-May revenue: ~NT$1.44B, YoY +88%; EPS: 3.68\nValuation view: More reasonable than very hot ESB semiconductor names; verify margins and AI mix.\nAccess route: Yuanta lead underwriter; ASRock/ASUS group; industrial PC channel checks.\nEvidence boundary: Need prospectus, customer mix, edge AI revenue share, group ownership and IPO allocation details.\nTop Taiwan candidate; likely cleaner path than pure hype.",
+      "recommendationClean": "Act Now through Yuanta/ASRock/ASUS ecosystem; more institution-friendly but lower beta than Bellwether/Hermes Testing.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A2｜准上市供应链。公司定位为AI 硬件供应链 / 准上市；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "climax-technology",
@@ -5565,7 +6459,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 硬件供应链 / 准上市",
+      "homepageDescriptionZh": "定位：AI 硬件供应链 / 准上市；方向：LEO satellite / security / high-end communication connectivity；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$13.3B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "A2｜准上市供应链",
+      "notesClean": "Act Now if valuation is reasonable; less pure AI but strong listed-event and profitability profile.\nGood: already TWSE applicant, communications/LEO/security connectivity, solid EPS.\nTWSE application and technology-enterprise designation signal near-term liquidity.\nKey metrics: TWSE listing application: 2026-04-14; Technology enterprise note; Estimated ESB market cap: ~NT$13.3B; 2026 Jan-May revenue: ~NT$2.43B, YoY +37%; EPS: 10.38\nValuation view: Potentially more reasonable than hot semiconductor names; evaluate LEO/robotics/edge network exposure.\nAccess route: Fubon lead underwriter; company management; satellite/communication channel checks.\nEvidence boundary: Need product/customer split, LEO exposure, IPO price and lock-up.\nGood Taiwan event-driven candidate.",
+      "recommendationClean": "Act Now if valuation is reasonable; less pure AI but strong listed-event and profitability profile.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A2｜准上市供应链。公司定位为AI 硬件供应链 / 准上市；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "taiwan-ai-cloud",
@@ -5640,7 +6546,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：Sovereign AI cloud / AI Foundry / GPU compute services；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$9.1B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Track closely as Taiwan sovereign AI cloud / ASUS ecosystem spin-off; wait for formal filing or allocation.\nGood strategic fit but current revenue scale still smaller and YoY negative in TPEx screen.\nTaiwan AI sovereignty and GPU cloud buildout; market reports point to IPO planning.\nKey metrics: Estimated ESB market cap: ~NT$9.1B; 2026 Jan-May revenue: ~NT$375M, YoY -17%; EPS: 4.14; ASUS/government AI cloud narrative\nValuation view: Strategic premium possible, but need recurring cloud revenue and utilization proof.\nAccess route: ASUS/ASRock ecosystem, company management, future lead underwriter.\nEvidence boundary: Need GPU capacity, contracts, government vs enterprise mix, formal filing status.\nStrategic but not Act Now until revenue/filing clear.",
+      "recommendationClean": "Track closely as Taiwan sovereign AI cloud / ASUS ecosystem spin-off; wait for formal filing or allocation.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "xalloy",
@@ -5714,7 +6632,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 硬件供应链 / 准上市",
+      "homepageDescriptionZh": "定位：AI 硬件供应链 / 准上市；方向：Semiconductor sputtering targets / thin-film materials / advanced packaging materials；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$60.1B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "A2｜准上市供应链",
+      "notesClean": "High-priority Taiwan materials watch; move to Act Now if filing/underwriter emerges.\nGood: semiconductor materials bottleneck, advanced process/packaging relevance, large ESB market cap.\nAI semis/advanced packaging demand raises strategic value of local advanced materials.\nKey metrics: Estimated ESB market cap: ~NT$60.1B; 2026 Jan-May revenue: ~NT$3.05B; EPS: 5.65; Official investor page describes advanced semiconductor targets/thin-film materials\nValuation view: Expensive relative to earnings; need product/customer mix.\nAccess route: Company IR, materials/semiconductor supply-chain contacts, possible Yuanta/other underwriters.\nEvidence boundary: Need customer list, advanced node exposure, gross margin, IPO filing status.\nSecond-tier Taiwan priority after filed names.",
+      "recommendationClean": "High-priority Taiwan materials watch; move to Act Now if filing/underwriter emerges.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A2｜准上市供应链。公司定位为AI 硬件供应链 / 准上市；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "jtpc",
@@ -5788,7 +6718,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 硬件供应链 / 准上市",
+      "homepageDescriptionZh": "定位：AI 硬件供应链 / 准上市；方向：Specialty gas systems / fab facility equipment / semiconductor process infrastructure；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$48.1B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "A2｜准上市供应链",
+      "notesClean": "Core Taiwan semiconductor infrastructure watch; seek company/underwriter read on IPO timing.\nStrong fundamentals and fab capex exposure; not as pure AI but institutional-quality if filing emerges.\nAI semiconductor capacity expansion supports fab facility/specialty gas equipment demand.\nKey metrics: Estimated ESB market cap: ~NT$48.1B; 2026 Jan-May revenue: ~NT$8.21B, YoY +29%; EPS: 27.33\nValuation view: Revenue/earnings support stronger than most ESB hype; valuation still needs comps.\nAccess route: Company IR, semiconductor fab facility supply-chain, future underwriter.\nEvidence boundary: Need IPO plan, customer concentration, margin/cash conversion.\nLikely one of the highest-quality Taiwan non-filed names.",
+      "recommendationClean": "Core Taiwan semiconductor infrastructure watch; seek company/underwriter read on IPO timing.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A2｜准上市供应链。公司定位为AI 硬件供应链 / 准上市；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium"
     },
     {
       "id": "yesiang",
@@ -5863,7 +6805,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 硬件供应链 / 准上市",
+      "homepageDescriptionZh": "定位：AI 硬件供应链 / 准上市；方向：AMC filters / clean-air subscription for advanced fabs；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$47.2B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "A2｜准上市供应链",
+      "notesClean": "Track advanced-process cleanroom/AMC filter play; need customer proof before Act Now.\nGood thematic fit: advanced-node contamination control + possible subscription model.\n2nm/advanced fabs increase micro-contamination control importance.\nKey metrics: Estimated ESB market cap: ~NT$47.2B; 2026 Jan-May revenue: ~NT$916M, YoY +44%; EPS: 2.64; Media/company: CaaS / regenerable chemical filters\nValuation view: Strategic but high market-cap relative to revenue; verify subscription/reuse economics.\nAccess route: Company management; TSMC/advanced fab supplier checks; possible underwriter.\nEvidence boundary: Need customer names, subscription mix, renewal rates, gross margin.\nGood but valuation sensitive.",
+      "recommendationClean": "Track advanced-process cleanroom/AMC filter play; need customer proof before Act Now.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A2｜准上市供应链。公司定位为AI 硬件供应链 / 准上市；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "mg-cooling",
@@ -5936,7 +6890,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：AI server cooling / thermal management；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$38.9B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Track as AI server cooling high-beta name; require customer and margin validation.\nGood thematic fit, but current revenue base is smaller and ESB market cap is high.\nAI server power density pushes liquid/advanced cooling demand.\nKey metrics: Estimated ESB market cap: ~NT$38.9B; 2026 Jan-May revenue: ~NT$775M, YoY +534%; EPS: 3.49\nValuation view: High beta; could be over-discounting future growth. Need customer concentration and sustainability.\nAccess route: Company IR, AI server ODM/thermal supply-chain contacts.\nEvidence boundary: Need product/customer mix, AI server share, gross margin and capacity.\nWatch / relationship rather than immediate buy unless data validates.",
+      "recommendationClean": "Track as AI server cooling high-beta name; require customer and margin validation.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：medium_high"
     },
     {
       "id": "best-oeic",
@@ -6011,7 +6977,19 @@
         "evidenceCount": 1,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Silicon photonics / CPO / OE Engine；地区：Taiwan",
+      "latestValuationZh": "ESB implied market cap approx NT$21.5B",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C3｜关系观察",
+      "notesClean": "Track as long-duration silicon photonics option; not core until revenue/design wins accelerate.\nThematic fit but current revenue small; more technology option than near-term pre-IPO.\nCPO/silicon photonics is central to AI networking roadmap, but timing uncertain.\nKey metrics: Estimated ESB market cap: ~NT$21.5B; 2026 Jan-May revenue: ~NT$61M, YoY -5%; EPS: 9.05, needs accounting/one-off check\nValuation view: Option-like; do not underwrite on revenue multiple without design-win visibility.\nAccess route: Company management, Biostar/strategic investor network, optical module experts.\nEvidence boundary: Need product status, design wins, revenue quality and EPS source.\nKeep but not top due to revenue base.",
+      "recommendationClean": "Track as long-duration silicon photonics option; not core until revenue/design wins accelerate.",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险等级：high"
     },
     {
       "id": "weka",
@@ -6061,7 +7039,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 数据、内存与存储层",
+      "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
+      "latestValuationZh": "Series E 估值 ~$1.6B (2024 public reports)",
+      "revenueScaleZh": "Revenue scale 未披露; 待核验 ARR/CARR and AI/HPC customer mix",
+      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "priorityZh": "A1｜架构迁移核心",
+      "notesClean": "",
+      "recommendationClean": "WEKA — 卡位AI架构迁移硬瓶颈：GPU/ASIC goodput受制于互连、网络、数据移动或storage；相比应用层更不容易被模型直接替代。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "A1｜架构迁移核心。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "ddn",
@@ -6109,7 +7099,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 数据、内存与存储层",
+      "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
+      "latestValuationZh": "Private; 估值 not disclosed",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "priorityZh": "B1｜商业化后期",
+      "notesClean": "",
+      "recommendationClean": "DDN — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "hammerspace",
@@ -6155,7 +7157,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 数据、内存与存储层",
+      "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "priorityZh": "B1｜商业化后期",
+      "notesClean": "",
+      "recommendationClean": "Hammerspace — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "minio",
@@ -6204,7 +7218,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 数据、内存与存储层",
+      "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
+      "latestValuationZh": "2022 unicorn 估值 ~$1B public reports",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "priorityZh": "B1｜商业化后期",
+      "notesClean": "",
+      "recommendationClean": "MinIO — 商业/近IPO属性较强，但核心是unit economics、收入质量、客户合同和估值条款，而非纯技术叙事。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B1｜商业化后期。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "anyscale",
@@ -6254,7 +7280,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：AI Infra；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "Anyscale — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "arrcus",
@@ -6304,7 +7342,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 集群网络与互连",
+      "homepageDescriptionZh": "定位：AI 集群网络与互连；方向：AI Ethernet / fabric / network OS；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "Arrcus — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "encharge-ai",
@@ -6352,7 +7402,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 数据、内存与存储层",
+      "homepageDescriptionZh": "定位：AI 数据、内存与存储层；方向：AI data / memory / storage plane；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "AI收入占比、ARR/CARR/FCF、GPU pipeline客户、云/本地部署结构、老股/二级份额/IPO 时间表。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "EnCharge AI — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 数据、内存与存储层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "etched",
@@ -6402,7 +7464,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：AI silicon / accelerator；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "Etched — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "fireworks-ai",
@@ -6450,7 +7524,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：AI Infra；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "Fireworks AI — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "liquidstack",
@@ -6497,7 +7583,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：AI cloud / power / cooling operator；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "LiquidStack — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "matx",
@@ -6544,7 +7642,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 芯片 / 加速器",
+      "homepageDescriptionZh": "定位：AI 芯片 / 加速器；方向：AI silicon / accelerator；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "silicon readiness、benchmark on real workloads、compiler/software、客户design wins、NVIDIA替代或互补关系。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "MatX — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "modal",
@@ -6591,7 +7701,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 基础设施",
+      "homepageDescriptionZh": "定位：AI 基础设施；方向：AI Infra；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "Modal — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "submer",
@@ -6638,7 +7760,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 云、供电与冷却基础设施",
+      "homepageDescriptionZh": "定位：AI 云、供电与冷却基础设施；方向：AI cloud / power / cooling operator；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "utilization、客户集中、contracted 收入、debt/capex、GPU折旧、power-to-site。",
+      "priorityZh": "B2｜积极尽调",
+      "notesClean": "",
+      "recommendationClean": "Submer — 技术方向重要，但需要证明生产级客户、收入规模、毛利、生态位置和IPO/并购路径。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "B2｜积极尽调。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "avicena",
@@ -6690,7 +7824,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic / optical I/O / CPO；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "Avicena — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "dustphotonics",
@@ -6739,7 +7885,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic / optical I/O / CPO；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "DustPhotonics — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "hedgehog",
@@ -6784,7 +7942,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 集群网络与互连",
+      "homepageDescriptionZh": "定位：AI 集群网络与互连；方向：AI Ethernet / fabric / network OS；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "Hedgehog — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "hyperlume",
@@ -6831,7 +8001,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic / optical I/O / CPO；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "Hyperlume — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "netbox-labs",
@@ -6879,7 +8061,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 集群网络与互连",
+      "homepageDescriptionZh": "定位：AI 集群网络与互连；方向：AI Ethernet / fabric / network OS；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "NetBox Labs — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "nile",
@@ -6926,7 +8120,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 集群网络与互连",
+      "homepageDescriptionZh": "定位：AI 集群网络与互连；方向：AI Ethernet / fabric / network OS；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "Nile — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "openlight",
@@ -6976,7 +8182,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic / optical I/O / CPO；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "OpenLight — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "ranovus",
@@ -7024,7 +8242,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic / optical I/O / CPO；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "Ranovus — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "selector-ai",
@@ -7072,7 +8302,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "AI 集群网络与互连",
+      "homepageDescriptionZh": "定位：AI 集群网络与互连；方向：AI Ethernet / fabric / network OS；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "真实AI cluster deployment、goodput提升、与NVIDIA/Broadcom/Arista竞争、gross margin。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "Selector AI — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     },
     {
       "id": "xscape-photonics",
@@ -7122,7 +8364,19 @@
         "evidenceCount": 0,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19"
+      "enrichedAsOf": "2026-06-19",
+      "layerZh": "光互连 / 硅光 / CPO",
+      "homepageDescriptionZh": "定位：光互连 / 硅光 / CPO；方向：Photonic / optical I/O / CPO；地区：US",
+      "latestValuationZh": "待验证",
+      "revenueScaleZh": "未披露/待验证",
+      "nextActionZh": "production readiness、design win、hyperscaler/semiconductor customer、yield、标准路线、M&A vs IPO。",
+      "priorityZh": "C1｜Tech Radar / 早期或M&A watch",
+      "notesClean": "",
+      "recommendationClean": "Xscape Photonics — 技术雷达或M&A watch：方向对但阶段偏早，先建立关系和观察下一轮/战略投资人。",
+      "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
+      "presentationCleanedAsOf": "2026-06-19",
+      "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "riskSummaryZh": "风险暂未整理"
     }
   ],
   "fundingRounds": [

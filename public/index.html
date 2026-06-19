@@ -4,14 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Global AI Pre-IPO / IPO Pipeline</title>
-  <link rel="stylesheet" href="style.css?v=9" />
+  <link rel="stylesheet" href="style.css?v=10" />
 </head>
 <body>
   <header class="topbar pipeline-topbar">
     <div>
-      <div class="eyebrow">Investor Pipeline OS · Global AI Pre-IPO / IPO</div>
-      <h1>全球 AI Pre-IPO / IPO Opportunity Pipeline</h1>
-      <p>公司第一：每一行回答“这家公司为什么在追、数据是什么、谁投了、从哪里拿 deal、下一步问什么”。</p>
+      <div class="eyebrow">投资管线系统 · 全球 AI Pre-IPO / IPO</div>
+      <h1>全球 AI Pre-IPO / IPO 投资管线</h1>
+      <p>公司第一：每一行看清公司定位、估值口径、投资人、可接触路径和下一步动作。</p>
     </div>
     <div class="actions">
       <button id="exportBtn">导出 Markdown</button>
@@ -23,8 +23,8 @@
     <section class="panel controls pipeline-controls table-first-controls">
       <input id="search" placeholder="搜索公司、投资人、关系节点、技术层：Databricks / NVIDIA / Temasek / photonic..." />
       <select id="region"><option value="">全部地区</option></select>
-      <select id="sector"><option value="">全部 Layer / 赛道</option></select>
-      <select id="label"><option value="">全部旧标签</option></select>
+      <select id="sector"><option value="">全部赛道 / 层级</option></select>
+      <select id="label"><option value="">全部优先级</option></select>
       <button id="resetBtn">重置</button>
     </section>
 
@@ -32,8 +32,8 @@
       <div class="panel table-wrap primary-pipeline">
         <div class="section-head compact-head table-first-head">
           <div>
-            <div class="section-title">Company Pipeline / Excel-style 主追踪表</div>
-            <div class="sub">第一页以表格为主：Company → Description → Latest Valuation → Priority → Investors / Route / Next Action。</div>
+            <div class="section-title">公司管线 / 横向主表</div>
+            <div class="sub">第一页以横向表格为主：公司 → 公司描述 → 最新估值 → 优先级 → 投资人 → 路径 → 下一步。</div>
           </div>
           <div id="summary" class="summary-grid table-summary"></div>
         </div>
@@ -42,21 +42,21 @@
         <div class="mvp8-report-grid">
           <aside class="mvp8-left-rail">
             <div class="rail-card">
-              <div class="rail-title">Top investors</div>
+              <div class="rail-title">主要投资人</div>
               <div id="topInvestors" class="rank-list"></div>
             </div>
             <div class="rail-card">
-              <div class="rail-title">Top layers</div>
+              <div class="rail-title">重点赛道</div>
               <div id="topLayers" class="rank-list"></div>
             </div>
             <div class="rail-card">
-              <div class="rail-title">Data health</div>
+              <div class="rail-title">数据完整度</div>
               <div id="dataHealth" class="health-box"></div>
             </div>
           </aside>
           <div class="mvp8-table-area">
             <table id="companyTable" class="pipeline-table excel-pipeline">
-              <thead><tr><th>Company</th><th>Company Description</th><th>Latest Valuation</th><th>Priority</th><th>Revenue / ARR</th><th>Layer</th><th>Investors</th><th>IPO Window</th><th>Access Route</th><th>Readiness</th><th>Next Action</th></tr></thead>
+              <thead><tr><th>公司</th><th>公司描述</th><th>最新估值</th><th>优先级</th><th>收入 / ARR</th><th>赛道</th><th>投资人</th><th>IPO 窗口</th><th>接触路径</th><th>完整度</th><th>下一步</th></tr></thead>
               <tbody></tbody>
             </table>
             <div id="mobileCards" class="mobile-cards"></div>
@@ -69,7 +69,7 @@
     </section>
 
     <section class="panel pipeline-intro below-table-intro">
-      <div class="section-title">Pipeline 用途 / What this dashboard is for</div>
+      <div class="section-title">管线用途</div>
       <div class="intro-grid">
         <div><b>1. 公司池</b><span>跟踪所有 pre-IPO / late-growth / 准上市公司。</span></div>
         <div><b>2. 投资逻辑</b><span>A0 成熟平台 + A1 架构硬瓶颈 + A2 台湾准上市供应链。</span></div>
@@ -79,20 +79,20 @@
     </section>
 
     <section class="panel ops-strip">
-      <div class="section-title">Operating Queue / 工作队列</div>
+      <div class="section-title">工作队列</div>
       <div class="ops-grid-v6">
-        <div class="ops-block"><h3>Relationship CRM</h3><div id="relationshipCrm" class="relationship-list"></div></div>
-        <div class="ops-block"><h3>Missing Data / IC Readiness</h3><div id="missingData" class="risk-list"></div></div>
-        <div class="ops-block"><h3>Source Registry</h3><div id="sourceRegistry" class="source-grid compact-sources"></div></div>
+        <div class="ops-block"><h3>关系路径</h3><div id="relationshipCrm" class="relationship-list"></div></div>
+        <div class="ops-block"><h3>缺口 / IC 准备度</h3><div id="missingData" class="risk-list"></div></div>
+        <div class="ops-block"><h3>来源登记</h3><div id="sourceRegistry" class="source-grid compact-sources"></div></div>
       </div>
     </section>
 
     <section class="panel crm-panel">
       <details class="crm-details">
-        <summary>Funding Events / Open Tasks / Audit</summary>
+        <summary>融资事件 / 待办 / 审计</summary>
         <div class="crm-grid">
-          <div><h3>Latest Funding / Valuation Events</h3><div id="fundingBoard" class="mini-list"></div></div>
-          <div><h3>Open Deal Tasks</h3><div id="taskBoard" class="mini-list"></div></div>
+          <div><h3>最新融资 / 估值事件</h3><div id="fundingBoard" class="mini-list"></div></div>
+          <div><h3>待办事项</h3><div id="taskBoard" class="mini-list"></div></div>
         </div>
       </details>
     </section>
@@ -117,7 +117,7 @@
         <label>收入质量<select name="revenueQuality"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>medium_low</option><option>low</option><option>unknown</option></select></label>
         <label>投资人质量<select name="investorQuality"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
         <label>战略相关性<select name="strategicRelevance"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
-        <label>Access Fit<select name="accessFit"><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
+        <label>接触可行性<select name="accessFit"><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
         <label>风险<select name="riskLevel"><option>low</option><option>medium</option><option>medium_high</option><option>high</option></select></label>
       </div>
       <label>估值/融资锚<textarea name="latestValuation"></textarea></label>
@@ -135,6 +135,6 @@
     </div>
   </dialog>
 
-  <script src="app.js?v=9"></script>
+  <script src="app.js?v=10"></script>
 </body>
 </html>
