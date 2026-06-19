@@ -1,4 +1,5 @@
 let state = null;
+let ops = null;
 let selected = null;
 let showAllMobile = false;
 const $ = sel => document.querySelector(sel);
@@ -24,12 +25,14 @@ function qs(obj) {
 
 async function load() {
   state = await api('/api/state?' + qs(filters()));
+  ops = await api('/api/ops');
   renderSummary();
   renderVintageBanner();
   renderQuickChips();
   renderPriorityBoard();
   renderDeltaView();
   renderDealKanban();
+  renderOperatingSystem();
   applyResponsiveDefaults();
   await renderSources();
   renderFilters();
@@ -155,6 +158,34 @@ function renderDealKanban() {
   box.querySelectorAll('.kanban-item').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
 }
 
+function decisionClass(decision) {
+  if (/Buy|Pursue|Advance/.test(decision)) return 'green';
+  if (/Need/.test(decision)) return 'orange';
+  if (/Wait/.test(decision)) return 'amber';
+  return 'gray';
+}
+
+function renderOperatingSystem() {
+  if (!ops) return;
+  const ic = $('#icView'), rel = $('#relationshipMap'), aging = $('#taskAging'), qp = $('#onePagerQueue');
+  if (!ic || !rel || !aging || !qp) return;
+  ic.innerHTML = (ops.icView || []).map((c, i) => `<button class="ic-card" type="button" data-id="${esc(c.companyId)}">
+    <div class="ic-top"><span>#${i + 1}</span><b class="${decisionClass(c.decision)}">${esc(c.decision)}</b></div>
+    <h4>${esc(c.name)}</h4><div class="sub">${esc(c.region)} · ${esc(c.sector)} · score ${esc(c.score)}</div>
+    <p>${esc(c.thesis).slice(0, 130)}</p>
+  </button>`).join('');
+  rel.innerHTML = (ops.relationshipMap || []).slice(0, 12).map(r => `<div class="relationship-item">
+    <div class="relationship-head"><b>${esc(r.investor)}</b><span>${esc(r.coreCount)} core / ${esc(r.companies.length)} total</span></div>
+    <div class="relationship-companies">${r.companies.slice(0,4).map(c => `<button type="button" data-id="${esc(c.id)}">${esc(c.name)} <em>${esc(c.score)}</em></button>`).join('')}</div>
+  </div>`).join('');
+  const risk = ops.followUpRisks || {};
+  const overdue = risk.overdue || [], dueSoon = risk.dueSoon || [], noOwner = risk.noOwnerCore || [], noEvidence = risk.thesisNoEvidence || [];
+  aging.innerHTML = `<div class="risk-metrics"><div><b>${overdue.length}</b><span>Overdue</span></div><div><b>${dueSoon.length}</b><span>Due soon</span></div><div><b>${noOwner.length}</b><span>No owner</span></div><div><b>${noEvidence.length}</b><span>No evidence</span></div></div>
+    ${(ops.taskAging || []).slice(0, 8).map(t => `<button class="risk-task ${t.agingStatus}" type="button" data-id="${esc(t.companyId)}"><b>${esc(t.companyName)}</b><span>${esc(t.title)}</span><em>${esc(t.dueDate || 'no due')} · ${esc(t.agingStatus)}${t.daysUntilDue !== null ? ' · D' + (t.daysUntilDue >= 0 ? '-' + t.daysUntilDue : '+' + Math.abs(t.daysUntilDue)) : ''}</em></button>`).join('')}`;
+  qp.innerHTML = (ops.onePagerQueue || []).slice(0, 8).map(p => `<button class="onepager-item" type="button" data-id="${esc(p.companyId)}"><b>${esc(p.name)}</b><span class="pill ${decisionClass(p.decision)}">${esc(p.decision)}</span><p>${esc(p.routeToAccess).slice(0, 120)}</p></button>`).join('');
+  document.querySelectorAll('#icView [data-id], #relationshipMap [data-id], #taskAging [data-id], #onePagerQueue [data-id]').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
+}
+
 function applyResponsiveDefaults() {
   if (!window.matchMedia('(max-width: 720px)').matches) return;
   const crm = document.querySelector('.crm-details');
@@ -232,6 +263,17 @@ function renderMobileCards() {
   if (more) more.addEventListener('click', () => { showAllMobile = true; renderMobileCards(); });
 }
 
+function renderDetailOnePager(c, tasks) {
+  const questions = (c.openQuestions || []).length ? c.openQuestions : (tasks || []).slice(0, 3).map(t => t.title);
+  const risks = (c.redFlags || []).length ? c.redFlags : [c.evidenceBoundary || c.riskLevel || 'Risks not captured yet.'];
+  return `<div class="onepager-detail">
+    <div><b>Thesis</b><p>${esc(c.recommendation || c.mandateFit || c.whyNow || c.notes || 'Thesis not captured yet.')}</p></div>
+    <div><b>Valuation</b><p>${esc(c.valuationView || c.latestValuation || c.latestFunding || 'Valuation not captured yet.')}</p></div>
+    <div><b>Risks</b><ul>${risks.map(r => `<li>${esc(r)}</li>`).join('')}</ul></div>
+    <div><b>Next call questions</b><ul>${(questions.length ? questions : ['No next-call questions captured yet.']).map(q => `<li>${esc(q)}</li>`).join('')}</ul></div>
+  </div>`;
+}
+
 function renderScoreBreakdown(c) {
   const b = c.scoreBreakdown;
   if (!b || !Array.isArray(b.rows)) return '<p class="sub">Score breakdown not available.</p>';
@@ -253,6 +295,7 @@ async function showDetail(id) {
     <h2>${esc(c.name)}</h2>
     <div class="sub">${esc(c.country)} · ${esc(c.sector)} / ${esc(c.subSector)}</div>
     <div style="margin:10px 0"><span class="score ${colorClass(c.label)}">${c.score}</span> <span class="pill ${colorClass(c.label)}">${esc(c.label)}</span></div>
+    <div class="detail-section compact"><b>IC One-Pager</b>${renderDetailOnePager(c, tasks)}</div>
     <div class="detail-section compact"><b>Score Breakdown</b>${renderScoreBreakdown(c)}</div>
     <div class="kv"><b>IPO 信号</b><span>${esc(c.ipoSignal)}${c.priorityTier ? '<br>Priority: ' + esc(c.priorityTier) : ''}</span></div>
     <div class="kv"><b>Recommendation</b><span>${esc(c.recommendation || c.mandateFit || 'not captured')}</span></div>

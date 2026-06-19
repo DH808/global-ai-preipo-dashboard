@@ -195,6 +195,83 @@ async function apiCrm(req, res) {
   json(res, 200, { dashboard: computeDashboard(state.companies, { tasks: state.tasks || [], fundingRounds: state.fundingRounds || [] }), fundingRounds, tasks, interactions: state.interactions || [] });
 }
 
+function daysUntil(dateString) {
+  if (!dateString) return null;
+  const due = new Date(`${dateString}T00:00:00Z`);
+  if (Number.isNaN(due.getTime())) return null;
+  const today = new Date();
+  const todayUtc = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+  return Math.ceil((due.getTime() - todayUtc) / 86400000);
+}
+
+function decisionForCompany(c, tasks = []) {
+  const openTasks = tasks.filter(t => t.status !== 'done' && t.status !== 'closed');
+  const hasEvidence = (c.evidence || []).length > 0;
+  const hasOpenQuestions = (c.openQuestions || []).length > 0 || /verify|confirm|核验|确认|ARR|margin|customer|客户/i.test([c.nextAction, c.notes].join(' '));
+  if (c.score >= 92 && hasEvidence && openTasks.length <= 2 && c.riskLevel !== 'high') return 'Buy / Pursue Allocation';
+  if (c.score >= 85 && hasOpenQuestions) return 'Need Data';
+  if (c.score >= 80 && /discount|折价|price|估值|valuation/i.test([c.nextAction, c.valuationView, c.notes].join(' '))) return 'Wait for Price';
+  if (c.score >= 80) return 'Advance Diligence';
+  if (c.label === 'Build Relationship') return 'Build Relationship';
+  return 'Monitor';
+}
+
+function onePagerForCompany(c, tasks = []) {
+  return {
+    companyId: c.id,
+    name: c.name,
+    decision: decisionForCompany(c, tasks),
+    thesis: c.recommendation || c.mandateFit || c.whyNow || c.notes || 'Thesis not captured yet.',
+    valuation: c.valuationView || c.latestValuation || c.latestFunding || 'Valuation not captured yet.',
+    risks: (c.redFlags || []).length ? c.redFlags : [c.evidenceBoundary || c.riskLevel || 'Risks not captured yet.'],
+    nextCallQuestions: (c.openQuestions || []).length ? c.openQuestions : tasks.slice(0, 3).map(t => t.title),
+    routeToAccess: c.routeToAccess || c.nextAction || 'Access route not captured yet.'
+  };
+}
+
+function buildRelationshipMap(companies) {
+  const map = new Map();
+  for (const c of companies) {
+    const investors = (c.investors || []).concat((c.tags || []).filter(t => /Viking|D1|Coatue|CapitalG|GV|Temasek|Tiger|Sands|Altimeter|Greenoaks|ICONIQ|Samsung|InterVest|Yuanta|元大|富邦|永丰|永豐/i.test(t)));
+    for (const inv of investors) {
+      const key = String(inv || '').trim();
+      if (!key || key.length > 40) continue;
+      if (!map.has(key)) map.set(key, { investor: key, companies: [], coreCount: 0, topScore: 0 });
+      const row = map.get(key);
+      if (!row.companies.find(x => x.id === c.id)) row.companies.push({ id: c.id, name: c.name, score: c.score, label: c.label, route: c.routeToAccess || c.nextAction || '' });
+      if (c.label === 'Core / Act Now') row.coreCount += 1;
+      row.topScore = Math.max(row.topScore, c.score);
+    }
+  }
+  return [...map.values()].filter(r => r.companies.length >= 1).sort((a,b) => (b.coreCount - a.coreCount) || (b.topScore - a.topScore) || (b.companies.length - a.companies.length)).slice(0, 24);
+}
+
+async function apiOperatingSystem(req, res) {
+  const state = await readState();
+  const companies = state.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) })).sort((a,b)=>b.score-a.score);
+  const companyMap = Object.fromEntries(companies.map(c => [c.id, c]));
+  const tasksByCompany = {};
+  for (const t of state.tasks || []) {
+    if (!tasksByCompany[t.companyId]) tasksByCompany[t.companyId] = [];
+    tasksByCompany[t.companyId].push(t);
+  }
+  const taskAging = (state.tasks || []).filter(t => t.status !== 'done' && t.status !== 'closed').map(t => {
+    const days = daysUntil(t.dueDate);
+    return {
+      ...t,
+      companyName: companyMap[t.companyId]?.name || t.companyId,
+      companyScore: companyMap[t.companyId]?.score || 0,
+      daysUntilDue: days,
+      agingStatus: days === null ? 'no_due' : days < 0 ? 'overdue' : days <= 7 ? 'due_soon' : 'open'
+    };
+  }).sort((a,b) => (a.daysUntilDue ?? 9999) - (b.daysUntilDue ?? 9999) || (b.companyScore - a.companyScore));
+  const top = companies.slice(0, 15).map(c => ({ ...onePagerForCompany(c, tasksByCompany[c.id] || []), score: c.score, label: c.label, region: c.region, sector: c.sector, nextAction: c.nextAction }));
+  const onePagerQueue = companies.filter(c => c.label === 'Core / Act Now' || String(c.priorityTier || '').startsWith('1')).slice(0, 12).map(c => onePagerForCompany(c, tasksByCompany[c.id] || []));
+  const noOwnerCore = companies.filter(c => c.label === 'Core / Act Now' && !c.owner).map(c => ({ id: c.id, name: c.name, score: c.score, nextAction: c.nextAction })).slice(0, 20);
+  const thesisNoEvidence = companies.filter(c => c.label === 'Core / Act Now' && !(c.evidence || []).length).map(c => ({ id: c.id, name: c.name, score: c.score })).slice(0, 20);
+  json(res, 200, { meta: state.meta, icView: top, onePagerQueue, relationshipMap: buildRelationshipMap(companies), taskAging: taskAging.slice(0, 40), followUpRisks: { overdue: taskAging.filter(t => t.agingStatus === 'overdue'), dueSoon: taskAging.filter(t => t.agingStatus === 'due_soon').slice(0, 15), noOwnerCore, thesisNoEvidence } });
+}
+
 async function apiRefreshSource(req, res, id, urlObj) {
   if (id === 'intervest_portfolio') return json(res, 200, await refreshInterVest());
   if (id === 'google_news_rss') {
@@ -216,6 +293,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'GET' && pathname === '/api/export.csv') return apiExportCsv(req, res);
     if (req.method === 'GET' && pathname === '/api/sources') return apiSources(req, res);
     if (req.method === 'GET' && pathname === '/api/crm') return apiCrm(req, res);
+    if (req.method === 'GET' && pathname === '/api/ops') return apiOperatingSystem(req, res);
     if (req.method === 'GET' && pathname.startsWith('/api/refresh/')) return apiRefreshSource(req, res, pathname.split('/').pop(), urlObj);
     if (req.method === 'GET' && pathname.startsWith('/api/company/')) return apiCompany(req, res, pathname.split('/').pop());
     if ((req.method === 'POST' || req.method === 'PUT') && pathname === '/api/company') return apiSaveCompany(req, res, null);

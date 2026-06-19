@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Global AI Pre-IPO Pipeline Pilot</title>
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 <body>
   <header class="topbar">
@@ -45,6 +45,21 @@
         <div class="sub">按推进状态分组，手机端横向滑动；点击公司进入 detail。</div>
         <div id="dealKanban" class="kanban-grid"></div>
       </section>
+    </section>
+
+    <section class="panel ops-panel">
+      <div class="section-head">
+        <div>
+          <div class="section-title">PM v5 Deal Operating System / 投委与BD作战台</div>
+          <div class="sub">把 pipeline 变成日常操作系统：IC 决策、关系路径、follow-up 风险、公司 one-pager 队列。</div>
+        </div>
+      </div>
+      <div class="ops-grid">
+        <div class="ops-block ops-ic"><h3>Investment Committee View / Top 15</h3><div id="icView" class="ic-grid"></div></div>
+        <div class="ops-block"><h3>Relationship Map</h3><div id="relationshipMap" class="relationship-list"></div></div>
+        <div class="ops-block"><h3>Task Aging / Follow-up Risk</h3><div id="taskAging" class="risk-list"></div></div>
+        <div class="ops-block"><h3>One-Pager Queue</h3><div id="onePagerQueue" class="onepager-list"></div></div>
+      </div>
     </section>
 
     <section class="panel source-panel">
@@ -115,6 +130,6 @@
     </form>
   </dialog>
 
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

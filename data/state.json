@@ -4,19 +4,19 @@
     "asOf": "2026-06-19",
     "purpose": "Deal-team CRM for private/pre-IPO AI, AI infrastructure, semiconductor, data-center, robotics and AI supply-chain targets; prioritizes 12-36 month liquidity, revenue/deployment evidence, and actionable access routes.",
     "schemaVersion": 1,
-    "updatedAt": "2026-06-18T21:27:08.003821+00:00",
-    "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards.",
-    "productIteration": "v4-pm-delta-score-kanban-mobile",
-    "uiVersion": "4",
+    "updatedAt": "2026-06-19T07:27:32.172547+00:00",
+    "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue.",
+    "productIteration": "v5-deal-operating-system",
+    "uiVersion": "5",
     "releaseNotes": [
       {
-        "version": "v4",
+        "version": "v5",
         "date": "2026-06-19",
         "items": [
-          "Delta View: added/upgraded/needs-proof/de-risk buckets",
-          "Score Breakdown: IPO/revenue/investor/strategic/access/risk factors",
-          "Deal Kanban: Act Now / Active Diligence / Build Relationship / Monitor",
-          "Mobile: kanban swipe columns + one-column delta cards + cache-busted assets"
+          "IC View: Top 15 with Buy/Wait/Need Data/Advance decisions",
+          "Relationship Map: investor-to-company route aggregation",
+          "Task Aging: overdue/due-soon/no-owner/no-evidence risk surfacing",
+          "Company One-Pager: thesis, valuation, risks, next call questions in detail cards"
         ]
       }
     ]
