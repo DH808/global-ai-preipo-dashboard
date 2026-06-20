@@ -62,7 +62,10 @@ function cleanDisplayText(s, fallback = '待确认') {
   return text
     .replace(/\bPriority:\s*/gi, '')
     .replace(/\bRecommendation:\s*/gi, '')
-    .replace(/\bOriginal notes:\s*/gi, '')
+    .replace(/Original notes:\s*/gi, '')
+    .replace(/已有公开指标\s*\/\s*(高|中|低)[:：]\s*/gi, '')
+    .replace(/公开资料未披露\s*\/\s*(高|中|低)[:：]\s*/gi, '')
+    .replace(/Missing\s*\([^)]*\)[:：]?\s*/gi, '')
     .replace(/existing tracker/gi, '现有资料')
     .replace(/in tracker/gi, '现有资料显示')
     .replace(/expanded seed/gi, '扩展样本')
@@ -144,6 +147,10 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/customer 客户设计定点/gi, '客户设计定点')
     .replace(/客户客户设计定点/gi, '客户设计定点')
     .replace(/更新 与 /gi, '更新')
+    .replace(/更新最近季度 年化口径/gi, '最近季度收入年化口径')
+    .replace(/二级份额 成交价/gi, '二级份额成交价')
+    .replace(/流动性计划\/二级份额 条款/gi, '流动性计划 / 二级份额条款')
+    .replace(/AI 产品收入结构, 流动性计划\/二级份额 条款, 投行 \/ IPO 时间表/gi, 'AI 产品收入结构，流动性计划 / 二级份额条款，投行 / IPO 时间表')
     .replace(/AI 产品 mix/gi, 'AI 产品收入结构')
     .replace(/\bterms\b/gi, '条款')
     .replace(/banker\/IPO calendar/gi, '投行 / IPO 时间表')
@@ -805,10 +812,41 @@ function renderScoreBreakdown(c) {
     }).join('')}
   </div>`;
 }
+function parseEvidenceNote(note) {
+  let raw = cleanDisplayText(note, '');
+  raw = raw
+    .replace(/^已有公开指标\s*\/\s*(高|中|低)[:：]\s*/i, '')
+    .replace(/^公开资料未披露\s*\/\s*(高|中|低)[:：]\s*/i, '')
+    .replace(/^Missing\s*\([^)]*\)[:：]?\s*/i, '')
+    .trim();
+  const parts = raw.split(/尽调需核验[:：]/);
+  const disclosedRaw = parts[0] || '';
+  const diligenceRaw = parts.slice(1).join('尽调需核验：');
+  const disclosed = [];
+  const asks = [];
+  let left = disclosedRaw.replace(/^官方\/公司公开口径显示[:：]?\s*/i, '').trim();
+  const still = left.split(/仍需核验/i);
+  left = still[0].trim();
+  if (still[1]) asks.push(...splitChecklist(still[1], 6));
+  left.split(/[;；。]\s*/).map(x=>x.trim()).filter(Boolean).forEach(x => {
+    const y = cleanDisplayText(x, '');
+    if (!y) return;
+    if (/未披露|待核验|待确认/.test(y)) asks.push(y);
+    else disclosed.push(y.replace(/\.$/, ''));
+  });
+  if (diligenceRaw) asks.push(...splitChecklist(diligenceRaw, 8));
+  const normalizedAsks = asks.flatMap(x => String(x).split(/[，,]\s*|\s+和\s+/)).map(x => x.replace(/^[:：,，、\-\s]+/, '').trim()).filter(Boolean);
+  return {
+    disclosed: disclosed.slice(0, 5),
+    asks: normalizedAsks.filter((x, i, a) => a.indexOf(x) === i).slice(0, 10),
+    fallback: safeSentence(note, '资料说明待整理。')
+  };
+}
 function formatEvidenceItem(e) {
   const type = e.type === 'official' ? '官方' : e.type === 'media' ? '媒体' : cleanDisplayText(e.type, '来源');
-  const note = safeSentence(e.note, '资料说明待整理。');
-  return `<div class="evidence memo-evidence structured-evidence"><div><span class="pill gray">${esc(type)}</span> <b>${esc(cleanDisplayText(e.date, '日期待确认'))}</b></div><p>${esc(note)}</p>${e.url?`<a href="${esc(e.url)}" target="_blank">查看来源</a>`:''}</div>`;
+  const parsed = parseEvidenceNote(e.note);
+  const structured = parsed.disclosed.length || parsed.asks.length;
+  return `<div class="evidence memo-evidence structured-evidence"><div><span class="pill gray">${esc(type)}</span> <b>${esc(cleanDisplayText(e.date, '日期待确认'))}</b></div>${structured ? `<div class="evidence-note-grid">${parsed.disclosed.length ? `<div><span>已披露 / 可展示</span>${checklistHtml(parsed.disclosed)}</div>` : ''}${parsed.asks.length ? `<div><span>待核验</span>${checklistHtml(parsed.asks)}</div>` : ''}</div>` : `<p>${esc(parsed.fallback)}</p>`}${e.url?`<a href="${esc(e.url)}" target="_blank">查看来源</a>`:''}</div>`;
 }
 function detailHtml(c, rounds, tasks, interactions, extra = {}) {
   const profile = businessProfile(c);

@@ -87,6 +87,8 @@ FORBIDDEN_PUBLIC_TERMS = [
     'design-win diligence gap', 'customer 客户设计定点', '客户客户设计定点',
     'secured-business', 'route:', 'latest round:', 'open claims:',
     'commercialization 和', 'pursue via', 'only 与 price discipline',
+    '已有公开指标 / 高:', '已有公开指标 / 中:', '已有公开指标 / 低:',
+    '尽调需核验：更新最近季度',
 ]
 REQUIRED_SQLITE_TABLES = [
     'tracks', 'entities', 'companies', 'investors', 'company_investors',
