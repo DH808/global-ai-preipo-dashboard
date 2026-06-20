@@ -4,6 +4,7 @@ let selected = null;
 let showAllMobile = false;
 const IS_ADMIN = new URLSearchParams(location.search).get('admin') === '1';
 if (IS_ADMIN) document.body.classList.add('admin-mode');
+if (location.pathname.startsWith('/company/')) document.body.classList.add('company-profile-page');
 const $ = sel => document.querySelector(sel);
 
 async function api(path, opts) {
@@ -129,6 +130,27 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/12[–-]24m IPO \/ approved 二级份额 now/gi, '12–24个月 IPO / 已批准二级份额窗口')
     .replace(/18[–-]36m 二级份额\/IPO\/next-round path; terms and unit economics decide/gi, '18–36个月二级份额 / IPO / 下一轮窗口；取决于条款与单位经济')
     .replace(/v\d+ expanded .*?verify (with )?primary sources before IC use\.?/gi, '')
+    .replace(/Highest-maturity AI\/data platform; pursue 二级份额\/IPO allocation only 与 price discipline\.?/gi, '成熟度最高的数据与 AI 平台；仅在具备价格纪律时推进二级份额或 IPO allocation。')
+    .replace(/高-priority AI infrastructure target; pursue via ([^.]+)\.?/gi, '高优先级 AI 基础设施标的；优先通过 $1 建立接触。')
+    .replace(/Photonic AI compute\/interconnect; 核验 commercialization 和 2026 round\/IPO path\.?/gi, '光子计算 / 光互连标的；重点核验商业化进度与 2026 年融资 / IPO 路径。')
+    .replace(/public-market 上市承接/gi, '上市后承接')
+    .replace(/Company\/media-reported commercial proof 现有资料显示:?/gi, '公司/媒体公开资料显示：')
+    .replace(/strategic investors \+ semiconductor\/customer design-win checks｜资料室可得性, strategic co-invest, customer design-win proof, next round/gi, '战略投资人 / 半导体客户渠道｜核验资料室、共同投资机会、客户设计定点与下一轮融资')
+    .replace(/secured-business/gi, '已锁定业务')
+    .replace(/latest quarter/gi, '最近季度')
+    .replace(/public-获取 review/gi, '公开资料核验中')
+    .replace(/design-win diligence gap/gi, '设计赢单仍需尽调核验')
+    .replace(/goodput受制于互连、网络、数据移动或storage/gi, '集群效率受互连、网络、数据移动或存储限制')
+    .replace(/customer 客户设计定点/gi, '客户设计定点')
+    .replace(/客户客户设计定点/gi, '客户设计定点')
+    .replace(/更新 与 /gi, '更新')
+    .replace(/AI 产品 mix/gi, 'AI 产品收入结构')
+    .replace(/\bterms\b/gi, '条款')
+    .replace(/banker\/IPO calendar/gi, '投行 / IPO 时间表')
+    .replace(/contracted 收入/gi, '已签约收入')
+    .replace(/co-packaged optics/gi, '共封装光学')
+    .replace(/production timeline/gi, '量产时间表')
+    .replace(/\bAsk\s+针对\s+/gi, '核验 ')
     .replace(/^Ask\s+strategic investor\/company route\s+for\s+([^:：]+)[:：]?/i, '通过战略投资人或公司渠道核验 $1：')
     .replace(/^Ask\s+(.+?)\s+for\s+/i, '联系 $1，核验 ')
     .replace(/^Validate\s+/i, '核验 ')
@@ -277,6 +299,23 @@ function routeLine(c) { return cleanDisplayText(c.relationshipRoute || c.routeTo
 function nextLine(c) { return cleanDisplayText(c.nextActionZh || c.keyDiligence || c.nextAction, '下一步待整理'); }
 function valuationLine(c) { return cleanDisplayText(c.latestValuationZh || c.latestAvailableValuation || c.latestValuation || c.latestFunding, '未披露/待验证'); }
 function revenueLine(c) { return cleanDisplayText(c.revenueScaleZh || c.revenueScale, '未披露/待验证'); }
+function homepageRevenue(c) {
+  const rev = revenueLine(c);
+  if (/Databricks/i.test(c.name) && /4\.8B/.test(rev)) return '>$4.8B 收入年化；AI 产品 >$1B；FCF 为正';
+  if (/secured business/i.test(rev) || /已锁定业务/i.test(rev)) return '公开资料显示 >$1B 已锁定业务；现金流为正';
+  if (/未披露|待验证|公开资料待补充/i.test(rev)) return '未披露；待核验收入 / 订单储备';
+  return cleanDisplayText(rev.replace(/^官方\/公司公开口径显示[:：]?\s*/, '').split(/[;；.]/).filter(Boolean).slice(0,2).join('；'), '未披露/待验证');
+}
+function homepageRoute(c) {
+  const r = routeModel(c);
+  const nodes = r.nodes.slice(0, 2).join(' / ') || '入口节点待确认';
+  return nodes;
+}
+function homepageNext(c) {
+  const asks = splitChecklist(c.nextActionZh || c.keyDiligence || c.nextAction || '', 3);
+  if (asks.length) return asks.slice(0, 2).join('；');
+  return icActionLabel(c);
+}
 function icActionLabel(c) {
   const h = priorityHead(c);
   if (h === 'A0') return '成熟资产：持续跟踪二级份额 / IPO 窗口';
@@ -320,6 +359,8 @@ async function load() {
   applyResponsiveDefaults();
   renderFilters();
   renderTable();
+  const pathMatch = location.pathname.match(/^\/company\/([^/?#]+)/);
+  if (!selected && pathMatch) selected = { id: decodeURIComponent(pathMatch[1]) };
   if (selected) showDetail(selected.id);
 }
 
@@ -570,13 +611,13 @@ function renderTable() {
       <td class="description-cell">${companyBriefHtml(c)}</td>
       <td class="valuation-cell">${valuationCell(c)}</td>
       <td><span class="priority-badge ${esc(priorityTone(c))}">${esc(priorityHead(c))}</span><div class="sub ic-action-mini">${esc(icActionLabel(c))}</div></td>
-      <td class="metric-cell"><span class="metric-label">口径</span>${shortText(revenueLine(c), 104)}</td>
+      <td class="metric-cell"><span class="metric-label">口径</span>${shortText(homepageRevenue(c), 86)}</td>
       <td><span class="layer-pill">${shortText(zhLayer(c), 58)}</span></td>
       <td>${investorChips(c)}</td>
       <td><span class="window-pill">${esc(cleanDisplayText(c.ipoWindow || c.ipoSignal || '待确认'))}</span></td>
-      <td><div class="access-cell"><span>${esc(accessType(routeLine(c)))}</span><em>${shortText(routeLine(c), 92)}</em></div></td>
+      <td><div class="access-cell"><span>${esc(accessType(routeLine(c)))}</span><em>${shortText(homepageRoute(c), 78)}</em></div></td>
       <td>${readinessBlocks(c)}</td>
-      <td class="next-cell"><span class="metric-label">下一步</span>${shortText(nextLine(c), 128)}</td>
+      <td class="next-cell"><span class="metric-label">下一步</span>${shortText(homepageNext(c), 86)}</td>
     </tr>`).join('');
   tbody.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => showDetail(tr.dataset.id)));
   renderMobileCards();
@@ -591,31 +632,135 @@ function renderMobileCards() {
     <div class="mobile-card-top"><span class="priority-badge ${esc(priorityTone(c))}">${esc(priorityHead(c))}</span><span class="window-pill">${esc(cleanDisplayText(c.ipoWindow || '', '窗口待确认'))}</span></div>
     <div class="mobile-title-row"><div class="avatar">${esc(String(c.name || '?').slice(0,1))}</div><div><h3>${esc(c.name)}</h3><div class="sub">点击查看详情</div></div></div>
     ${companyBriefHtml(c, { compact: true })}
-    <div class="mobile-meta memo-mobile-meta"><div><b>估值口径</b><span>${shortText(valuationLine(c), 96)}</span></div><div><b>投资动作</b><span>${esc(icActionLabel(c))}</span></div></div>
+    <div class="mobile-meta memo-mobile-meta"><div><b>估值口径</b><span>${shortText(valuationLine(c), 96)}</span></div><div><b>商业验证</b><span>${shortText(homepageRevenue(c), 72)}</span></div></div>
     ${investorChips(c, 2)}
-    <p class="mobile-route"><b>${esc(accessType(routeLine(c)))}</b> · ${shortText(nextLine(c), 118)}</p>
+    <p class="mobile-route"><b>${esc(accessType(routeLine(c)))}</b> · ${shortText(homepageNext(c), 92)}</p>
   </button>`).join('') + (isMobile && !showAllMobile && state.companies.length > companies.length ? `<button class="load-more" type="button">显示全部 ${state.companies.length} 家</button>` : '');
   box.querySelectorAll('.mobile-company-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
   const more = box.querySelector('.load-more');
   if (more) more.addEventListener('click', () => { showAllMobile = true; renderMobileCards(); });
 }
 
-function renderDetailOnePager(c, tasks) {
-  const questions = (c.进行中Questions || []).length ? c.进行中Questions : (tasks || []).slice(0, 3).map(t => t.title);
-  const risks = (c.redFlags || []).length ? c.redFlags : [c.riskSummaryZh || c.riskLevel].filter(Boolean);
-  return `<div class="ic-memo-block">
-    <div class="memo-callout">
-      <span>IC 判断</span>
-      <b>${esc(icActionLabel(c))}</b>
-      <p>${esc(thesisLine(c))}</p>
-    </div>
-    <div class="memo-two-col">
-      <div class="memo-card"><h4>主要风险 / 待核验事项</h4>${memoList(risks, '风险事项待整理。')}</div>
-      <div class="memo-card"><h4>下一步验证</h4>${memoList(questions.length ? questions : [nextLine(c)], '下一步待整理。')}</div>
-    </div>
+
+function asCleanArray(value, fallback = []) {
+  const arr = Array.isArray(value) ? value : String(value || '').split(/[;；。]\s*|\s+和\s+|\s+与\s+/);
+  return arr.map(x => cleanDisplayText(x, '')).map(x => x.replace(/^[:：,，、\-\s]+/, '').trim()).filter(Boolean).filter(x => !/^(待确认|未披露|暂无)$/.test(x)).filter((x, i, a) => a.indexOf(x) === i).slice(0, 10);
+}
+function splitChecklist(text, limit = 8) {
+  let t = cleanDisplayText(text, '');
+  t = t
+    .replace(/^联系\s+([^，,。；;]+)[，,]\s*核验\s*/i, '联系 $1｜核验 ')
+    .replace(/^通过\s+([^：:]+)[：:]\s*/i, '通过 $1｜核验 ')
+    .replace(/^核验\s+/i, '')
+    .replace(/^确认\s+/i, '')
+    .replace(/\.$/, '');
+  const parts = t.split(/\s*｜\s*|[;；]\s*|[，,]\s+(?=(?:核验|确认|获取|更新|客户|最近|股份|转让|IPO|NRR|FCF|AI|收入|订单|资料|估值|lead|主承销|lock|valuation))/i);
+  return parts.map(x => x.trim()).filter(Boolean).slice(0, limit);
+}
+function checklistHtml(items, empty = '待补充') {
+  const arr = (items || []).filter(Boolean);
+  if (!arr.length) return `<p class="sub">${esc(empty)}</p>`;
+  return `<ul class="check-list">${arr.map(x => `<li>${esc(cleanDisplayText(x, '待确认'))}</li>`).join('')}</ul>`;
+}
+function safeSentence(text, fallback = '暂无可展示说明。') {
+  let t = cleanDisplayText(text, fallback)
+    .replace(/^A\d\s*[｜|]\s*[^。]+。?/, '')
+    .replace(/^.+?—\s*/, '')
+    .replace(/当前看点是估值、收入质量、投资人\/关系路径和 IPO 可见度是否匹配。?/g, '')
+    .replace(/卡位AI架构迁移硬瓶颈：/g, '卡位 AI 架构迁移中的关键瓶颈：')
+    .replace(/GPU\/ASIC goodput受制于互连、网络、数据移动或storage/g, 'GPU / ASIC 集群效率受互连、网络、数据移动或存储限制')
+    .replace(/public-market 上市承接/g, '上市后承接')
+    .replace(/data lakehouse\+AI平台/g, 'Data Lakehouse 与 AI 平台')
+    .replace(/pre-IPO/g, 'Pre-IPO')
+    .replace(/last round/g, '最后一轮估值')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return t || fallback;
+}
+function businessProfile(c) {
+  const profile = parseHomepageDescription(c);
+  const head = priorityHead(c);
+  const role = head === 'A0' ? '成熟型 Pre-IPO / IPO 承接资产' : head === 'A1' ? 'AI 架构迁移核心瓶颈公司' : head === 'A2' ? '亚洲准上市供应链资产' : /^B/.test(head) ? '积极尽调型私有市场标的' : '观察池标的';
+  return { ...profile, role };
+}
+function thesisBullets(c) {
+  const p = businessProfile(c);
+  const raw = safeSentence(c.whyInTrack || c.investmentSummaryZh || c.recommendationClean || c.recommendation || c.mandateFit || c.notes, '投资逻辑待整理。');
+  const bullets = [];
+  bullets.push(`${p.role}；主要覆盖 ${p.direction}。`);
+  if (/Databricks/i.test(c.name)) bullets.push('成熟度、收入规模与 IPO 可见度高于一般私有 AI 应用公司，重点不在追高估值，而在二级份额折价与 IPO allocation 纪律。');
+  else if (/A1/.test(priorityHead(c))) bullets.push('进入管线的核心原因是其位于 AI 集群效率、互连、数据移动、存储或芯片量产的硬瓶颈位置。');
+  else bullets.push(raw);
+  bullets.push(`当前动作：${icActionLabel(c)}。`);
+  return bullets.slice(0, 3);
+}
+function parseTractionRows(c) {
+  const rows = [];
+  const rev = revenueLine(c);
+  const add = (metric, value, status='待核验') => rows.push({metric, value: cleanDisplayText(value, '待确认'), status});
+  if (/Databricks/i.test(c.name) && /4\.8B/.test(rev)) {
+    add('Revenue run-rate', '>$4.8B', '官方披露');
+    add('AI product run-rate', '>$1B', '官方披露');
+    add('FCF', '为正', '官方披露');
+    add('待核验项', '最近季度增长、NRR、FCF 利润率、二级份额成交价', '待核验');
+  } else if (/未披露|待验证|公开资料待补充/i.test(rev)) add('收入 / ARR', '未披露', '待核验');
+  else {
+    let t = rev.replace(/^官方\/公司公开口径显示[:：]?\s*/, '').replace(/^Company\/media-reported commercial proof.*?:\s*/i, '公开资料显示：');
+    const parts = t.split(/[;；。]\s*/).map(x=>x.trim()).filter(Boolean);
+    for (const part of parts.slice(0, 4)) {
+      if (/AI 产品/i.test(part)) add('AI 产品收入', part, /官方|公司公开/i.test(rev) ? '官方披露' : '公开资料');
+      else if (/FCF/i.test(part)) add('现金流 / FCF', part, /官方|公司公开/i.test(rev) ? '官方披露' : '公开资料');
+      else if (/收入|ARR|CARR|已锁定业务|订单储备|年化口径|\$/.test(part)) add('商业口径', part, /官方|公司公开/i.test(rev) ? '官方披露' : '公开资料');
+      else if (/核验|确认|未披露/.test(part)) add('待核验项', part, '待核验');
+    }
+  }
+  const val = valuationLine(c);
+  if (val) add('估值口径', val, /Official|官方|公司/i.test(val) ? '官方披露' : (/Media|Reuters|媒体/i.test(val) ? '媒体 / 公开资料' : '待核验'));
+  return rows.slice(0, 6);
+}
+function tractionTable(c) {
+  const rows = parseTractionRows(c);
+  return `<div class="structured-table traction-table"><div class="st-head"><span>指标</span><span>当前口径</span><span>状态</span></div>${rows.map(r=>`<div class="st-row"><span>${esc(r.metric)}</span><b>${esc(cleanDisplayText(r.value, '待确认'))}</b><em>${esc(r.status)}</em></div>`).join('')}</div>`;
+}
+function routeModel(c) {
+  const route = routeLine(c);
+  const investors = (c.investors || []).slice(0, 5);
+  const nodes = investors.length ? investors : asCleanArray(route, []).slice(0, 4);
+  const askSource = c.keyDiligence || c.nextAction || route;
+  const asks = splitChecklist(askSource, 7).map(x => x.replace(/^Ask\s+针对\s+/i, '').replace(/^针对\s+/, ''));
+  return {
+    type: accessType(route),
+    nodes,
+    ask: asks.length ? asks : ['确认资料室可得性', '核验下一轮融资 / IPO 时间表', '获取关键经营口径'],
+    confidence: c.relationshipConfidence || c.routeConfidence || (nodes.length ? '中' : '待确认')
+  };
+}
+function routeStructuredHtml(c) {
+  const r = routeModel(c);
+  return `<div class="route-structured">
+    ${metricTile('路径类型', r.type, 'blue')}
+    ${metricTile('置信度', r.confidence, 'amber')}
+    <div class="route-box"><span>入口节点</span><div class="investor-chips">${r.nodes.slice(0,6).map(x=>`<span class="investor-chip">${esc(cleanDisplayText(x, '待确认'))}</span>`).join('') || '<span class="sub">待确认</span>'}</div></div>
+    <div class="route-box"><span>核心诉求</span>${checklistHtml(r.ask, '接触诉求待补充。')}</div>
   </div>`;
 }
-
+function evidenceStats(extra, c) {
+  const evidence = extra.evidence || c.evidence || [];
+  const claims = extra.claims || [];
+  const official = evidence.filter(e => /official|公司|官方/i.test([e.type,e.sourceType,e.note].join(' '))).length;
+  const media = evidence.filter(e => /media|news|Reuters|媒体/i.test([e.type,e.sourceType,e.note].join(' '))).length;
+  const openClaims = claims.filter(cl => !/confirmed|verified|已确认|confirmed/i.test(String(cl.status || ''))).length;
+  return { evidence: evidence.length, official, media, claims: claims.length, openClaims };
+}
+function evidenceSummaryHtml(extra, c) {
+  const s = evidenceStats(extra, c);
+  return `<div class="evidence-summary-grid">
+    ${metricTile('可展示来源', `${s.evidence} 条`, 'blue')}
+    ${metricTile('官方 / 公司', `${s.official} 条`, 'green')}
+    ${metricTile('媒体 / 公开资料', `${s.media} 条`, 'amber')}
+    ${metricTile('待核验 claims', `${s.openClaims} 项`, s.openClaims ? 'amber' : 'green')}
+  </div>`;
+}
 function fundingConfidenceClass(conf) {
   const t = String(conf || '').toLowerCase();
   if (/high|official|高|官方/.test(t)) return 'green';
@@ -648,7 +793,6 @@ function fundingTimeline(rounds) {
       </div>
     </article>`).join('')}</div>`;
 }
-
 function renderScoreBreakdown(c) {
   const b = c.scoreBreakdown;
   if (!b || !Array.isArray(b.rows)) return '<p class="sub">暂无评分拆解。</p>';
@@ -657,14 +801,17 @@ function renderScoreBreakdown(c) {
     ${b.rows.map(r => {
       const pct = Math.min(100, Math.round(Math.abs(r.points) / Math.max(1, Math.abs(r.weight)) * 100));
       const cls = r.points < 0 ? 'negative' : 'positive';
-      return `<div class="score-row ${cls}"><div><b>${esc(r.label)}</b><span>${esc(r.value)} · 权重 ${esc(r.weight)}</span></div><div class="score-bar"><i style="width:${pct}%"></i></div><em>${r.points > 0 ? '+' : ''}${esc(r.points)}</em></div>`;
+      return `<div class="score-row ${cls}"><div><b>${esc(cleanDisplayText(r.label, '指标'))}</b><span>${esc(cleanDisplayText(r.value, '待确认'))} · 权重 ${esc(r.weight)}</span></div><div class="score-bar"><i style="width:${pct}%"></i></div><em>${r.points > 0 ? '+' : ''}${esc(r.points)}</em></div>`;
     }).join('')}
   </div>`;
 }
-
+function formatEvidenceItem(e) {
+  const type = e.type === 'official' ? '官方' : e.type === 'media' ? '媒体' : cleanDisplayText(e.type, '来源');
+  const note = safeSentence(e.note, '资料说明待整理。');
+  return `<div class="evidence memo-evidence structured-evidence"><div><span class="pill gray">${esc(type)}</span> <b>${esc(cleanDisplayText(e.date, '日期待确认'))}</b></div><p>${esc(note)}</p>${e.url?`<a href="${esc(e.url)}" target="_blank">查看来源</a>`:''}</div>`;
+}
 function detailHtml(c, rounds, tasks, interactions, extra = {}) {
-  const profile = parseHomepageDescription(c);
-  const investorQuality = cleanDisplayText(c.investorDataQuality || '基于现有 tracker / funding participants 清洗', '基于现有资料清洗');
+  const profile = businessProfile(c);
   const keyMetrics = (c.keyMetrics || []).filter(Boolean);
   const evidenceItems = (extra.evidence || c.evidence || []).map(e => ({
     type: e.type || e.evidenceType || e.sourceType || '来源',
@@ -672,46 +819,54 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
     note: e.note || e.claim || e.value || e.extractedClaim || '',
     url: e.url || e.sourceUrl || ''
   }));
-  const claims = extra.claims || [];
   const scores = extra.scores || [];
   const icScore = scores.find(s => s.scoreType === 'ic_readiness');
-  return `<div class="detail ic-detail">
-    <div class="detail-hero memo-hero">
+  const topTasks = splitChecklist(nextLine(c), 8).concat((tasks || []).slice(0, 3).map(t => cleanDisplayText(t.title, ''))).filter(Boolean).slice(0, 8);
+  const risks = asCleanArray(c.redFlags || [], []).concat(asCleanArray(c.riskSummaryZh || c.riskLevel || '', [])).slice(0, 5);
+  return `<div class="detail ic-detail database-detail">
+    <div class="detail-hero memo-hero database-hero">
       <div class="avatar big">${esc(String(c.name || '?').slice(0,1))}</div>
-      <div class="memo-hero-copy"><div class="eyebrow">IC MEMO SNAPSHOT</div><h2>${esc(c.name)}</h2><div class="sub">${esc(profile.region)} · ${esc(profile.position)} · ${esc(profile.direction)}</div></div>
+      <div class="memo-hero-copy"><div class="eyebrow">COMPANY PROFILE</div><h2>${esc(c.name)}</h2><div class="sub">${esc(profile.region)} · ${esc(profile.role)} · ${esc(profile.direction)}</div></div>
       <div class="memo-score"><span class="score ${colorClass(c.label)}">${esc(c.score)}</span><em>${esc(priorityHead(c))}</em></div>
     </div>
     <div class="detail-tabs memo-tabs"><button data-tab="overview" type="button">概览</button><button data-tab="investors" type="button">投资人</button><button data-tab="funding" type="button">融资</button><button data-tab="work" type="button">跟进</button><button data-tab="evidence" type="button">来源</button></div>
 
-    <section class="detail-section memo-section" data-section="overview">
-      <div class="memo-section-title"><span>01</span><b>投资结论</b></div>
-      ${renderDetailOnePager(c, tasks)}
+    <section class="detail-section memo-section profile-layout" data-section="overview">
+      <div class="profile-main">
+        <div class="memo-section-title"><span>01</span><b>Investment Snapshot</b></div>
+        <div class="snapshot-grid">
+          ${metricTile('优先级', `${priorityHead(c)}｜${icActionLabel(c)}`, 'green')}
+          ${metricTile('最新估值', valuationLine(c), 'blue')}
+          ${metricTile('收入 / 商业验证', homepageRevenue(c), 'amber')}
+          ${metricTile('IPO / 流动性窗口', c.ipoWindow || c.ipoSignal, 'gray')}
+        </div>
+        <div class="memo-card wide thesis-card"><h4>为什么进入管线</h4>${checklistHtml(thesisBullets(c))}</div>
+      </div>
+      <aside class="profile-side">
+        <div class="side-card"><span>Track Role</span><b>${esc(profile.role)}</b></div>
+        <div class="side-card"><span>Layer</span><b>${esc(profile.position)}</b></div>
+        <div class="side-card"><span>Data Readiness</span>${readinessBlocks(c)}</div>
+      </aside>
     </section>
 
     <section class="detail-section memo-section" data-section="overview">
-      <div class="memo-section-title"><span>02</span><b>公司定位</b></div>
-      <div class="memo-profile-grid">
-        ${metricTile('定位', profile.position, 'blue')}
-        ${metricTile('核心方向', profile.direction, 'green')}
-        ${metricTile('地区', profile.region, 'gray')}
-        ${metricTile('IPO 窗口', c.ipoWindow || c.ipoSignal, 'amber')}
+      <div class="memo-section-title"><span>02</span><b>Business Profile</b></div>
+      <div class="profile-facts">
+        <div><span>公司定位</span><b>${esc(profile.position)}</b></div>
+        <div><span>核心方向</span><b>${esc(profile.direction)}</b></div>
+        <div><span>地区</span><b>${esc(profile.region)}</b></div>
+        <div><span>交易阶段</span><b>${esc(cleanDisplayText(c.dealStage || c.stage, '待确认'))}</b></div>
       </div>
-      <div class="memo-thesis"><b>为什么进入管线</b><p>${esc(thesisLine(c))}</p></div>
     </section>
 
     <section class="detail-section memo-section" data-section="overview">
-      <div class="memo-section-title"><span>03</span><b>关键口径</b></div>
-      <div class="memo-metrics-grid">
-        ${metricTile('最新估值', valuationLine(c), 'blue')}
-        ${metricTile('收入 / ARR', revenueLine(c), 'green')}
-        ${metricTile('交易阶段', `${cleanDisplayText(c.dealStage || c.stage, '待确认')} / 资料室：${cleanDisplayText(c.dataRoomStatus, '待确认')}`, 'gray')}
-        ${metricTile('IC Readiness', icScore ? `${icScore.score}/100` : `${readinessScore(c)}/5`, 'amber')}
-      </div>
+      <div class="memo-section-title"><span>03</span><b>Commercial Traction</b></div>
+      ${tractionTable(c)}
       ${IS_ADMIN && keyMetrics.length ? `<div class="memo-card wide"><h4>已记录关键指标</h4>${memoList(keyMetrics)}</div>` : ''}
     </section>
 
     <section class="detail-section memo-section" data-section="overview">
-      <div class="memo-section-title"><span>04</span><b>IPO / 交易进度</b></div>
+      <div class="memo-section-title"><span>04</span><b>IPO / Liquidity Path</b></div>
       <div class="memo-kv-grid">
         <div><span>目标市场</span><b>${esc(cleanDisplayText(c.targetExchange, '待确认'))}</b></div>
         <div><span>承销 / 顾问</span><b>${esc(cleanDisplayText((c.leadUnderwriters||[]).join(', '), '待确认'))}</b></div>
@@ -721,13 +876,13 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
     </section>
 
     <section class="detail-section memo-section" data-section="investors">
-      <div class="memo-section-title"><span>05</span><b>投资人与接触路径</b></div>
-      <div class="memo-card wide"><h4>主要投资人</h4><div class="investor-chips detail-investors">${(c.investors||[]).map(x=>`<span class="investor-chip">${esc(x)}</span>`).join('') || '<span class="sub">暂无具名投资人。</span>'}</div><p class="sub">数据质量：${esc(investorQuality)}</p>${IS_ADMIN && c.topInvestorSignal ? `<p>${esc(cleanDisplayText(c.topInvestorSignal))}</p>` : ''}</div>
-      <div class="memo-card wide"><h4>可接触路径</h4><p>${esc(routeLine(c))}</p></div>
+      <div class="memo-section-title"><span>05</span><b>Investors & Access Route</b></div>
+      <div class="memo-card wide"><h4>主要投资人</h4><div class="investor-chips detail-investors">${(c.investors||[]).map(x=>`<span class="investor-chip">${esc(x)}</span>`).join('') || '<span class="sub">暂无具名投资人。</span>'}</div></div>
+      ${routeStructuredHtml(c)}
     </section>
 
     <section class="detail-section memo-section" data-section="funding">
-      <div class="memo-section-title"><span>06</span><b>融资历史</b></div>
+      <div class="memo-section-title"><span>06</span><b>Funding & Valuation History</b></div>
       <div class="memo-funding-summary">
         ${metricTile('已结构化轮次', `${rounds.length} 轮`, 'blue')}
         ${metricTile('最高置信度', rounds.some(r=>/high|official|高|官方/i.test(r.confidence)) ? '高 / 官方' : (rounds.some(r=>/medium|中/i.test(r.confidence)) ? '中' : '低 / 待补'), 'amber')}
@@ -736,24 +891,27 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
     </section>
 
     <section class="detail-section memo-section" data-section="work">
-      <div class="memo-section-title"><span>07</span><b>下一步</b></div>
-      <div class="memo-card wide"><h4>下一步动作</h4><p>${esc(nextLine(c))}</p></div>
+      <div class="memo-section-title"><span>07</span><b>Next Actions / Open Questions</b></div>
+      <div class="memo-two-col">
+        <div class="memo-card"><h4>下一步 checklist</h4>${checklistHtml(topTasks, '下一步待整理。')}</div>
+        <div class="memo-card"><h4>主要风险 / 待核验事项</h4>${checklistHtml(risks.length ? risks : splitChecklist(c.keyDiligence || '', 6), '风险事项待整理。')}</div>
+      </div>
       ${IS_ADMIN ? (tasks.map(t=>`<div class="evidence memo-evidence"><b>${esc(cleanDisplayText(t.title, '事项'))}</b><div class="sub">负责人：${esc(cleanDisplayText(t.owner, '待定'))} · 截止：${esc(cleanDisplayText(t.dueDate, '待确认'))} · 状态：${esc(cleanDisplayText(t.status, '待确认'))} · 优先级：${esc(cleanDisplayText(t.priority, '待确认'))}</div></div>`).join('') || '<p class="sub">暂无事项。</p>') : ''}
       ${IS_ADMIN ? (interactions.map(i=>`<div class="evidence memo-evidence"><b>${esc(cleanDisplayText(i.date, '日期待确认'))} · ${esc(cleanDisplayText(i.counterparty, '对手方待确认'))}</b><div>${esc(cleanDisplayText(i.summary, '摘要待整理'))}</div><div class="sub">下一步：${esc(cleanDisplayText(i.nextStep, '待确认'))}</div></div>`).join('') || '<p class="sub">暂无互动记录。</p>') : ''}
     </section>
 
     <section class="detail-section memo-section" data-section="evidence">
-      <div class="memo-section-title"><span>08</span><b>资料与来源</b></div>
-      <div class="memo-card wide"><h4>资料说明</h4><p>以下为当前可展示的公开资料、公司信息、交易线索与人工整理来源；涉及未披露经营数据的项目均需在资料室或正式文件中进一步核验。</p></div>
-      ${IS_ADMIN && claims.length ? `<div class="memo-card wide"><h4>资料核验状态</h4>${memoList(claims.slice(0, 8).map(cl => `${cl.claimType || 'claim'}：${cl.status || '待核验'} — ${cl.claimText || cl.claim || ''}`))}</div>` : ''}
-      ${evidenceItems.map(e=>`<div class="evidence memo-evidence"><div><span class="pill gray">${esc(e.type === 'official' ? '官方' : e.type === 'media' ? '媒体' : cleanDisplayText(e.type, '来源'))}</span> ${esc(cleanDisplayText(e.date, '日期待确认'))}</div><div>${esc(cleanDisplayText(e.note, '资料说明待整理'))}</div>${e.url?`<a href="${esc(e.url)}" target="_blank">来源</a>`:''}</div>`).join('') || '<p class="sub">暂无可展示来源。</p>'}
+      <div class="memo-section-title"><span>08</span><b>Evidence & Source Quality</b></div>
+      ${evidenceSummaryHtml(extra, c)}
+      <div class="memo-card wide"><h4>资料边界</h4><p>公开展示仅保留可读来源摘要；未披露经营数据、交易条款和资料室内容，需要通过正式文件、资料室或公司/投资人渠道进一步核验。</p></div>
+      ${evidenceItems.map(formatEvidenceItem).join('') || '<p class="sub">暂无可展示来源。</p>'}
       <div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
     </section>
 
-    <section class="detail-section memo-section" data-section="overview">
-      <div class="memo-section-title"><span>附</span><b>评分拆解</b></div>
+    ${IS_ADMIN ? `<section class="detail-section memo-section" data-section="overview">
+      <div class="memo-section-title"><span>附</span><b>Scorecard</b></div>
       ${renderScoreBreakdown(c)}
-    </section>
+    </section>` : ''}
     ${state.meta.readOnly ? '<div class="read-only-note">当前为只读部署：请在本机/Tailscale 版本编辑，并通过 snapshot sync 发布。</div>' : `<div class="actions"><button onclick="进行中Edit(selected)">编辑</button><button onclick="deleteCompany('${esc(c.id)}')">删除</button></div>`}
   </div>`;
 }

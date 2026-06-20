@@ -41,6 +41,10 @@ PUBLIC_ENDPOINTS = [
     '/api/state',
     '/api/company/databricks',
     '/api/company/lightmatter',
+    '/api/company/drivenets',
+    '/api/company/vast-data',
+    '/api/company/ayar-labs',
+    '/api/company/rebellions',
     '/api/ops',
     '/api/export.json',
     '/api/ic-readiness',
@@ -77,6 +81,12 @@ FORBIDDEN_PUBLIC_TERMS = [
     'IPO view', 'whether alumni co-invest access exists', 'current quarter growth',
     'clearing price', 'Company capital markets', 'official press release',
     'Claim Board', 'commercial_evidence',
+    # Structured-public-database presentation gate: block field-concatenation / raw mixed-language strings.
+    'public-market 上市承接', 'goodput受制于', 'strategic investors +',
+    'Ask 针对', 'latest quarter', 'Company/media-reported', 'public-获取 review',
+    'design-win diligence gap', 'customer 客户设计定点', '客户客户设计定点',
+    'secured-business', 'route:', 'latest round:', 'open claims:',
+    'commercialization 和', 'pursue via', 'only 与 price discipline',
 ]
 REQUIRED_SQLITE_TABLES = [
     'tracks', 'entities', 'companies', 'investors', 'company_investors',
