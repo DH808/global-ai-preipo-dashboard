@@ -943,7 +943,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
       ${evidenceSummaryHtml(extra, c)}
       <div class="memo-card wide"><h4>资料边界</h4><p>公开展示仅保留可读来源摘要；未披露经营数据、交易条款和资料室内容，需要通过正式文件、资料室或公司/投资人渠道进一步核验。</p></div>
       ${evidenceItems.map(formatEvidenceItem).join('') || '<p class="sub">暂无可展示来源。</p>'}
-      <div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
+      ${IS_ADMIN ? `<div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
     </section>
 
     ${IS_ADMIN ? `<section class="detail-section memo-section" data-section="overview">
