@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const childProcess = require('child_process');
 const { scoreCompany, scoreBreakdown, labelCompany, filterCompanies, computeDashboard, normalizeCompany, slugify } = require('./src/scoring');
+const { normalizeTrackGraph, buildSchemaHealth, buildIcReadinessQueue, buildCompanyMemo } = require('./src/trackGraph');
 const { sourceStatus, refreshInterVest, fetchCompanyNews } = require('./src/connectors');
 
 const APP_DIR = __dirname;
@@ -255,9 +256,21 @@ async function apiState(req, res, urlObj) {
 
 async function apiCompany(req, res, id) {
   const state = await readState();
+  const graph = normalizeTrackGraph(state);
   const c = state.companies.find(x => x.id === id);
   if (!c) return json(res, 404, { error: 'NOT_FOUND' });
-  json(res, 200, sanitizePublicStatePayload({ company: enrichedCompany(c), fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id), tasks: (state.tasks || []).filter(t => t.companyId === c.id), interactions: (state.interactions || []).filter(i => i.companyId === c.id), evidence: (c.evidence || []) }));
+  const memo = buildCompanyMemo(graph, id);
+  json(res, 200, sanitizePublicStatePayload({
+    company: enrichedCompany(c),
+    fundingRounds: graph.fundingRounds.filter(r => r.companyId === c.id),
+    tasks: graph.tasks.filter(t => t.companyId === c.id),
+    interactions: (state.interactions || []).filter(i => i.companyId === c.id),
+    evidence: graph.evidenceItems.filter(e => e.companyId === c.id),
+    claims: graph.claims.filter(cl => cl.companyId === c.id),
+    scores: graph.scores.filter(s => s.companyId === c.id),
+    relationshipRoute: graph.relationshipRoutes.find(r => r.companyId === c.id),
+    memo
+  }));
 }
 
 function assertWritable(res) {
@@ -431,7 +444,9 @@ function buildRelationshipMap(companies) {
 
 async function apiOperatingSystem(req, res) {
   const state = await readState();
-  const companies = state.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) })).sort((a,b)=>b.score-a.score);
+  const graph = normalizeTrackGraph(state);
+  const queue = buildIcReadinessQueue(graph);
+  const companies = graph.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) })).sort((a,b)=>b.score-a.score);
   const companyMap = Object.fromEntries(companies.map(c => [c.id, c]));
   const tasksByCompany = {};
   for (const t of state.tasks || []) {
@@ -452,7 +467,39 @@ async function apiOperatingSystem(req, res) {
   const onePagerQueue = companies.filter(c => c.label === 'Core / Act Now' || String(c.priorityTier || '').startsWith('1')).slice(0, 12).map(c => onePagerForCompany(c, tasksByCompany[c.id] || []));
   const noOwnerCore = companies.filter(c => c.label === 'Core / Act Now' && !c.owner).map(c => ({ id: c.id, name: c.name, score: c.score, nextAction: c.nextAction })).slice(0, 20);
   const thesisNoEvidence = companies.filter(c => c.label === 'Core / Act Now' && !(c.evidence || []).length).map(c => ({ id: c.id, name: c.name, score: c.score })).slice(0, 20);
-  json(res, 200, sanitizePublicStatePayload({ meta: state.meta, icView: top, onePagerQueue, relationshipMap: buildRelationshipMap(companies), taskAging: taskAging.slice(0, 40), followUpRisks: { overdue: taskAging.filter(t => t.agingStatus === 'overdue'), dueSoon: taskAging.filter(t => t.agingStatus === 'due_soon').slice(0, 15), noOwnerCore, thesisNoEvidence } }));
+  json(res, 200, sanitizePublicStatePayload({ meta: state.meta, icView: top, icReadinessQueue: queue, onePagerQueue, relationshipMap: buildRelationshipMap(companies), taskAging: taskAging.slice(0, 40), followUpRisks: { overdue: taskAging.filter(t => t.agingStatus === 'overdue'), dueSoon: taskAging.filter(t => t.agingStatus === 'due_soon').slice(0, 15), noOwnerCore, thesisNoEvidence } }));
+}
+
+async function apiTrackGraph(req, res) {
+  const state = await readState();
+  const graph = normalizeTrackGraph(state);
+  json(res, 200, sanitizePublicStatePayload({ track: graph.track, meta: graph.meta, health: buildSchemaHealth(graph), queue: buildIcReadinessQueue(graph), companies: graph.companies, fundingRounds: graph.fundingRounds, investors: graph.investors, relationshipRoutes: graph.relationshipRoutes, sources: graph.sources, evidenceItems: graph.evidenceItems, claims: graph.claims, events: graph.events, scores: graph.scores, tasks: graph.tasks }));
+}
+
+async function apiSchemaHealth(req, res) {
+  const state = await readState();
+  const graph = normalizeTrackGraph(state);
+  json(res, 200, buildSchemaHealth(graph));
+}
+
+async function apiIcReadiness(req, res) {
+  const state = await readState();
+  const graph = normalizeTrackGraph(state);
+  json(res, 200, sanitizePublicStatePayload(buildIcReadinessQueue(graph)));
+}
+
+async function apiTasks(req, res) {
+  const state = await readState();
+  const graph = normalizeTrackGraph(state);
+  json(res, 200, sanitizePublicStatePayload({ tasks: graph.tasks, summary: { total: graph.tasks.length, open: graph.tasks.filter(t => !['done','closed'].includes(t.status)).length, high: graph.tasks.filter(t => /high/i.test(t.priority)).length } }));
+}
+
+async function apiEntity(req, res, id) {
+  const state = await readState();
+  const graph = normalizeTrackGraph(state);
+  const company = graph.companies.find(c => c.id === id);
+  if (!company) return json(res, 404, { error: 'NOT_FOUND' });
+  json(res, 200, sanitizePublicStatePayload({ entity: company, tracks: [graph.track], events: graph.events.filter(e => e.primaryEntityId === id), fundingRounds: graph.fundingRounds.filter(r => r.companyId === id), relationshipRoute: graph.relationshipRoutes.find(r => r.companyId === id), evidence: graph.evidenceItems.filter(e => e.companyId === id), claims: graph.claims.filter(c => c.companyId === id), scores: graph.scores.filter(s => s.companyId === id), tasks: graph.tasks.filter(t => t.companyId === id), memo: buildCompanyMemo(graph, id) }));
 }
 
 async function apiRefreshSource(req, res, id, urlObj) {
@@ -481,6 +528,13 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'GET' && pathname === '/api/missing-data') return apiMissingData(req, res);
     if (req.method === 'GET' && pathname === '/api/crm') return apiCrm(req, res);
     if (req.method === 'GET' && pathname === '/api/ops') return apiOperatingSystem(req, res);
+    if (req.method === 'GET' && pathname === '/api/internal/schema-health') return apiSchemaHealth(req, res);
+    if (req.method === 'GET' && pathname === '/api/internal/track/global-ai-preipo') return apiTrackGraph(req, res);
+    if (req.method === 'GET' && pathname === '/api/track/global-ai-preipo') return apiTrackGraph(req, res);
+    if (req.method === 'GET' && pathname === '/api/track/global-ai-preipo/queue') return apiIcReadiness(req, res);
+    if (req.method === 'GET' && pathname === '/api/ic-readiness') return apiIcReadiness(req, res);
+    if (req.method === 'GET' && pathname === '/api/tasks') return apiTasks(req, res);
+    if (req.method === 'GET' && pathname.startsWith('/api/entity/')) return apiEntity(req, res, pathname.split('/').pop());
     if (req.method === 'GET' && pathname.startsWith('/api/refresh/')) return apiRefreshSource(req, res, pathname.split('/').pop(), urlObj);
     if (req.method === 'GET' && pathname.startsWith('/api/company/')) return apiCompany(req, res, pathname.split('/').pop());
     if ((req.method === 'POST' || req.method === 'PUT') && pathname === '/api/company') return apiSaveCompany(req, res, null);

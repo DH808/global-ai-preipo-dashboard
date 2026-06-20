@@ -9,8 +9,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "node test/scoring.test.js && node test/connectors.test.js",
-    "check": "node --check server.js && node --check src/scoring.js && node --check src/connectors.js && node --check public/app.js"
+    "test": "node test/scoring.test.js && node test/connectors.test.js && node test/trackGraph.test.js",
+    "check": "node --check server.js && node --check src/scoring.js && node --check src/connectors.js && node --check src/trackGraph.js && node --check public/app.js"
   },
   "dependencies": {},
   "devDependencies": {}

@@ -531,11 +531,19 @@ function renderScoreBreakdown(c) {
   </div>`;
 }
 
-function detailHtml(c, rounds, tasks, interactions) {
+function detailHtml(c, rounds, tasks, interactions, extra = {}) {
   const profile = parseHomepageDescription(c);
   const investorQuality = cleanDisplayText(c.investorDataQuality || '基于现有 tracker / funding participants 清洗', '基于现有资料清洗');
   const keyMetrics = (c.keyMetrics || []).filter(Boolean);
-  const evidenceItems = c.evidence || [];
+  const evidenceItems = (extra.evidence || c.evidence || []).map(e => ({
+    type: e.type || e.evidenceType || e.sourceType || '来源',
+    date: e.date || e.asOf || e.capturedAt || '',
+    note: e.note || e.claim || e.value || e.extractedClaim || '',
+    url: e.url || e.sourceUrl || ''
+  }));
+  const claims = extra.claims || [];
+  const scores = extra.scores || [];
+  const icScore = scores.find(s => s.scoreType === 'ic_readiness');
   return `<div class="detail ic-detail">
     <div class="detail-hero memo-hero">
       <div class="avatar big">${esc(String(c.name || '?').slice(0,1))}</div>
@@ -566,7 +574,7 @@ function detailHtml(c, rounds, tasks, interactions) {
         ${metricTile('最新估值', valuationLine(c), 'blue')}
         ${metricTile('收入 / ARR', revenueLine(c), 'green')}
         ${metricTile('交易阶段', `${cleanDisplayText(c.dealStage || c.stage, '待确认')} / 资料室：${cleanDisplayText(c.dataRoomStatus, '待确认')}`, 'gray')}
-        ${metricTile('资料完整度', `${readinessScore(c)}/5`, 'amber')}
+        ${metricTile('IC Readiness', icScore ? `${icScore.score}/100` : `${readinessScore(c)}/5`, 'amber')}
       </div>
       ${keyMetrics.length ? `<div class="memo-card wide"><h4>已记录关键指标</h4>${memoList(keyMetrics)}</div>` : ''}
     </section>
@@ -606,6 +614,7 @@ function detailHtml(c, rounds, tasks, interactions) {
     <section class="detail-section memo-section" data-section="evidence">
       <div class="memo-section-title"><span>08</span><b>资料与来源</b></div>
       <div class="memo-card wide"><h4>资料说明</h4><p>以下为当前可展示的公开资料、公司信息、交易线索与人工整理来源；涉及未披露经营数据的项目均需在资料室或正式文件中进一步核验。</p></div>
+      ${claims.length ? `<div class="memo-card wide"><h4>Claim Board</h4>${memoList(claims.slice(0, 8).map(cl => `${cl.claimType || 'claim'}：${cl.status || '待核验'} — ${cl.claimText || cl.claim || ''}`))}</div>` : ''}
       ${evidenceItems.map(e=>`<div class="evidence memo-evidence"><div><span class="pill gray">${esc(e.type === 'official' ? '官方' : e.type === 'media' ? '媒体' : cleanDisplayText(e.type, '来源'))}</span> ${esc(cleanDisplayText(e.date, '日期待确认'))}</div><div>${esc(cleanDisplayText(e.note, '资料说明待整理'))}</div>${e.url?`<a href="${esc(e.url)}" target="_blank">来源</a>`:''}</div>`).join('') || '<p class="sub">暂无可展示来源。</p>'}
       <div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
     </section>
@@ -629,7 +638,7 @@ async function showDetail(id) {
   const data = await api('/api/company/' + encodeURIComponent(id));
   const c = data.company; selected = c;
   const rounds = data.fundingRounds || [], tasks = data.tasks || [], interactions = data.interactions || [];
-  const html = detailHtml(c, rounds, tasks, interactions);
+  const html = detailHtml(c, rounds, tasks, interactions, data);
   $('#detail').innerHTML = html;
   bindDetailMenus($('#detail'));
   const isMobile = window.matchMedia('(max-width: 720px)').matches;
