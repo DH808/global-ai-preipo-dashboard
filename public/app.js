@@ -14,7 +14,13 @@ async function api(path, opts) {
 
 function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function colorClass(label) { return ({'Core / Act Now':'green','Strategic Watch':'blue','Build Relationship':'amber','Monitor Only':'orange','Low Priority':'red','Excluded / Comp':'gray'})[label] || 'gray'; }
-function shortText(s, n) { return esc(String(s ?? '')).slice(0, n); }
+function shortText(s, n) {
+  const raw = String(s ?? '');
+  if (raw.length <= n) return esc(raw);
+  const cut = raw.slice(0, Math.max(0, n - 1));
+  const safe = cut.replace(/\s+\S*$/, '').trim() || cut.trim();
+  return esc(safe + '…');
+}
 function priorityHead(c) { return String(c.priorityTier || c.label || '').split('｜')[0].replace(/\s+.*/, '') || 'NA'; }
 function priorityTone(c) { return c.priorityClass || ({A0:'green',A1:'green',A2:'blue',B1:'amber',B2:'amber',C1:'orange',C2:'red',C3:'gray'}[priorityHead(c)] || 'gray'); }
 function readinessScore(c) {
@@ -56,8 +62,76 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/\bPriority:\s*/gi, '')
     .replace(/\bRecommendation:\s*/gi, '')
     .replace(/\bOriginal notes:\s*/gi, '')
+    .replace(/existing tracker/gi, '现有资料')
+    .replace(/in tracker/gi, '现有资料显示')
+    .replace(/expanded seed/gi, '扩展样本')
+    .replace(/verify before IC use/gi, '进入 IC 前需核验')
+    .replace(/primary-source verification/gi, '一手来源核验')
+    .replace(/source boundary/gi, '来源限制')
+    .replace(/public\/captcha-limited/gi, '公开资料受限')
+    .replace(/Diligence ask:?\s*/gi, '尽调需核验：')
+    .replace(/query path/gi, '检索路径')
+    .replace(/company release claimed/gi, '公司公告披露')
+    .replace(/media_signal_only_not_confirmed/gi, '仅媒体信号，尚未确认')
+    .replace(/Official\/company-public metrics already in tracker:?/gi, '官方/公司公开口径显示：')
+    .replace(/Official\/media:?/gi, '官方/媒体口径：')
+    .replace(/Lead existing tracker:?/gi, '领投方待进一步核验：')
+    .replace(/verify final leads/gi, '需核验最终领投方')
+    .replace(/derived from/gi, '来源整理自')
+    .replace(/still requires/gi, '仍需')
+    .replace(/still ask for/gi, '仍需核验')
+    .replace(/info pack needed/gi, '需要信息包')
+    .replace(/not filed public/gi, '尚未公开申报')
+    .replace(/IPO lock-up TBD/gi, 'IPO 锁定期待确认')
+    .replace(/KOSPI\/KOSDAQ TBD/gi, 'KOSPI / KOSDAQ 板块待确认')
+    .replace(/TBD\s*-\s*ask\s*/gi, '待确认，需通过 ')
+    .replace(/\bunknown\b|\bunclear\b/gi, '待确认')
+    .replace(/\bNot disclosed\b/gi, '未披露')
+    .replace(/\bpre_ipo\b/gi, 'Pre-IPO 阶段')
+    .replace(/\bact now\b/gi, '立即推进')
+    .replace(/\bsourcing\b/gi, '线索获取中')
+    .replace(/\bneed intro\b/gi, '需引荐')
+    .replace(/\bmedium_high\b/gi, '中高')
+    .replace(/风险等级：medium/gi, '风险等级：中等')
+    .replace(/\bmedium\b/gi, '中')
+    .replace(/\bhigh\b/gi, '高')
+    .replace(/\blow\b/gi, '低')
+    .replace(/\bbacklog conversion\b/gi, '订单储备转化')
+    .replace(/\bcommitted revenue\b/gi, '已承诺收入')
+    .replace(/\bcurrent tender\b/gi, '当前流动性计划')
+    .replace(/tender\/二级份额 process/gi, '流动性计划/二级份额流程')
+    .replace(/\bprocess\b/gi, '流程')
+    .replace(/\blast cleared price\b/gi, '最近成交价')
+    .replace(/\bshare class\b/gi, '股份类别')
+    .replace(/\btransfer restrictions?\b/gi, '转让限制')
+    .replace(/\binvestor route\b/gi, '投资人路径')
+    .replace(/\bcapital-markets\b/gi, '资本市场')
+    .replace(/\bAI data centers\b/gi, 'AI 数据中心')
+    .replace(/\bin-package\b|在-package/gi, '封装内')
+    .replace(/\bbacklog\b/gi, '订单储备')
+    .replace(/\bdesign wins?\b/gi, '客户设计定点')
+    .replace(/\bdata[- ]room\b/gi, '资料室')
+    .replace(/\bsecondary\b/gi, '二级份额')
+    .replace(/\brun-rate\b/gi, '年化口径')
+    .replace(/\banchor\/cornerstone\b/gi, '锚定/基石投资')
+    .replace(/\bfoundry\/packaging partners?\b/gi, '晶圆制造/封装合作伙伴')
+    .replace(/\bfoundry\/packaging\b/gi, '晶圆制造/封装')
+    .replace(/\bcustomer qualification\b/gi, '客户验证')
+    .replace(/\bhard-bottleneck\b/gi, '硬瓶颈')
+    .replace(/\bhandoff\b/gi, '上市承接')
+    .replace(/\bcustomer list\b|客户 list/gi, '客户清单')
+    .replace(/\blatest financing round\b|latest 融资轮/gi, '最近一轮融资')
+    .replace(/\bin latest 融资轮\b/gi, '最近一轮融资')
+    .replace(/\babove\s*\$([0-9.]+B)/gi, '超过 $$$1')
+    .replace(/later media higher/gi, '后续媒体报道估值更高')
+    .replace(/24[–-]36m strategic\/pre-IPO path; earlier only if 客户设计定点 convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；客户设计定点兑现后可提前')
+    .replace(/24[–-]36m 战略投资 \/ Pre-IPO 路径; earlier only if 客户设计定点 convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；客户设计定点兑现后可提前')
+    .replace(/12[–-]24m IPO \/ approved 二级份额 now/gi, '12–24个月 IPO / 已批准二级份额窗口')
+    .replace(/18[–-]36m 二级份额\/IPO\/next-round path; terms and unit economics decide/gi, '18–36个月二级份额 / IPO / 下一轮窗口；取决于条款与单位经济')
     .replace(/v\d+ expanded .*?verify (with )?primary sources before IC use\.?/gi, '')
+    .replace(/^Ask\s+strategic investor\/company route\s+for\s+([^:：]+)[:：]?/i, '通过战略投资人或公司渠道核验 $1：')
     .replace(/^Ask\s+(.+?)\s+for\s+/i, '联系 $1，核验 ')
+    .replace(/^Validate\s+/i, '核验 ')
     .replace(/^Verify\s+/i, '核验 ')
     .replace(/^Check\s+/i, '确认 ')
     .replace(/^Source\s+/i, '获取 ')
@@ -109,6 +183,54 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/customer qualification/gi, '客户验证')
     .replace(/foundry\/packaging partners/gi, '晶圆/封装合作伙伴')
     .replace(/margin model/gi, '利润率模型')
+    .replace(/Private 估值\/funding media/gi, '私有市场估值 / 融资媒体报道')
+    .replace(/funding media/gi, '融资媒体报道')
+    .replace(/media reports?/gi, '媒体报道')
+    .replace(/\bPrivate\b/gi, '私有市场')
+    .replace(/\bclean 二级份额 quote\b/gi, '可执行二级份额报价')
+    .replace(/\bnet discount incl\. SPV fees\b/gi, '含 SPV 费用后的净折价')
+    .replace(/\bnet 折价 incl\. SPV fees\b/gi, '含 SPV 费用后的净折价')
+    .replace(/\bnet 折价 incl\. SPV\b/gi, '含 SPV 费用后的净折价')
+    .replace(/\bnet 折价\b/gi, '净折价')
+    .replace(/\bSPV fees\b/gi, 'SPV 费用')
+    .replace(/\bnet 折价 incl\. SPV fees\b/gi, '含 SPV 费用后的净折价')
+    .replace(/\bquote\b/gi, '报价')
+    .replace(/\bincl\.\b/gi, '包括')
+    .replace(/\bDatabricks team\b/gi, 'Databricks 团队')
+    .replace(/\bIPO view\b/gi, 'IPO 观点')
+    .replace(/\bview\b/gi, '观点')
+    .replace(/whether alumni co-invest access exists/gi, '是否存在校友共同投资入口')
+    .replace(/\brevenue\b/gi, '收入')
+    .replace(/\bAI products\b/gi, 'AI 产品')
+    .replace(/\bpositive FCF\b/gi, 'FCF 为正')
+    .replace(/\bcurrent quarter growth\b/gi, '当季增长')
+    .replace(/\bclearing price\b/gi, '成交价')
+    .replace(/\bCompany capital markets\b/gi, '公司资本市场团队')
+    .replace(/\bcapital markets\b/gi, '资本市场')
+    .replace(/\bapproved\b/gi, '已批准')
+    .replace(/\btender\b/gi, '流动性计划')
+    .replace(/\bdata-room access\b|\bdata room access\b|资料室 access/gi, '资料室可得性')
+    .replace(/future IPO anchor path; avoid chasing last-round price/gi, '未来 IPO 锚定路径；避免追逐最后一轮价格')
+    .replace(/\bIPO anchor path\b/gi, 'IPO 锚定路径')
+    .replace(/\blast-round price\b/gi, '最后一轮价格')
+    .replace(/\bFCF margin\b/gi, 'FCF 利润率')
+    .replace(/\bIPO banks?\b/gi, 'IPO 投行')
+    .replace(/Databricks press release/gi, 'Databricks 新闻稿')
+    .replace(/public news/gi, '公开新闻')
+    .replace(/\bneeds verification\b/gi, '仍需核验')
+    .replace(/\bfinal official\b/gi, '最终官方')
+    .replace(/\blead investor split\b/gi, '领投/参投拆分')
+    .replace(/\brecord\b/gi, '记录')
+    .replace(/\bstructured\b/gi, '结构化整理')
+    .replace(/public\/manual enrichment/gi, '公开/手工资料补充')
+    .replace(/\bper\b/gi, '根据')
+    .replace(/official press release/gi, '官方新闻稿')
+    .replace(/\bor\b/gi, '或')
+    .replace(/\band\b/gi, '和')
+    .replace(/\bwith\b/gi, '与')
+    .replace(/\bfrom\b/gi, '来自')
+    .replace(/\bfor\b/gi, '针对')
+    .replace(/\bin\b/gi, '在')
     .replace(/12[–-]24m IPO \/ approved 二级份额 now/gi, '12–24个月 IPO / 已批准二级份额窗口')
     .replace(/24[–-]36m strategic\/pre-IPO path; earlier only if 设计赢单 convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；设计赢单兑现后可提前')
     .replace(/18[–-]36m 二级份额\/IPO\/next-round path; terms and unit economics decide/gi, '18–36个月二级份额 / IPO / 下一轮窗口；取决于条款与单位经济')
@@ -494,10 +616,18 @@ function renderDetailOnePager(c, tasks) {
 }
 
 function fundingConfidenceClass(conf) {
-  const c = String(conf || '').toLowerCase();
-  if (/high|official/.test(c)) return 'green';
-  if (/medium/.test(c)) return 'amber';
+  const t = String(conf || '').toLowerCase();
+  if (/high|official/.test(t)) return 'green';
+  if (/medium/.test(t)) return 'amber';
   return 'gray';
+}
+function confidenceLabel(conf) {
+  const t = String(conf || '').toLowerCase();
+  if (/official/.test(t)) return '官方';
+  if (/high/.test(t)) return '高';
+  if (/medium/.test(t)) return '中';
+  if (/low/.test(t)) return '低';
+  return '待核验';
 }
 function fundingTimeline(rounds) {
   if (!rounds.length) return '<p class="sub">暂无结构化融资轮次。</p>';
@@ -505,15 +635,15 @@ function fundingTimeline(rounds) {
     <article class="funding-event ${esc(fundingConfidenceClass(r.confidence))}">
       <div class="funding-dot">${idx + 1}</div>
       <div class="funding-body">
-        <div class="funding-head"><div><b>${esc(cleanDisplayText(r.round, '轮次待确认'))}</b><span>${esc(cleanDisplayText(r.date, '日期待确认'))}</span></div><em class="pill ${esc(fundingConfidenceClass(r.confidence))}">${esc(cleanDisplayText(r.confidence, 'low'))}</em></div>
+        <div class="funding-head"><div><b>${esc(cleanDisplayText(r.round, '轮次待确认'))}</b><span>${esc(cleanDisplayText(r.date, '日期待确认'))}</span></div><em class="pill ${esc(fundingConfidenceClass(r.confidence))}">${esc(confidenceLabel(r.confidence))}</em></div>
         <div class="funding-grid">
           <div><span>融资额</span><b>${esc(cleanDisplayText(r.amount, '未披露'))}</b></div>
           <div><span>估值</span><b>${esc(cleanDisplayText(r.valuation, '未披露'))}</b></div>
         </div>
-        <div class="funding-investors"><span>Lead</span>${(r.leadInvestors||[]).length ? (r.leadInvestors||[]).map(x=>`<i>${esc(x)}</i>`).join('') : '<i>未披露/待确认</i>'}</div>
-        <div class="funding-investors"><span>Participants</span>${(r.participants||[]).length ? (r.participants||[]).slice(0,14).map(x=>`<i>${esc(x)}</i>`).join('') : '<i>未披露/待确认</i>'}</div>
-        <div class="funding-source"><span>来源：${esc(cleanDisplayText(r.sourceName || r.sourceType, '待确认'))}</span>${r.url ? `<a href="${esc(r.url)}" target="_blank">source</a>` : ''}</div>
-        ${r.notes ? `<p>${esc(cleanDisplayText(r.notes, ''))}</p>` : ''}
+        <div class="funding-investors"><span>领投方</span>${(r.leadInvestors||[]).length ? (r.leadInvestors||[]).map(x=>`<i>${esc(cleanDisplayText(x, '待确认'))}</i>`).join('') : '<i>未披露/待确认</i>'}</div>
+        <div class="funding-investors"><span>参与方</span>${(r.participants||[]).length ? (r.participants||[]).slice(0,14).map(x=>`<i>${esc(cleanDisplayText(x, '待确认'))}</i>`).join('') : '<i>未披露/待确认</i>'}</div>
+        <div class="funding-source"><span>来源：${esc(cleanDisplayText(r.sourceName || r.sourceType, '待确认'))}</span>${r.url ? `<a href="${esc(r.url)}" target="_blank">来源</a>` : ''}</div>
+        ${IS_ADMIN && r.notes ? `<p>${esc(cleanDisplayText(r.notes, ''))}</p>` : ''}
       </div>
     </article>`).join('')}</div>`;
 }
@@ -576,7 +706,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
         ${metricTile('交易阶段', `${cleanDisplayText(c.dealStage || c.stage, '待确认')} / 资料室：${cleanDisplayText(c.dataRoomStatus, '待确认')}`, 'gray')}
         ${metricTile('IC Readiness', icScore ? `${icScore.score}/100` : `${readinessScore(c)}/5`, 'amber')}
       </div>
-      ${keyMetrics.length ? `<div class="memo-card wide"><h4>已记录关键指标</h4>${memoList(keyMetrics)}</div>` : ''}
+      ${IS_ADMIN && keyMetrics.length ? `<div class="memo-card wide"><h4>已记录关键指标</h4>${memoList(keyMetrics)}</div>` : ''}
     </section>
 
     <section class="detail-section memo-section" data-section="overview">
@@ -591,7 +721,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
 
     <section class="detail-section memo-section" data-section="investors">
       <div class="memo-section-title"><span>05</span><b>投资人与接触路径</b></div>
-      <div class="memo-card wide"><h4>主要投资人</h4><div class="investor-chips detail-investors">${(c.investors||[]).map(x=>`<span class="investor-chip">${esc(x)}</span>`).join('') || '<span class="sub">暂无具名投资人。</span>'}</div><p class="sub">数据质量：${esc(investorQuality)}</p>${c.topInvestorSignal ? `<p>${esc(cleanDisplayText(c.topInvestorSignal))}</p>` : ''}</div>
+      <div class="memo-card wide"><h4>主要投资人</h4><div class="investor-chips detail-investors">${(c.investors||[]).map(x=>`<span class="investor-chip">${esc(x)}</span>`).join('') || '<span class="sub">暂无具名投资人。</span>'}</div><p class="sub">数据质量：${esc(investorQuality)}</p>${IS_ADMIN && c.topInvestorSignal ? `<p>${esc(cleanDisplayText(c.topInvestorSignal))}</p>` : ''}</div>
       <div class="memo-card wide"><h4>可接触路径</h4><p>${esc(routeLine(c))}</p></div>
     </section>
 
@@ -599,7 +729,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
       <div class="memo-section-title"><span>06</span><b>融资历史</b></div>
       <div class="memo-funding-summary">
         ${metricTile('已结构化轮次', `${rounds.length} 轮`, 'blue')}
-        ${metricTile('最高置信度', rounds.some(r=>/high|official/i.test(r.confidence)) ? 'High / Official' : (rounds.some(r=>/medium/i.test(r.confidence)) ? 'Medium' : 'Low / 待补'), 'amber')}
+        ${metricTile('最高置信度', rounds.some(r=>/high|official/i.test(r.confidence)) ? '高 / 官方' : (rounds.some(r=>/medium/i.test(r.confidence)) ? '中' : '低 / 待补'), 'amber')}
       </div>
       ${fundingTimeline(rounds)}
     </section>
@@ -614,7 +744,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
     <section class="detail-section memo-section" data-section="evidence">
       <div class="memo-section-title"><span>08</span><b>资料与来源</b></div>
       <div class="memo-card wide"><h4>资料说明</h4><p>以下为当前可展示的公开资料、公司信息、交易线索与人工整理来源；涉及未披露经营数据的项目均需在资料室或正式文件中进一步核验。</p></div>
-      ${claims.length ? `<div class="memo-card wide"><h4>Claim Board</h4>${memoList(claims.slice(0, 8).map(cl => `${cl.claimType || 'claim'}：${cl.status || '待核验'} — ${cl.claimText || cl.claim || ''}`))}</div>` : ''}
+      ${IS_ADMIN && claims.length ? `<div class="memo-card wide"><h4>资料核验状态</h4>${memoList(claims.slice(0, 8).map(cl => `${cl.claimType || 'claim'}：${cl.status || '待核验'} — ${cl.claimText || cl.claim || ''}`))}</div>` : ''}
       ${evidenceItems.map(e=>`<div class="evidence memo-evidence"><div><span class="pill gray">${esc(e.type === 'official' ? '官方' : e.type === 'media' ? '媒体' : cleanDisplayText(e.type, '来源'))}</span> ${esc(cleanDisplayText(e.date, '日期待确认'))}</div><div>${esc(cleanDisplayText(e.note, '资料说明待整理'))}</div>${e.url?`<a href="${esc(e.url)}" target="_blank">来源</a>`:''}</div>`).join('') || '<p class="sub">暂无可展示来源。</p>'}
       <div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
     </section>

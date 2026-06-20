@@ -63,6 +63,20 @@ FORBIDDEN_PUBLIC_TERMS = [
     'blockers=', 'decision=', 'path=',
     '_route', '_watch', '_gate',
     '[object Object]', 'undefined',
+    # Public-language quality gate: internal/raw research wording must not reach public payloads.
+    'existing tracker', 'in tracker', 'expanded seed', 'verify before IC use',
+    'primary-source verification', 'source boundary', 'public/captcha-limited',
+    'Diligence ask', 'query path', 'company release claimed',
+    'media_signal_only_not_confirmed', 'verify final leads', 'info pack needed',
+    'KOSPI/KOSDAQ TBD', 'TBD - ask', 'Not disclosed', 'not filed public',
+    'IPO lock-up TBD', 'need intro', 'foundry/packaging partn',
+    'earlier only if', 'committed revenue', 'current tender', 'last cleared price',
+    'share class', 'transfer restrictions', 'customer list', 'backlog conversion',
+    'in-package', 'AI data centers', 'funding media',
+    'clean secondary quote', 'clean 二级份额 quote', 'net discount incl', 'incl. SPV',
+    'IPO view', 'whether alumni co-invest access exists', 'current quarter growth',
+    'clearing price', 'Company capital markets', 'official press release',
+    'Claim Board', 'commercial_evidence',
 ]
 REQUIRED_SQLITE_TABLES = [
     'tracks', 'entities', 'companies', 'investors', 'company_investors',
