@@ -1026,4 +1026,9 @@ $('#newBtn').addEventListener('click', () => 进行中Edit(null));
 $('#exportBtn').addEventListener('click', exportMd);
 $('#saveBtn').addEventListener('click', saveForm);
 $('#detailCloseBtn')?.addEventListener('click', () => $('#companyDetailDialog')?.close());
-load().catch(err => { document.body.innerHTML = `<pre>${esc(err.stack || err)}</pre>`; });
+load().then(() => {
+  const pathMatch = location.pathname.match(/^\/company\/([^/?#]+)/);
+  if (pathMatch && $('#detail')?.innerText.includes('点击公司查看')) {
+    setTimeout(() => showDetail(decodeURIComponent(pathMatch[1])).catch(console.error), 250);
+  }
+}).catch(err => { document.body.innerHTML = `<pre>${esc(err.stack || err)}</pre>`; });
