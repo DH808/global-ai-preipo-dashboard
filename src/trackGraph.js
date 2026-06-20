@@ -342,7 +342,7 @@ function buildCompanyMemo(graph, companyId) {
   const funding = graph.fundingRounds.filter(r => r.companyId === c.id).slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
   const route = graph.relationshipRoutes.find(r => r.companyId === c.id);
   const claims = graph.claims.filter(cl => cl.companyId === c.id);
-  const scores = Object.fromEntries(graph.scores.filter(s => s.companyId === c.id).map(s => [s.scoreType, s]));
+  const scoreRows = graph.scores.filter(s => s.companyId === c.id);
   const presentation = {
     homepageDescriptionZh: cleanText(c.homepageDescriptionZh || `公司定位：${c.companyDescription}；方向：${c.subSector || c.sector}；地区：${c.region || c.country}`),
     latestValuationZh: cleanText(c.latestValuationZh || c.latestAvailableValuation, '未披露/待验证'),
@@ -365,7 +365,7 @@ function buildCompanyMemo(graph, companyId) {
     ['10 下一步', presentation.nextActionZh],
     ['11 证据', `${c.evidenceQuality.label} (${c.evidenceQuality.evidenceCount} items); open claims: ${claims.filter(cl => cl.status !== 'confirmed').length}`]
   ].map(([title, body]) => ({ title, body: cleanText(body, '待整理') }));
-  return { companyId: c.id, name: c.name, presentation, sections, fundingRounds: funding, relationshipRoute: route, claims, scores, generatedAt: nowIso() };
+  return { companyId: c.id, name: c.name, presentation, sections, fundingRounds: funding, relationshipRoute: route, claims, scores: scoreRows, generatedAt: nowIso() };
 }
 
 module.exports = { normalizeTrackGraph, buildSchemaHealth, buildIcReadinessQueue, buildCompanyMemo, classifyRelationshipRoute, evidenceQualityForCompany, sourceTypeRank, isMissing };
