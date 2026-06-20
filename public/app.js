@@ -201,7 +201,8 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/\bview\b/gi, '观点')
     .replace(/whether alumni co-invest access exists/gi, '是否存在校友共同投资入口')
     .replace(/\brevenue\b/gi, '收入')
-    .replace(/\bAI products\b/gi, 'AI 产品')
+    .replace(/\bAI products\b|\bAI product\b/gi, 'AI 产品')
+    .replace(/\bIPO bank calendar\b/gi, 'IPO 投行时间表')
     .replace(/\bpositive FCF\b/gi, 'FCF 为正')
     .replace(/\bcurrent quarter growth\b/gi, '当季增长')
     .replace(/\bclearing price\b/gi, '成交价')
@@ -617,16 +618,16 @@ function renderDetailOnePager(c, tasks) {
 
 function fundingConfidenceClass(conf) {
   const t = String(conf || '').toLowerCase();
-  if (/high|official/.test(t)) return 'green';
-  if (/medium/.test(t)) return 'amber';
+  if (/high|official|高|官方/.test(t)) return 'green';
+  if (/medium|中/.test(t)) return 'amber';
   return 'gray';
 }
 function confidenceLabel(conf) {
   const t = String(conf || '').toLowerCase();
-  if (/official/.test(t)) return '官方';
-  if (/high/.test(t)) return '高';
-  if (/medium/.test(t)) return '中';
-  if (/low/.test(t)) return '低';
+  if (/official|官方/.test(t)) return '官方';
+  if (/high|高/.test(t)) return '高';
+  if (/medium|中/.test(t)) return '中';
+  if (/low|低/.test(t)) return '低';
   return '待核验';
 }
 function fundingTimeline(rounds) {
@@ -729,7 +730,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
       <div class="memo-section-title"><span>06</span><b>融资历史</b></div>
       <div class="memo-funding-summary">
         ${metricTile('已结构化轮次', `${rounds.length} 轮`, 'blue')}
-        ${metricTile('最高置信度', rounds.some(r=>/high|official/i.test(r.confidence)) ? '高 / 官方' : (rounds.some(r=>/medium/i.test(r.confidence)) ? '中' : '低 / 待补'), 'amber')}
+        ${metricTile('最高置信度', rounds.some(r=>/high|official|高|官方/i.test(r.confidence)) ? '高 / 官方' : (rounds.some(r=>/medium|中/i.test(r.confidence)) ? '中' : '低 / 待补'), 'amber')}
       </div>
       ${fundingTimeline(rounds)}
     </section>
