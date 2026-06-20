@@ -172,6 +172,12 @@ function publicCleanText(value) {
     .replace(/\bv1[6-9]\b/gi, '')
     .replace(/not_publicly_disclosed/gi, '公开资料未披露')
     .replace(/not captured/gi, '待补充')
+    .replace(/publish_preipo_snapshot\.py/gi, 'snapshot publisher')
+    .replace(/[A-Za-z0-9_-]+\.py\b/g, 'internal script hidden')
+    .replace(/relationship_route_quality/gi, 'relationship path quality')
+    .replace(/_route/gi, ' path')
+    .replace(/_watch/gi, ' watch')
+    .replace(/_gate/gi, ' gate')
     .replace(/\/Users\/mac\/[^\s,，;；)）]+/g, '内部路径已隐藏')
     .replace(/\s+/g, ' ')
     .trim();
