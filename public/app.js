@@ -368,7 +368,7 @@ async function load() {
   renderTable();
   const pathMatch = location.pathname.match(/^\/company\/([^/?#]+)/);
   if (!selected && pathMatch) selected = { id: decodeURIComponent(pathMatch[1]) };
-  if (selected) showDetail(selected.id);
+  if (selected) await showDetail(selected.id);
 }
 
 async function render来源s() {
