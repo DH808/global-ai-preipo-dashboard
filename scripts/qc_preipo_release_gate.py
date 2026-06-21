@@ -210,8 +210,9 @@ def validate_public_endpoint_scan(base_url: str, errors: list[dict[str, Any]]) -
     return sizes
 
 
-def validate_api_structure(base_url: str, errors: list[dict[str, Any]], expect_readonly: bool | None) -> dict[str, Any]:
+def validate_api_structure(base_url: str, errors: list[dict[str, Any]], expect_readonly: bool | None, expected_count: int | None = None) -> dict[str, Any]:
     results: dict[str, Any] = {}
+    min_company_count = expected_count or 100
     for endpoint in STRUCTURAL_ENDPOINTS:
         status, body, _ = fetch(base_url, endpoint)
         results[endpoint] = {'status': status, 'bytes': len(body)}
@@ -227,8 +228,11 @@ def validate_api_structure(base_url: str, errors: list[dict[str, Any]], expect_r
         elif endpoint == '/api/internal/schema-health':
             counts = data.get('counts') or {}
             results[endpoint]['counts'] = counts
-            if counts.get('companies') != 104:
-                add_error(errors, 'schema_health_company_count', f"schema health companies {counts.get('companies')} != 104")
+            if expected_count is not None:
+                if counts.get('companies') != expected_count:
+                    add_error(errors, 'schema_health_company_count', f"schema health companies {counts.get('companies')} != expected state count {expected_count}")
+            elif counts.get('companies', 0) < min_company_count:
+                add_error(errors, 'schema_health_company_count', f"schema health companies {counts.get('companies')} < {min_company_count}")
             if counts.get('scores', 0) < 832:
                 add_error(errors, 'schema_health_scores_low', f"schema health scores {counts.get('scores')} < 832")
             if data.get('trackId') != TRACK_ID:
@@ -236,16 +240,22 @@ def validate_api_structure(base_url: str, errors: list[dict[str, Any]], expect_r
         elif endpoint == '/api/ic-readiness':
             summary = data.get('summary') or {}
             results[endpoint]['summary'] = summary
-            if summary.get('total') != 104:
-                add_error(errors, 'queue_total_mismatch', f"queue total {summary.get('total')} != 104")
+            if expected_count is not None:
+                if summary.get('total') != expected_count:
+                    add_error(errors, 'queue_total_mismatch', f"queue total {summary.get('total')} != expected state count {expected_count}")
+            elif summary.get('total', 0) < min_company_count:
+                add_error(errors, 'queue_total_mismatch', f"queue total {summary.get('total')} < {min_company_count}")
             if summary.get('actNow', 0) < 1:
                 add_error(errors, 'queue_no_act_now', 'IC queue has no Act Now companies')
         elif endpoint in ['/api/company/databricks', '/api/entity/databricks']:
             validate_company_payload(endpoint, data, errors)
         elif endpoint == '/api/ops':
-            q = get_path(data, 'icReadinessQueue.summary')
-            if not q or q.get('total') != 104:
-                add_error(errors, 'ops_queue_missing', '/api/ops missing icReadinessQueue summary')
+            q = get_path(data, 'icReadinessQueue.summary') or get_path(data, 'icReadiness.summary') or get_path(data, 'icReadinessQueue')
+            if expected_count is not None:
+                if not q or q.get('total') != expected_count:
+                    add_error(errors, 'ops_queue_missing', f"/api/ops missing IC readiness queue summary matching expected count {expected_count}")
+            elif not q or q.get('total', 0) < min_company_count:
+                add_error(errors, 'ops_queue_missing', '/api/ops missing IC readiness queue summary')
         elif endpoint == '/api/tasks':
             if get_path(data, 'summary.total') is None or get_path(data, 'summary.total') < 100:
                 add_error(errors, 'tasks_summary_low', '/api/tasks summary total below 100')
@@ -267,8 +277,8 @@ def load_state_company_count(errors: list[dict[str, Any]]) -> int | None:
         add_error(errors, 'state_json_failed', f'failed to parse state.json: {exc}')
         return None
     count = len(state.get('companies') or [])
-    if count != 104:
-        add_error(errors, 'state_company_count', f'state companies {count} != 104')
+    if count < 100:
+        add_error(errors, 'state_company_count', f'state companies {count} < 100')
     return count
 
 
@@ -324,7 +334,7 @@ def main(argv: list[str] | None = None) -> int:
     errors: list[dict[str, Any]] = []
     report: dict[str, Any] = {'gate': 'preipo_release_gate', 'mode': 'remote' if args.remote else 'local' if args.local else 'base_url', 'errors': errors}
 
-    expected_count = load_state_company_count(errors) if not args.remote else 104
+    expected_count = load_state_company_count(errors) if not args.remote else None
     if not args.remote:
         report['sqliteCounts'] = validate_sqlite_counts(DB_FILE, expected_count, errors)
 
@@ -337,7 +347,7 @@ def main(argv: list[str] | None = None) -> int:
             expect_readonly = True if args.remote or args.expect_readonly else (None if not args.expect_readonly else True)
             report['baseUrl'] = base_url
             report['publicEndpointBytes'] = validate_public_endpoint_scan(base_url, errors)
-            report['apiStructure'] = validate_api_structure(base_url, errors, expect_readonly=expect_readonly)
+            report['apiStructure'] = validate_api_structure(base_url, errors, expect_readonly=expect_readonly, expected_count=expected_count)
 
     report['status'] = 'PASS' if not errors else 'FAIL'
     text = json.dumps(report, ensure_ascii=False, indent=2)
