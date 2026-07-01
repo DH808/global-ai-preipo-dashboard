@@ -633,6 +633,7 @@ async function apiOperatingSystem(req, res) {
   const state = await readState();
   const graph = normalizeTrackGraph(state);
   const queue = buildIcReadinessQueue(graph);
+  const publicQueue = JSON.parse(JSON.stringify(queue).replace(/"icReadiness"/g, '"readinessScore"'));
   const companies = graph.companies.map(c => ({ ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) })).sort((a,b)=>b.score-a.score);
   const companyMap = Object.fromEntries(companies.map(c => [c.id, c]));
   const tasksByCompany = {};
@@ -654,7 +655,7 @@ async function apiOperatingSystem(req, res) {
   const onePagerQueue = companies.filter(c => c.label === 'Core / Act Now' || String(c.priorityTier || '').startsWith('1')).slice(0, 12).map(c => onePagerForCompany(c, tasksByCompany[c.id] || []));
   const noOwnerCore = companies.filter(c => c.label === 'Core / Act Now' && !c.owner).map(c => ({ id: c.id, name: c.name, score: c.score, nextAction: c.nextAction })).slice(0, 20);
   const thesisNoEvidence = companies.filter(c => c.label === 'Core / Act Now' && !(c.evidence || []).length).map(c => ({ id: c.id, name: c.name, score: c.score })).slice(0, 20);
-  json(res, 200, sanitizePublicStatePayload({ meta: state.meta, icView: top, icReadinessQueue: queue, onePagerQueue, relationshipMap: buildRelationshipMap(companies), taskAging: taskAging.slice(0, 40), followUpRisks: { overdue: taskAging.filter(t => t.agingStatus === 'overdue'), dueSoon: taskAging.filter(t => t.agingStatus === 'due_soon').slice(0, 15), noOwnerCore, thesisNoEvidence } }));
+  json(res, 200, sanitizePublicStatePayload({ meta: state.meta, icView: top, diligenceQueue: publicQueue, onePagerQueue, relationshipMap: buildRelationshipMap(companies), taskAging: taskAging.slice(0, 40), followUpRisks: { overdue: taskAging.filter(t => t.agingStatus === 'overdue'), dueSoon: taskAging.filter(t => t.agingStatus === 'due_soon').slice(0, 15), noOwnerCore, thesisNoEvidence } }));
 }
 
 async function apiTrackGraph(req, res) {

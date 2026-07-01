@@ -250,7 +250,7 @@ def validate_api_structure(base_url: str, errors: list[dict[str, Any]], expect_r
         elif endpoint in ['/api/company/databricks', '/api/entity/databricks']:
             validate_company_payload(endpoint, data, errors)
         elif endpoint == '/api/ops':
-            q = get_path(data, 'icReadinessQueue.summary') or get_path(data, 'icReadiness.summary') or get_path(data, 'icReadinessQueue')
+            q = get_path(data, 'diligenceQueue.summary') or get_path(data, 'icReadinessQueue.summary') or get_path(data, 'icReadiness.summary') or get_path(data, 'icReadinessQueue')
             if expected_count is not None:
                 if not q or q.get('total') != expected_count:
                     add_error(errors, 'ops_queue_missing', f"/api/ops missing IC readiness queue summary matching expected count {expected_count}")
