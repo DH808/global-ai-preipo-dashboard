@@ -2,9 +2,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const childProcess = require('child_process');
+const crypto = require('crypto');
 const { scoreCompany, scoreBreakdown, labelCompany, filterCompanies, computeDashboard, normalizeCompany, slugify } = require('./src/scoring');
 const { normalizeTrackGraph, buildSchemaHealth, buildIcReadinessQueue, buildCompanyMemo } = require('./src/trackGraph');
 const { sourceStatus, refreshInterVest, fetchCompanyNews } = require('./src/connectors');
+const { queryV2 } = require('./src/v2Repository');
 
 const APP_DIR = __dirname;
 const DATA_FILE = path.join(APP_DIR, 'data', 'state.json');
@@ -86,6 +88,42 @@ function writeState(state) {
 function json(res, status, payload) {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
   res.end(JSON.stringify(payload));
+}
+
+function v2RequestId(req) {
+  const supplied = String(req.headers['x-request-id'] || '').trim();
+  return supplied && supplied.length <= 128 ? supplied : crypto.randomUUID();
+}
+
+function v2Json(req, res, result) {
+  if (result.ok) return json(res, 200, result.value);
+  const error = result.error || { code: 'INTERNAL_ERROR', message: 'The request could not be completed.', details: {} };
+  return json(res, result.status || 500, { error: { code: error.code, message: error.message, details: error.details || {}, requestId: v2RequestId(req) } });
+}
+
+function apiV2(req, res, urlObj) {
+  const pathname = urlObj.pathname;
+  if (req.method !== 'GET') {
+    return json(res, 403, { error: { code: 'READ_ONLY_DEPLOYMENT', message: 'Phase 1 v2 APIs are read-only.', details: {}, requestId: v2RequestId(req) } });
+  }
+  let operation = null;
+  let args = {};
+  if (pathname === '/api/v2/meta') operation = 'meta';
+  else if (pathname === '/api/v2/companies') {
+    operation = 'companies';
+    args = Object.fromEntries(urlObj.searchParams.entries());
+  } else if (pathname === '/api/v2/sources') operation = 'sources';
+  else if (pathname === '/api/v2/data-quality') operation = 'data_quality';
+  else if (pathname === '/api/v2/ingestion-runs') operation = 'runs';
+  else {
+    const match = pathname.match(/^\/api\/v2\/companies\/([^/]+)(?:\/(funding-rounds|metrics|evidence|lineage))?$/);
+    if (match) {
+      args.id = decodeURIComponent(match[1]);
+      operation = ({ 'funding-rounds': 'funding', metrics: 'metrics', evidence: 'evidence', lineage: 'lineage' })[match[2]] || 'company';
+    }
+  }
+  if (!operation) return json(res, 404, { error: { code: 'NOT_FOUND', message: 'API resource was not found.', details: { path: pathname }, requestId: v2RequestId(req) } });
+  return v2Json(req, res, queryV2(operation, args));
 }
 
 function readBody(req, max = 2_000_000) {
@@ -705,6 +743,7 @@ const server = http.createServer(async (req, res) => {
   try {
     const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
     const pathname = urlObj.pathname;
+    if (pathname === '/api/v2' || pathname.startsWith('/api/v2/')) return apiV2(req, res, urlObj);
     if (req.method === 'GET' && pathname === '/api/state') return apiState(req, res, urlObj);
     if (req.method === 'GET' && pathname === '/api/pipeline') return apiPipeline(req, res, urlObj);
     if (req.method === 'GET' && pathname === '/api/db-info') return json(res, 200, dbInfo());
@@ -738,6 +777,9 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(200, { 'Content-Type': mime(file), 'Cache-Control': 'no-cache' });
     fs.createReadStream(file).pipe(res);
   } catch (err) {
+    if (String(req.url || '').startsWith('/api/v2')) {
+      return json(res, err.message === 'BODY_TOO_LARGE' ? 413 : 500, { error: { code: 'INTERNAL_ERROR', message: 'The request could not be completed.', details: {}, requestId: v2RequestId(req) } });
+    }
     json(res, err.message === 'BODY_TOO_LARGE' ? 413 : 500, { error: err.message || String(err) });
   }
 });

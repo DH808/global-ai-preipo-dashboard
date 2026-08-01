@@ -6,4 +6,8 @@ server.out.log
 server.err.log
 *.log
 *.bak_*
+__pycache__/
+*.py[cod]
 IMPROVEMENT_REPORT_zh*
+data/pipeline_v2.sqlite
+data/exports/*receipt*.json

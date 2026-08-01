@@ -1,0 +1,4 @@
+recordType,companyId,name,announcedDate,roundType,amount,value,metricName,asOf
+organization,example-ai,Example AI,,,,,,
+funding_round,example-ai,,2026-08-01,Series A,$20M,,,
+metric,example-ai,,,,,12000000,arr,2026-07-31

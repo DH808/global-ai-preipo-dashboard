@@ -350,6 +350,7 @@ function qs(obj) {
 async function load() {
   state = await api('/api/state?' + qs(filters()));
   ops = await api('/api/ops');
+  await renderDataArchitecture();
   renderSummary();
   renderVintageBanner();
   renderQuickChips();
@@ -369,6 +370,25 @@ async function load() {
   const pathMatch = location.pathname.match(/^\/company\/([^/?#]+)/);
   if (!selected && pathMatch) selected = { id: decodeURIComponent(pathMatch[1]) };
   if (selected) await showDetail(selected.id);
+}
+
+async function renderDataArchitecture() {
+  const box = $('#architectureHealth');
+  if (!box) return;
+  try {
+    const [sources, quality] = await Promise.all([api('/api/v2/sources'), api('/api/v2/data-quality')]);
+    const rows = sources.data || [];
+    const healthy = rows.filter(s => /available|imported/.test(s.status)).length;
+    const unavailable = rows.filter(s => /missing_credential|not_imported/.test(s.status)).length;
+    const q = quality.summary || {};
+    box.innerHTML = `<div class="architecture-kpis">
+      <div><span>可用 / 已导入</span><b>${healthy}</b></div><div><span>待授权 / 待导入</span><b>${unavailable}</b></div>
+      <div><span>陈旧</span><b>${q.stale || 0}</b></div><div><span>冲突</span><b>${q.conflict || 0}</b></div>
+      <div><span>缺 lineage</span><b>${q.missingLineage || 0}</b></div><div><span>权限受限源</span><b>${q.rightsRestricted || 0}</b></div>
+    </div><div class="connector-strip">${rows.map(s => `<span class="connector-status ${/available|imported/.test(s.status) ? 'ok' : 'pending'}"><i></i>${esc(s.name)} · ${esc(s.status)}</span>`).join('')}</div>`;
+  } catch (_) {
+    box.innerHTML = '<div class="sub">v2 本地数据库尚未初始化；现有 v1 投资管线继续只读可用。请按迁移 runbook 生成 PIPELINE_V2_DB_FILE。</div>';
+  }
 }
 
 async function render来源s() {
@@ -867,7 +887,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
       <div class="memo-hero-copy"><div class="eyebrow">COMPANY PROFILE</div><h2>${esc(c.name)}</h2><div class="sub">${esc(profile.region)} · ${esc(profile.role)} · ${esc(profile.direction)}</div></div>
       <div class="memo-score"><span class="score ${colorClass(c.label)}">${esc(c.score)}</span><em>${esc(priorityHead(c))}</em></div>
     </div>
-    <div class="detail-tabs memo-tabs"><button data-tab="overview" type="button">概览</button><button data-tab="investors" type="button">投资人</button><button data-tab="funding" type="button">融资</button><button data-tab="work" type="button">跟进</button><button data-tab="evidence" type="button">来源</button></div>
+    <div class="detail-tabs memo-tabs"><button data-tab="overview" type="button">概览</button><button data-tab="investors" type="button">投资人</button><button data-tab="funding" type="button">融资</button><button data-tab="work" type="button">跟进</button><button data-tab="evidence" type="button">来源</button><button data-tab="lineage" type="button">Lineage</button></div>
 
     <section class="detail-section memo-section profile-layout" data-section="overview">
       <div class="profile-main">
@@ -946,12 +966,29 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
       ${IS_ADMIN ? `<div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
     </section>
 
+    <section class="detail-section memo-section" data-section="lineage">
+      <div class="memo-section-title"><span>09</span><b>Data Lineage / 字段血缘</b></div>
+      ${lineageHtml(extra.lineage)}
+    </section>
+
     ${IS_ADMIN ? `<section class="detail-section memo-section" data-section="overview">
       <div class="memo-section-title"><span>附</span><b>Scorecard</b></div>
       ${renderScoreBreakdown(c)}
     </section>` : ''}
     ${state.meta.readOnly ? '<div class="read-only-note">当前为只读部署：请在本机/Tailscale 版本编辑，并通过 snapshot sync 发布。</div>' : `<div class="actions"><button onclick="进行中Edit(selected)">编辑</button><button onclick="deleteCompany('${esc(c.id)}')">删除</button></div>`}
   </div>`;
+}
+
+function lineageHtml(lineage) {
+  if (!lineage) return '<p class="sub">v2 lineage 暂不可用；原有来源摘要仍可在「来源」页查看。</p>';
+  const observations = lineage.observations || {};
+  const sources = lineage.sources || [];
+  const conflicts = lineage.conflicts || [];
+  const decisions = lineage.canonicalDecisions || [];
+  return `<div class="lineage-flow"><div><span>RAW 来源</span><b>${sources.length}</b></div><i>→</i><div><span>CANONICAL observations</span><b>${(observations.fundingRounds || 0) + (observations.metrics || 0) + (observations.evidence || 0)}</b></div><i>→</i><div><span>SERVING 当前视图</span><b>已脱敏</b></div></div>
+    <div class="lineage-source-list">${sources.map(s => `<div><b>${esc(s.sourceName)}</b><span>${esc(s.sourceClass)} · ${esc(s.rightsClass)} · ${s.recordCount} records</span><em>${esc(s.latestObservationAt || '日期待补')}</em></div>`).join('') || '<p class="sub">暂无已链接来源。</p>'}</div>
+    ${decisions.length ? `<div class="lineage-decisions">${decisions.map(d => `<span><b>${esc(d.fieldPath)}</b> ${esc(d.selectedValue)}</span>`).join('')}</div>` : ''}
+    <div class="lineage-note">原始 payload、本地路径和 licensed locator 均不通过公开 API 返回。${conflicts.length ? ` 当前有 ${conflicts.length} 个未结/历史冲突。` : ' 当前无结构化冲突。'}</div>`;
 }
 
 function bindDetailMenus(root) {
@@ -963,6 +1000,10 @@ function bindDetailMenus(root) {
 
 async function showDetail(id) {
   const data = await api('/api/company/' + encodeURIComponent(id));
+  try {
+    const lineage = await api('/api/v2/companies/' + encodeURIComponent(id) + '/lineage');
+    data.lineage = lineage.data;
+  } catch (_) { data.lineage = null; }
   const c = data.company; selected = c;
   const rounds = data.fundingRounds || [], tasks = data.tasks || [], interactions = data.interactions || [];
   const html = detailHtml(c, rounds, tasks, interactions, data);

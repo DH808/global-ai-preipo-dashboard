@@ -9,8 +9,9 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "node test/scoring.test.js && node test/connectors.test.js && node test/trackGraph.test.js && python3 -m unittest test/test_qc_preipo_release_gate.py -v",
-    "check": "node --check server.js && node --check src/scoring.js && node --check src/connectors.js && node --check src/trackGraph.js && node --check public/app.js"
+    "test": "node test/scoring.test.js && node test/connectors.test.js && node test/trackGraph.test.js && python3 -m unittest test/test_qc_preipo_release_gate.py -v && python3 -m unittest discover -s test -p 'test_*v2*.py' -v",
+    "test:v2": "python3 -m unittest discover -s test -p 'test_*v2*.py' -v",
+    "check": "node --check server.js && node --check src/scoring.js && node --check src/connectors.js && node --check src/trackGraph.js && node --check src/v2Repository.js && node --check public/app.js && node --check test/api_contract_runner_v2.js"
   },
   "dependencies": {},
   "devDependencies": {}

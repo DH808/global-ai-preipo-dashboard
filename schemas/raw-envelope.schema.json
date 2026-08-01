@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://private-investment-os.local/schemas/raw-envelope.schema.json",
+  "title": "Provider-neutral RawEnvelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["sourceId", "connectorVersion", "objectType", "objectId", "observedAt", "payload", "payloadSha256", "rightsProfile"],
+  "properties": {
+    "sourceId": {"type": "string"},
+    "connectorVersion": {"type": "string"},
+    "objectType": {"type": "string", "enum": ["organization", "funding_round", "metric", "investor", "evidence", "task", "interaction", "source_registry_entry", "media_signal"]},
+    "objectId": {"type": "string"},
+    "observedAt": {"type": ["string", "null"], "format": "date-time"},
+    "sourceUpdatedAt": {"type": ["string", "null"], "format": "date-time"},
+    "payload": {"type": "object"},
+    "payloadSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "rightsProfile": {"type": "string", "enum": ["internal_only", "sanitized_derived", "public_allowed"]},
+    "providerCursor": {"type": ["string", "null"]},
+    "metadata": {"type": "object"}
+  }
+}

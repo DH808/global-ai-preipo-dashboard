@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://private-investment-os.local/schemas/connector-manifest.schema.json",
+  "title": "Private Investment OS Connector Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["connectorId", "sourceId", "version", "capabilities", "mode", "credentialEnvVars", "rightsProfile", "supportsCursor", "status"],
+  "properties": {
+    "connectorId": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "sourceId": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "capabilities": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "mode": {"type": "string", "enum": ["snapshot", "incremental", "manual_preview", "manual_url_seed", "on_demand"]},
+    "credentialEnvVars": {"type": "array", "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]+$"}, "uniqueItems": true},
+    "rightsProfile": {"type": "string", "enum": ["internal_only", "sanitized_derived", "public_allowed"]},
+    "supportsCursor": {"type": "boolean"},
+    "status": {"type": "string"}
+  }
+}

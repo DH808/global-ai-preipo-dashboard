@@ -1,5 +1,7 @@
 # Global AI Pre-IPO Dashboard
 
+The provider-neutral Private Investment Opportunity OS v2 Phase 1 is documented in [Engineering](docs/PRIVATE_INVESTMENT_OS_V2_ENGINEERING.md), [API v2](docs/API_V2.md), [Connector Contract](docs/CONNECTOR_CONTRACT.md), and [Migration Runbook](docs/MIGRATION_RUNBOOK.md). Existing v1 dashboard behavior remains compatible.
+
 Operational dashboard for a global AI / AI supply-chain private-company and pre-IPO pipeline.
 
 ## URLs

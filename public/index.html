@@ -28,6 +28,14 @@
       <button id="resetBtn">重置</button>
     </section>
 
+    <section class="panel data-architecture-panel" id="dataArchitecture" aria-live="polite">
+      <div class="section-head compact-head">
+        <div><div class="section-title">数据来源与质量 / Data Architecture</div><div class="sub">RAW → CANONICAL → SERVING；仅展示来源健康与脱敏 lineage，不公开原始 provider payload。</div></div>
+        <span class="pill gray">v2 foundation</span>
+      </div>
+      <div class="architecture-health" id="architectureHealth"><div class="sub">正在读取 v2 数据健康状态…</div></div>
+    </section>
+
     <section class="layout pipeline-layout">
       <div class="panel table-wrap primary-pipeline">
         <div class="section-head compact-head table-first-head">
@@ -111,6 +119,6 @@
     </div>
   </dialog>
 
-  <script src="/app.js?v=19"></script>
+  <script src="/app.js?v=20"></script>
 </body>
 </html>
