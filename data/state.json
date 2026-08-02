@@ -8,7 +8,7 @@
     "asOf": "2026-08-02",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-08-02T05:06:19Z",
+    "updatedAt": "2026-08-02T05:33:32Z",
     "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue. Added EMEA ECM screenshot-derived private/pre-IPO opportunities: Starling Bank, Trade Republic, Zopa, Bitdefender, Bolt, Celonis, Doctolib, ElevenLabs enrichment, GetYourGuide, Infobip, Kpler, Kraken Technology; public-source enriched with valuation/funding/metrics caveats. Added second EMEA ECM screenshot batch covering Legora, Lendable, Mews, Mirakl, Multiverse Computing, n8n, Nord Security, Odoo, OQC, Personio, Poolside, Qonto, Quantexa, Thought Machine, Trendyol, Wayve, CMR Surgical, Huma, Medical Microinstruments, Owkin; patched Kraken, Lovable, Mistral AI, Synthesia.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
     "uiVersion": "public-2026-06-20",
@@ -100,6 +100,12 @@
       },
       {
         "sha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b",
+        "schemaVersion": "1.0.0",
+        "asOf": "2026-08-02",
+        "recordCount": 8
+      },
+      {
+        "sha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f",
         "schemaVersion": "1.0.0",
         "asOf": "2026-08-02",
         "recordCount": 8
@@ -1839,6 +1845,12 @@
           "type": "official",
           "note": "Glean official: ARR $200M, doubled in nine months.",
           "url": "https://www.glean.com/press/glean-surpasses-200m-in-arr-for-enterprise-ai-doubling-revenue-in-nine-months"
+        },
+        {
+          "url": "https://techcrunch.com/2025/06/10/enterprise-ai-startup-glean-lands-a-7-2b-valuation/",
+          "date": "2025-06-10",
+          "type": "reputable_media",
+          "confidence": "high"
         }
       ],
       "notes": "Priority: 2 - Active Diligence Recommendation: Enterprise AI workflow app; verify ARR quality and valuation before chasing. Original notes: v2 expanded seed from prior two-round research; verify before IC use.",
@@ -1886,7 +1898,49 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "aliases": [],
+      "tmtFieldEvidence": {
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        }
+      },
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2025-06-10",
+      "confidence": "high",
+      "investabilityAccessLane": "direct_primary",
+      "latestFinancing": {
+        "roundType": "Series F",
+        "amountDisplay": "$150m",
+        "announcedDate": "2025-06-10",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/06/10/enterprise-ai-startup-glean-lands-a-7-2b-valuation/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-06-10",
+      "privateStatusConfidence": "high"
     },
     {
       "id": "elevenlabs",
@@ -6310,6 +6364,12 @@
           "type": "official",
           "note": "Sierra disclosed $100M ARR in seven quarters and broad enterprise customer list.",
           "url": "https://sierra.ai/blog/100m-arr"
+        },
+        {
+          "url": "https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/",
+          "date": "2026-05-04",
+          "type": "reputable_media",
+          "confidence": "high"
         }
       ],
       "notes": "Priority: 2 - Active Diligence Recommendation: High-growth AI app to track, but valuation likely ahead of fundamentals; require ARR cohort and margin diligence. Mandate fit: Good: $100M ARR in 7 quarters and Greenoaks-led $10B valuation round; maybe too young for immediate IPO. Why now: Customer-service agents are one of the first AI workflow categories with budget and measurable ROI. Key metrics: 2025: $350M financing at $10B valuation (Greenoaks led); Reached $100M ARR in 7 quarters; Customers include Deliveroo, Discord, Ramp, Rivian, SoFi, Sonos, Wayfair and others Valuation view: Very expensive relative to maturity; worth tracking for secondary only with discount. Access route: Greenoaks, General Catalyst/Sierra management, enterprise customer references. Evidence boundary: Need funding official page, gross margin, NRR, customer concentration, model cost. Original notes: New addition from other crossover funds screen.",
@@ -6357,7 +6417,49 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "aliases": [],
+      "tmtFieldEvidence": {
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-05-04",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-05-04",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-05-04",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-05-04",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-05-04",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        }
+      },
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-05-04",
+      "confidence": "high",
+      "investabilityAccessLane": "direct_primary",
+      "latestFinancing": {
+        "roundType": "financing",
+        "amountDisplay": "$950m",
+        "announcedDate": "2026-05-04",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-05-04",
+      "privateStatusConfidence": "high"
     },
     {
       "id": "parloa",
@@ -6723,6 +6825,12 @@
           "type": "official",
           "note": "CapitalG portfolio: Clay is leading GTM development platform using AI and automation; initial investment 2025.",
           "url": "https://capitalg.com/portfolio/clay/"
+        },
+        {
+          "url": "https://techcrunch.com/2025/08/05/clay-confirms-it-closed-100m-round-at-3-1b-valuation/",
+          "date": "2025-08-05",
+          "type": "reputable_media",
+          "confidence": "high"
         }
       ],
       "notes": "Priority: 2 - Active Diligence Recommendation: Track as AI-native GTM workflow; verify durable retention and enterprise mix. Mandate fit: Moderate/good: CapitalG-led late-stage AI GTM platform, but sales automation can be crowded. Why now: AI automates research/personalization/outbound workflows; Clay has strong GTM engineer mindshare. Key metrics: CapitalG initial investment 2025; Media: $100M Series C led by CapitalG at $3.1B valuation Valuation view: Likely expensive; need ARR, NRR, SMB/prosumer vs enterprise mix. Access route: CapitalG Clay team; GTM/adtech network. Evidence boundary: Need ARR, churn, enterprise adoption and email/channel deliverability risk. Original notes: New from Google review.",
@@ -6770,7 +6878,49 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "aliases": [],
+      "tmtFieldEvidence": {
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-08-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-08-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-08-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-08-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-08-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        }
+      },
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-08-05",
+      "confidence": "high",
+      "investabilityAccessLane": "relationship_development",
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$100m",
+        "announcedDate": "2025-08-05",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/08/05/clay-confirms-it-closed-100m-round-at-3-1b-valuation/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-08-05",
+      "privateStatusConfidence": "high"
     },
     {
       "id": "celero-communications",
@@ -16278,6 +16428,536 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-07-17",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "cyera",
+      "name": "Cyera",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2026/01/08/data-security-startup-cyera-hits-9b-valuation-six-months-after-being-valued-at-6b/",
+          "date": "2026-01-08",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-01-08",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Cybersecurity/Identity",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-01-08",
+      "confidence": "high",
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Cybersecurity/Identity",
+      "subSector": "Data security posture management",
+      "companyDescription": "企业数据安全与数据安全态势管理平台，面向云和AI环境中的敏感数据发现、分类及风险控制。",
+      "latestFinancing": {
+        "roundType": "Series F",
+        "amountDisplay": "$400m",
+        "announcedDate": "2026-01-08",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/01/08/data-security-startup-cyera-hits-9b-valuation-six-months-after-being-valued-at-6b/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-01-08",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "grafana-labs",
+      "name": "Grafana Labs",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/21/grafana-labs-is-now-valued-at-6b/",
+          "date": "2024-08-21",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2024-08-21",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "secondary_tender",
+      "sourceVintage": "2024-08-21",
+      "confidence": "high",
+      "investabilityAccessLane": "company_approved_secondary",
+      "sector": "Data/Analytics",
+      "subSector": "Open-source observability platform",
+      "companyDescription": "以开源可观测性和仪表盘生态切入企业监控，融资包含公司Primary及股东Secondary流动性。",
+      "latestFinancing": {
+        "roundType": "Series D extension",
+        "amountDisplay": "$270m",
+        "announcedDate": "2024-08-21",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2024/08/21/grafana-labs-is-now-valued-at-6b/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-21",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "island",
+      "name": "Island",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/03/26/island-lands-250m-in-funding-at-a-4-8b-valuation/",
+          "date": "2025-03-26",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Cybersecurity/Identity",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-03-26",
+      "confidence": "high",
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Cybersecurity/Identity",
+      "subSector": "Enterprise browser and workspace security",
+      "companyDescription": "以企业浏览器作为安全与工作入口，把访问控制、数据保护和终端工作流集中到浏览器层。",
+      "latestFinancing": {
+        "roundType": "Series E",
+        "amountDisplay": "$250m",
+        "announcedDate": "2025-03-26",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/03/26/island-lands-250m-in-funding-at-a-4-8b-valuation/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-03-26",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/06/10/atlassian-rival-linear-raises-82m-at-1-25b-valuation/",
+          "date": "2025-06-10",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-06-10",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-06-10",
+      "confidence": "high",
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Enterprise Software",
+      "subSector": "Product development and issue tracking",
+      "companyDescription": "面向软件团队的缺陷、功能需求和产品开发管理平台，是Atlassian生态之外的现代化协作工具。",
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$82m",
+        "announcedDate": "2025-06-10",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/06/10/atlassian-rival-linear-raises-82m-at-1-25b-valuation/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-06-10",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2026/06/05/supabase-doubles-valuation-to-10b-in-8-months/",
+          "date": "2026-06-05",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-06-05",
+          "seedSha256": "650062c23de3aac4c4d7ffbf59ed2c33645d7a3b5aa3aeb94699af5f567f5b2f"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-06-05",
+      "confidence": "high",
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Data/Analytics",
+      "subSector": "Open-source Postgres developer platform",
+      "companyDescription": "围绕Postgres构建数据库、认证、存储与后端服务开发平台，受益于AI应用和vibe coding开发需求。",
+      "latestFinancing": {
+        "roundType": "Series F",
+        "amountDisplay": "$500m",
+        "announcedDate": "2026-06-05",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/06/05/supabase-doubles-valuation-to-10b-in-8-months/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-06-05",
       "privateStatusConfidence": "high"
     }
   ],

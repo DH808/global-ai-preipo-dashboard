@@ -1,0 +1,331 @@
+{
+  "schemaVersion": "1.0.0",
+  "asOf": "2026-08-02",
+  "review": {
+    "status": "approved",
+    "reviewedBy": "Hermes source-gate",
+    "reviewedAt": "2026-08-02T05:33:32Z"
+  },
+  "records": [
+    {
+      "id": "clay",
+      "name": "Clay",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-08-05",
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2025/08/05/clay-confirms-it-closed-100m-round-at-3-1b-valuation/",
+          "date": "2025-08-05",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-08-05",
+        "sourceUrl": "https://techcrunch.com/2025/08/05/clay-confirms-it-closed-100m-round-at-3-1b-valuation/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Enterprise Software",
+      "subSector": "Sales automation and data enrichment",
+      "companyDescription": "整合销售数据、名单构建、数据丰富和自动化外联，为增长团队提供可编排的销售工作流。",
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$100m",
+        "announcedDate": "2025-08-05",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/08/05/clay-confirms-it-closed-100m-round-at-3-1b-valuation/"
+      }
+    },
+    {
+      "id": "cyera",
+      "name": "Cyera",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Cybersecurity/Identity",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-01-08",
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2026/01/08/data-security-startup-cyera-hits-9b-valuation-six-months-after-being-valued-at-6b/",
+          "date": "2026-01-08",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-01-08",
+        "sourceUrl": "https://techcrunch.com/2026/01/08/data-security-startup-cyera-hits-9b-valuation-six-months-after-being-valued-at-6b/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Cybersecurity/Identity",
+      "subSector": "Data security posture management",
+      "companyDescription": "企业数据安全与数据安全态势管理平台，面向云和AI环境中的敏感数据发现、分类及风险控制。",
+      "latestFinancing": {
+        "roundType": "Series F",
+        "amountDisplay": "$400m",
+        "announcedDate": "2026-01-08",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/01/08/data-security-startup-cyera-hits-9b-valuation-six-months-after-being-valued-at-6b/"
+      }
+    },
+    {
+      "id": "glean",
+      "name": "Glean",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2025-06-10",
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2025/06/10/enterprise-ai-startup-glean-lands-a-7-2b-valuation/",
+          "date": "2025-06-10",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-06-10",
+        "sourceUrl": "https://techcrunch.com/2025/06/10/enterprise-ai-startup-glean-lands-a-7-2b-valuation/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Enterprise Software",
+      "subSector": "Enterprise search and AI agents",
+      "companyDescription": "连接企业内部应用和文档的搜索、知识检索与AI Agent平台，具备企业数据权限和工作流嵌入优势。",
+      "latestFinancing": {
+        "roundType": "Series F",
+        "amountDisplay": "$150m",
+        "announcedDate": "2025-06-10",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/06/10/enterprise-ai-startup-glean-lands-a-7-2b-valuation/"
+      }
+    },
+    {
+      "id": "grafana-labs",
+      "name": "Grafana Labs",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "secondary_tender",
+      "sourceVintage": "2024-08-21",
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2024/08/21/grafana-labs-is-now-valued-at-6b/",
+          "date": "2024-08-21",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2024-08-21",
+        "sourceUrl": "https://techcrunch.com/2024/08/21/grafana-labs-is-now-valued-at-6b/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "company_approved_secondary",
+      "sector": "Data/Analytics",
+      "subSector": "Open-source observability platform",
+      "companyDescription": "以开源可观测性和仪表盘生态切入企业监控，融资包含公司Primary及股东Secondary流动性。",
+      "latestFinancing": {
+        "roundType": "Series D extension",
+        "amountDisplay": "$270m",
+        "announcedDate": "2024-08-21",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2024/08/21/grafana-labs-is-now-valued-at-6b/"
+      }
+    },
+    {
+      "id": "island",
+      "name": "Island",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Cybersecurity/Identity",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-03-26",
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2025/03/26/island-lands-250m-in-funding-at-a-4-8b-valuation/",
+          "date": "2025-03-26",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-03-26",
+        "sourceUrl": "https://techcrunch.com/2025/03/26/island-lands-250m-in-funding-at-a-4-8b-valuation/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Cybersecurity/Identity",
+      "subSector": "Enterprise browser and workspace security",
+      "companyDescription": "以企业浏览器作为安全与工作入口，把访问控制、数据保护和终端工作流集中到浏览器层。",
+      "latestFinancing": {
+        "roundType": "Series E",
+        "amountDisplay": "$250m",
+        "announcedDate": "2025-03-26",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/03/26/island-lands-250m-in-funding-at-a-4-8b-valuation/"
+      }
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-06-10",
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2025/06/10/atlassian-rival-linear-raises-82m-at-1-25b-valuation/",
+          "date": "2025-06-10",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-06-10",
+        "sourceUrl": "https://techcrunch.com/2025/06/10/atlassian-rival-linear-raises-82m-at-1-25b-valuation/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Enterprise Software",
+      "subSector": "Product development and issue tracking",
+      "companyDescription": "面向软件团队的缺陷、功能需求和产品开发管理平台，是Atlassian生态之外的现代化协作工具。",
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$82m",
+        "announcedDate": "2025-06-10",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/06/10/atlassian-rival-linear-raises-82m-at-1-25b-valuation/"
+      }
+    },
+    {
+      "id": "sierra",
+      "name": "Sierra",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-05-04",
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/",
+          "date": "2026-05-04",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-05-04",
+        "sourceUrl": "https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Enterprise Software",
+      "subSector": "AI customer experience agents",
+      "companyDescription": "面向企业客户体验场景的AI Agent平台，目标成为品牌与消费者交互的核心软件层。",
+      "latestFinancing": {
+        "roundType": "financing",
+        "amountDisplay": "$950m",
+        "announcedDate": "2026-05-04",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/"
+      }
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-06-05",
+      "sources": [
+        {
+          "url": "https://techcrunch.com/2026/06/05/supabase-doubles-valuation-to-10b-in-8-months/",
+          "date": "2026-06-05",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-06-05",
+        "sourceUrl": "https://techcrunch.com/2026/06/05/supabase-doubles-valuation-to-10b-in-8-months/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Data/Analytics",
+      "subSector": "Open-source Postgres developer platform",
+      "companyDescription": "围绕Postgres构建数据库、认证、存储与后端服务开发平台，受益于AI应用和vibe coding开发需求。",
+      "latestFinancing": {
+        "roundType": "Series F",
+        "amountDisplay": "$500m",
+        "announcedDate": "2026-06-05",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/06/05/supabase-doubles-valuation-to-10b-in-8-months/"
+      }
+    }
+  ]
+}
