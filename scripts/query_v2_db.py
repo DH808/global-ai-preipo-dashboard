@@ -182,7 +182,6 @@ class PublicProjectionPolicy:
             selected_public = self.source_public(row["selected_source_record_id"])
             if not selected_public and not public_sources:
                 continue
-            mixed = any(not self.source_public(s["source_record_id"]) for s in sources)
             proven = set()
             for source in public_sources:
                 try:
@@ -192,7 +191,9 @@ class PublicProjectionPolicy:
                     pass
             dto = {}
             for public_name, column in self.FUNDING_FIELDS.items():
-                if mixed and column not in proven:
+                # A redistributable source is necessary but never sufficient:
+                # every public funding field needs explicit source/field lineage.
+                if column not in proven:
                     continue
                 value = self.safe_text(row[column])
                 if value is not None:

@@ -5,8 +5,10 @@ from __future__ import annotations
 import argparse
 import contextlib
 import hashlib
+import hmac
 import io
 import json
+import math
 import os
 import re
 import sqlite3
@@ -22,6 +24,10 @@ DEFAULT_STATE = APP / "data" / "state.json"
 DEFAULT_PUBLIC_STATE = APP / "data" / "public-state.json"
 DEFAULT_DB = APP / "data" / "pipeline_v2.sqlite"
 EXPECTED_SCHEMA = "002"
+EXPECTED_PUBLIC_SNAPSHOT_SCHEMA = "1"
+EXPECTED_PUBLIC_SNAPSHOT_MARKER = "generated-public-snapshot"
+EXPECTED_PUBLIC_SNAPSHOT_GENERATOR = "project_public_snapshot.js"
+HMAC_KEY_ENV = "PUBLIC_SNAPSHOT_HMAC_KEY"
 FORBIDDEN_COLLECTIONS = {"tasks", "interactions", "sourceRegistry"}
 FORBIDDEN_KEYS = {
     "owner", "notes", "notesClean", "nextAction", "nextActionZh", "nextStep", "keyDiligence",
@@ -55,9 +61,40 @@ def walk(value, path="$"):
             yield from walk(child, f"{path}[{index}]")
 
 
+def required_hmac_key() -> bytes:
+    value = os.environ.get(HMAC_KEY_ENV)
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", value):
+        raise RuntimeError("PUBLIC_SNAPSHOT_HMAC_KEY_INVALID")
+    normalized = value.lower()
+    repeated = any(64 % size == 0 and normalized == normalized[:size] * (64 // size)
+                   for size in range(1, 33))
+    counts = [normalized.count(char) for char in set(normalized)]
+    entropy = -sum((count / 64) * math.log2(count / 64) for count in counts)
+    digits = [int(char, 16) for char in normalized]
+    sequential = any(all(digit == (digits[index] + step) % 16
+                         for index, digit in enumerate(digits[1:])) for step in (1, -1))
+    if (repeated or sequential or
+            len(counts) < 8 or max(counts) > 16 or entropy < 3):
+        raise RuntimeError("PUBLIC_SNAPSHOT_HMAC_KEY_INVALID")
+    return bytes.fromhex(value)
+
+
+def canonical_json(value) -> bytes:
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+
+
+def snapshot_without_signature(snapshot: dict) -> dict:
+    value = json.loads(json.dumps(snapshot, ensure_ascii=False))
+    value["meta"]["publicSnapshotReceipt"].pop("hmacSha256", None)
+    return value
+
+
 def validate_snapshot(snapshot_path: Path) -> dict:
+    signing_key = required_hmac_key()
     raw = snapshot_path.read_bytes()
     snapshot = json.loads(raw)
+    if set(snapshot) != {"meta", "companies", "fundingRounds"}:
+        raise RuntimeError("PUBLIC_SNAPSHOT_SCHEMA_INVALID")
     if FORBIDDEN_COLLECTIONS & snapshot.keys():
         raise RuntimeError("PUBLIC_SNAPSHOT_CONTAINS_OPERATIONAL_COLLECTIONS")
     companies = snapshot.get("companies")
@@ -73,6 +110,17 @@ def validate_snapshot(snapshot_path: Path) -> dict:
     declared = snapshot.get("meta", {}).get("publicCompanyCount")
     if declared != len(companies):
         raise RuntimeError("PUBLIC_SNAPSHOT_COUNT_RECEIPT_INVALID")
+    receipt = snapshot.get("meta", {}).get("publicSnapshotReceipt")
+    if not isinstance(receipt, dict) or set(receipt) != {"marker", "schemaVersion", "generator", "hmacSha256"}:
+        raise RuntimeError("PUBLIC_SNAPSHOT_RECEIPT_MISSING")
+    if (receipt.get("marker") != EXPECTED_PUBLIC_SNAPSHOT_MARKER or
+            receipt.get("schemaVersion") != EXPECTED_PUBLIC_SNAPSHOT_SCHEMA or
+            receipt.get("generator") != EXPECTED_PUBLIC_SNAPSHOT_GENERATOR or
+            not re.fullmatch(r"[a-f0-9]{64}", str(receipt.get("hmacSha256", "")))):
+        raise RuntimeError("PUBLIC_SNAPSHOT_RECEIPT_INVALID")
+    actual = hmac.new(signing_key, canonical_json(snapshot_without_signature(snapshot)), hashlib.sha256).hexdigest()
+    if not hmac.compare_digest(actual, receipt["hmacSha256"]):
+        raise RuntimeError("PUBLIC_SNAPSHOT_AUTHENTICATION_INVALID")
     return {"companyCount": len(companies), "sha256": hashlib.sha256(raw).hexdigest()}
 
 

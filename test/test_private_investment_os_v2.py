@@ -26,6 +26,8 @@ BATCH2_REPLACEMENT = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch2_fi
 BATCH3_SEED = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch3.json"
 LEGACY_FINANCING_MANIFEST = ROOT / "data" / "migrations" / "legacy_financing_20260802.reviewed.json"
 LEGACY_FINANCING_RECEIPT = ROOT / "data" / "migrations" / "legacy_financing_20260802.receipt.json"
+TEST_PUBLIC_SNAPSHOT_HMAC_KEY = "8f67c021d43a9e55b17d09c3a04f5e71c693bc8d2a6f190e4b7a25cd913ef806"
+os.environ.setdefault("PUBLIC_SNAPSHOT_HMAC_KEY", TEST_PUBLIC_SNAPSHOT_HMAC_KEY)
 
 
 def run_json(*args: str, expected: int = 0) -> dict:
@@ -726,7 +728,8 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         changed["companies"].append({
             "id": "legitimate-new-public-company", "name": "Legitimate New Public Company",
             "status": "private", "country": "US", "region": "US", "sector": "AI Software",
-            "stage": "seed", "companyDescription": "Public company profile for count-gate regression.",
+            "subSector": "Enterprise AI", "stage": "seed", "businessModel": "SaaS", "customerType": "B2B",
+            "monetization": ["Subscription"], "companyDescription": "Public company profile for count-gate regression.",
         })
         changed_file = self.tmp / "public-build-added-company.json"
         public_file = self.tmp / "public-build-added-company.public.json"

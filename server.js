@@ -67,16 +67,20 @@ function consumeRateLimit(identity, current = Date.now()) {
 
 let snapshotCache = { url: '', loadedAtMs: 0, state: null, error: null };
 
-function readBundledState(file = process.env.NODE_ENV === 'production' ? PUBLIC_STATE_FILE : DATA_FILE) {
+function readBundledState(file = (process.env.NODE_ENV === 'production' || RENDER_PROXY_MODE) ? PUBLIC_STATE_FILE : DATA_FILE) {
   const text = fs.readFileSync(file, 'utf8');
-  const state = hydrateState(JSON.parse(text), {
+  const parsed = JSON.parse(text);
+  const isPublicFile = file === PUBLIC_STATE_FILE;
+  if (isPublicFile) publicProjection.validateAndMarkPublicSnapshot(parsed, { source: 'generated_public_file' });
+  const state = isPublicFile ? parsed : hydrateState(parsed, {
     snapshotSource: file === PUBLIC_STATE_FILE ? 'bundled_public_snapshot' : 'local_file',
     snapshotUrl: '',
     snapshotLoadedAt: new Date().toISOString(),
     snapshotError: null
   });
-  const version = state.meta?.publicSnapshotVersion || crypto.createHash('sha256').update(text).digest('hex');
-  return publicProjection.markTrustedSnapshot(state, { source: 'bundled', version });
+  if (isPublicFile) return state;
+  const version = crypto.createHash('sha256').update(text).digest('hex');
+  return publicProjection.markTrustedSnapshot(state, { source: 'bundled_raw', version });
 }
 
 function readLocalState() { return readBundledState(DATA_FILE); }
@@ -129,7 +133,7 @@ async function fetchSnapshotState() {
 async function readState() {
   // Production always uses the build-generated bundled public snapshot. The
   // legacy remote URL is intentionally inert there.
-  if (process.env.NODE_ENV !== 'production' && SNAPSHOT_URL) return fetchSnapshotState();
+  if (process.env.NODE_ENV !== 'production' && !RENDER_PROXY_MODE && SNAPSHOT_URL) return fetchSnapshotState();
   return readBundledState();
 }
 
@@ -530,9 +534,12 @@ function sanitizePublicStatePayload(payload) {
 }
 
 function pipelineCompanies(state, filters = {}) {
-  if (!publicProjection.snapshotReceipt(state)) return [];
+  const receipt = publicProjection.snapshotReceipt(state);
+  if (!receipt) return [];
   const fundingIds = new Set((state.fundingRounds || []).filter(r => !/coverage_gap|placeholder|待补|待确认|unknown/i.test([r.sourceType,r.round,r.amount].join(' '))).map(r => r.companyId));
-  const base = (state.companies || []).map(c => enrichedCompany(normalizeCompany(c) && { ...c }, { hasFinancing: fundingIds.has(c.id) })).filter(c => {
+  const sourceCompanies = receipt.kind === 'public' ? publicProjection.projectState(state, lifecycleCoverage).companies :
+    (state.companies || []).map(c => enrichedCompany(normalizeCompany(c) && { ...c }, { hasFinancing: fundingIds.has(c.id), snapshotAsOf: state.meta?.asOf }));
+  const base = sourceCompanies.filter(c => {
     if (filters.status && c.status !== filters.status) return false;
     if (filters.region && c.region !== filters.region) return false;
     if (filters.northAmerica === '1' && !/^(US|USA|United States|Canada|Mexico|North America)$/i.test(String(c.region || c.country || ''))) return false;
@@ -587,13 +594,15 @@ async function apiState(req, res, urlObj) {
 
 async function apiCompany(req, res, id) {
   const state = await readState();
-  const c = state.companies.find(x => x.id === id);
+  const receipt = publicProjection.snapshotReceipt(state);
+  const publicState = publicProjection.projectState(state, lifecycleCoverage);
+  const c = (receipt?.kind === 'public' ? publicState.companies : state.companies).find(x => x.id === id);
   if (!c) return json(res, 404, { error: 'NOT_FOUND' });
-  if (!publicProjection.snapshotReceipt(state)) return json(res, 404, { error: 'NOT_FOUND' });
-  const company = enrichedCompany(c, { hasFinancing: (state.fundingRounds || []).some(r => r.companyId === c.id && !/coverage_gap|placeholder|待补|待确认|unknown/i.test([r.sourceType,r.round,r.amount].join(' '))) });
+  if (!receipt) return json(res, 404, { error: 'NOT_FOUND' });
+  const company = receipt.kind === 'public' ? c : enrichedCompany(c, { hasFinancing: (state.fundingRounds || []).some(r => r.companyId === c.id && !/coverage_gap|placeholder|待补|待确认|unknown/i.test([r.sourceType,r.round,r.amount].join(' '))), snapshotAsOf: state.meta?.asOf });
   json(res, 200, {
     company,
-    fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id).map(publicProjection.projectFunding),
+    fundingRounds: publicState.fundingRounds.filter(r => r.companyId === c.id),
     evidence: company.evidence || []
   });
 }
@@ -854,13 +863,13 @@ const server = http.createServer(async (req, res) => {
       const allowed = publicV1.has(pathname) || /^\/api\/company\/[^/]+$/.test(pathname);
       if (!allowed) return json(res, 404, { error: 'NOT_FOUND' });
     }
-    if (req.method === 'GET' && pathname === '/api/state') return apiState(req, res, urlObj);
-    if (req.method === 'GET' && pathname === '/api/pipeline') return apiPipeline(req, res, urlObj);
+    if (req.method === 'GET' && pathname === '/api/state') return await apiState(req, res, urlObj);
+    if (req.method === 'GET' && pathname === '/api/pipeline') return await apiPipeline(req, res, urlObj);
     if (req.method === 'GET' && pathname === '/api/db-info' && process.env.NODE_ENV === 'production') return json(res, 200, { status: 'redacted', readOnly: true });
     if (req.method === 'GET' && pathname === '/api/db-info') return json(res, 200, dbInfo());
-    if (req.method === 'GET' && pathname === '/api/export.md') return apiExport(req, res);
-    if (req.method === 'GET' && pathname === '/api/export.json') return apiExportJson(req, res);
-    if (req.method === 'GET' && pathname === '/api/export.csv') return apiExportCsv(req, res);
+    if (req.method === 'GET' && pathname === '/api/export.md') return await apiExport(req, res);
+    if (req.method === 'GET' && pathname === '/api/export.json') return await apiExportJson(req, res);
+    if (req.method === 'GET' && pathname === '/api/export.csv') return await apiExportCsv(req, res);
     if (req.method === 'GET' && pathname === '/api/sources' && process.env.NODE_ENV === 'production') return json(res, 200, { sources: [], generatedAt: new Date().toISOString() });
     if (req.method === 'GET' && pathname === '/api/sources') return apiSources(req, res);
     if (req.method === 'GET' && pathname === '/api/relationships') return apiRelationships(req, res);
@@ -878,7 +887,7 @@ const server = http.createServer(async (req, res) => {
     if (req.method === 'GET' && pathname === '/api/tasks') return apiTasks(req, res);
     if (req.method === 'GET' && pathname.startsWith('/api/entity/')) return apiEntity(req, res, pathname.split('/').pop());
     if (req.method === 'GET' && pathname.startsWith('/api/refresh/')) return apiRefreshSource(req, res, pathname.split('/').pop(), urlObj);
-    if (req.method === 'GET' && pathname.startsWith('/api/company/')) return apiCompany(req, res, pathname.split('/').pop());
+    if (req.method === 'GET' && pathname.startsWith('/api/company/')) return await apiCompany(req, res, pathname.split('/').pop());
     if ((req.method === 'POST' || req.method === 'PUT') && pathname === '/api/company') return apiSaveCompany(req, res, null);
     if ((req.method === 'POST' || req.method === 'PUT') && pathname.startsWith('/api/company/')) return apiSaveCompany(req, res, pathname.split('/').pop());
     if (req.method === 'DELETE' && pathname.startsWith('/api/company/')) return apiDeleteCompany(req, res, pathname.split('/').pop());

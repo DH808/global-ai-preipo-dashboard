@@ -14,6 +14,8 @@ STATE = ROOT / "data" / "state.json"
 SEED = ROOT / "data" / "connectors" / "asia_tmt_seed_20260802.json"
 PROFILE = ROOT / "data" / "connectors" / "asia_expansion.profile.json"
 BASELINE_STATE = subprocess.check_output(["git", "show", "d0fb350:data/state.json"], cwd=ROOT)
+TEST_PUBLIC_SNAPSHOT_HMAC_KEY = "8f67c021d43a9e55b17d09c3a04f5e71c693bc8d2a6f190e4b7a25cd913ef806"
+os.environ.setdefault("PUBLIC_SNAPSHOT_HMAC_KEY", TEST_PUBLIC_SNAPSHOT_HMAC_KEY)
 
 
 class AsiaTmtSeedImportTests(unittest.TestCase):
