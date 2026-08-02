@@ -1,0 +1,386 @@
+{
+  "schemaVersion": "1.0.0",
+  "asOf": "2026-08-02",
+  "review": {
+    "status": "approved",
+    "reviewedBy": "Hermes source-gate",
+    "reviewedAt": "2026-08-02T12:10:00+08:00"
+  },
+  "records": [
+    {
+      "id": "applied-intuition",
+      "name": "Applied Intuition",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Subscription",
+        "Licensing"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2025-06-17",
+      "sources": [
+        {
+          "url": "https://www.applied.co/blog/series-f",
+          "date": "2025-06-17",
+          "type": "company_release",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-06-17",
+        "sourceUrl": "https://www.applied.co/blog/series-f",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "company_approved_secondary",
+      "sector": "Robotics / Mobility",
+      "subSector": "自动驾驶与车辆智能开发、仿真和验证软件",
+      "companyDescription": "已成为汽车、卡车、国防和非公路车辆自主系统的开发工具链，软件平台属性和客户嵌入深度突出。"
+    },
+    {
+      "id": "astranis",
+      "name": "Astranis",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Hardware + Software",
+      "customerType": "Mixed",
+      "monetization": [
+        "Hardware sales",
+        "Services"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-05-06",
+      "sources": [
+        {
+          "url": "https://spacenews.com/astranis-secures-450-million-in-equity-debt-to-expand-small-geo-satellite-production/",
+          "date": "2026-05-06",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-05-06",
+        "sourceUrl": "https://spacenews.com/astranis-secures-450-million-in-equity-debt-to-expand-small-geo-satellite-production/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Communications TMT / Space Tech",
+      "subSector": "小型高轨通信卫星与专用带宽基础设施",
+      "companyDescription": "以小型MicroGEO卫星为国家、运营商和政府客户提供专用通信容量，介于卫星制造商与通信基础设施运营商之间。"
+    },
+    {
+      "id": "bedrock-robotics",
+      "name": "Bedrock Robotics",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Hardware + Software",
+      "customerType": "B2B",
+      "monetization": [
+        "Licensing",
+        "Services"
+      ],
+      "lifecycleStage": "series_a_b",
+      "sourceVintage": "2026-02-04",
+      "sources": [
+        {
+          "url": "https://siliconangle.com/2026/02/04/bedrock-robotics-raises-270m-scale-autonomous-construction-fleets/",
+          "date": "2026-02-04",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-02-04",
+        "sourceUrl": "https://siliconangle.com/2026/02/04/bedrock-robotics-raises-270m-scale-autonomous-construction-fleets/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Robotics / Industrial Mobility",
+      "subSector": "工程机械自主化软件与改装平台",
+      "companyDescription": "通过改装既有挖掘机和压路机切入建筑自动化，避免自建整车，软件栈可跨OEM和工程场景复制。"
+    },
+    {
+      "id": "candid-health",
+      "name": "Candid Health",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Usage-based",
+      "customerType": "B2B",
+      "monetization": [
+        "Usage-based",
+        "Subscription"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-07-22",
+      "sources": [
+        {
+          "url": "https://www.mobihealthnews.com/news/candid-health-raises-120m-ai-revenue-cycle-management-platform",
+          "date": "2026-07-22",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-07-22",
+        "sourceUrl": "https://www.mobihealthnews.com/news/candid-health-raises-120m-ai-revenue-cycle-management-platform",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Healthtech",
+      "subSector": "AI原生医疗收入周期管理基础设施",
+      "companyDescription": "瞄准美国医疗账单与收入周期的高成本刚需，平台化程度和替代传统外包RCM的潜力高于单点医疗AI应用。"
+    },
+    {
+      "id": "gecko-robotics",
+      "name": "Gecko Robotics",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Hardware + Software",
+      "customerType": "Mixed",
+      "monetization": [
+        "Hardware sales",
+        "Subscription",
+        "Services"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-06-12",
+      "sources": [
+        {
+          "url": "https://www.cnbc.com/2025/06/12/gecko-robotics-funding-unicorn-critical-infrastructure.html",
+          "date": "2025-06-12",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-06-12",
+        "sourceUrl": "https://www.cnbc.com/2025/06/12/gecko-robotics-funding-unicorn-critical-infrastructure.html",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Climate / Industrial Technology",
+      "subSector": "关键基础设施检测机器人与资产数据软件",
+      "companyDescription": "机器人采集与基础设施数字孪生软件相结合，覆盖能源、国防和工业资产，收入并非单纯硬件销售。"
+    },
+    {
+      "id": "impulse-space",
+      "name": "Impulse Space",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Services",
+      "customerType": "Mixed",
+      "monetization": [
+        "Other",
+        "Services"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-06-02",
+      "sources": [
+        {
+          "url": "https://spacenews.com/impulse-space-raises-500-million/",
+          "date": "2026-06-02",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-06-02",
+        "sourceUrl": "https://spacenews.com/impulse-space-raises-500-million/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Space Tech",
+      "subSector": "轨道转移、在轨机动与空间运输基础设施",
+      "companyDescription": "在发射之后提供轨道机动与高能运输，定位为空间经济物流层，受益于军用快速响应和商业卫星多轨道部署。"
+    },
+    {
+      "id": "nominal",
+      "name": "Nominal",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Subscription",
+        "Usage-based"
+      ],
+      "lifecycleStage": "series_a_b",
+      "sourceVintage": "2026-03-05",
+      "sources": [
+        {
+          "url": "https://siliconangle.com/2026/03/05/hardware-testing-startup-nominal-raises-80m-1b-valuation/",
+          "date": "2026-03-05",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-03-05",
+        "sourceUrl": "https://siliconangle.com/2026/03/05/hardware-testing-startup-nominal-raises-80m-1b-valuation/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Industrial Software",
+      "subSector": "复杂硬件测试、遥测分析与任务运营软件",
+      "companyDescription": "为航空航天、国防和高端制造提供统一测试与运营数据层，属于物理产业AI基础设施而非普通横向SaaS。"
+    },
+    {
+      "id": "nourish",
+      "name": "Nourish",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Marketplace",
+      "customerType": "B2B2C",
+      "monetization": [
+        "Services",
+        "Insurance premium"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-05-20",
+      "sources": [
+        {
+          "url": "https://hlth.com/insights/news/nourish-raises-100m-to-expand-virtual-nutrition-care-platform",
+          "date": "2026-05-20",
+          "type": "reputable_media",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "medium",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-05-20",
+        "sourceUrl": "https://hlth.com/insights/news/nourish-raises-100m-to-expand-virtual-nutrition-care-platform",
+        "confidence": "medium"
+      },
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Digital Health",
+      "subSector": "保险覆盖的虚拟营养医疗平台",
+      "companyDescription": "将营养师供给、保险理赔和患者匹配整合为全国性平台，商业模式比纯消费者健康订阅更具支付方支撑。"
+    },
+    {
+      "id": "openevidence",
+      "name": "OpenEvidence",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Digital Health",
+      "businessModel": "SaaS",
+      "customerType": "B2B2C",
+      "monetization": [
+        "Advertising",
+        "Subscription"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-01-21",
+      "sources": [
+        {
+          "url": "https://www.openevidence.com/announcements",
+          "date": "2026-01-21",
+          "type": "company_release",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-01-21",
+        "sourceUrl": "https://www.openevidence.com/announcements",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Digital Health",
+      "subSector": "医生临床知识检索与决策支持平台",
+      "companyDescription": "以免费医生入口形成高频临床分发，叠加医学出版内容合作，可能成为医生端医疗知识与AI Agent入口。"
+    },
+    {
+      "id": "stoke-space",
+      "name": "Stoke Space",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Hardware",
+      "customerType": "Mixed",
+      "monetization": [
+        "Other",
+        "Services"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-02-10",
+      "sources": [
+        {
+          "url": "https://www.geekwire.com/2026/stoke-space-350m-added-funding/",
+          "date": "2026-02-10",
+          "type": "reputable_media",
+          "confidence": "medium"
+        }
+      ],
+      "confidence": "medium",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-02-10",
+        "sourceUrl": "https://www.geekwire.com/2026/stoke-space-350m-added-funding/",
+        "confidence": "medium"
+      },
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Space Tech",
+      "subSector": "完全可重复使用运载火箭及发射基础设施",
+      "companyDescription": "Nova若实现上下级完全复用，可能成为SpaceX之外的重要发射基础设施平台，但尚存在首飞和规模制造风险。"
+    },
+    {
+      "id": "true-anomaly",
+      "name": "True Anomaly",
+      "aliases": [],
+      "headquartersCountry": "United States",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Hardware + Software",
+      "customerType": "B2G",
+      "monetization": [
+        "Other",
+        "Licensing"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-04-28",
+      "sources": [
+        {
+          "url": "https://spacenews.com/true-anomaly-raises-650-million-reaching-2-2-billion-valuation/",
+          "date": "2026-04-28",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "confidence": "high",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-04-28",
+        "sourceUrl": "https://spacenews.com/true-anomaly-raises-650-million-reaching-2-2-billion-valuation/",
+        "confidence": "high"
+      },
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Space Tech",
+      "subSector": "空间态势感知、机动卫星与空间防御平台",
+      "companyDescription": "将自主卫星、任务软件和空间域数据结合，直接受益于美国空间防御与Golden Dome相关需求。"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ const { normalizeTrackGraph, buildSchemaHealth, buildIcReadinessQueue, buildComp
 const { sourceStatus, refreshInterVest, fetchCompanyNews } = require('./src/connectors');
 const { queryV2 } = require('./src/v2Repository');
 const { STAGES, lifecycleCoverage } = require('./src/lifecycle');
+const { TMT_VERTICALS } = require('./src/tmtTaxonomy');
 const publicProjection = require('./src/publicProjection');
 
 const APP_DIR = __dirname;
@@ -533,11 +534,13 @@ function pipelineCompanies(state, filters = {}) {
   const base = (state.companies || []).map(c => enrichedCompany(normalizeCompany(c) && { ...c })).filter(c => {
     if (filters.status && c.status !== filters.status) return false;
     if (filters.region && c.region !== filters.region) return false;
+    if (filters.northAmerica === '1' && !/^(US|USA|United States|Canada|Mexico|North America)$/i.test(String(c.region || c.country || ''))) return false;
+    if (filters.tmtVertical && c.tmtVertical !== filters.tmtVertical) return false;
     if (filters.sector && (c.layer || c.sector) !== filters.sector && c.sector !== filters.sector) return false;
     if (filters.label && labelCompany(c).label !== filters.label && c.priorityTier !== filters.label) return false;
     if (filters.stage && !String(filters.stage).split(',').filter(Boolean).includes(c.lifecycleStage)) return false;
     if (filters.q) {
-      const hay = [c.name, c.country, c.region, c.sector, c.subSector, c.layer, c.priorityTier, c.ipoWindow,
+      const hay = [c.name, c.country, c.region, c.sector, c.subSector, c.layer, c.tmtVertical, c.businessModel, c.customerType, c.priorityTier, c.ipoWindow,
         c.latestValuation, c.latestFunding, c.revenueScale, c.companyDescription, c.investmentSummaryZh,
         ...(c.tags || []), ...(c.investors || [])].join(' ').toLowerCase();
       if (!hay.includes(String(filters.q).toLowerCase())) return false;
@@ -567,7 +570,7 @@ async function apiPipeline(req, res, urlObj) {
   const filters = Object.fromEntries(urlObj.searchParams.entries());
   const companies = pipelineCompanies(state, filters);
   const highPriority = companies.filter(c => /^A[0-2]/.test(String(c.priorityTier || ''))).length;
-  json(res, 200, { meta: publicProjection.projectState(state, lifecycleCoverage).meta, companies, taxonomy: STAGES.map(([id,label]) => ({ id, label })), dashboard: { total: companies.length, highPriority } });
+  json(res, 200, { meta: publicProjection.projectState(state, lifecycleCoverage).meta, companies, taxonomy: STAGES.map(([id,label]) => ({ id, label })), tmtTaxonomy: TMT_VERTICALS, dashboard: { total: companies.length, highPriority } });
 }
 
 async function apiState(req, res, urlObj) {
@@ -575,7 +578,7 @@ async function apiState(req, res, urlObj) {
   const filters = Object.fromEntries(urlObj.searchParams.entries());
   const companies = pipelineCompanies(state, filters);
   const projected = publicProjection.projectState(state, lifecycleCoverage);
-  json(res, 200, { meta: projected.meta, publicSnapshotVersion: projected.publicSnapshotVersion, taxonomy: STAGES.map(([id,label]) => ({ id, label })), dashboard: { total: companies.length, privateCount: companies.length }, companies });
+  json(res, 200, { meta: projected.meta, publicSnapshotVersion: projected.publicSnapshotVersion, taxonomy: STAGES.map(([id,label]) => ({ id, label })), tmtTaxonomy: TMT_VERTICALS, dashboard: { total: companies.length, privateCount: companies.length }, companies });
 }
 
 async function apiCompany(req, res, id) {

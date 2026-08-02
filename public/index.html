@@ -22,10 +22,16 @@
     <section class="panel controls pipeline-controls table-first-controls">
       <input id="search" placeholder="搜索公司、投资人、地区、技术层：Databricks / NVIDIA / photonic..." />
       <select id="region"><option value="">全部地区</option></select>
-      <select id="sector"><option value="">全部赛道 / 层级</option></select>
+      <select id="tmtVertical"><option value="">全部 TMT 垂直</option></select>
+      <select id="sector"><option value="">全部细分赛道</option></select>
       <select id="label"><option value="">全部优先级</option></select>
       <select id="stage"><option value="">全部生命周期阶段</option></select>
       <button id="resetBtn">重置</button>
+    </section>
+
+    <section class="panel coverage-matrix-panel" aria-labelledby="coverageMatrixTitle">
+      <div class="section-head compact-head"><div><div class="section-title" id="coverageMatrixTitle">TMT 覆盖矩阵</div><div class="sub">当前筛选结果按 canonical vertical × lifecycle 展示；0 表示待覆盖，不代表公司不存在。</div></div><span class="pill blue">North America presets</span></div>
+      <div id="coverageMatrix" class="coverage-matrix-wrap"></div>
     </section>
 
     <section class="panel data-architecture-panel" id="dataArchitecture" aria-live="polite">
@@ -87,6 +93,7 @@
 
   <script src="/connectorStatus.js?v=1"></script>
   <script src="/lifecycle.js?v=1"></script>
-  <script src="/app.js?v=22"></script>
+  <script src="/tmtTaxonomy.js?v=1"></script>
+  <script src="/app.js?v=23"></script>
 </body>
 </html>

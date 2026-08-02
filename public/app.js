@@ -1,6 +1,7 @@
 let state = null;
 let selected = null;
 let showAllMobile = false;
+let northAmericaOnly = false;
 if (location.pathname.startsWith('/company/')) document.body.classList.add('company-profile-page');
 const $ = sel => document.querySelector(sel);
 
@@ -316,7 +317,7 @@ function memoList(items, empty = '暂无结构化信息。') {
 }
 
 function filters() {
-  return { q: $('#search').value.trim(), region: $('#region').value, sector: $('#sector').value, label: $('#label').value,
+  return { q: $('#search').value.trim(), region: $('#region').value, northAmerica: northAmericaOnly ? '1' : '', tmtVertical: $('#tmtVertical').value, sector: $('#sector').value, label: $('#label').value,
     stage: lifecycleTaxonomy.stageFilterValue($('#stage').value), status: 'private' };
 }
 
@@ -330,6 +331,7 @@ async function load() {
   state = await api('/api/state?' + qs(filters()));
   await renderDataArchitecture();
   renderSummary();
+  renderCoverageMatrix();
   renderVintageBanner();
   renderQuickChips();
   renderMvp8Sidebars();
@@ -417,7 +419,9 @@ function renderQuickChips() {
   const box = $('#quickChips');
   if (!box || box.dataset.ready) return;
   const chips = [
-    ['北美优先', { region: 'US' }],
+    ['北美全域', { northAmerica: true }],
+    ['美国', { region: 'US' }],
+    ['加拿大', { region: 'Canada' }],
     ['Formation–Series B', { stage: 'formation_series_b' }],
     ['A0 成熟必跟踪', { q: 'A0' }],
     ['A1 架构核心', { q: 'A1' }],
@@ -431,9 +435,11 @@ function renderQuickChips() {
     const f = chips[i][1];
     $('#search').value = f.q || '';
     $('#region').value = f.region || '';
+    $('#tmtVertical').value = f.tmtVertical || '';
     $('#sector').value = f.sector || '';
     $('#label').value = f.label || '';
     $('#stage').value = f.stage || '';
+    northAmericaOnly = Boolean(f.northAmerica);
     load();
   }));
   box.dataset.ready = '1';
@@ -461,10 +467,27 @@ async function renderFilters() {
   const companies = all.companies;
   fillSelect('#region', [...new Set(companies.map(c => c.region))].sort());
   fillSelect('#sector', [...new Set(companies.map(c => c.sector))].sort());
+  fillSelect('#tmtVertical', all.tmtTaxonomy || tmtTaxonomy.TMT_VERTICALS);
   fillSelect('#label', [...new Set(companies.map(c => c.label))].sort());
   const stages = (all.taxonomy || lifecycleTaxonomy.STAGES.map(([id,label]) => ({id,label}))).map(x => ({ value: x.id, label: x.label }));
   fillSelect('#stage', [{ value: 'formation_series_b', label: 'Formation–Series B' }, ...stages]);
   $('#region').dataset.ready = '1';
+}
+
+function renderCoverageMatrix() {
+  const box = $('#coverageMatrix');
+  if (!box) return;
+  const verticals = state.tmtTaxonomy || tmtTaxonomy.TMT_VERTICALS;
+  const stages = state.taxonomy || lifecycleTaxonomy.STAGES.map(([id,label]) => ({ id, label }));
+  const counts = new Map();
+  for (const company of state.companies || []) {
+    const key = `${company.tmtVertical}\u0000${company.lifecycleStage}`;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  box.innerHTML = `<table class="coverage-matrix"><thead><tr><th>TMT vertical</th>${stages.map(s => `<th title="${esc(s.label)}">${esc(s.label)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${verticals.map(vertical => {
+    const values = stages.map(stage => counts.get(`${vertical}\u0000${stage.id}`) || 0);
+    return `<tr><th>${esc(vertical)}</th>${values.map(value => `<td class="${value ? 'covered' : 'empty'}">${value}</td>`).join('')}<td class="total">${values.reduce((a,b) => a + b, 0)}</td></tr>`;
+  }).join('')}</tbody></table>`;
 }
 function fillSelect(sel, values) {
   const el = $(sel), first = el.options[0];
@@ -482,7 +505,7 @@ function renderTable() {
       <td class="valuation-cell">${valuationCell(c)}</td>
       <td><span class="priority-badge ${esc(priorityTone(c))}">${esc(priorityHead(c))}</span><div class="sub ic-action-mini">${esc(icActionLabel(c))}</div></td>
       <td class="metric-cell"><span class="metric-label">口径</span>${shortText(homepageRevenue(c), 86)}</td>
-      <td><span class="layer-pill">${shortText(zhLayer(c), 58)}</span></td>
+      <td><span class="layer-pill">${shortText(c.tmtVertical || zhLayer(c), 58)}</span><div class="sub">${shortText(zhLayer(c), 38)}</div></td>
       <td>${investorChips(c)}</td>
       <td><span class="window-pill">${esc(cleanDisplayText(c.ipoWindow || c.ipoSignal || '待确认'))}</span></td>
       <td><div class="coverage-gaps">${(c.coverageGaps || []).length ? (c.coverageGaps || []).map(x => `<span>${esc(x)}</span>`).join('') : '<b>覆盖完成</b>'}</div></td>
@@ -782,9 +805,9 @@ async function exportMd() {
   URL.revokeObjectURL(a.href);
 }
 
-['search','region','sector','label'].forEach(id => $('#'+id).addEventListener('input', () => load()));
+['search','region','tmtVertical','sector','label'].forEach(id => $('#'+id).addEventListener('input', () => load()));
 $('#stage').addEventListener('change', () => load());
-$('#resetBtn').addEventListener('click', () => { $('#search').value=''; $('#region').value=''; $('#sector').value=''; $('#label').value=''; $('#stage').value=''; load(); });
+$('#resetBtn').addEventListener('click', () => { northAmericaOnly=false; $('#search').value=''; $('#region').value=''; $('#tmtVertical').value=''; $('#sector').value=''; $('#label').value=''; $('#stage').value=''; load(); });
 $('#exportBtn')?.addEventListener('click', exportMd);
 $('#detailCloseBtn')?.addEventListener('click', () => $('#companyDetailDialog')?.close());
 load().then(() => {

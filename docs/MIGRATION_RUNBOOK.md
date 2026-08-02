@@ -24,7 +24,7 @@ python3 scripts/import_legacy_state_v2.py \
   --receipt /tmp/private_investment_os_v2_receipt.json
 ```
 
-The source is read-only. The receipt contains input SHA256, schema/run/idempotency IDs, counts, rejects, conflicts, limitations, and QC. In `ingestion_runs`, `records_seen` is the number of top-level source rows read, while `records_inserted` is the number of expanded immutable raw envelopes inserted. Exact-SHA replay emits `idempotentReplay: true`. A changed snapshot appends immutable raw versions and updates the stable canonical rows and selected lineage. Expected minimums: 143 companies, 185 rounds, 402 investors, 387 evidence, 572 claims, 180 tasks.
+The source is read-only. The receipt contains input SHA256, schema/run/idempotency IDs, counts, rejects, conflicts, limitations, and QC. In `ingestion_runs`, `records_seen` is the number of top-level source rows read, while `records_inserted` is the number of expanded immutable raw envelopes inserted. Exact-SHA replay emits `idempotentReplay: true`. A changed snapshot appends immutable raw versions and updates the stable canonical rows and selected lineage. QC minimums are derived from the input's distinct canonical company, round, investor, evidence, claim, task, and relationship identities; each output count must be non-decreasing relative to that input-derived floor.
 
 ## Validate and serve
 

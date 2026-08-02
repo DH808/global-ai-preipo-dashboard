@@ -132,6 +132,51 @@ def explicit_claim_types(evidence: dict) -> set[str]:
     return {clean(value).lower() for value in values if clean(value)}
 
 
+def input_derived_minimums(state: dict, public_projection_only: bool = False) -> dict[str, int]:
+    """Derive non-decreasing QC floors from canonical identities present in this input."""
+    companies = arr(state.get("companies"))
+    valid_company_ids = {
+        clean(company.get("id")) for company in companies
+        if isinstance(company, dict) and clean(company.get("id")) and clean(company.get("name"))
+    }
+    investor_ids = {
+        f"investor:{slug(clean(name).rstrip(','))}"
+        for company in companies if isinstance(company, dict)
+        for name in arr(company.get("investors")) if clean(name).rstrip(",")
+    }
+    round_ids: set[str] = set()
+    for row in arr(state.get("fundingRounds")):
+        if not isinstance(row, dict):
+            continue
+        company_id = clean(row.get("companyId") or slug(row.get("companyName")))
+        if company_id not in valid_company_ids:
+            continue
+        round_id = clean(row.get("id")) or f"{company_id}-{slug(row.get('date'))}-{slug(row.get('round'))}"
+        round_ids.add(round_id)
+    company_evidence_ids = {
+        f"evidence_{clean(company.get('id'))}_{index}"
+        for company in companies if isinstance(company, dict) and clean(company.get("id")) in valid_company_ids
+        for index, _ in enumerate(arr(company.get("evidence")), 1)
+    }
+    task_ids = {
+        clean(task.get("id")) or stable_id("task", task.get("companyId"), task.get("title"))
+        for task in arr(state.get("tasks")) if isinstance(task, dict)
+    }
+    minimums = {
+        "companies": len(valid_company_ids),
+        "fundingRounds": len(round_ids),
+        "evidenceItems": len(company_evidence_ids | {f"evidence_funding_{item}" for item in round_ids}),
+    }
+    if not public_projection_only:
+        minimums.update({
+            "investors": len(investor_ids),
+            "claims": len(valid_company_ids) * 4,
+            "tasks": len(task_ids),
+            "relationships": len(valid_company_ids),
+        })
+    return minimums
+
+
 def register_sources(conn: sqlite3.Connection, timestamp: str, public_projection_only: bool = False) -> None:
     rights = [
         ("internal_only", "internal_only", "source-license-dependent", 0, "Never expose raw payloads."),
@@ -525,9 +570,7 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
     counts = {name: conn.execute(sql).fetchone()[0] for name, sql in count_queries.items()}
     foreign_keys = [list(row) for row in conn.execute("PRAGMA foreign_key_check").fetchall()]
     integrity = conn.execute("PRAGMA integrity_check").fetchone()[0]
-    minimums = ({"companies": len(companies), "fundingRounds": len(rounds), "tasks": 0, "relationships": 0}
-                if public_projection_only else
-                {"companies": 143, "fundingRounds": 185, "investors": 402, "evidenceItems": 387, "claims": 572, "tasks": 180})
+    minimums = input_derived_minimums(state, public_projection_only)
     qc = {
         "status": "pass" if integrity == "ok" and not foreign_keys and all(counts[k] >= v for k, v in minimums.items()) else "fail",
         "integrityCheck": integrity,

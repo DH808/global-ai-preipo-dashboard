@@ -42,3 +42,11 @@ python3 scripts/preview_manual_import_v2.py \
 ```
 
 Allowed `recordType` values: `organization`, `funding_round`, `metric`. Preview opens SQLite read-only, validates, reports create/match/candidate actions, and never mutates data. Phase 1 intentionally has no commit path.
+
+## Reviewed TMT seed importer
+
+`scripts/import_tmt_seed.py` is a separate, state-level ingestion boundary for the later human-vetted North America expansion. It accepts only `data/connectors/tmt_seed.schema.json`; `data/connectors/tmt_seed.template.json` is an intentionally empty draft and does not add a company.
+
+Required company fields are canonical TMT vertical, business model, customer type, monetization, lifecycle stage, source vintage, dated HTTP(S) sources, confidence, an independently sourced private-status boundary, and a categorical investability/access lane. `--apply` is the only commit path; without it the command is a dry run. Applies are atomic and canonically idempotent. Populated existing facts are protected unless the seed carries stronger recorded evidence. The contract has no valuation field and rejects valuation-like extensions rather than translating them.
+
+Private importer metadata (`aliases`, `tmtFieldEvidence`, and import receipts) is outside the public DTO. Public projection may expose only the allowlisted categorical fields and sanitized evidence URL/date/type/confidence. Production remains read-only and exposes no importer route.

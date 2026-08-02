@@ -13,6 +13,30 @@ NODE_ENV=production ENABLE_WRITES=false npm start
 
 Primary endpoints remain `/api/state`, `/api/pipeline`, `/api/company/:id`, and the v1 export routes. Provider-neutral v2 lives under `/api/v2`; see [API v2](docs/API_V2.md) and [engineering notes](docs/PRIVATE_INVESTMENT_OS_V2_ENGINEERING.md).
 
+## Reviewed North America TMT seeds
+
+The canonical 12-vertical vocabulary and lifecycle fields are accepted through a local, reviewed JSON workflow. Start from `data/connectors/tmt_seed.template.json`; the machine-readable contract is `data/connectors/tmt_seed.schema.json`. The checked-in template intentionally contains no companies and remains a draft until a human reviewer fills and approves a copy.
+
+Preview is the default and never writes:
+
+```bash
+python3 scripts/import_tmt_seed.py --input /path/to/reviewed-tmt-seed.json
+```
+
+Apply requires an explicit flag and atomically updates `data/state.json`:
+
+```bash
+python3 scripts/import_tmt_seed.py --input /path/to/reviewed-tmt-seed.json --apply
+```
+
+To replace a previously applied seed, pass a reviewed replacement manifest. The importer atomically verifies the exact old receipt and per-company post-import hashes before removing only those seed-created IDs and applying the corrected input:
+
+```bash
+python3 scripts/import_tmt_seed.py --input data/connectors/tmt_seed_20260802_batch1.json --replace-manifest data/connectors/tmt_seed_20260802_batch1_replacement.json --apply
+```
+
+The importer rejects draft/unverified records, non-North-American headquarters, stale or future-dated evidence, non-HTTP(S) or credential-bearing source URLs, duplicate names/aliases, ambiguous existing matches, non-private status, noncanonical taxonomy values, unknown fields, and all valuation-shaped fields. Idempotency is based on canonical JSON content, so whitespace/key-order changes do not reapply a seed. Existing facts default to protected evidence strength; a seed can replace a populated taxonomy field only when its recorded confidence/date outranks the existing `tmtFieldEvidence`. Source evidence is append-only and deduplicated. No valuation is inferred or synthesized.
+
 ## Public projection policy
 
 Public production is read-only and fail-closed. Render ignores `AGENT_SNAPSHOT_URL` and reads only the build-generated, gitignored `data/public-state.json`. Payload-declared rights/version fields never establish trust. Development remote snapshots require an operator-controlled `AGENT_SNAPSHOT_SHA256` match. v2 requires explicit redistributable provenance for every published record, including aliases and external identifiers.

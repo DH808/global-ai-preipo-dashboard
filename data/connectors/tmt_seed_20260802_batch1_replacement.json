@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "operation": "replace-seed-import",
+  "supersededReceipt": {
+    "sha256": "167e62ef6c26b10728f54824fae310e3cc0b22f0ff3072668189f5f0562f427d",
+    "schemaVersion": "1.0.0",
+    "asOf": "2026-08-02",
+    "recordCount": 11
+  },
+  "expectedCompanies": [
+    {"id": "applied-intuition", "sha256": "5b1d687a6b5b8321cf3aae8a868227be8f872f62e03c28541205c34367b67b34"},
+    {"id": "astranis", "sha256": "fb93bee0ff378d7dc8adfbc3f3937d7ec2e1f8bbad1a65768862611922b43053"},
+    {"id": "bedrock-robotics", "sha256": "c5b7e73565b9d95ea2ed04530589261de0124e931d9becbcbb0ea2d5ec4c30e6"},
+    {"id": "candid-health", "sha256": "4ca0beb65d0c24ae85275cb048da714a10584ff28d4be379e19948a8c2e7a0e6"},
+    {"id": "gecko-robotics", "sha256": "766d5064553f1b575dccc85f217ed0311663c2467881cbb5afdb2b9fc47556a6"},
+    {"id": "impulse-space", "sha256": "e9a6c1f68283a0d42f13bd5ad6bb198738893d1fa336126368bcf78a2f03fb4d"},
+    {"id": "nominal", "sha256": "f985f3a72d3cb0f57ad3766e86f7bcc59a018734618b764602157f1f7566dbc4"},
+    {"id": "nourish", "sha256": "9ebe8d513e8e73d88d4dc33b71d53602f31a232da18ab03c7bb63f377c3910f9"},
+    {"id": "openevidence", "sha256": "ce1e5adbe3f6bbf8128d747eea7e48c77320070c7b3b5d9d366ff8b939d7433f"},
+    {"id": "stoke-space", "sha256": "f83c74880005e375597605a37025abdb97e79ef06793e15c9466ff7886851f51"},
+    {"id": "true-anomaly", "sha256": "a3f8e2aaa86983bc36f603d97a7937903612c3c8ba87a5a8812b87df152cb6b2"}
+  ]
+}

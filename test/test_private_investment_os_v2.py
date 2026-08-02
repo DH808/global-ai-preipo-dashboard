@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import sqlite3
 import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from urllib.parse import urlencode, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "data" / "state.json"
@@ -15,6 +17,7 @@ IMPORTER = ROOT / "scripts" / "import_legacy_state_v2.py"
 MIGRATOR = ROOT / "scripts" / "run_migrations_v2.py"
 PREVIEW = ROOT / "scripts" / "preview_manual_import_v2.py"
 PUBLIC_BUILD = ROOT / "scripts" / "build_public_v2_db.py"
+TMT_SEED = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch1.json"
 
 
 def run_json(*args: str, expected: int = 0) -> dict:
@@ -22,6 +25,50 @@ def run_json(*args: str, expected: int = 0) -> dict:
     if result.returncode != expected:
         raise AssertionError(f"command failed ({result.returncode}): {result.stderr}\n{result.stdout}")
     return json.loads(result.stdout)
+
+
+def as_list(value):
+    return value if isinstance(value, list) else ([value] if value else [])
+
+
+def importer_expected_counts(state: dict) -> dict[str, int]:
+    """Derive canonical row counts from the legacy importer's input contract."""
+    companies = as_list(state.get("companies"))
+    company_ids = [str(row.get("id") or "").strip() for row in companies]
+    self_names = [str(row.get("name") or "").strip() for row in companies]
+    if not all(company_ids) or not all(self_names) or len(set(company_ids)) != len(company_ids):
+        raise AssertionError("test input must contain unique, identified companies")
+
+    valid_company_ids = set(company_ids)
+    rounds = as_list(state.get("fundingRounds"))
+    valid_rounds = [row for row in rounds if str(row.get("companyId") or "").strip() in valid_company_ids]
+    if len(valid_rounds) != len(rounds):
+        raise AssertionError("test input contains a funding round without a canonical company")
+
+    investor_ids = {
+        re.sub(r"[^a-z0-9]+", "-", str(name).strip().rstrip(",").lower()).strip("-") or "item"
+        for company in companies for name in as_list(company.get("investors")) if str(name).strip().rstrip(",")
+    }
+    tasks = as_list(state.get("tasks"))
+    if any(not str(row.get("id") or "").strip() for row in tasks):
+        raise AssertionError("current test input must use stable task IDs")
+    if len({row["id"] for row in tasks}) != len(tasks):
+        raise AssertionError("current test input contains duplicate task IDs")
+
+    company_evidence = sum(len(as_list(company.get("evidence"))) for company in companies)
+    return {
+        "companies": len(companies),
+        "fundingRounds": len(valid_rounds),
+        "investors": len(investor_ids),
+        "evidenceItems": company_evidence + len(valid_rounds),
+        "claims": 4 * len(companies),
+        "tasks": len(tasks),
+        "relationships": len(companies),
+        "rawRecords": (
+            len(companies) + company_evidence + len(valid_rounds) + len(tasks)
+            + len(as_list(state.get("interactions"))) + len(as_list(state.get("sourceRegistry")))
+        ),
+    }
 
 
 class PrivateInvestmentOsV2Tests(unittest.TestCase):
@@ -32,9 +79,18 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         cls.db = cls.tmp / "pipeline_v2.sqlite"
         cls.receipt = cls.tmp / "receipt.json"
         cls.first_receipt = run_json("python3", str(IMPORTER), "--state-file", str(STATE), "--db", str(cls.db), "--receipt", str(cls.receipt))
+        cls.public_state = cls.tmp / "public-state.json"
+        cls.public_db = cls.tmp / "pipeline-v2-public.sqlite"
+        cls.public_build_receipt = run_json(
+            "python3", str(PUBLIC_BUILD), "--state-file", str(STATE),
+            "--public-state-file", str(cls.public_state), "--db", str(cls.public_db),
+        )
 
         cls.api_env = os.environ.copy()
-        cls.api_env.update({"PIPELINE_V2_DB_FILE": str(cls.db), "NODE_ENV": "production", "ENABLE_WRITES": "false"})
+        cls.api_env.update({
+            "PIPELINE_V2_DB_FILE": str(cls.db), "PUBLIC_STATE_FILE": str(cls.public_state),
+            "NODE_ENV": "production", "ENABLE_WRITES": "false",
+        })
 
     @classmethod
     def tearDownClass(cls):
@@ -79,9 +135,17 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             self.assertEqual(conn.execute("SELECT count(*) FROM schema_migrations").fetchone()[0], 0)
 
     def test_02_importer_preserves_counts_and_is_idempotent(self):
+        state = json.loads(STATE.read_text(encoding="utf-8"))
+        expected = importer_expected_counts(state)
         counts = self.first_receipt["tableCounts"]
-        self.assertEqual({k: counts[k] for k in ("companies", "fundingRounds", "investors", "evidenceItems", "claims", "tasks")},
-                         {"companies": 143, "fundingRounds": 185, "investors": 402, "evidenceItems": 387, "claims": 572, "tasks": 180})
+        self.assertEqual({key: counts[key] for key in expected}, expected)
+        self.assertEqual(self.first_receipt["rejects"], [])
+        self.assertEqual(self.first_receipt["qc"]["status"], "pass")
+        self.assertEqual(self.first_receipt["qc"]["minimumCounts"], {
+            key: expected[key] for key in (
+                "companies", "fundingRounds", "evidenceItems", "investors", "claims", "tasks", "relationships"
+            )
+        })
         replay = run_json("python3", str(IMPORTER), "--state-file", str(STATE), "--db", str(self.db), "--receipt", str(self.tmp / "receipt-2.json"))
         self.assertTrue(replay["idempotentReplay"])
         self.assertEqual(replay["tableCounts"], counts)
@@ -90,13 +154,113 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
                 "SELECT records_seen,records_inserted FROM ingestion_runs WHERE id=?",
                 (self.first_receipt["ingestionRunId"],),
             ).fetchone()
-        state = json.loads(STATE.read_text(encoding="utf-8"))
+            self.assertEqual(conn.execute("SELECT count(*) FROM ingestion_runs WHERE id=?", (self.first_receipt["ingestionRunId"],)).fetchone()[0], 1)
+            self.assertEqual(conn.execute("SELECT count(*) FROM import_idempotency_keys WHERE idempotency_key=?", (self.first_receipt["idempotencyKey"],)).fetchone()[0], 1)
+            claim_distribution = conn.execute("""
+                SELECT min(n),max(n) FROM (
+                  SELECT organization_id,count(*) n FROM canonical_claims GROUP BY organization_id
+                )
+            """).fetchone()
+            self.assertEqual(claim_distribution, (4, 4))
         source_rows_seen = sum(len(state.get(key, [])) for key in (
             "companies", "fundingRounds", "tasks", "interactions", "sourceRegistry"
         ))
         self.assertEqual(run[0], source_rows_seen)
-        self.assertEqual(run[1], counts["rawRecords"])
+        self.assertEqual(run[1], expected["rawRecords"])
         self.assertNotEqual(run[0], run[1])
+
+    def test_02f_expanded_tmt_release_survives_public_build_and_v1_v2_apis(self):
+        state = json.loads(STATE.read_text(encoding="utf-8"))
+        seed = json.loads(TMT_SEED.read_text(encoding="utf-8"))
+        snapshot = json.loads(self.public_state.read_text(encoding="utf-8"))
+        seed_records = seed["records"]
+        seed_ids = {record["id"] for record in seed_records}
+        self.assertEqual(seed["review"]["status"], "approved")
+        self.assertEqual(len(seed_records), 11)
+        self.assertEqual(len(seed_ids), len(seed_records))
+
+        state_by_id = {company["id"]: company for company in state["companies"]}
+        public_by_id = {company["id"]: company for company in snapshot["companies"]}
+        self.assertTrue(seed_ids <= state_by_id.keys())
+        self.assertTrue(seed_ids <= public_by_id.keys())
+        for record in seed_records:
+            source_company = state_by_id[record["id"]]
+            public_company = public_by_id[record["id"]]
+            self.assertEqual(source_company["name"], record["name"])
+            self.assertEqual(source_company["tmtVertical"], record["tmtVertical"])
+            self.assertEqual(source_company["lifecycleStage"], record["lifecycleStage"])
+            self.assertEqual(public_company["name"], record["name"])
+            self.assertEqual(public_company["tmtVertical"], record["tmtVertical"])
+            self.assertEqual(len(record["sources"]), 1)
+            dated_source = record["sources"][0]
+            self.assertNotIn(urlparse(dated_source["url"]).path, ("", "/"))
+            self.assertEqual(record["sourceVintage"], dated_source["date"])
+            self.assertEqual(record["privateStatusBoundary"]["asOf"], dated_source["date"])
+            self.assertEqual(record["privateStatusBoundary"]["sourceUrl"], dated_source["url"])
+            self.assertEqual(source_company["sourceVintage"], dated_source["date"])
+            self.assertEqual(source_company["privateStatusAsOf"], dated_source["date"])
+            self.assertEqual(source_company["evidence"], [dated_source])
+            self.assertEqual(public_company["evidence"], [dated_source])
+            self.assertNotIn("aliases", public_company)
+            self.assertNotIn("tmtFieldEvidence", public_company)
+
+        self.assertEqual(state_by_id["candid-health"]["sourceVintage"], "2026-07-22")
+        self.assertEqual(state_by_id["stoke-space"]["evidence"][0]["url"],
+                         "https://www.geekwire.com/2026/stoke-space-350m-added-funding/")
+
+        expected_public_count = len(state["companies"])
+        self.assertEqual(len(snapshot["companies"]), expected_public_count)
+        self.assertEqual(snapshot["meta"]["publicCompanyCount"], expected_public_count)
+        self.assertEqual(self.public_build_receipt["publicCompanyCount"], expected_public_count)
+        with sqlite3.connect(self.public_db) as conn:
+            self.assertEqual(conn.execute("SELECT count(*) FROM organizations WHERE organization_type='company'").fetchone()[0], expected_public_count)
+            seed_evidence = conn.execute(
+                "SELECT source_locator,as_of FROM canonical_evidence_items WHERE organization_id IN (%s)" %
+                ",".join("?" for _ in seed_ids), [f"org_{company_id}" for company_id in sorted(seed_ids)]
+            ).fetchall()
+            self.assertEqual(len(seed_evidence), 11)
+            self.assertIn(("https://www.mobihealthnews.com/news/candid-health-raises-120m-ai-revenue-cycle-management-platform", "2026-07-22"), seed_evidence)
+            self.assertIn(("https://www.geekwire.com/2026/stoke-space-350m-added-funding/", "2026-02-10"), seed_evidence)
+            self.assertFalse(any(urlparse(url).path in ("", "/") for url, _ in seed_evidence))
+
+        status, v1_state = self.http("/api/state")
+        self.assertEqual(status, 200)
+        self.assertEqual(v1_state["dashboard"]["total"], expected_public_count)
+        self.assertEqual({company["id"] for company in v1_state["companies"]}, set(state_by_id))
+        for vertical in {record["tmtVertical"] for record in seed_records}:
+            status, filtered = self.http("/api/state?" + urlencode({"tmtVertical": vertical}))
+            self.assertEqual(status, 200)
+            expected_seed_ids = {record["id"] for record in seed_records if record["tmtVertical"] == vertical}
+            self.assertTrue(expected_seed_ids <= {company["id"] for company in filtered["companies"]})
+            self.assertTrue(all(company["tmtVertical"] == vertical for company in filtered["companies"]))
+            self.assertEqual(filtered["dashboard"]["total"], len(filtered["companies"]))
+
+        status, v2_meta = self.http("/api/v2/meta")
+        self.assertEqual(status, 200)
+        self.assertEqual(v2_meta["counts"]["companies"], expected_public_count)
+        v2_payloads = []
+        for record in seed_records:
+            status, listing = self.http("/api/v2/companies?" + urlencode({"q": record["name"], "limit": 100}))
+            self.assertEqual(status, 200)
+            self.assertIn(record["id"], {company["legacySlug"] for company in listing["data"]})
+            status, detail = self.http("/api/v2/companies/" + record["id"])
+            self.assertEqual(status, 200)
+            self.assertEqual(detail["data"]["identity"]["name"], record["name"])
+            # The detail alias is the public legacy slug, not a private seed alias.
+            self.assertEqual(detail["data"]["aliases"], [record["id"]])
+            v2_payloads.append(detail)
+
+        private_markers = {
+            "tmtFieldEvidence", "tmtSeedImports", "seedSha256", "privateStatusBoundary",
+            "reviewedBy", seed["review"]["reviewedBy"], state["meta"]["tmtSeedImports"][0]["sha256"],
+        }
+        public_surfaces = json.dumps({"snapshot": snapshot, "v1": v1_state, "v2": v2_payloads}, ensure_ascii=False)
+        for marker in private_markers:
+            self.assertNotIn(marker, public_surfaces)
+        with sqlite3.connect(self.public_db) as conn:
+            public_raw = "\n".join(row[0] for row in conn.execute("SELECT payload_json FROM raw_records"))
+        for marker in private_markers:
+            self.assertNotIn(marker, public_raw)
 
     def test_02a_migration_is_additive_on_legacy_database_copy(self):
         legacy_copy = self.tmp / "legacy_pipeline_copy.sqlite"
@@ -104,9 +268,10 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         result = run_json("python3", str(MIGRATOR), "--db", str(legacy_copy), "--backup", str(self.tmp / "legacy_pipeline_copy.before.sqlite"))
         self.assertEqual(result["integrityCheck"], "ok")
         self.assertEqual(result["foreignKeyViolations"], 0)
+        current_state = json.loads(STATE.read_text(encoding="utf-8"))
         with sqlite3.connect(legacy_copy) as conn:
-            self.assertEqual(conn.execute("SELECT count(*) FROM companies").fetchone()[0], 143)
-            self.assertEqual(conn.execute("SELECT count(*) FROM funding_rounds").fetchone()[0], 185)
+            self.assertEqual(conn.execute("SELECT count(*) FROM companies").fetchone()[0], len(current_state["companies"]))
+            self.assertEqual(conn.execute("SELECT count(*) FROM funding_rounds").fetchone()[0], len(current_state["fundingRounds"]))
             self.assertTrue(conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='raw_records'").fetchone())
 
     def test_02b_sqlite_backup_captures_committed_wal_pages(self):

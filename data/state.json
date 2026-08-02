@@ -5,10 +5,10 @@
       "rights": "sanitized_derived",
       "version": "private-investment-os-public-2026-08-02"
     },
-    "asOf": "2026-07-01",
+    "asOf": "2026-08-02",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-07-01T12:45:00Z",
+    "updatedAt": "2026-08-02T12:10:00+08:00",
     "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue. Added EMEA ECM screenshot-derived private/pre-IPO opportunities: Starling Bank, Trade Republic, Zopa, Bitdefender, Bolt, Celonis, Doctolib, ElevenLabs enrichment, GetYourGuide, Infobip, Kpler, Kraken Technology; public-source enriched with valuation/funding/metrics caveats. Added second EMEA ECM screenshot batch covering Legora, Lendable, Mews, Mirakl, Multiverse Computing, n8n, Nord Security, Odoo, OQC, Personio, Poolside, Qonto, Quantexa, Thought Machine, Trendyol, Wayve, CMR Surgical, Huma, Medical Microinstruments, Owkin; patched Kraken, Lovable, Mistral AI, Synthesia.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
     "uiVersion": "public-2026-06-20",
@@ -90,7 +90,15 @@
     },
     "priorityQueue": [],
     "snapshotVersion": "public-facing-clean-2026-06-20+neocloud-inference-20260621",
-    "lastUpdatedAt": "2026-06-21T14:50:08Z"
+    "lastUpdatedAt": "2026-06-21T14:50:08Z",
+    "tmtSeedImports": [
+      {
+        "sha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e",
+        "schemaVersion": "1.0.0",
+        "asOf": "2026-08-02",
+        "recordCount": 11
+      }
+    ]
   },
   "companies": [
     {
@@ -13078,6 +13086,1052 @@
         "pharma milestones/partnership economics and clinical pipeline require diligence"
       ],
       "readinessLabel": "B：Route-ready / diligence-ready"
+    },
+    {
+      "id": "applied-intuition",
+      "name": "Applied Intuition",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://www.applied.co/blog/series-f",
+          "date": "2025-06-17",
+          "type": "company_release",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Subscription",
+        "Licensing"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2025-06-17",
+      "confidence": "high",
+      "investabilityAccessLane": "company_approved_secondary",
+      "sector": "Robotics / Mobility",
+      "subSector": "自动驾驶与车辆智能开发、仿真和验证软件",
+      "companyDescription": "已成为汽车、卡车、国防和非公路车辆自主系统的开发工具链，软件平台属性和客户嵌入深度突出。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-06-17",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "astranis",
+      "name": "Astranis",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://spacenews.com/astranis-secures-450-million-in-equity-debt-to-expand-small-geo-satellite-production/",
+          "date": "2026-05-06",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Hardware + Software",
+      "customerType": "Mixed",
+      "monetization": [
+        "Hardware sales",
+        "Services"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-05-06",
+      "confidence": "high",
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Communications TMT / Space Tech",
+      "subSector": "小型高轨通信卫星与专用带宽基础设施",
+      "companyDescription": "以小型MicroGEO卫星为国家、运营商和政府客户提供专用通信容量，介于卫星制造商与通信基础设施运营商之间。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-05-06",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "bedrock-robotics",
+      "name": "Bedrock Robotics",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://siliconangle.com/2026/02/04/bedrock-robotics-raises-270m-scale-autonomous-construction-fleets/",
+          "date": "2026-02-04",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Hardware + Software",
+      "customerType": "B2B",
+      "monetization": [
+        "Licensing",
+        "Services"
+      ],
+      "lifecycleStage": "series_a_b",
+      "sourceVintage": "2026-02-04",
+      "confidence": "high",
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Robotics / Industrial Mobility",
+      "subSector": "工程机械自主化软件与改装平台",
+      "companyDescription": "通过改装既有挖掘机和压路机切入建筑自动化，避免自建整车，软件栈可跨OEM和工程场景复制。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-02-04",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "candid-health",
+      "name": "Candid Health",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://www.mobihealthnews.com/news/candid-health-raises-120m-ai-revenue-cycle-management-platform",
+          "date": "2026-07-22",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Usage-based",
+      "customerType": "B2B",
+      "monetization": [
+        "Usage-based",
+        "Subscription"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-07-22",
+      "confidence": "high",
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Healthtech",
+      "subSector": "AI原生医疗收入周期管理基础设施",
+      "companyDescription": "瞄准美国医疗账单与收入周期的高成本刚需，平台化程度和替代传统外包RCM的潜力高于单点医疗AI应用。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-07-22",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "gecko-robotics",
+      "name": "Gecko Robotics",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://www.cnbc.com/2025/06/12/gecko-robotics-funding-unicorn-critical-infrastructure.html",
+          "date": "2025-06-12",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Hardware + Software",
+      "customerType": "Mixed",
+      "monetization": [
+        "Hardware sales",
+        "Subscription",
+        "Services"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-06-12",
+      "confidence": "high",
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Climate / Industrial Technology",
+      "subSector": "关键基础设施检测机器人与资产数据软件",
+      "companyDescription": "机器人采集与基础设施数字孪生软件相结合，覆盖能源、国防和工业资产，收入并非单纯硬件销售。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-06-12",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "impulse-space",
+      "name": "Impulse Space",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://spacenews.com/impulse-space-raises-500-million/",
+          "date": "2026-06-02",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Services",
+      "customerType": "Mixed",
+      "monetization": [
+        "Other",
+        "Services"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-06-02",
+      "confidence": "high",
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Space Tech",
+      "subSector": "轨道转移、在轨机动与空间运输基础设施",
+      "companyDescription": "在发射之后提供轨道机动与高能运输，定位为空间经济物流层，受益于军用快速响应和商业卫星多轨道部署。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-06-02",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "nominal",
+      "name": "Nominal",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://siliconangle.com/2026/03/05/hardware-testing-startup-nominal-raises-80m-1b-valuation/",
+          "date": "2026-03-05",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Subscription",
+        "Usage-based"
+      ],
+      "lifecycleStage": "series_a_b",
+      "sourceVintage": "2026-03-05",
+      "confidence": "high",
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Industrial Software",
+      "subSector": "复杂硬件测试、遥测分析与任务运营软件",
+      "companyDescription": "为航空航天、国防和高端制造提供统一测试与运营数据层，属于物理产业AI基础设施而非普通横向SaaS。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-03-05",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "nourish",
+      "name": "Nourish",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://hlth.com/insights/news/nourish-raises-100m-to-expand-virtual-nutrition-care-platform",
+          "date": "2026-05-20",
+          "type": "reputable_media",
+          "confidence": "medium"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Marketplace",
+      "customerType": "B2B2C",
+      "monetization": [
+        "Services",
+        "Insurance premium"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-05-20",
+      "confidence": "medium",
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Digital Health",
+      "subSector": "保险覆盖的虚拟营养医疗平台",
+      "companyDescription": "将营养师供给、保险理赔和患者匹配整合为全国性平台，商业模式比纯消费者健康订阅更具支付方支撑。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-05-20",
+      "privateStatusConfidence": "medium"
+    },
+    {
+      "id": "openevidence",
+      "name": "OpenEvidence",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://www.openevidence.com/announcements",
+          "date": "2026-01-21",
+          "type": "company_release",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Digital Health",
+      "businessModel": "SaaS",
+      "customerType": "B2B2C",
+      "monetization": [
+        "Advertising",
+        "Subscription"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2026-01-21",
+      "confidence": "high",
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Digital Health",
+      "subSector": "医生临床知识检索与决策支持平台",
+      "companyDescription": "以免费医生入口形成高频临床分发，叠加医学出版内容合作，可能成为医生端医疗知识与AI Agent入口。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-01-21",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "stoke-space",
+      "name": "Stoke Space",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://www.geekwire.com/2026/stoke-space-350m-added-funding/",
+          "date": "2026-02-10",
+          "type": "reputable_media",
+          "confidence": "medium"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Hardware",
+      "customerType": "Mixed",
+      "monetization": [
+        "Other",
+        "Services"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-02-10",
+      "confidence": "medium",
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Space Tech",
+      "subSector": "完全可重复使用运载火箭及发射基础设施",
+      "companyDescription": "Nova若实现上下级完全复用，可能成为SpaceX之外的重要发射基础设施平台，但尚存在首飞和规模制造风险。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-02-10",
+      "privateStatusConfidence": "medium"
+    },
+    {
+      "id": "true-anomaly",
+      "name": "True Anomaly",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://spacenews.com/true-anomaly-raises-650-million-reaching-2-2-billion-valuation/",
+          "date": "2026-04-28",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Hardware + Software",
+      "customerType": "B2G",
+      "monetization": [
+        "Other",
+        "Licensing"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-04-28",
+      "confidence": "high",
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Space Tech",
+      "subSector": "空间态势感知、机动卫星与空间防御平台",
+      "companyDescription": "将自主卫星、任务软件和空间域数据结合，直接受益于美国空间防御与Golden Dome相关需求。",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-04-28",
+      "privateStatusConfidence": "high"
     }
   ],
   "fundingRounds": [

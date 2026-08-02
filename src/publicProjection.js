@@ -1,6 +1,7 @@
 'use strict';
 
 const crypto = require('crypto');
+const { inferTmtVertical } = require('./tmtTaxonomy');
 
 // This is the public publication boundary used by the v1 API and the production
 // build. Operational workflow fields deliberately do not appear here.
@@ -12,7 +13,9 @@ const PUBLIC_COMPANY_FIELDS = Object.freeze([
   'latestAvailableValuation','investorSummary','investorDataQuality','dataCompleteness','enrichedAsOf','layerZh',
   'homepageDescriptionZh','latestValuationZh','revenueScaleZh','priorityZh','presentationLanguage',
   'presentationCleanedAsOf','investmentSummaryZh','riskSummaryZh','keyMetrics','readinessLabel','score','label',
-  'priorityClass','lifecycleStage','lifecycleStageLabel','stageConfidence','coverageGaps'
+  'priorityClass','lifecycleStage','lifecycleStageLabel','stageConfidence','coverageGaps',
+  'tmtVertical','businessModel','customerType','monetization','sourceVintage','confidence',
+  'privateStatus','privateStatusAsOf','privateStatusConfidence','investabilityAccessLane'
 ]);
 const PUBLIC_EVIDENCE_FIELDS = Object.freeze(['type','claimType','url','asOf','date','confidence']);
 const PUBLIC_META_FIELDS = Object.freeze(['title','asOf','schemaVersion','updatedAt','snapshotVersion','lastUpdatedAt','readOnly','writesEnabled']);
@@ -93,7 +96,7 @@ function snapshotReceipt(state) { return trustedSnapshots.get(state) || null; }
 function projectCompany(company, lifecycleCoverage) {
   const derived = lifecycleCoverage(company);
   const publicGaps = (derived.coverageGaps || []).filter(gap => ['stage_precision','public_evidence'].includes(gap));
-  const out = allowlistedObject({ ...company, lifecycleStage: derived.stage, lifecycleStageLabel: derived.stageLabel,
+  const out = allowlistedObject({ ...company, tmtVertical: inferTmtVertical(company), lifecycleStage: derived.stage, lifecycleStageLabel: derived.stageLabel,
     stageConfidence: derived.stageConfidence, coverageGaps: publicGaps }, PUBLIC_COMPANY_FIELDS);
   out.evidence = (company.evidence || []).map(item => allowlistedObject(item, PUBLIC_EVIDENCE_FIELDS));
   return out;

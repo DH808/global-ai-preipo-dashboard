@@ -1,0 +1,11 @@
+{
+  "$comment": "Copy this file, remove $comment, set review.status to approved only after human review, and add vetted records. Do not add valuation fields.",
+  "schemaVersion": "1.0.0",
+  "asOf": "YYYY-MM-DD",
+  "review": {
+    "status": "draft",
+    "reviewedBy": "",
+    "reviewedAt": "YYYY-MM-DDTHH:MM:SSZ"
+  },
+  "records": []
+}

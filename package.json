@@ -10,10 +10,10 @@
   "scripts": {
     "start": "node server.js",
     "build": "python3 scripts/build_public_v2_db.py",
-    "test": "node test/scoring.test.js && node test/connectors.test.js && node test/trackGraph.test.js && node test/publicUiLogic.test.js && node test/v2RuntimeControls.test.js && python3 -m unittest test/test_qc_preipo_release_gate.py -v && python3 -m unittest discover -s test -p 'test_*v2*.py' -v && npm run test:production-smoke",
+    "test": "node test/scoring.test.js && node test/connectors.test.js && node test/trackGraph.test.js && node test/tmtTaxonomy.test.js && node test/publicUiLogic.test.js && node test/v2RuntimeControls.test.js && python3 -m unittest test/test_tmt_seed_import.py -v && python3 -m unittest test/test_qc_preipo_release_gate.py -v && python3 -m unittest discover -s test -p 'test_*v2*.py' -v && npm run test:production-smoke",
     "test:production-smoke": "node test/publicProductionSmoke.test.js",
     "test:v2": "python3 -m unittest discover -s test -p 'test_*v2*.py' -v",
-    "check": "python3 -m py_compile scripts/build_public_v2_db.py && node --check scripts/project_public_snapshot.js && node --check server.js && node --check src/scoring.js && node --check src/connectors.js && node --check src/trackGraph.js && node --check src/lifecycle.js && node --check src/publicProjection.js && node --check src/v2Repository.js && node --check public/connectorStatus.js && node --check public/lifecycle.js && node --check public/app.js && node --check test/api_contract_runner_v2.js && node --check test/publicUiLogic.test.js && node --check test/v2RuntimeControls.test.js && node --check test/publicProductionSmoke.test.js"
+    "check": "python3 -m py_compile scripts/build_public_v2_db.py scripts/import_legacy_state_v2.py scripts/import_tmt_seed.py && node --check scripts/project_public_snapshot.js && node --check server.js && node --check src/scoring.js && node --check src/connectors.js && node --check src/trackGraph.js && node --check src/lifecycle.js && node --check src/tmtTaxonomy.js && node --check src/publicProjection.js && node --check src/v2Repository.js && node --check public/connectorStatus.js && node --check public/lifecycle.js && node --check public/tmtTaxonomy.js && node --check public/app.js && node --check test/api_contract_runner_v2.js && node --check test/publicUiLogic.test.js && node --check test/v2RuntimeControls.test.js && node --check test/publicProductionSmoke.test.js"
   },
   "dependencies": {},
   "devDependencies": {}
