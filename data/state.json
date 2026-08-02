@@ -8,7 +8,7 @@
     "asOf": "2026-08-02",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-08-02T12:10:00+08:00",
+    "updatedAt": "2026-08-02T05:06:19Z",
     "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue. Added EMEA ECM screenshot-derived private/pre-IPO opportunities: Starling Bank, Trade Republic, Zopa, Bitdefender, Bolt, Celonis, Doctolib, ElevenLabs enrichment, GetYourGuide, Infobip, Kpler, Kraken Technology; public-source enriched with valuation/funding/metrics caveats. Added second EMEA ECM screenshot batch covering Legora, Lendable, Mews, Mirakl, Multiverse Computing, n8n, Nord Security, Odoo, OQC, Personio, Poolside, Qonto, Quantexa, Thought Machine, Trendyol, Wayve, CMR Surgical, Huma, Medical Microinstruments, Owkin; patched Kraken, Lovable, Mistral AI, Synthesia.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
     "uiVersion": "public-2026-06-20",
@@ -97,6 +97,12 @@
         "schemaVersion": "1.0.0",
         "asOf": "2026-08-02",
         "recordCount": 11
+      },
+      {
+        "sha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b",
+        "schemaVersion": "1.0.0",
+        "asOf": "2026-08-02",
+        "recordCount": 8
       }
     ],
     "legacyTmtNormalizationReceipts": [
@@ -15423,6 +15429,855 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-04-28",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "bestow",
+      "name": "Bestow",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/05/13/insurtech-bestow-lands-120m-series-d-from-goldman-sachs-smith-point-capital/",
+          "date": "2025-05-13",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-05-13",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Subscription",
+        "Usage-based"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-05-13",
+      "confidence": "high",
+      "investabilityAccessLane": "strategic_co_invest",
+      "sector": "Insurtech",
+      "subSector": "Life insurance core SaaS and underwriting infrastructure",
+      "companyDescription": "从D2C保险转型为承保、产品上线和保单运营基础设施，服务大型寿险机构，具有核心系统替代和使用量扩张逻辑。",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$120m",
+        "announcedDate": "2025-05-13",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/05/13/insurtech-bestow-lands-120m-series-d-from-goldman-sachs-smith-point-capital/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-05-13",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "chapter",
+      "name": "Chapter",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/04/16/chapter-a-medicare-startup-with-links-to-vance-thiel-and-ramaswamy-just-raised-a-round-at-1-5b-valuation/",
+          "date": "2025-04-16",
+          "type": "reputable_media",
+          "confidence": "medium"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "tmtVertical": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "businessModel": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "customerType": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "monetization": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "lifecycleStage": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sourceVintage": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "confidence": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "investabilityAccessLane": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sector": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "subSector": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "companyDescription": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "latestFinancing": {
+          "confidence": "medium",
+          "sourceDate": "2025-04-16",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Services",
+      "customerType": "B2C",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-04-16",
+      "confidence": "medium",
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Insurtech",
+      "subSector": "Medicare advisory and insurance distribution",
+      "companyDescription": "以医生、医院和药品覆盖数据辅助老年人选险，聚焦高复杂度、高留存潜力的保险消费决策场景。",
+      "latestFinancing": {
+        "roundType": "funding round",
+        "amountDisplay": "$75m",
+        "announcedDate": "2025-04-16",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/04/16/chapter-a-medicare-startup-with-links-to-vance-thiel-and-ramaswamy-just-raised-a-round-at-1-5b-valuation/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-04-16",
+      "privateStatusConfidence": "medium"
+    },
+    {
+      "id": "federato",
+      "name": "Federato",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/11/20/federato-fixes-insurance-risk-analysis-with-ai-raises-40m/",
+          "date": "2024-11-20",
+          "type": "reputable_media",
+          "confidence": "medium"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "tmtVertical": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "businessModel": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "customerType": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "monetization": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "lifecycleStage": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sourceVintage": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "confidence": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "investabilityAccessLane": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sector": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "subSector": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "companyDescription": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "latestFinancing": {
+          "confidence": "medium",
+          "sourceDate": "2024-11-20",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-11-20",
+      "confidence": "medium",
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Insurtech",
+      "subSector": "Insurance underwriting and RiskOps software",
+      "companyDescription": "切入保险公司的核心承保决策层，而非外围数字营销；RiskOps整合数据、风险选择和工作流，并已进入大型保险机构。",
+      "latestFinancing": {
+        "roundType": "financing",
+        "amountDisplay": "$40m",
+        "announcedDate": "2024-11-20",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2024/11/20/federato-fixes-insurance-risk-analysis-with-ai-raises-40m/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-11-20",
+      "privateStatusConfidence": "medium"
+    },
+    {
+      "id": "harper",
+      "name": "Harper",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2026/02/25/ai-insurance-brokerage-harper-raises-45m-series-a-and-seed/",
+          "date": "2026-02-25",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-02-25",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Services",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "series_a_b",
+      "sourceVintage": "2026-02-25",
+      "confidence": "high",
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Insurtech",
+      "subSector": "AI-native commercial insurance brokerage",
+      "companyDescription": "以AI自动化投保路由、材料收集和承保沟通，将传统商业保险经纪改造成接近软件效率的运营模型。",
+      "latestFinancing": {
+        "roundType": "Series A and seed",
+        "amountDisplay": "$47m",
+        "announcedDate": "2026-02-25",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/02/25/ai-insurance-brokerage-harper-raises-45m-series-a-and-seed/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-02-25",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "mercury",
+      "name": "Mercury",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/03/26/fintech-mercury-lands-300m-in-sequoia-led-series-c-doubles-valuation-to-3-5b/",
+          "date": "2025-03-26",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-03-26",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Services",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2025-03-26",
+      "confidence": "high",
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Fintech",
+      "subSector": "Business banking and financial operations software",
+      "companyDescription": "从企业账户入口扩展为支付、卡、应付、应收及费用管理操作系统，兼具高频交易数据和交叉销售能力。",
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$300m",
+        "announcedDate": "2025-03-26",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/03/26/fintech-mercury-lands-300m-in-sequoia-led-series-c-doubles-valuation-to-3-5b/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-03-26",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "plaid",
+      "name": "Plaid",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/04/03/fintech-plaid-raises-575m-at-6-1b-valuation-says-it-will-not-go-public-in-2025/",
+          "date": "2025-04-03",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-04-03",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2025-04-03",
+      "confidence": "high",
+      "investabilityAccessLane": "company_approved_secondary",
+      "sector": "Fintech Infrastructure",
+      "subSector": "Open finance data, identity, fraud and payment APIs",
+      "companyDescription": "已从银行账户连接扩展到身份、信用、反欺诈和支付，处于多个金融应用与银行之间的基础设施控制点。",
+      "latestFinancing": {
+        "roundType": "common stock financing",
+        "amountDisplay": "$575m",
+        "announcedDate": "2025-04-03",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/04/03/fintech-plaid-raises-575m-at-6-1b-valuation-says-it-will-not-go-public-in-2025/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-04-03",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "rain",
+      "name": "Rain",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/04/08/los-angeles-based-rain-raised-a-75m-series-b-in-another-good-sign-for-fintech/",
+          "date": "2025-04-08",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-04-08",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Usage-based",
+      "customerType": "B2B2C",
+      "monetization": [
+        "Transaction fees"
+      ],
+      "lifecycleStage": "series_a_b",
+      "sourceVintage": "2025-04-08",
+      "confidence": "high",
+      "investabilityAccessLane": "direct_primary",
+      "sector": "Fintech",
+      "subSector": "Employer-integrated earned wage access and financial wellness",
+      "companyDescription": "通过雇主及工资系统获得分发，已从单一EWA扩展至储蓄、信用卡和财务健康工具，但监管及费用依赖必须作为核心尽调边界。",
+      "latestFinancing": {
+        "roundType": "Series B",
+        "amountDisplay": "$75m",
+        "announcedDate": "2025-04-08",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/04/08/los-angeles-based-rain-raised-a-75m-series-b-in-another-good-sign-for-fintech/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-04-08",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "substack",
+      "name": "Substack",
+      "status": "private",
+      "region": "North America",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/07/17/substack-raises-100m-from-chernin-group-andreessen-horowitz-skims-ceo-and-more/",
+          "date": "2025-07-17",
+          "type": "reputable_media",
+          "confidence": "high"
+        }
+      ],
+      "tmtFieldEvidence": {
+        "country": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "tmtVertical": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "businessModel": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "customerType": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "monetization": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "lifecycleStage": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sourceVintage": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "confidence": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "investabilityAccessLane": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "sector": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "subSector": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "companyDescription": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-07-17",
+          "seedSha256": "6fbc47702133461d56235563f4c6bf9065111d9aaf4fc873c5e65024f493916b"
+        }
+      },
+      "country": "United States",
+      "tmtVertical": "Consumer Internet/Media/Gaming",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "pre_ipo",
+      "sourceVintage": "2025-07-17",
+      "confidence": "high",
+      "investabilityAccessLane": "relationship_development",
+      "sector": "Digital Media",
+      "subSector": "Creator Publishing and Subscription Media",
+      "companyDescription": "Creator content attracts readers; recommendations, Notes and cross-publication discovery circulate audiences and strengthen creator retention.",
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$100m",
+        "announcedDate": "2025-07-17",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/07/17/substack-raises-100m-from-chernin-group-andreessen-horowitz-skims-ceo-and-more/"
+      },
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-07-17",
       "privateStatusConfidence": "high"
     }
   ],

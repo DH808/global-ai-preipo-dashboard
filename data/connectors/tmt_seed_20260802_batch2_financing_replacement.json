@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0.0",
+  "operation": "replace-seed-import",
+  "supersededReceipt": {
+    "sha256": "45fe4159b12dae5852abeabeaeb94c279902c3f9d99d846b6991fea0f13d0d98",
+    "schemaVersion": "1.0.0",
+    "asOf": "2026-08-02",
+    "recordCount": 8
+  },
+  "expectedCompanies": [
+    {"id": "bestow", "sha256": "fd26fc4a5597e9b030ef4be0decb4fb702391029bf3f65421b467f7564d907b7"},
+    {"id": "chapter", "sha256": "5499d88feb5b9719e5d181160f41a716d118269b2a7ab13424a324cefc5c709b"},
+    {"id": "federato", "sha256": "bf775a82089de0e0050e12b24f483133f2217e83be5ed4b81b3bc7c0eb25adf4"},
+    {"id": "harper", "sha256": "02a2b15e933761e21f30f2fc2c9dc0bd9b2e4164caa9907ea011113e241ddee4"},
+    {"id": "mercury", "sha256": "d63c13a09137549788a1103972c23802e78ac0465acd42bc6783325e98abd716"},
+    {"id": "plaid", "sha256": "721ceeb6404e448be281314b4248c10d97a8b9c57366d70e0adfaafa4c4fd02e"},
+    {"id": "rain", "sha256": "df06b75776cad0fba5b019e4bb9ebf6b5be30ba8b3290cdc43689817bda0da20"},
+    {"id": "substack", "sha256": "a646c6baca47b1d2a5c58679d05d80504cc01323049d364734385b9aff1a7417"}
+  ]
+}

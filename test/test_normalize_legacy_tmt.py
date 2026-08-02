@@ -82,12 +82,19 @@ class NormalizeLegacyTmtTests(unittest.TestCase):
     def test_repository_state_has_complete_guarded_normalization(self):
         state = json.loads((ROOT / "data" / "state.json").read_text(encoding="utf-8"))
         legacy = [c for c in state["companies"] if c.get("classificationMethod") == "deterministic_legacy_mapping"]
-        reviewed = [c for c in state["companies"] if c.get("id") in {
-            r["id"] for r in json.loads((ROOT / "data" / "connectors" / "tmt_seed_20260802_batch1.json").read_text())["records"]
-        }]
-        self.assertEqual(len(state["companies"]), 154)
-        self.assertEqual(len(legacy), 143)
-        self.assertEqual(len(reviewed), 11)
+        seed_files = sorted((ROOT / "data" / "connectors").glob("tmt_seed_20260802_batch[0-9].json"))
+        seed_records = [
+            record
+            for seed_file in seed_files
+            for record in json.loads(seed_file.read_text(encoding="utf-8"))["records"]
+        ]
+        reviewed_ids = {record["id"] for record in seed_records}
+        reviewed = [c for c in state["companies"] if c.get("id") in reviewed_ids]
+        state_ids = {c["id"] for c in state["companies"]}
+        self.assertEqual(len(reviewed_ids), len(seed_records), "reviewed seed identities must be unique")
+        self.assertEqual(state_ids, {c["id"] for c in legacy} | reviewed_ids)
+        self.assertEqual(len(state["companies"]), len(legacy) + len(seed_records))
+        self.assertEqual(len(reviewed), len(seed_records))
         self.assertTrue(all(c.get("classificationConfidence") == "derived" for c in legacy))
         self.assertTrue(all(
             all(c.get(field) == deterministic_profile(c)[field] for field in (
@@ -95,7 +102,7 @@ class NormalizeLegacyTmtTests(unittest.TestCase):
                 "classificationMethod", "classificationConfidence",
             ))
             for c in legacy
-        ), "all 143 stored legacy profiles must equal the audited deterministic output")
+        ), "all stored legacy profiles must equal the audited deterministic output")
         self.assertTrue(all(all(field in c for field in ("tmtVertical", "businessModel", "customerType", "monetization")) for c in state["companies"]))
         self.assertTrue(all(c.get("classificationMethod") != "deterministic_legacy_mapping" for c in reviewed))
 

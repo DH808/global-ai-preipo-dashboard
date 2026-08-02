@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import urlencode, urlparse
 
 from scripts.import_legacy_state_v2 import expanded_funding_rounds
+from scripts.import_tmt_seed import canonical_hash, identity
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "data" / "state.json"
@@ -20,6 +21,8 @@ MIGRATOR = ROOT / "scripts" / "run_migrations_v2.py"
 PREVIEW = ROOT / "scripts" / "preview_manual_import_v2.py"
 PUBLIC_BUILD = ROOT / "scripts" / "build_public_v2_db.py"
 TMT_SEED = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch1.json"
+BATCH2_SEED = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch2.json"
+BATCH2_REPLACEMENT = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch2_financing_replacement.json"
 
 
 def run_json(*args: str, expected: int = 0) -> dict:
@@ -183,6 +186,8 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
 
         state_by_id = {company["id"]: company for company in state["companies"]}
         public_by_id = {company["id"]: company for company in snapshot["companies"]}
+        self.assertEqual(len(state_by_id), len(state["companies"]))
+        self.assertEqual(len(public_by_id), len(snapshot["companies"]))
         self.assertTrue(seed_ids <= state_by_id.keys())
         self.assertTrue(seed_ids <= public_by_id.keys())
         for record in seed_records:
@@ -285,16 +290,161 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         for marker in private_markers:
             self.assertNotIn(marker, public_raw)
 
+    def test_02g_batch2_release_survives_seed_v1_v2_and_schema_002_end_to_end(self):
+        state = json.loads(STATE.read_text(encoding="utf-8"))
+        seed = json.loads(BATCH2_SEED.read_text(encoding="utf-8"))
+        snapshot = json.loads(self.public_state.read_text(encoding="utf-8"))
+        records = seed["records"]
+        seed_ids = {record["id"] for record in records}
+        financing_ids = seed_ids
+
+        self.assertEqual(seed["review"]["status"], "approved")
+        self.assertEqual(seed_ids, {"bestow", "chapter", "federato", "harper", "mercury", "plaid", "rain", "substack"})
+        self.assertEqual(len(records), len(seed_ids))
+        records_by_id = {record["id"]: record for record in records}
+        self.assertEqual(records_by_id["chapter"]["latestFinancing"], {
+            "roundType": "funding round", "amountDisplay": "$75m", "announcedDate": "2025-04-16",
+            "financingType": "equity",
+            "sourceUrl": "https://techcrunch.com/2025/04/16/chapter-a-medicare-startup-with-links-to-vance-thiel-and-ramaswamy-just-raised-a-round-at-1-5b-valuation/",
+        })
+        self.assertEqual(records_by_id["federato"]["latestFinancing"]["roundType"], "financing")
+        for company_id in ("federato", "mercury", "plaid", "substack"):
+            self.assertEqual(records_by_id[company_id]["monetization"], ["Other"])
+        self.assertEqual(records_by_id["plaid"]["businessModel"], "Other")
+        self.assertEqual(records_by_id["plaid"]["customerType"], "B2B")
+        self.assertEqual(records_by_id["substack"]["businessModel"], "Other")
+        self.assertEqual(records_by_id["substack"]["customerType"], "Other")
+
+        state_by_id = {company["id"]: company for company in state["companies"]}
+        public_by_id = {company["id"]: company for company in snapshot["companies"]}
+        self.assertEqual(len(state_by_id), len(state["companies"]))
+        self.assertEqual(len(public_by_id), len(snapshot["companies"]))
+        self.assertTrue(seed_ids <= state_by_id.keys())
+        self.assertTrue(seed_ids <= public_by_id.keys())
+
+        identity_owners = {}
+        for company in state["companies"]:
+            for value in [company.get("name"), company.get("legalName"), *as_list(company.get("aliases"))]:
+                if isinstance(value, str) and identity(value):
+                    identity_owners.setdefault(identity(value), set()).add(company["id"])
+
+        for record in records:
+            company_id = record["id"]
+            source_company = state_by_id[company_id]
+            public_company = public_by_id[company_id]
+            source = record["sources"][0]
+            self.assertEqual(len(record["sources"]), 1)
+            self.assertNotIn(urlparse(source["url"]).path, ("", "/"))
+            self.assertEqual(record["sourceVintage"], source["date"])
+            self.assertEqual(record["privateStatusBoundary"], {
+                "status": "private", "asOf": source["date"], "sourceUrl": source["url"],
+                "confidence": source["confidence"],
+            })
+            self.assertEqual(source_company["status"], "private")
+            self.assertEqual(source_company["privateStatus"], "private")
+            self.assertEqual(source_company["privateStatusAsOf"], source["date"])
+            self.assertEqual(source_company["privateStatusConfidence"], source["confidence"])
+            self.assertEqual(source_company["evidence"], [source])
+            self.assertEqual(public_company["evidence"], [source])
+            for value in [record["name"], *record["aliases"]]:
+                self.assertEqual(identity_owners[identity(value)], {company_id})
+
+            self.assertEqual(source_company["latestFinancing"], record["latestFinancing"])
+            self.assertEqual(public_company["latestFinancing"], record["latestFinancing"])
+            self.assertEqual(public_company["completeness"]["financing"], "present")
+            self.assertNotIn("valuation", public_company["latestFinancing"])
+
+        baseline_receipt = state["meta"]["legacyTmtNormalizationReceipts"][-1]
+        expected_release_count = baseline_receipt["companyCount"] + len(records)
+        self.assertEqual(len(state["companies"]), expected_release_count)
+        self.assertEqual(len(snapshot["companies"]), expected_release_count)
+        self.assertEqual(snapshot["meta"]["publicCompanyCount"], expected_release_count)
+        self.assertEqual(self.public_build_receipt["publicCompanyCount"], expected_release_count)
+
+        status, v1_state = self.http("/api/state")
+        self.assertEqual(status, 200)
+        self.assertEqual(v1_state["dashboard"]["total"], expected_release_count)
+        self.assertTrue(seed_ids <= {company["id"] for company in v1_state["companies"]})
+        for vertical in {record["tmtVertical"] for record in records}:
+            status, filtered = self.http("/api/state?" + urlencode({"tmtVertical": vertical}))
+            self.assertEqual(status, 200)
+            expected_ids = {record["id"] for record in records if record["tmtVertical"] == vertical}
+            self.assertTrue(expected_ids <= {company["id"] for company in filtered["companies"]})
+            self.assertTrue(all(company["tmtVertical"] == vertical for company in filtered["companies"]))
+
+        status, v2_meta = self.http("/api/v2/meta")
+        self.assertEqual(status, 200)
+        self.assertEqual(v2_meta["counts"]["companies"], expected_release_count)
+        v2_payloads = []
+        for record in records:
+            status, listing = self.http("/api/v2/companies?" + urlencode({"q": record["name"], "limit": 100}))
+            self.assertEqual(status, 200)
+            self.assertIn(record["id"], {company["legacySlug"] for company in listing["data"]})
+            status, detail = self.http("/api/v2/companies/" + record["id"])
+            self.assertEqual(status, 200)
+            self.assertEqual(detail["data"]["identity"]["name"], record["name"])
+            status, funding = self.http(f"/api/v2/companies/{record['id']}/funding-rounds")
+            self.assertEqual(status, 200)
+            self.assertEqual(detail["data"]["latestFunding"]["roundType"], record["latestFinancing"]["roundType"])
+            self.assertEqual(detail["data"]["latestFunding"]["amountDisplay"], record["latestFinancing"]["amountDisplay"])
+            self.assertEqual(detail["data"]["latestFunding"]["announcedDate"], record["latestFinancing"]["announcedDate"])
+            self.assertEqual(detail["data"]["latestFunding"]["financingType"], record["latestFinancing"]["financingType"])
+            self.assertEqual(funding["data"], [detail["data"]["latestFunding"]])
+            self.assertNotIn("valuationDisplay", detail["data"]["latestFunding"])
+            v2_payloads.extend((detail, funding))
+
+        placeholders = ",".join("?" for _ in seed_ids)
+        with sqlite3.connect(self.public_db) as conn:
+            self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
+            self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
+            rounds = conn.execute(
+                "SELECT organization_id,valuation_display,post_money_value,metadata_json "
+                f"FROM canonical_funding_rounds WHERE organization_id IN ({placeholders})",
+                [f"org_{company_id}" for company_id in sorted(seed_ids)],
+            ).fetchall()
+            structured = [row for row in rounds if json.loads(row[3] or "{}").get("financingType")]
+            self.assertEqual(len(structured), 8)
+            self.assertEqual({row[0].removeprefix("org_") for row in structured}, financing_ids)
+            self.assertTrue(all(row[1] is None and row[2] is None for row in structured))
+            public_raw = "\n".join(row[0] for row in conn.execute("SELECT payload_json FROM raw_records"))
+
+        current_receipt = next(item for item in state["meta"]["tmtSeedImports"] if item["sha256"] == canonical_hash(seed))
+        private_markers = {
+            "tmtFieldEvidence", "tmtSeedImports", "seedSha256", "privateStatusBoundary",
+            "reviewedBy", seed["review"]["reviewedBy"], current_receipt["sha256"],
+        }
+        public_surfaces = json.dumps({"snapshot": snapshot, "v1": v1_state, "v2": v2_payloads}, ensure_ascii=False)
+        for marker in private_markers:
+            self.assertNotIn(marker, public_surfaces)
+            self.assertNotIn(marker, public_raw)
+
+        replay_state = self.tmp / "batch2-replay-state.json"
+        replay_state.write_bytes(STATE.read_bytes())
+        before_replay = replay_state.read_bytes()
+        replay = run_json(
+            "python3", str(ROOT / "scripts" / "import_tmt_seed.py"), "--input", str(BATCH2_SEED),
+            "--state", str(replay_state), "--as-of", "2026-08-02", "--apply",
+            "--replace-manifest", str(BATCH2_REPLACEMENT),
+        )
+        self.assertTrue(replay["summary"]["alreadyApplied"])
+        self.assertTrue(replay["replacement"]["alreadyReplaced"])
+        self.assertFalse(replay["mutated"])
+        self.assertEqual(replay_state.read_bytes(), before_replay)
+
     def test_02a_migration_is_additive_on_legacy_database_copy(self):
         legacy_copy = self.tmp / "legacy_pipeline_copy.sqlite"
         shutil.copy2(ROOT / "data" / "pipeline.sqlite", legacy_copy)
+        with sqlite3.connect(legacy_copy) as conn:
+            legacy_counts = {
+                "companies": conn.execute("SELECT count(*) FROM companies").fetchone()[0],
+                "fundingRounds": conn.execute("SELECT count(*) FROM funding_rounds").fetchone()[0],
+            }
         result = run_json("python3", str(MIGRATOR), "--db", str(legacy_copy), "--backup", str(self.tmp / "legacy_pipeline_copy.before.sqlite"))
         self.assertEqual(result["integrityCheck"], "ok")
         self.assertEqual(result["foreignKeyViolations"], 0)
-        current_state = json.loads(STATE.read_text(encoding="utf-8"))
         with sqlite3.connect(legacy_copy) as conn:
-            self.assertEqual(conn.execute("SELECT count(*) FROM companies").fetchone()[0], len(current_state["companies"]))
-            self.assertEqual(conn.execute("SELECT count(*) FROM funding_rounds").fetchone()[0], len(current_state["fundingRounds"]))
+            self.assertEqual(conn.execute("SELECT count(*) FROM companies").fetchone()[0], legacy_counts["companies"])
+            self.assertEqual(conn.execute("SELECT count(*) FROM funding_rounds").fetchone()[0], legacy_counts["fundingRounds"])
             self.assertTrue(conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='raw_records'").fetchone())
 
     def test_02b_sqlite_backup_captures_committed_wal_pages(self):
