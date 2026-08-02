@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "legacy-financing-migration/1.0",
+  "manifestSha256": "142fdfacb40be3263584e063bfb501b15f6b708678a599859954db7f7c6601a1",
+  "previousReceiptSha256": null,
+  "stateBeforeBusinessSha256": "87c48d0a290f7b47344022515134a07a3e33cbf7c836310f7161cefcae8f93bd",
+  "stateAfterBusinessSha256": "b990a517210123faead338a6cf214580172aad8eedf95b4845b6689ea719f222",
+  "targetBeforeSha256": {
+    "preferred-networks": "eeffd48ee524b6d87210af41821c04dd1f8c8265e875196c96ba744b02823f29",
+    "alphasense": "74e5724afc0e27c6fa89a91e49370dbc737d4c13befa351ca7f80d0adc42ca35",
+    "kraken-technologies": "6c8592d199d61ac23326bd185dd6565d9f0d86dad108cebb8ca7beb0f35a2593",
+    "drivenets": "a7c9d72495bdc540feec7b39decbcf537a9f78e042382decc2433ec8fe61950c",
+    "parloa": "ff776ca1de14d49d15de8b9a7f82833f2b50cd0dc77f45cdd92e0ae277ab1111",
+    "zopa": "9071021135bb7c2be052cf2f6df29f91f16bf8aefbe931680e98fb8ed297622d",
+    "infobip": "6bd0499c33d8e9cf07c2f236f5b55241d26c55a48d70c1267baeb3a4cd0a3540",
+    "kpler": "b81970b8045f0b718a138b043f115ddb538b58932012793969c6652b3b2a3aa7"
+  },
+  "targetAfterSha256": {
+    "preferred-networks": "3061824e9b6b63d6660564320bd41195e245e1788fd83f62cc317ee8c4fe3869",
+    "alphasense": "74e5724afc0e27c6fa89a91e49370dbc737d4c13befa351ca7f80d0adc42ca35",
+    "kraken-technologies": "6c8592d199d61ac23326bd185dd6565d9f0d86dad108cebb8ca7beb0f35a2593",
+    "drivenets": "a7c9d72495bdc540feec7b39decbcf537a9f78e042382decc2433ec8fe61950c",
+    "parloa": "aef9370a83d8a1d269c2c117cf4da8a04011ababe25ad97b6f99f636000dc2ce",
+    "zopa": "9071021135bb7c2be052cf2f6df29f91f16bf8aefbe931680e98fb8ed297622d",
+    "infobip": "6bd0499c33d8e9cf07c2f236f5b55241d26c55a48d70c1267baeb3a4cd0a3540",
+    "kpler": "b81970b8045f0b718a138b043f115ddb538b58932012793969c6652b3b2a3aa7"
+  },
+  "recordCount": 8,
+  "changeSetSha256": "02fb12ed609f63fc20729e225978d57da32986d1a08cd08a231c9c1e6d1d5e00",
+  "receiptSha256": "6f7bde29653ef6711e75bf4646752cda50454027fcef3a803aeb7fb254fe1d91"
+}

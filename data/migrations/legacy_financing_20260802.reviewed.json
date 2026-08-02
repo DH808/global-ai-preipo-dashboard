@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "legacy-financing-migration/1.0",
+  "asOf": "2026-08-02",
+  "review": {
+    "status": "approved",
+    "reviewedBy": "Hermes investment-data review",
+    "reviewedAt": "2026-08-02T00:00:00+08:00"
+  },
+  "replacesReceipt": {
+    "manifestSha256": "bd05afbd8faaeb1c9e8d50e7a4346e0b26482d3e2bd8b70e224d6f6cb160de05",
+    "receiptSha256": "93e7787842d5ad8cecab3e75b3ffc0bf277a84f3a351cb480c4c18d629b3ca22",
+    "stateAfterBusinessSha256": "87c48d0a290f7b47344022515134a07a3e33cbf7c836310f7161cefcae8f93bd"
+  },
+  "records": [
+    {
+      "id": "preferred-networks",
+      "name": "Preferred Networks",
+      "expected": {
+        "companySha256": "6364d18d2f9557af62a009536b11c91173274dd94e007133b4d045ab2d2fa65a",
+        "oldLatestFunding": "Official: extension round brought total latest round to JPY 24B"
+      },
+      "latestFinancing": {
+        "roundType": "extension round",
+        "amountDisplay": "JPY 5B",
+        "announcedDate": "2025-04-30",
+        "financingType": "mixed",
+        "sourceUrl": "https://www.preferred.jp/en/news/pr20250430/"
+      },
+      "sourceVintage": "2025-04-30",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-04-30",
+        "sourceUrl": "https://www.preferred.jp/en/news/pr20250430/",
+        "confidence": "high"
+      },
+      "evidence": {
+        "date": "2025-04-30",
+        "type": "company_release",
+        "url": "https://www.preferred.jp/en/news/pr20250430/",
+        "confidence": "high",
+        "claimType": "latest_financing",
+        "publicationEligible": true,
+        "rightsProfile": "public_allowed"
+      },
+      "replacement": {
+        "expectedOldLatestFinancing": {
+          "roundType": "extension round",
+          "amountDisplay": "JPY 5B",
+          "announcedDate": "2025-04-30",
+          "financingType": "equity",
+          "sourceUrl": "https://www.preferred.jp/en/news/pr20250430/"
+        }
+      }
+    },
+    {
+      "id": "alphasense",
+      "name": "AlphaSense",
+      "expected": {
+        "companySha256": "f72e94b1698043f0fc12034de7306f826a0ecb46d711dbc34a3145f95295e10b",
+        "oldLatestFunding": "2026 $350M round; 2024 $650M round / Tegus acquisition financing"
+      },
+      "latestFinancing": {
+        "roundType": "funding round",
+        "amountDisplay": "$350m",
+        "announcedDate": "2026-06-03",
+        "financingType": "equity",
+        "sourceUrl": "https://www.alpha-sense.com/press/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue/"
+      },
+      "sourceVintage": "2026-06-03",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-06-03",
+        "sourceUrl": "https://www.alpha-sense.com/press/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue/",
+        "confidence": "high"
+      },
+      "evidence": {
+        "date": "2026-06-03",
+        "type": "company_release",
+        "url": "https://www.alpha-sense.com/press/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue/",
+        "confidence": "high",
+        "claimType": "latest_financing",
+        "publicationEligible": true,
+        "rightsProfile": "public_allowed"
+      }
+    },
+    {
+      "id": "kraken-technologies",
+      "name": "Kraken Technologies",
+      "expected": {
+        "companySha256": "2bc2fef69061543c613cf0be67fc29f32de67cbe6482b3cae5c6ba95854d1777",
+        "oldLatestFunding": "2025 $1B investment / spinout financing"
+      },
+      "latestFinancing": {
+        "roundType": "standalone investment round",
+        "amountDisplay": "$1B",
+        "announcedDate": "2025-12-29",
+        "financingType": "equity",
+        "sourceUrl": "https://www.kraken.tech/press-releases/octopus-energy-group-to-spin-out-kraken-at-valuation-of-usd8-65bn"
+      },
+      "sourceVintage": "2025-12-29",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-12-29",
+        "sourceUrl": "https://www.kraken.tech/press-releases/octopus-energy-group-to-spin-out-kraken-at-valuation-of-usd8-65bn",
+        "confidence": "high"
+      },
+      "evidence": {
+        "date": "2025-12-29",
+        "type": "company_release",
+        "url": "https://www.kraken.tech/press-releases/octopus-energy-group-to-spin-out-kraken-at-valuation-of-usd8-65bn",
+        "confidence": "high",
+        "claimType": "latest_financing",
+        "publicationEligible": true,
+        "rightsProfile": "public_allowed"
+      }
+    },
+    {
+      "id": "drivenets",
+      "name": "DriveNets",
+      "expected": {
+        "companySha256": "b2620900ed3fa66da7a7c1041f33ab0569ce195d3701392a6bfe7635449c5649",
+        "oldLatestFunding": "2026 $410M Series D"
+      },
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$410m",
+        "announcedDate": "2026-06-01",
+        "financingType": "equity",
+        "sourceUrl": "https://drivenets.com/news-and-events/press-release/drivenets-secures-410m-series-d-to-meet-surging-demand-for-ethernet-fabric-in-large-scale-ai-deployments/"
+      },
+      "sourceVintage": "2026-06-01",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-06-01",
+        "sourceUrl": "https://drivenets.com/news-and-events/press-release/drivenets-secures-410m-series-d-to-meet-surging-demand-for-ethernet-fabric-in-large-scale-ai-deployments/",
+        "confidence": "high"
+      },
+      "evidence": {
+        "date": "2026-06-01",
+        "type": "company_release",
+        "url": "https://drivenets.com/news-and-events/press-release/drivenets-secures-410m-series-d-to-meet-surging-demand-for-ethernet-fabric-in-large-scale-ai-deployments/",
+        "confidence": "high",
+        "claimType": "latest_financing",
+        "publicationEligible": true,
+        "rightsProfile": "public_allowed"
+      }
+    },
+    {
+      "id": "parloa",
+      "name": "Parloa",
+      "expected": {
+        "companySha256": "2f496d77ab68b2faa91955e4582e565bbded61750adaf8d2646cb2a4c4f836af",
+        "oldLatestFunding": "2025 $120M Series C"
+      },
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$120m",
+        "announcedDate": "2025-05-06",
+        "financingType": "equity",
+        "sourceUrl": "https://www.parloa.com/parloa-in-the-press/parloa-raises-120m-series-c-to-reinvent-customer-service-with-agentic-ai/"
+      },
+      "sourceVintage": "2025-05-06",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-05-06",
+        "sourceUrl": "https://www.parloa.com/parloa-in-the-press/parloa-raises-120m-series-c-to-reinvent-customer-service-with-agentic-ai/",
+        "confidence": "high"
+      },
+      "evidence": {
+        "date": "2025-05-06",
+        "type": "company_release",
+        "url": "https://www.parloa.com/parloa-in-the-press/parloa-raises-120m-series-c-to-reinvent-customer-service-with-agentic-ai/",
+        "confidence": "high",
+        "claimType": "latest_financing",
+        "publicationEligible": true,
+        "rightsProfile": "public_allowed"
+      },
+      "replacement": {
+        "expectedOldLatestFinancing": {
+          "roundType": "Series C",
+          "amountDisplay": "$120m",
+          "announcedDate": "2025-07-16",
+          "financingType": "equity",
+          "sourceUrl": "https://www.parloa.com/parloa-in-the-press/parloa-raises-120m-series-c-to-reinvent-customer-service-with-agentic-ai/"
+        }
+      }
+    },
+    {
+      "id": "zopa",
+      "name": "Zopa",
+      "expected": {
+        "companySha256": "135924d1c9bbb31b804e4f0ed2dcaded89e21c3ca0112868825f92420504aaa8",
+        "oldLatestFunding": "€82M / $86.8M Dec 2024 equity round led by A.P. Moller Holding; £80M AT1 in 2025"
+      },
+      "latestFinancing": {
+        "roundType": "equity round",
+        "amountDisplay": "$87m",
+        "announcedDate": "2024-12-06",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2024/12/05/zopa-the-uk-neobank-snaps-up-85m-at-a-1b-valuation-eschewing-the-ipo-route/"
+      },
+      "sourceVintage": "2024-12-06",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2024-12-06",
+        "sourceUrl": "https://techcrunch.com/2024/12/05/zopa-the-uk-neobank-snaps-up-85m-at-a-1b-valuation-eschewing-the-ipo-route/",
+        "confidence": "high"
+      },
+      "evidence": {
+        "date": "2024-12-06",
+        "type": "reputable_media",
+        "url": "https://techcrunch.com/2024/12/05/zopa-the-uk-neobank-snaps-up-85m-at-a-1b-valuation-eschewing-the-ipo-route/",
+        "confidence": "high",
+        "claimType": "latest_financing",
+        "publicationEligible": true,
+        "rightsProfile": "public_allowed"
+      }
+    },
+    {
+      "id": "infobip",
+      "name": "Infobip",
+      "expected": {
+        "companySha256": "864be84da01eb1c947e176aec2ae8812aa7bd6dae6ed459d9f81a665be85f897",
+        "oldLatestFunding": "$520M senior secured direct lending facility in Jul 2025; prior $500M direct loan in 2021; €300M OEP investment in 2020"
+      },
+      "latestFinancing": {
+        "roundType": "direct lending facility",
+        "amountDisplay": "$520m",
+        "announcedDate": "2025-07-02",
+        "financingType": "debt",
+        "sourceUrl": "https://www.infobip.com/news/infobip-secures-520m-direct-lending-facility"
+      },
+      "sourceVintage": "2025-07-02",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2025-07-02",
+        "sourceUrl": "https://www.infobip.com/news/infobip-secures-520m-direct-lending-facility",
+        "confidence": "high"
+      },
+      "evidence": {
+        "date": "2025-07-02",
+        "type": "company_release",
+        "url": "https://www.infobip.com/news/infobip-secures-520m-direct-lending-facility",
+        "confidence": "high",
+        "claimType": "latest_financing",
+        "publicationEligible": true,
+        "rightsProfile": "public_allowed"
+      }
+    },
+    {
+      "id": "kpler",
+      "name": "Kpler",
+      "expected": {
+        "companySha256": "af28997182de2bba44ecd9b2642cbc51a0ca841f680fef2ea9e27e6c661b13aa",
+        "oldLatestFunding": ">$1B strategic growth equity investment from Sixth Street in Jun 2026"
+      },
+      "latestFinancing": {
+        "roundType": "strategic growth equity investment",
+        "amountDisplay": ">$1B",
+        "announcedDate": "2026-06-03",
+        "financingType": "equity",
+        "sourceUrl": "https://sixthstreet.com/investment_announce/kpler-announces-strategic-growth-equity-investment-from-sixth-street/"
+      },
+      "sourceVintage": "2026-06-03",
+      "privateStatusBoundary": {
+        "status": "private",
+        "asOf": "2026-06-03",
+        "sourceUrl": "https://sixthstreet.com/investment_announce/kpler-announces-strategic-growth-equity-investment-from-sixth-street/",
+        "confidence": "high"
+      },
+      "evidence": {
+        "date": "2026-06-03",
+        "type": "investor_release",
+        "url": "https://sixthstreet.com/investment_announce/kpler-announces-strategic-growth-equity-investment-from-sixth-street/",
+        "confidence": "high",
+        "claimType": "latest_financing",
+        "publicationEligible": true,
+        "rightsProfile": "public_allowed"
+      }
+    }
+  ]
+}

@@ -24,6 +24,8 @@ TMT_SEED = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch1.json"
 BATCH2_SEED = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch2.json"
 BATCH2_REPLACEMENT = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch2_financing_replacement.json"
 BATCH3_SEED = ROOT / "data" / "connectors" / "tmt_seed_20260802_batch3.json"
+LEGACY_FINANCING_MANIFEST = ROOT / "data" / "migrations" / "legacy_financing_20260802.reviewed.json"
+LEGACY_FINANCING_RECEIPT = ROOT / "data" / "migrations" / "legacy_financing_20260802.receipt.json"
 
 
 def run_json(*args: str, expected: int = 0) -> dict:
@@ -221,12 +223,9 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             self.assertEqual(source_company["sourceVintage"], dated_source["date"])
             self.assertEqual(source_company["privateStatusAsOf"], dated_source["date"])
             self.assertEqual(source_company["evidence"], [dated_source])
-            self.assertEqual(public_company["evidence"], [dated_source])
+            self.assertEqual(public_company["evidence"], [])
             self.assertEqual(source_company["latestFinancing"], record["latestFinancing"])
-            self.assertEqual(public_company["latestFinancing"], record["latestFinancing"])
-            self.assertEqual(set(public_company["latestFinancing"]), {"roundType", "amountDisplay", "announcedDate", "financingType", "sourceUrl"})
-            self.assertEqual(public_company["latestFinancing"]["sourceUrl"], dated_source["url"])
-            self.assertNotIn("valuation", public_company["latestFinancing"])
+            self.assertNotIn("latestFinancing", public_company)
             self.assertNotIn("aliases", public_company)
             self.assertNotIn("tmtFieldEvidence", public_company)
             self.assertEqual(set(public_company["completeness"]), {
@@ -248,9 +247,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
                 "SELECT source_locator,as_of FROM canonical_evidence_items WHERE id NOT LIKE 'evidence_funding_%%' AND organization_id IN (%s)" %
                 ",".join("?" for _ in seed_ids), [f"org_{company_id}" for company_id in sorted(seed_ids)]
             ).fetchall()
-            self.assertEqual(len(seed_evidence), 11)
-            self.assertIn(("https://www.mobihealthnews.com/news/candid-health-raises-120m-ai-revenue-cycle-management-platform", "2026-07-22"), seed_evidence)
-            self.assertIn(("https://www.geekwire.com/2026/stoke-space-350m-added-funding/", "2026-02-10"), seed_evidence)
+            self.assertEqual(seed_evidence, [])
             self.assertFalse(any(urlparse(url).path in ("", "/") for url, _ in seed_evidence))
             latest_rounds = conn.execute(
                 "SELECT announced_date,round_type,amount_display,valuation_display,metadata_json "
@@ -258,7 +255,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
                 ",".join("?" for _ in seed_ids), [f"org_{company_id}" for company_id in sorted(seed_ids)]
             ).fetchall()
             structured = [row for row in latest_rounds if json.loads(row[4] or "{}").get("financingType")]
-            self.assertEqual(len(structured), 11)
+            self.assertEqual(len(structured), 0)
             self.assertTrue(all(row[3] is None for row in structured))
 
         status, v1_state = self.http("/api/state")
@@ -284,10 +281,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             status, detail = self.http("/api/v2/companies/" + record["id"])
             self.assertEqual(status, 200)
             self.assertEqual(detail["data"]["identity"]["name"], record["name"])
-            self.assertEqual(detail["data"]["latestFunding"]["announcedDate"], record["latestFinancing"]["announcedDate"])
-            self.assertEqual(detail["data"]["latestFunding"]["amountDisplay"], record["latestFinancing"]["amountDisplay"])
-            self.assertEqual(detail["data"]["latestFunding"]["financingType"], record["latestFinancing"]["financingType"])
-            self.assertNotIn("valuationDisplay", detail["data"]["latestFunding"])
+            self.assertIsNone(detail["data"]["latestFunding"])
             # The detail alias is the public legacy slug, not a private seed alias.
             self.assertEqual(detail["data"]["aliases"], [record["id"]])
             v2_payloads.append(detail)
@@ -359,14 +353,12 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             self.assertEqual(source_company["privateStatusAsOf"], source["date"])
             self.assertEqual(source_company["privateStatusConfidence"], source["confidence"])
             self.assertEqual(source_company["evidence"], [source])
-            self.assertEqual(public_company["evidence"], [source])
+            self.assertEqual(public_company["evidence"], [])
             for value in [record["name"], *record["aliases"]]:
                 self.assertEqual(identity_owners[identity(value)], {company_id})
 
             self.assertEqual(source_company["latestFinancing"], record["latestFinancing"])
-            self.assertEqual(public_company["latestFinancing"], record["latestFinancing"])
-            self.assertEqual(public_company["completeness"]["financing"], "present")
-            self.assertNotIn("valuation", public_company["latestFinancing"])
+            self.assertNotIn("latestFinancing", public_company)
 
         expected_release_count = len(release_identity_union(state))
         self.assertEqual(len(state["companies"]), expected_release_count)
@@ -398,12 +390,8 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             self.assertEqual(detail["data"]["identity"]["name"], record["name"])
             status, funding = self.http(f"/api/v2/companies/{record['id']}/funding-rounds")
             self.assertEqual(status, 200)
-            self.assertEqual(detail["data"]["latestFunding"]["roundType"], record["latestFinancing"]["roundType"])
-            self.assertEqual(detail["data"]["latestFunding"]["amountDisplay"], record["latestFinancing"]["amountDisplay"])
-            self.assertEqual(detail["data"]["latestFunding"]["announcedDate"], record["latestFinancing"]["announcedDate"])
-            self.assertEqual(detail["data"]["latestFunding"]["financingType"], record["latestFinancing"]["financingType"])
-            self.assertEqual(funding["data"], [detail["data"]["latestFunding"]])
-            self.assertNotIn("valuationDisplay", detail["data"]["latestFunding"])
+            self.assertIsNone(detail["data"]["latestFunding"])
+            self.assertEqual(funding["data"], [])
             v2_payloads.extend((detail, funding))
 
         placeholders = ",".join("?" for _ in seed_ids)
@@ -416,8 +404,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
                 [f"org_{company_id}" for company_id in sorted(seed_ids)],
             ).fetchall()
             structured = [row for row in rounds if json.loads(row[3] or "{}").get("financingType")]
-            self.assertEqual(len(structured), 8)
-            self.assertEqual({row[0].removeprefix("org_") for row in structured}, financing_ids)
+            self.assertEqual(len(structured), 0)
             self.assertTrue(all(row[1] is None and row[2] is None for row in structured))
             public_raw = "\n".join(row[0] for row in conn.execute("SELECT payload_json FROM raw_records"))
 
@@ -502,10 +489,9 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             self.assertEqual(source_company["privateStatusAsOf"], source["date"])
             self.assertEqual(source_company["privateStatusConfidence"], source["confidence"])
             self.assertIn(source, source_company["evidence"])
-            self.assertIn(source, public_company["evidence"])
+            self.assertEqual(public_company["evidence"], [])
             self.assertEqual(source_company["latestFinancing"], record["latestFinancing"])
-            self.assertEqual(public_company["latestFinancing"], record["latestFinancing"])
-            self.assertNotIn("valuation", public_company["latestFinancing"])
+            self.assertNotIn("latestFinancing", public_company)
             for value in [record["name"], *record["aliases"]]:
                 self.assertEqual(identity_owners[identity(value)], {company_id})
 
@@ -572,8 +558,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
                 and row.get("announcedDate") == record["latestFinancing"]["announcedDate"]
                 and row.get("financingType") == record["latestFinancing"]["financingType"]
             )]
-            self.assertEqual(len(batch_rounds), 1)
-            self.assertNotIn("valuationDisplay", batch_rounds[0])
+            self.assertEqual(batch_rounds, [])
             v2_payloads.extend((detail, funding))
 
         placeholders = ",".join("?" for _ in seed_ids)
@@ -586,8 +571,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
                 [f"org_{company_id}" for company_id in sorted(seed_ids)],
             ).fetchall()
             structured = [row for row in rounds if json.loads(row[3] or "{}").get("financingType")]
-            self.assertEqual(len(structured), len(records))
-            self.assertEqual({row[0].removeprefix("org_") for row in structured}, seed_ids)
+            self.assertEqual(len(structured), 0)
             self.assertTrue(all(row[1] is None and row[2] is None for row in structured))
             public_raw = "\n".join(row[0] for row in conn.execute("SELECT payload_json FROM raw_records"))
 
@@ -626,6 +610,80 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         self.assertTrue(replay["summary"]["alreadyApplied"])
         self.assertFalse(replay["mutated"])
         self.assertEqual(replay_state.read_bytes(), applied_bytes)
+
+    def test_02i_legacy_financing_batch_survives_schema_002_without_private_metadata_or_valuations(self):
+        state = json.loads(STATE.read_text(encoding="utf-8"))
+        snapshot = json.loads(self.public_state.read_text(encoding="utf-8"))
+        manifest = json.loads(LEGACY_FINANCING_MANIFEST.read_text(encoding="utf-8"))
+        receipt = json.loads(LEGACY_FINANCING_RECEIPT.read_text(encoding="utf-8"))
+        records = manifest["records"]
+        target_ids = {record["id"] for record in records}
+        state_by_id = {company["id"]: company for company in state["companies"]}
+        public_by_id = {company["id"]: company for company in snapshot["companies"]}
+
+        self.assertEqual(len(records), 8)
+        self.assertEqual(len(target_ids), 8)
+        self.assertEqual(len(state["companies"]), 167)
+        self.assertEqual(len(snapshot["companies"]), 167)
+        self.assertEqual(snapshot["meta"]["publicCompanyCount"], 167)
+        self.assertEqual(self.public_build_receipt["schemaVersion"], "002")
+        self.assertEqual(self.public_build_receipt["publicCompanyCount"], 167)
+        for record in records:
+            source = state_by_id[record["id"]]
+            public = public_by_id[record["id"]]
+            self.assertEqual(source["name"], record["name"])
+            self.assertEqual(source["latestFinancing"], record["latestFinancing"])
+            self.assertEqual(public["latestFinancing"], record["latestFinancing"])
+            self.assertNotIn("valuation", public["latestFinancing"])
+            self.assertNotIn("privateStatusBoundary", public)
+            evidence = next(item for item in source["evidence"] if item.get("url") == record["evidence"]["url"])
+            self.assertEqual(evidence["date"], record["latestFinancing"]["announcedDate"])
+            self.assertEqual(evidence["rightsProfile"], "public_allowed")
+            public_evidence = next(item for item in public["evidence"] if item.get("url") == record["evidence"]["url"])
+            self.assertNotIn("rightsProfile", public_evidence)
+            self.assertNotIn("publicationEligible", public_evidence)
+
+        status, v1 = self.http("/api/state")
+        self.assertEqual(status, 200)
+        self.assertEqual(v1["dashboard"]["total"], 167)
+        status, v2_meta = self.http("/api/v2/meta")
+        self.assertEqual(status, 200)
+        self.assertEqual(v2_meta["schemaVersion"], "002")
+        self.assertEqual(v2_meta["counts"]["companies"], 167)
+        v2_payloads = []
+        for record in records:
+            status, detail = self.http(f"/api/v2/companies/{record['id']}")
+            self.assertEqual(status, 200)
+            latest = detail["data"]["latestFunding"]
+            self.assertEqual(latest["announcedDate"], record["latestFinancing"]["announcedDate"])
+            self.assertEqual(latest["amountDisplay"], record["latestFinancing"]["amountDisplay"])
+            self.assertEqual(latest["financingType"], record["latestFinancing"]["financingType"])
+            self.assertNotIn("valuationDisplay", latest)
+            v2_payloads.append(detail)
+
+        placeholders = ",".join("?" for _ in target_ids)
+        with sqlite3.connect(self.public_db) as conn:
+            self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
+            self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
+            versions = [row[0] for row in conn.execute("SELECT version FROM schema_migrations ORDER BY version")]
+            self.assertEqual(versions[-1], "002")
+            rows = conn.execute(
+                "SELECT organization_id,valuation_display,valuation_currency,pre_money_value,post_money_value,metadata_json "
+                f"FROM canonical_funding_rounds WHERE organization_id IN ({placeholders})",
+                [f"org_{company_id}" for company_id in sorted(target_ids)],
+            ).fetchall()
+            structured = [row for row in rows if json.loads(row[5] or "{}").get("financingType")]
+            self.assertEqual(len(structured), 8)
+            self.assertTrue(all(all(value is None for value in row[1:5]) for row in structured))
+            public_raw = "\n".join(row[0] for row in conn.execute("SELECT payload_json FROM raw_records"))
+
+        public_text = json.dumps({"snapshot": snapshot, "v1": v1, "v2": v2_payloads}, ensure_ascii=False)
+        for marker in (
+            "privateStatusBoundary", "rightsProfile", "publicationEligible", "reviewedBy",
+            manifest["review"]["reviewedBy"], receipt["receiptSha256"], receipt["manifestSha256"],
+        ):
+            self.assertNotIn(marker, public_text)
+            self.assertNotIn(marker, public_raw)
 
     def test_02a_migration_is_additive_on_legacy_database_copy(self):
         legacy_copy = self.tmp / "legacy_pipeline_copy.sqlite"

@@ -22,6 +22,7 @@ const PUBLIC_EVIDENCE_FIELDS = Object.freeze(['type','claimType','url','asOf','d
 const PUBLIC_META_FIELDS = Object.freeze(['title','asOf','schemaVersion','updatedAt','snapshotVersion','lastUpdatedAt','readOnly','writesEnabled']);
 const PUBLIC_FUNDING_FIELDS = Object.freeze(['companyId','date','round','amount','valuation','leadInvestors','participants','url','confidence','companyName','id','financingType']);
 const LATEST_FINANCING_FIELDS = Object.freeze(['roundType','amountDisplay','announcedDate','financingType','sourceUrl']);
+const MAX_LATEST_FINANCING_AGE_DAYS = 730;
 const COMPLETENESS_FIELDS = Object.freeze(['classification','businessModel','customerType','monetization','financing','investors','revenue','evidence','sourceVintage']);
 const URL_FIELDS = new Set(['url','website','sourceUrl']);
 const trustedSnapshots = new WeakMap();
@@ -81,15 +82,27 @@ function allowlistedObject(input, fields) {
   return out;
 }
 
-function projectLatestFinancing(company) {
+function isoDate(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return undefined;
+  const parsed = new Date(`${value}T00:00:00Z`);
+  return Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== value ? undefined : parsed;
+}
+
+function projectLatestFinancing(company, snapshotAsOf) {
   const value = company?.latestFinancing;
   if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
   if (!['equity','debt','mixed','unknown'].includes(value.financingType)) return undefined;
-  if (!value.roundType || !value.amountDisplay || !/^\d{4}-\d{2}-\d{2}$/.test(String(value.announcedDate || ''))) return undefined;
+  const announced = isoDate(value.announcedDate);
+  const asOf = isoDate(snapshotAsOf);
+  if (!value.roundType || !value.amountDisplay || !announced || !asOf) return undefined;
+  const ageDays = (asOf.getTime() - announced.getTime()) / 86400000;
+  if (ageDays < 0 || ageDays > MAX_LATEST_FINANCING_AGE_DAYS) return undefined;
   const sourceUrl = safeHttpUrl(value.sourceUrl);
-  const sourceBound = sourceUrl && (company.evidence || []).some(item =>
-    safeHttpUrl(item.url) === sourceUrl && (item.date || item.asOf) === value.announcedDate
-  );
+  const sourceBound = sourceUrl && (company.evidence || []).some(item => {
+    return safeHttpUrl(item?.url) === sourceUrl && item?.date === value.announcedDate &&
+      item.rightsProfile === 'public_allowed' && item.publicationEligible === true &&
+      item.claimType === 'latest_financing';
+  });
   if (!sourceBound) return undefined;
   const projected = allowlistedObject(value, LATEST_FINANCING_FIELDS);
   return Object.keys(projected).length === LATEST_FINANCING_FIELDS.length ? projected : undefined;
@@ -145,8 +158,11 @@ function projectCompany(company, lifecycleCoverage, options = {}) {
   const publicGaps = (derived.coverageGaps || []).filter(gap => ['stage_precision','public_evidence'].includes(gap));
   const out = allowlistedObject({ ...company, tmtVertical: inferTmtVertical(company), lifecycleStage: derived.stage, lifecycleStageLabel: derived.stageLabel,
     stageConfidence: derived.stageConfidence, coverageGaps: publicGaps }, PUBLIC_COMPANY_FIELDS);
-  out.evidence = (company.evidence || []).map(item => allowlistedObject(item, PUBLIC_EVIDENCE_FIELDS));
-  const financing = projectLatestFinancing(company);
+  out.evidence = (company.evidence || [])
+    .filter(item => item?.rightsProfile === 'public_allowed' && item?.publicationEligible === true &&
+      typeof item?.claimType === 'string' && item.claimType.length > 0)
+    .map(item => allowlistedObject(item, PUBLIC_EVIDENCE_FIELDS));
+  const financing = projectLatestFinancing(company, options.snapshotAsOf);
   if (financing) out.latestFinancing = financing;
   out.completeness = companyCompleteness({ ...company, tmtVertical: out.tmtVertical, evidence: out.evidence }, financing, options.hasFinancing);
   return out;
@@ -158,14 +174,20 @@ function projectState(state, lifecycleCoverage) {
   const knownFundingIds = new Set((state.fundingRounds || []).filter(row =>
     !/coverage_gap|placeholder|待补|待确认|unknown/i.test([row.sourceType,row.round,row.amount].join(' '))
   ).map(row => row.companyId));
-  const companies = (state.companies || []).map(c => projectCompany(c, lifecycleCoverage, { hasFinancing: knownFundingIds.has(c.id) }));
-  const fundingRounds = (state.fundingRounds || []).map(row => allowlistedObject(row, PUBLIC_FUNDING_FIELDS));
+  const companies = (state.companies || []).map(c => projectCompany(c, lifecycleCoverage, {
+    hasFinancing: knownFundingIds.has(c.id), snapshotAsOf: state.meta?.asOf
+  }));
+  let fundingRounds = (state.fundingRounds || []).map(row => allowlistedObject(row, PUBLIC_FUNDING_FIELDS));
   for (const company of companies) {
     const item = company.latestFinancing;
-    if (!item || fundingRounds.some(row => row.companyId === company.id && row.date === item.announcedDate && row.amount === item.amountDisplay)) continue;
+    if (!item) continue;
+    // A reviewed structured financing atomically supersedes legacy prose rows
+    // for the same company/date in the public projection only.
+    fundingRounds = fundingRounds.filter(row => row.companyId !== company.id || row.date !== item.announcedDate);
+    const boundEvidence = (company.evidence || []).find(row => row.url === item.sourceUrl && (row.date || row.asOf) === item.announcedDate);
     fundingRounds.push({ companyId: company.id, companyName: company.name, date: item.announcedDate,
       round: item.roundType, amount: item.amountDisplay, financingType: item.financingType,
-      url: item.sourceUrl, confidence: company.confidence });
+      url: item.sourceUrl, ...((company.confidence || boundEvidence?.confidence) ? { confidence: company.confidence || boundEvidence.confidence } : {}) });
   }
   return { meta: allowlistedObject(state.meta || {}, PUBLIC_META_FIELDS), companies,
     fundingRounds,

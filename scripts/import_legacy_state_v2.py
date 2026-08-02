@@ -138,8 +138,11 @@ def explicit_claim_types(evidence: dict) -> set[str]:
 def expanded_funding_rounds(state: dict) -> list[dict]:
     """Map source-bound structured financing into canonical round input without valuations."""
     rounds = [dict(row) for row in arr(state.get("fundingRounds")) if isinstance(row, dict)]
-    identities = {(clean(row.get("companyId")), clean(row.get("date")), clean(row.get("round")), clean(row.get("amount"))) for row in rounds}
     required = {"roundType", "amountDisplay", "announcedDate", "financingType", "sourceUrl"}
+    try:
+        snapshot_as_of = dt.date.fromisoformat(clean(state.get("meta", {}).get("asOf")))
+    except (TypeError, ValueError):
+        snapshot_as_of = None
     for company in arr(state.get("companies")):
         if not isinstance(company, dict) or not isinstance(company.get("latestFinancing"), dict):
             continue
@@ -148,14 +151,28 @@ def expanded_funding_rounds(state: dict) -> list[dict]:
             continue
         announced = clean(financing.get("announcedDate"))
         source_url = clean(financing.get("sourceUrl"))
+        try:
+            announced_date = dt.date.fromisoformat(announced)
+        except (TypeError, ValueError):
+            continue
+        if snapshot_as_of is None or not 0 <= (snapshot_as_of - announced_date).days <= 730:
+            continue
         source = next((item for item in arr(company.get("evidence")) if isinstance(item, dict)
                        and clean(item.get("url")) == source_url
-                       and clean(item.get("date") or item.get("asOf")) == announced), None)
+                       and clean(item.get("date")) == announced
+                       and item.get("rightsProfile") == "public_allowed"
+                       and item.get("publicationEligible") is True
+                       and item.get("claimType") == "latest_financing"), None)
         if not source:
             continue
-        identity = (clean(company.get("id")), announced, clean(financing.get("roundType")), clean(financing.get("amountDisplay")))
-        if identity in identities:
-            continue
+        company_id = clean(company.get("id"))
+        # Structured, source-bound financing is the reviewed atomic replacement
+        # for same-company/same-date legacy prose rows. The source state remains
+        # unchanged; only canonical/public input is de-duplicated.
+        rounds = [row for row in rounds if not (
+            clean(row.get("companyId")) == company_id and clean(row.get("date")) == announced
+        )]
+        identity = (company_id, announced, clean(financing.get("roundType")), clean(financing.get("amountDisplay")))
         rounds.append({
             "id": f"{identity[0]}-latest-financing-{announced}", "companyId": identity[0],
             "companyName": clean(company.get("name")), "date": announced, "round": identity[2],
@@ -164,7 +181,6 @@ def expanded_funding_rounds(state: dict) -> list[dict]:
             "confidence": clean(source.get("confidence") or company.get("confidence"), "medium"),
             "sourceType": clean(source.get("type"), "media/manual"),
         })
-        identities.add(identity)
     return rounds
 
 
