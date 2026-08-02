@@ -16,13 +16,18 @@ const PUBLIC_COMPANY_FIELDS = Object.freeze([
   'priorityClass','lifecycleStage','lifecycleStageLabel','stageConfidence','coverageGaps',
   'tmtVertical','businessModel','customerType','monetization','sourceVintage','confidence',
   'privateStatus','privateStatusAsOf','privateStatusConfidence','investabilityAccessLane',
-  'classificationMethod','classificationConfidence'
+  'classificationMethod','classificationConfidence','regionalExposure','regionalAccessLane',
+  'regionalExposureAsOf','regionalExposureRights','regionalExposureLineage'
 ]);
 const PUBLIC_EVIDENCE_FIELDS = Object.freeze(['type','claimType','url','asOf','date','confidence']);
 const PUBLIC_META_FIELDS = Object.freeze(['title','asOf','schemaVersion','updatedAt','snapshotVersion','lastUpdatedAt','readOnly','writesEnabled']);
 const PUBLIC_FUNDING_FIELDS = Object.freeze(['companyId','date','round','amount','valuation','leadInvestors','participants','url','confidence','companyName','id','financingType']);
 const LATEST_FINANCING_FIELDS = Object.freeze(['roundType','amountDisplay','announcedDate','financingType','sourceUrl']);
 const MAX_LATEST_FINANCING_AGE_DAYS = 730;
+const REGIONAL_EXPOSURE_TAGS = new Set(['china','taiwan','japan','south_korea','singapore']);
+const REGIONAL_ACCESS_LANES = new Set(['taiwan_market_access','monitor_or_strategic_relationship','relationship_or_local_private','monitor_only']);
+const REGIONAL_RIGHTS = new Set(['public_allowed','sanitized_derived']);
+const REGIONAL_LINEAGE = new Set(['canonical_hq','reviewed_explicit_exposure']);
 const COMPLETENESS_FIELDS = Object.freeze(['classification','businessModel','customerType','monetization','financing','investors','revenue','evidence','sourceVintage']);
 const URL_FIELDS = new Set(['url','website','sourceUrl']);
 const trustedSnapshots = new WeakMap();
@@ -88,6 +93,15 @@ function isoDate(value) {
   return Number.isNaN(parsed.getTime()) || parsed.toISOString().slice(0, 10) !== value ? undefined : parsed;
 }
 
+function evidenceFreshForClaim(item, snapshotAsOf) {
+  if (item?.claimType !== 'private_status') return true;
+  const evidenceDate = isoDate(item.date || item.asOf);
+  const asOf = isoDate(snapshotAsOf);
+  if (!evidenceDate || !asOf) return false;
+  const ageDays = (asOf.getTime() - evidenceDate.getTime()) / 86400000;
+  return ageDays >= 0 && ageDays <= 730;
+}
+
 function projectLatestFinancing(company, snapshotAsOf) {
   const value = company?.latestFinancing;
   if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
@@ -106,6 +120,21 @@ function projectLatestFinancing(company, snapshotAsOf) {
   if (!sourceBound) return undefined;
   const projected = allowlistedObject(value, LATEST_FINANCING_FIELDS);
   return Object.keys(projected).length === LATEST_FINANCING_FIELDS.length ? projected : undefined;
+}
+
+function projectRegionalExposure(company, snapshotAsOf) {
+  const value = company?.regionalExposureProfile;
+  if (!value || typeof value !== 'object' || Array.isArray(value) ||
+      Object.keys(value).sort().join(',') !== 'accessLane,asOf,lineage,publicationEligible,rightsProfile,tags') return undefined;
+  if (!Array.isArray(value.tags) || !value.tags.length || new Set(value.tags).size !== value.tags.length ||
+      !value.tags.every(tag => REGIONAL_EXPOSURE_TAGS.has(tag)) || !REGIONAL_ACCESS_LANES.has(value.accessLane) ||
+      !REGIONAL_RIGHTS.has(value.rightsProfile) || !REGIONAL_LINEAGE.has(value.lineage) || value.publicationEligible !== true) return undefined;
+  const exposureDate = isoDate(value.asOf), asOf = isoDate(snapshotAsOf);
+  if (!exposureDate || !asOf) return undefined;
+  const ageDays = (asOf.getTime() - exposureDate.getTime()) / 86400000;
+  if (ageDays < 0 || ageDays > 730) return undefined;
+  return { regionalExposure: [...value.tags], regionalAccessLane: value.accessLane, regionalExposureAsOf: value.asOf,
+    regionalExposureRights: value.rightsProfile, regionalExposureLineage: value.lineage };
 }
 
 function completenessStatus(value, unknown = () => false) {
@@ -156,11 +185,12 @@ function snapshotReceipt(state) { return trustedSnapshots.get(state) || null; }
 function projectCompany(company, lifecycleCoverage, options = {}) {
   const derived = lifecycleCoverage(company);
   const publicGaps = (derived.coverageGaps || []).filter(gap => ['stage_precision','public_evidence'].includes(gap));
-  const out = allowlistedObject({ ...company, tmtVertical: inferTmtVertical(company), lifecycleStage: derived.stage, lifecycleStageLabel: derived.stageLabel,
+  const regional = projectRegionalExposure(company, options.snapshotAsOf) || {};
+  const out = allowlistedObject({ ...company, ...regional, tmtVertical: inferTmtVertical(company), lifecycleStage: derived.stage, lifecycleStageLabel: derived.stageLabel,
     stageConfidence: derived.stageConfidence, coverageGaps: publicGaps }, PUBLIC_COMPANY_FIELDS);
   out.evidence = (company.evidence || [])
     .filter(item => item?.rightsProfile === 'public_allowed' && item?.publicationEligible === true &&
-      typeof item?.claimType === 'string' && item.claimType.length > 0)
+      typeof item?.claimType === 'string' && item.claimType.length > 0 && evidenceFreshForClaim(item, options.snapshotAsOf))
     .map(item => allowlistedObject(item, PUBLIC_EVIDENCE_FIELDS));
   const financing = projectLatestFinancing(company, options.snapshotAsOf);
   if (financing) out.latestFinancing = financing;
@@ -211,4 +241,4 @@ function projectFunding(row) { return allowlistedObject(row, PUBLIC_FUNDING_FIEL
 module.exports = { PUBLIC_COMPANY_FIELDS, PUBLIC_EVIDENCE_FIELDS, PUBLIC_META_FIELDS, PUBLIC_FUNDING_FIELDS,
   projectCompany, projectState, projectFunding, snapshotReceipt, immutableSnapshotVersion, markTrustedSnapshot,
   buildPublicSnapshot, cleanScalar, safeHttpUrl, canonicalJson, projectLatestFinancing, companyCompleteness,
-  completenessMetrics, COMPLETENESS_FIELDS };
+  completenessMetrics, COMPLETENESS_FIELDS, projectRegionalExposure };

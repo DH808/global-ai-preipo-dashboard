@@ -13,6 +13,9 @@ import sys
 from pathlib import Path
 
 PUBLIC_RIGHTS = frozenset({"sanitized_derived", "public_allowed"})
+REGIONAL_TAGS = frozenset({"china", "taiwan", "japan", "south_korea", "singapore"})
+REGIONAL_LANES = frozenset({"taiwan_market_access", "monitor_or_strategic_relationship", "relationship_or_local_private", "monitor_only"})
+REGIONAL_LINEAGE = frozenset({"canonical_hq", "reviewed_explicit_exposure"})
 
 
 def now() -> str:
@@ -88,6 +91,28 @@ class PublicProjectionPolicy:
 
     def organization_visible(self, org: sqlite3.Row) -> bool:
         return bool(self.field_value(org, "identity.canonicalName", "canonical_name"))
+
+    def regional_exposure(self, org: sqlite3.Row) -> dict | None:
+        if not self.source_public(org["source_record_id"]):
+            return None
+        row = self.conn.execute("SELECT payload_json FROM raw_records WHERE id=?", (org["source_record_id"],)).fetchone()
+        try:
+            payload = json.loads(row[0]) if row else {}
+            tags = payload["regionalExposure"]
+            lane, as_of = payload["regionalAccessLane"], payload["regionalExposureAsOf"]
+            rights, lineage = payload["regionalExposureRights"], payload["regionalExposureLineage"]
+            parsed = dt.date.fromisoformat(as_of)
+        except (KeyError, TypeError, ValueError, json.JSONDecodeError):
+            return None
+        if not isinstance(tags, list) or not tags or len(tags) != len(set(tags)) or not set(tags) <= REGIONAL_TAGS:
+            return None
+        if lane not in REGIONAL_LANES or rights not in PUBLIC_RIGHTS or lineage not in REGIONAL_LINEAGE:
+            return None
+        age = (dt.datetime.now(dt.timezone.utc).date() - parsed).days
+        if age < 0 or age > 730:
+            return None
+        return {"regionalExposure": tags, "regionalAccessLane": lane, "regionalExposureAsOf": as_of,
+                "regionalExposureRights": rights, "regionalExposureLineage": lineage}
 
     def resolve_public_org(self, identifier: str) -> sqlite3.Row:
         candidates = self.conn.execute("""
@@ -196,6 +221,9 @@ class PublicProjectionPolicy:
                           "coverageGaps": (["stage_precision"] if stage == "stage_unverified" else [])},
             "recordVersion": org["record_version"], "updatedAt": org["updated_at"],
         }
+        regional = self.regional_exposure(org)
+        if regional:
+            dto.update(regional)
         if detail:
             dto["aliases"] = [self.safe_text(r[0]) for r in self.conn.execute("""
               SELECT alias FROM organization_aliases WHERE organization_id=? AND source_record_id IN (
@@ -253,6 +281,8 @@ def query(conn: sqlite3.Connection, operation: str, args: dict) -> dict:
             searchable = " ".join(str(v or "") for v in dto["identity"].values()).casefold()
             if term and term not in searchable: continue
             if args.get("region") and dto["identity"].get("region") != args["region"]: continue
+            if args.get("regionalExposure") and args["regionalExposure"] not in dto.get("regionalExposure", []): continue
+            if args.get("asiaPriority") == "1" and not dto.get("regionalExposure"): continue
             if args.get("status") and dto["identity"].get("status") != args["status"]: continue
             if args.get("stage") and dto["lifecycle"]["stage"] != args["stage"]: continue
             rows.append(dto)

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0.0",
+  "profileId": "asia-tmt-expansion-v1",
+  "asOf": "2026-08-02",
+  "expectedPostCompanyCount": 171,
+  "expectedResult": {"created": 4, "matched": 1},
+  "replacement": {
+    "schemaVersion": "1.0.0",
+    "operation": "replace-applied-asia-import",
+    "supersededReceipt": {"applicationSha256": "992e30790954e7dfe4501857b161a3d19d99a0a200fdcc919cc1c33983afe852", "schemaVersion": "1.0.0", "profileId": "asia-tmt-expansion-v1", "asOf": "2026-08-02", "recordCount": 5, "created": 4, "matched": 1},
+    "expectedPreReplacement": {"companyCount": 171, "stateBusinessSha256": "31cdda814580c6253ee04985dc20e06c469be3148da650390fd7aba6d01b5932"},
+    "removeCreatedCompany": {"id": "toss", "replacementId": "viva-republica", "sha256": "ca269f2ed26ea563631f4f90aac25b6d2e9dfb7f9ae04ad0a6533844c825fa26"},
+    "guardedFieldReplacements": [
+      {"id": "moonshot-ai", "field": "businessModel", "from": "Subscription", "to": "Usage-based"},
+      {"id": "moonshot-ai", "field": "customerType", "from": "B2C", "to": "Mixed"},
+      {"id": "moonshot-ai", "field": "monetization", "from": ["Other"], "to": ["Subscription", "Usage-based"]},
+      {"id": "moonshot-ai", "field": "latestFinancing", "from": {"roundType": "financing", "amountDisplay": "$2b", "announcedDate": "2026-05-07", "financingType": "equity", "sourceUrl": "https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/"}, "to": {"roundType": "financing", "amountDisplay": "about $2B", "announcedDate": "2026-05-07", "financingType": "equity", "sourceUrl": "https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/"}},
+      {"id": "pixverse", "field": "businessModel", "from": "Subscription", "to": "Usage-based"},
+      {"id": "pixverse", "field": "monetization", "from": ["Subscription"], "to": ["Usage-based"]},
+      {"id": "layerx", "field": "monetization", "from": ["Subscription"], "to": ["Other"]}
+    ]
+  },
+  "review": {
+    "status": "approved",
+    "reviewedBy": "Hermes Asia source-gate",
+    "reviewedAt": "2026-08-02T12:00:00+08:00"
+  },
+  "records": [
+    {
+      "id": "moonshot-ai",
+      "name": "Moonshot AI / 月之暗面",
+      "aliases": ["Moonshot AI", "月之暗面"],
+      "headquartersCountry": "China",
+      "regionalExposure": ["china"],
+      "regionalAccessLane": "monitor_or_strategic_relationship",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Usage-based",
+      "customerType": "Mixed",
+      "monetization": ["Subscription", "Usage-based"],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-05-07",
+      "sources": [{
+        "url": "https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/",
+        "date": "2026-05-07", "type": "reputable_media", "confidence": "high",
+        "rightsProfile": "public_allowed", "publicationEligible": true,
+        "claimTypes": ["company_profile", "private_status", "regional_exposure", "latest_financing"]
+      }],
+      "confidence": "high",
+      "privateStatusBoundary": {"status": "private", "asOf": "2026-05-07", "sourceUrl": "https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/", "confidence": "high"},
+      "sector": "Artificial intelligence",
+      "subSector": "Foundation models and AI assistants",
+      "companyDescription": "中国基础模型与AI助手开发商，面向个人用户提供生成式AI产品。",
+      "latestFinancing": {"roundType": "financing", "amountDisplay": "about $2B", "announcedDate": "2026-05-07", "financingType": "equity", "sourceUrl": "https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/"}
+    },
+    {
+      "id": "pixverse", "name": "PixVerse", "aliases": [], "headquartersCountry": "Singapore",
+      "regionalExposure": ["singapore"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Consumer Internet/Media/Gaming", "businessModel": "Usage-based", "customerType": "Mixed", "monetization": ["Usage-based"],
+      "lifecycleStage": "growth_late_stage", "sourceVintage": "2026-07-13",
+      "sources": [{"url": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b/", "date": "2026-07-13", "type": "reputable_media", "confidence": "high", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure", "latest_financing"]}],
+      "confidence": "high", "privateStatusBoundary": {"status": "private", "asOf": "2026-07-13", "sourceUrl": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b/", "confidence": "high"},
+      "sector": "Generative media", "subSector": "AI video generation", "companyDescription": "新加坡AI视频生成平台，服务个人创作者及商业内容工作流。",
+      "latestFinancing": {"roundType": "Series C extension", "amountDisplay": "$439m total", "announcedDate": "2026-07-13", "financingType": "equity", "sourceUrl": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b/"}
+    },
+    {
+      "id": "layerx", "name": "LayerX", "aliases": [], "headquartersCountry": "Japan",
+      "regionalExposure": ["japan"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Enterprise Software", "businessModel": "SaaS", "customerType": "B2B", "monetization": ["Other"],
+      "lifecycleStage": "series_a_b", "sourceVintage": "2025-09-01",
+      "sources": [{"url": "https://techcrunch.com/2025/09/01/layerx-uses-ai-to-cut-enterprise-back-office-workload-scores-100m-in-series-b/", "date": "2025-09-01", "type": "reputable_media", "confidence": "high", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure", "latest_financing"]}],
+      "confidence": "high", "privateStatusBoundary": {"status": "private", "asOf": "2025-09-01", "sourceUrl": "https://techcrunch.com/2025/09/01/layerx-uses-ai-to-cut-enterprise-back-office-workload-scores-100m-in-series-b/", "confidence": "high"},
+      "sector": "Enterprise Software", "subSector": "AI back-office automation", "companyDescription": "日本企业AI SaaS公司，以自动化财务及后台工作流降低人工处理负担。",
+      "latestFinancing": {"roundType": "Series B", "amountDisplay": "$100m", "announcedDate": "2025-09-01", "financingType": "equity", "sourceUrl": "https://techcrunch.com/2025/09/01/layerx-uses-ai-to-cut-enterprise-back-office-workload-scores-100m-in-series-b/"}
+    },
+    {
+      "id": "moloco", "name": "Moloco", "aliases": [], "headquartersCountry": "United States",
+      "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Data/Analytics", "businessModel": "Advertising", "customerType": "B2B", "monetization": ["Advertising"],
+      "lifecycleStage": "growth_late_stage", "sourceVintage": "2024-08-31",
+      "sources": [{"url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"]}],
+      "confidence": "medium", "privateStatusBoundary": {"status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30"},
+      "sector": "Advertising technology", "subSector": "Machine-learning advertising optimization", "companyDescription": "韩国创立、美国总部的广告技术公司，为应用及商业平台提供机器学习驱动的广告优化。"
+    },
+    {
+      "id": "viva-republica", "name": "Viva Republica", "aliases": ["Toss"], "headquartersCountry": "South Korea",
+      "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Fintech/Payments/Insurtech", "businessModel": "Transactional", "customerType": "Mixed", "monetization": ["Other"],
+      "lifecycleStage": "growth_late_stage", "sourceVintage": "2024-08-31",
+      "sources": [{"url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"]}],
+      "confidence": "medium", "privateStatusBoundary": {"status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30"},
+      "sector": "Financial technology", "subSector": "Consumer financial super-app", "companyDescription": "首尔金融科技公司，运营覆盖支付、银行及其他金融服务的Toss平台。"
+    }
+  ]
+}

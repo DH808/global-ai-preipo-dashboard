@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://private-investment-os.local/data/connectors/asia_tmt_seed.schema.json",
+  "title": "Reviewed Asia TMT expansion seed",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "profileId", "asOf", "expectedPostCompanyCount", "expectedResult", "replacement", "review", "records"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "profileId": {"const": "asia-tmt-expansion-v1"},
+    "asOf": {"type": "string", "format": "date"},
+    "expectedPostCompanyCount": {"const": 171},
+    "expectedResult": {
+      "type": "object", "additionalProperties": false,
+      "required": ["created", "matched"],
+      "properties": {"created": {"const": 4}, "matched": {"const": 1}}
+    },
+    "replacement": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schemaVersion", "operation", "supersededReceipt", "expectedPreReplacement", "removeCreatedCompany", "guardedFieldReplacements"],
+      "properties": {
+        "schemaVersion": {"const": "1.0.0"},
+        "operation": {"const": "replace-applied-asia-import"},
+        "supersededReceipt": {
+          "type": "object", "additionalProperties": false,
+          "required": ["applicationSha256", "schemaVersion", "profileId", "asOf", "recordCount", "created", "matched"],
+          "properties": {
+            "applicationSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "schemaVersion": {"const": "1.0.0"}, "profileId": {"const": "asia-tmt-expansion-v1"},
+            "asOf": {"const": "2026-08-02"}, "recordCount": {"const": 5}, "created": {"const": 4}, "matched": {"const": 1}
+          }
+        },
+        "expectedPreReplacement": {
+          "type": "object", "additionalProperties": false,
+          "required": ["companyCount", "stateBusinessSha256"],
+          "properties": {"companyCount": {"const": 171}, "stateBusinessSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+        },
+        "removeCreatedCompany": {
+          "type": "object", "additionalProperties": false,
+          "required": ["id", "replacementId", "sha256"],
+          "properties": {"id": {"const": "toss"}, "replacementId": {"const": "viva-republica"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+        },
+        "guardedFieldReplacements": {
+          "type": "array", "minItems": 1,
+          "items": {"type": "object", "additionalProperties": false, "required": ["id", "field", "from", "to"], "properties": {"id": {"type": "string"}, "field": {"type": "string"}, "from": {}, "to": {}}}
+        }
+      }
+    },
+    "review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "reviewedBy", "reviewedAt"],
+      "properties": {
+        "status": {"const": "approved"},
+        "reviewedBy": {"type": "string", "minLength": 1},
+        "reviewedAt": {"type": "string", "format": "date-time"}
+      }
+    },
+    "records": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "name", "aliases", "headquartersCountry", "regionalExposure", "regionalAccessLane", "tmtVertical", "businessModel", "customerType", "monetization", "lifecycleStage", "sourceVintage", "sources", "confidence", "privateStatusBoundary"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+          "name": {"type": "string", "minLength": 1, "maxLength": 200},
+          "aliases": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 200}},
+          "headquartersCountry": {"enum": ["China", "Taiwan", "Japan", "South Korea", "Singapore", "United States"]},
+          "regionalExposure": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["china", "taiwan", "japan", "south_korea", "singapore"]}},
+          "regionalAccessLane": {"enum": ["taiwan_market_access", "monitor_or_strategic_relationship", "relationship_or_local_private", "monitor_only"]},
+          "tmtVertical": {"enum": ["AI/Cloud/Semiconductor Infrastructure", "Enterprise Software", "Data/Analytics", "Cybersecurity/Identity", "Fintech/Payments/Insurtech", "Commerce/Marketplaces", "Consumer Internet/Media/Gaming", "Digital Health", "Climate/Industrial Tech", "Space/Communications", "Robotics/Mobility", "Other"]},
+          "businessModel": {"enum": ["SaaS", "Usage-based", "Transactional", "Marketplace", "Advertising", "Subscription", "Hardware", "Hardware + Software", "Licensing", "Services", "Project-based", "Other"]},
+          "customerType": {"enum": ["B2B", "B2C", "B2B2C", "B2G", "Mixed", "Other"]},
+          "monetization": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["Subscription", "Usage-based", "Transaction fees", "Take rate", "Advertising", "Licensing", "Hardware sales", "Services", "Insurance premium", "Interest/net interest", "Other"]}},
+          "lifecycleStage": {"enum": ["formation_pre_seed", "seed", "series_a_b", "growth_late_stage", "pre_ipo", "secondary_tender", "crossover_pipe_strategic", "project_finance"]},
+          "sourceVintage": {"type": "string", "format": "date"},
+          "confidence": {"enum": ["low", "medium", "high"]},
+          "sector": {"type": "string", "maxLength": 200},
+          "subSector": {"type": "string", "maxLength": 200},
+          "companyDescription": {"type": "string", "maxLength": 500},
+          "latestFinancing": {
+            "type": "object", "additionalProperties": false,
+            "required": ["roundType", "amountDisplay", "announcedDate", "financingType", "sourceUrl"],
+            "properties": {
+              "roundType": {"type": "string", "minLength": 1, "maxLength": 100},
+              "amountDisplay": {"type": "string", "minLength": 1, "maxLength": 100},
+              "announcedDate": {"type": "string", "format": "date"},
+              "financingType": {"enum": ["equity", "debt", "mixed", "unknown"]},
+              "sourceUrl": {"type": "string", "format": "uri", "pattern": "^https?://"}
+            }
+          },
+          "privateStatusBoundary": {
+            "type": "object", "additionalProperties": false,
+            "required": ["status", "asOf", "sourceUrl", "confidence"],
+            "properties": {
+              "status": {"const": "private"}, "asOf": {"type": "string", "format": "date"},
+              "sourceUrl": {"type": "string", "format": "uri", "pattern": "^https?://"},
+              "confidence": {"enum": ["medium", "high"]},
+              "verificationDue": {"type": "string", "format": "date"}
+            }
+          },
+          "sources": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["url", "date", "type", "confidence", "rightsProfile", "publicationEligible", "claimTypes"],
+              "properties": {
+                "url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+                "date": {"type": "string", "format": "date"},
+                "type": {"enum": ["official", "regulatory", "company_release", "reputable_media", "investor_release"]},
+                "confidence": {"enum": ["low", "medium", "high"]},
+                "rightsProfile": {"const": "public_allowed"},
+                "publicationEligible": {"const": true},
+                "claimTypes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["company_profile", "private_status", "regional_exposure", "latest_financing"]}}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -9,7 +9,7 @@
 <body>
   <header class="topbar pipeline-topbar">
     <div>
-      <div class="eyebrow">North America first · Full private-company lifecycle</div>
+      <div class="eyebrow">North America + Asia priority · Full private-company lifecycle</div>
       <h1>Private Investment Opportunity OS</h1>
       <p>从 formation 到 Pre-IPO、二级份额和战略交易；按阶段浏览公开投融资信息。</p>
     </div>
@@ -22,6 +22,7 @@
     <section class="panel controls pipeline-controls table-first-controls">
       <input id="search" placeholder="搜索公司、投资人、地区、技术层：Databricks / NVIDIA / photonic..." />
       <select id="region"><option value="">全部地区</option></select>
+      <select id="regionalExposure"><option value="">全部亚洲市场</option></select>
       <select id="tmtVertical"><option value="">全部 TMT 垂直</option></select>
       <select id="sector"><option value="">全部细分赛道</option></select>
       <select id="label"><option value="">全部优先级</option></select>
@@ -30,7 +31,7 @@
     </section>
 
     <section class="panel coverage-matrix-panel" aria-labelledby="coverageMatrixTitle">
-      <div class="section-head compact-head"><div><div class="section-title" id="coverageMatrixTitle">TMT 覆盖矩阵</div><div class="sub">当前筛选结果按 canonical vertical × lifecycle 展示；0 表示待覆盖，不代表公司不存在。</div></div><span class="pill blue">North America presets</span></div>
+      <div class="section-head compact-head"><div><div class="section-title" id="coverageMatrixTitle">TMT 覆盖矩阵</div><div class="sub">当前筛选结果按 canonical vertical × lifecycle 及 Asia market × vertical 展示；0 表示待覆盖，不代表公司不存在。</div></div><span class="pill blue">North America / Asia Priority presets</span></div>
       <div id="coverageMatrix" class="coverage-matrix-wrap"></div>
     </section>
 

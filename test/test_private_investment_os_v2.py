@@ -43,12 +43,13 @@ def release_identity_union(state: dict) -> set[str]:
     """Return canonical IDs in the normalization baseline plus every seed batch."""
     seed_files = sorted((ROOT / "data" / "connectors").glob("tmt_seed_20260802_batch[0-9].json"))
     seed_batches = [json.loads(path.read_text(encoding="utf-8"))["records"] for path in seed_files]
+    asia_records = json.loads((ROOT / "data" / "connectors" / "asia_tmt_seed_20260802.json").read_text(encoding="utf-8"))["records"]
     legacy_ids = {
         company["id"] for company in state["companies"]
         if company.get("classificationMethod") == "deterministic_legacy_mapping"
     }
     baseline_ids = legacy_ids | {record["id"] for record in seed_batches[0]}
-    seed_ids = {record["id"] for records in seed_batches for record in records}
+    seed_ids = {record["id"] for records in [*seed_batches, asia_records] for record in records}
     return baseline_ids | seed_ids
 
 
@@ -623,11 +624,11 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
 
         self.assertEqual(len(records), 8)
         self.assertEqual(len(target_ids), 8)
-        self.assertEqual(len(state["companies"]), 167)
-        self.assertEqual(len(snapshot["companies"]), 167)
-        self.assertEqual(snapshot["meta"]["publicCompanyCount"], 167)
+        self.assertEqual(len(state["companies"]), 171)
+        self.assertEqual(len(snapshot["companies"]), 171)
+        self.assertEqual(snapshot["meta"]["publicCompanyCount"], 171)
         self.assertEqual(self.public_build_receipt["schemaVersion"], "002")
-        self.assertEqual(self.public_build_receipt["publicCompanyCount"], 167)
+        self.assertEqual(self.public_build_receipt["publicCompanyCount"], 171)
         for record in records:
             source = state_by_id[record["id"]]
             public = public_by_id[record["id"]]
@@ -645,11 +646,11 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
 
         status, v1 = self.http("/api/state")
         self.assertEqual(status, 200)
-        self.assertEqual(v1["dashboard"]["total"], 167)
+        self.assertEqual(v1["dashboard"]["total"], 171)
         status, v2_meta = self.http("/api/v2/meta")
         self.assertEqual(status, 200)
         self.assertEqual(v2_meta["schemaVersion"], "002")
-        self.assertEqual(v2_meta["counts"]["companies"], 167)
+        self.assertEqual(v2_meta["counts"]["companies"], 171)
         v2_payloads = []
         for record in records:
             status, detail = self.http(f"/api/v2/companies/{record['id']}")

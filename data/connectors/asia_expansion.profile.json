@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "profileId": "asia-tmt-expansion-v1",
+  "canonicalHeadquarters": {
+    "China": "china",
+    "Taiwan": "taiwan",
+    "Japan": "japan",
+    "South Korea": "south_korea",
+    "Singapore": "singapore"
+  },
+  "regionalExposureTags": [
+    "china",
+    "taiwan",
+    "japan",
+    "south_korea",
+    "singapore"
+  ],
+  "regionalAccessLanes": [
+    "taiwan_market_access",
+    "monitor_or_strategic_relationship",
+    "relationship_or_local_private",
+    "monitor_only"
+  ],
+  "deterministicBackfill": {
+    "China": "monitor_or_strategic_relationship",
+    "Taiwan": "taiwan_market_access",
+    "Japan": "relationship_or_local_private",
+    "South Korea": "relationship_or_local_private"
+  },
+  "publicProjection": {
+    "allowedRightsProfiles": ["public_allowed", "sanitized_derived"],
+    "maxFreshnessDays": 730,
+    "allowedLineage": ["canonical_hq", "reviewed_explicit_exposure"]
+  }
+}

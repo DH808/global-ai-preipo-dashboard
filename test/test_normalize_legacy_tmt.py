@@ -84,7 +84,8 @@ class NormalizeLegacyTmtTests(unittest.TestCase):
         legacy = [c for c in state["companies"] if c.get("classificationMethod") == "deterministic_legacy_mapping"]
         seed_files = sorted((ROOT / "data" / "connectors").glob("tmt_seed_20260802_batch[0-9].json"))
         seed_batches = [json.loads(seed_file.read_text(encoding="utf-8"))["records"] for seed_file in seed_files]
-        seed_records = [record for batch in seed_batches for record in batch]
+        asia_records = json.loads((ROOT / "data" / "connectors" / "asia_tmt_seed_20260802.json").read_text(encoding="utf-8"))["records"]
+        seed_records = [record for batch in seed_batches for record in batch] + asia_records
         reviewed_ids = {record["id"] for record in seed_records}
         reviewed = [c for c in state["companies"] if c.get("id") in reviewed_ids]
         state_ids = {c["id"] for c in state["companies"]}

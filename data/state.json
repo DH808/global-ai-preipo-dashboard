@@ -8,7 +8,7 @@
     "asOf": "2026-08-02",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-08-02T05:33:32Z",
+    "updatedAt": "2026-08-02T12:00:00+08:00",
     "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue. Added EMEA ECM screenshot-derived private/pre-IPO opportunities: Starling Bank, Trade Republic, Zopa, Bitdefender, Bolt, Celonis, Doctolib, ElevenLabs enrichment, GetYourGuide, Infobip, Kpler, Kraken Technology; public-source enriched with valuation/funding/metrics caveats. Added second EMEA ECM screenshot batch covering Legora, Lendable, Mews, Mirakl, Multiverse Computing, n8n, Nord Security, Odoo, OQC, Personio, Poolside, Qonto, Quantexa, Thought Machine, Trendyol, Wayve, CMR Surgical, Huma, Medical Microinstruments, Owkin; patched Kraken, Lovable, Mistral AI, Synthesia.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
     "uiVersion": "public-2026-06-20",
@@ -158,6 +158,22 @@
         "changeSetSha256": "02fb12ed609f63fc20729e225978d57da32986d1a08cd08a231c9c1e6d1d5e00",
         "receiptSha256": "6f7bde29653ef6711e75bf4646752cda50454027fcef3a803aeb7fb254fe1d91"
       }
+    ],
+    "asiaSeedImports": [
+      {
+        "applicationSha256": "2aa1c3fd9661a3dfe29000646bb592e69a2dc4de9d33c50ffc50098afa74b68e",
+        "schemaVersion": "1.0.0",
+        "profileId": "asia-tmt-expansion-v1",
+        "asOf": "2026-08-02",
+        "recordCount": 5,
+        "created": 4,
+        "matched": 1,
+        "expectedPostCompanyCount": 171,
+        "stateBusinessSha256": "bdf49735071c17123055194e53914e020be3262bed04affc67291e042e215dde",
+        "identityGraphSha256": "366259794f69583c785a479080c18d375fcde7555a5b10928e719c4ced798f20",
+        "replacesApplicationSha256": "992e30790954e7dfe4501857b161a3d19d99a0a200fdcc919cc1c33983afe852",
+        "receiptSha256": "1ddb66294640fa029f362bf3a5144578263fed17979328b1f260e26d7409379f"
+      }
     ]
   },
   "companies": [
@@ -292,7 +308,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "furiosaai",
@@ -397,7 +423,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "deepx",
@@ -487,7 +523,17 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "upstage",
@@ -581,7 +627,17 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "panmnesia",
@@ -685,7 +741,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "nota-ai",
@@ -770,7 +836,17 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "sakana-ai",
@@ -862,7 +938,17 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "japan"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "preferred-networks",
@@ -971,6 +1057,16 @@
         "asOf": "2025-04-30",
         "sourceUrl": "https://www.preferred.jp/en/news/pr20250430/",
         "confidence": "high"
+      },
+      "regionalExposureProfile": {
+        "tags": [
+          "japan"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
       }
     },
     {
@@ -1568,7 +1664,17 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "china"
+        ],
+        "accessLane": "monitor_or_strategic_relationship",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "moonshot-ai",
@@ -1609,6 +1715,15 @@
           "type": "media",
           "note": "Bloomberg/SCMP/TechCrunch clusters: Moonshot valued around $18-20B and considering HK IPO.",
           "url": "https://news.google.com/"
+        },
+        {
+          "url": "https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/",
+          "date": "2026-05-07",
+          "type": "reputable_media",
+          "confidence": "high",
+          "claimType": "latest_financing",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
         }
       ],
       "notes": "v2 expanded seed from prior two-round research; verify before IC use.",
@@ -1649,13 +1764,41 @@
       "keyMetrics": [],
       "readinessLabel": "C：Needs data-room proof",
       "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
-      "businessModel": "Other",
-      "customerType": "Other",
+      "businessModel": "Usage-based",
+      "customerType": "Mixed",
       "monetization": [
-        "Other"
+        "Subscription",
+        "Usage-based"
       ],
-      "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "high",
+      "regionalExposureProfile": {
+        "tags": [
+          "china"
+        ],
+        "accessLane": "monitor_or_strategic_relationship",
+        "asOf": "2026-05-07",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "aliases": [
+        "Moonshot AI",
+        "月之暗面"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "latestFinancing": {
+        "roundType": "financing",
+        "amountDisplay": "about $2B",
+        "announcedDate": "2026-05-07",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/05/07/chinas-moonshot-ai-raises-2b-at-20b-valuation-as-demand-for-open-source-ai-skyrockets/"
+      },
+      "sourceVintage": "2026-05-07",
+      "confidence": "high",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-05-07",
+      "privateStatusConfidence": "high"
     },
     {
       "id": "cohere",
@@ -4730,7 +4873,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "aniai",
@@ -4900,7 +5053,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "mobilint",
@@ -4984,7 +5147,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "higgsfield",
@@ -7537,7 +7710,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "hermes-testing",
@@ -7652,7 +7835,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "asrock-industrial",
@@ -7768,7 +7961,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "climax-technology",
@@ -7884,7 +8087,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "taiwan-ai-cloud",
@@ -7978,7 +8191,17 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "xalloy",
@@ -8090,7 +8313,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "jtpc",
@@ -8202,7 +8435,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "yesiang",
@@ -8315,7 +8558,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "mg-cooling",
@@ -8407,7 +8660,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "best-oeic",
@@ -8501,7 +8764,17 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "regionalExposureProfile": {
+        "tags": [
+          "taiwan"
+        ],
+        "accessLane": "taiwan_market_access",
+        "asOf": "2026-08-02",
+        "rightsProfile": "sanitized_derived",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      }
     },
     {
       "id": "weka",
@@ -17132,6 +17405,208 @@
       "privateStatus": "private",
       "privateStatusAsOf": "2026-06-05",
       "privateStatusConfidence": "high"
+    },
+    {
+      "id": "pixverse",
+      "name": "PixVerse",
+      "status": "private",
+      "country": "Singapore",
+      "region": "Singapore",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b/",
+          "date": "2026-07-13",
+          "type": "reputable_media",
+          "confidence": "high",
+          "claimType": "latest_financing",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "regionalExposureProfile": {
+        "tags": [
+          "singapore"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-07-13",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "high",
+      "tmtVertical": "Consumer Internet/Media/Gaming",
+      "businessModel": "Usage-based",
+      "customerType": "Mixed",
+      "monetization": [
+        "Usage-based"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sector": "Generative media",
+      "subSector": "AI video generation",
+      "companyDescription": "新加坡AI视频生成平台，服务个人创作者及商业内容工作流。",
+      "latestFinancing": {
+        "roundType": "Series C extension",
+        "amountDisplay": "$439m total",
+        "announcedDate": "2026-07-13",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2026/07/13/video-generation-startup-pixverse-raises-439m-valuation-soars-past-2b/"
+      },
+      "sourceVintage": "2026-07-13",
+      "confidence": "high",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-07-13",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "layerx",
+      "name": "LayerX",
+      "status": "private",
+      "country": "Japan",
+      "region": "Japan",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/09/01/layerx-uses-ai-to-cut-enterprise-back-office-workload-scores-100m-in-series-b/",
+          "date": "2025-09-01",
+          "type": "reputable_media",
+          "confidence": "high",
+          "claimType": "latest_financing",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "regionalExposureProfile": {
+        "tags": [
+          "japan"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2025-09-01",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "high",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "series_a_b",
+      "sector": "Enterprise Software",
+      "subSector": "AI back-office automation",
+      "companyDescription": "日本企业AI SaaS公司，以自动化财务及后台工作流降低人工处理负担。",
+      "latestFinancing": {
+        "roundType": "Series B",
+        "amountDisplay": "$100m",
+        "announcedDate": "2025-09-01",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/09/01/layerx-uses-ai-to-cut-enterprise-back-office-workload-scores-100m-in-series-b/"
+      },
+      "sourceVintage": "2025-09-01",
+      "confidence": "high",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-09-01",
+      "privateStatusConfidence": "high"
+    },
+    {
+      "id": "moloco",
+      "name": "Moloco",
+      "status": "private",
+      "country": "United States",
+      "region": "United States",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "reviewed_explicit_exposure"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Advertising",
+      "customerType": "B2B",
+      "monetization": [
+        "Advertising"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sector": "Advertising technology",
+      "subSector": "Machine-learning advertising optimization",
+      "companyDescription": "韩国创立、美国总部的广告技术公司，为应用及商业平台提供机器学习驱动的广告优化。",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30"
+    },
+    {
+      "id": "viva-republica",
+      "name": "Viva Republica",
+      "status": "private",
+      "country": "South Korea",
+      "region": "South Korea",
+      "aliases": [
+        "Toss"
+      ],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Transactional",
+      "customerType": "Mixed",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sector": "Financial technology",
+      "subSector": "Consumer financial super-app",
+      "companyDescription": "首尔金融科技公司，运营覆盖支付、银行及其他金融服务的Toss平台。",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30"
     }
   ],
   "fundingRounds": [

@@ -536,12 +536,15 @@ function pipelineCompanies(state, filters = {}) {
     if (filters.status && c.status !== filters.status) return false;
     if (filters.region && c.region !== filters.region) return false;
     if (filters.northAmerica === '1' && !/^(US|USA|United States|Canada|Mexico|North America)$/i.test(String(c.region || c.country || ''))) return false;
+    if (filters.asiaPriority === '1' && !(c.regionalExposure || []).length) return false;
+    if (filters.regionalExposure && !(c.regionalExposure || []).includes(filters.regionalExposure)) return false;
     if (filters.tmtVertical && c.tmtVertical !== filters.tmtVertical) return false;
     if (filters.sector && (c.layer || c.sector) !== filters.sector && c.sector !== filters.sector) return false;
     if (filters.label && labelCompany(c).label !== filters.label && c.priorityTier !== filters.label) return false;
     if (filters.stage && !String(filters.stage).split(',').filter(Boolean).includes(c.lifecycleStage)) return false;
     if (filters.q) {
       const hay = [c.name, c.country, c.region, c.sector, c.subSector, c.layer, c.tmtVertical, c.businessModel, c.customerType, c.priorityTier, c.ipoWindow,
+        c.regionalAccessLane, ...(c.regionalExposure || []),
         c.latestValuation, c.latestFunding, c.revenueScale, c.companyDescription, c.investmentSummaryZh,
         ...(c.tags || []), ...(c.investors || [])].join(' ').toLowerCase();
       if (!hay.includes(String(filters.q).toLowerCase())) return false;

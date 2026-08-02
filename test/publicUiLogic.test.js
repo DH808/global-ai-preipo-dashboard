@@ -20,6 +20,9 @@ assert.match(app, /\$\('#stage'\)\.addEventListener\('change', \(\) => load\(\)\
 assert.match(app, /function renderCoverageMatrix\(\)/, 'coverage matrix must be rendered deterministically');
 for (const field of ['classification','businessModel','customerType','monetization','financing','investors','revenue','evidence','sourceVintage']) assert.ok(app.includes(field), `${field} completeness missing`);
 assert.ok(html.includes('id="tmtVertical"') && html.includes('id="coverageMatrix"'), 'TMT vertical filter and coverage matrix are required');
+assert.ok(html.includes('id="regionalExposure"') && html.includes('Asia Priority'), 'Asia exposure filter and preset are required');
+for (const marker of ['asiaPriorityOnly', 'regionalExposure', 'asia-coverage-matrix', "['china','taiwan','japan','south_korea','singapore']"]) assert.ok(app.includes(marker), `${marker} Asia desktop/mobile logic missing`);
+assert.match(app, /asiaPriorityOnly=false/, 'reset must clear Asia Priority on desktop and mobile');
 const css = fs.readFileSync(path.join(root, 'public/style.css'), 'utf8');
 assert.match(css, /\.coverage-matrix-wrap\{overflow:auto/, 'wide coverage matrix must scroll responsively');
 assert.match(css, /@media\(max-width:720px\)/, 'mobile breakpoint must remain present');

@@ -2,6 +2,7 @@ let state = null;
 let selected = null;
 let showAllMobile = false;
 let northAmericaOnly = false;
+let asiaPriorityOnly = false;
 if (location.pathname.startsWith('/company/')) document.body.classList.add('company-profile-page');
 const $ = sel => document.querySelector(sel);
 
@@ -317,7 +318,7 @@ function memoList(items, empty = '暂无结构化信息。') {
 }
 
 function filters() {
-  return { q: $('#search').value.trim(), region: $('#region').value, northAmerica: northAmericaOnly ? '1' : '', tmtVertical: $('#tmtVertical').value, sector: $('#sector').value, label: $('#label').value,
+  return { q: $('#search').value.trim(), region: $('#region').value, northAmerica: northAmericaOnly ? '1' : '', asiaPriority: asiaPriorityOnly ? '1' : '', regionalExposure: $('#regionalExposure').value, tmtVertical: $('#tmtVertical').value, sector: $('#sector').value, label: $('#label').value,
     stage: lifecycleTaxonomy.stageFilterValue($('#stage').value), status: 'private' };
 }
 
@@ -421,6 +422,7 @@ function renderQuickChips() {
   if (!box || box.dataset.ready) return;
   const chips = [
     ['北美全域', { northAmerica: true }],
+    ['Asia Priority', { asiaPriority: true }],
     ['美国', { region: 'US' }],
     ['加拿大', { region: 'Canada' }],
     ['Formation–Series B', { stage: 'formation_series_b' }],
@@ -436,11 +438,13 @@ function renderQuickChips() {
     const f = chips[i][1];
     $('#search').value = f.q || '';
     $('#region').value = f.region || '';
+    $('#regionalExposure').value = f.regionalExposure || '';
     $('#tmtVertical').value = f.tmtVertical || '';
     $('#sector').value = f.sector || '';
     $('#label').value = f.label || '';
     $('#stage').value = f.stage || '';
     northAmericaOnly = Boolean(f.northAmerica);
+    asiaPriorityOnly = Boolean(f.asiaPriority);
     load();
   }));
   box.dataset.ready = '1';
@@ -467,6 +471,7 @@ async function renderFilters() {
   const all = await loadAllForFilters();
   const companies = all.companies;
   fillSelect('#region', [...new Set(companies.map(c => c.region))].sort());
+  fillSelect('#regionalExposure', ['china','taiwan','japan','south_korea','singapore']);
   fillSelect('#sector', [...new Set(companies.map(c => c.sector))].sort());
   fillSelect('#tmtVertical', all.tmtTaxonomy || tmtTaxonomy.TMT_VERTICALS);
   fillSelect('#label', [...new Set(companies.map(c => c.label))].sort());
@@ -487,10 +492,16 @@ function renderCoverageMatrix() {
   }
   const completeness = state.dashboard?.completeness || {};
   const completenessLabels = { classification: 'Classification', businessModel: 'Business model', customerType: 'Customer type', monetization: 'Monetization', financing: 'Financing', investors: 'Investors', revenue: 'Revenue', evidence: 'Evidence', sourceVintage: 'Source vintage' };
+  const markets = ['china','taiwan','japan','south_korea','singapore'];
+  const marketCounts = new Map();
+  for (const company of state.companies || []) for (const market of company.regionalExposure || []) {
+    const key = `${market}\u0000${company.tmtVertical}`;
+    marketCounts.set(key, (marketCounts.get(key) || 0) + 1);
+  }
   box.innerHTML = `<table class="coverage-matrix"><thead><tr><th>TMT vertical</th>${stages.map(s => `<th title="${esc(s.label)}">${esc(s.label)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${verticals.map(vertical => {
     const values = stages.map(stage => counts.get(`${vertical}\u0000${stage.id}`) || 0);
     return `<tr><th>${esc(vertical)}</th>${values.map(value => `<td class="${value ? 'covered' : 'empty'}">${value}</td>`).join('')}<td class="total">${values.reduce((a,b) => a + b, 0)}</td></tr>`;
-  }).join('')}</tbody></table><table class="coverage-matrix completeness-matrix"><thead><tr><th>Completeness</th><th>Present</th><th>Unknown</th><th>Missing</th></tr></thead><tbody>${Object.entries(completenessLabels).map(([key,label]) => { const row = completeness[key] || {}; return `<tr><th>${esc(label)}</th><td class="covered">${row.present || 0}</td><td>${row.unknown || 0}</td><td class="${row.missing ? 'empty' : 'covered'}">${row.missing || 0}</td></tr>`; }).join('')}</tbody></table>`;
+  }).join('')}</tbody></table><table class="coverage-matrix asia-coverage-matrix"><thead><tr><th>Asia market</th>${verticals.map(vertical => `<th>${esc(vertical)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${markets.map(market => { const values = verticals.map(vertical => marketCounts.get(`${market}\u0000${vertical}`) || 0); return `<tr><th>${esc(market)}</th>${values.map(value => `<td class="${value ? 'covered' : 'empty'}">${value}</td>`).join('')}<td class="total">${values.reduce((a,b) => a + b, 0)}</td></tr>`; }).join('')}</tbody></table><table class="coverage-matrix completeness-matrix"><thead><tr><th>Completeness</th><th>Present</th><th>Unknown</th><th>Missing</th></tr></thead><tbody>${Object.entries(completenessLabels).map(([key,label]) => { const row = completeness[key] || {}; return `<tr><th>${esc(label)}</th><td class="covered">${row.present || 0}</td><td>${row.unknown || 0}</td><td class="${row.missing ? 'empty' : 'covered'}">${row.missing || 0}</td></tr>`; }).join('')}</tbody></table>`;
 }
 function fillSelect(sel, values) {
   const el = $(sel), first = el.options[0];
@@ -808,9 +819,9 @@ async function exportMd() {
   URL.revokeObjectURL(a.href);
 }
 
-['search','region','tmtVertical','sector','label'].forEach(id => $('#'+id).addEventListener('input', () => load()));
+['search','region','regionalExposure','tmtVertical','sector','label'].forEach(id => $('#'+id).addEventListener('input', () => load()));
 $('#stage').addEventListener('change', () => load());
-$('#resetBtn').addEventListener('click', () => { northAmericaOnly=false; $('#search').value=''; $('#region').value=''; $('#tmtVertical').value=''; $('#sector').value=''; $('#label').value=''; $('#stage').value=''; load(); });
+$('#resetBtn').addEventListener('click', () => { northAmericaOnly=false; asiaPriorityOnly=false; $('#search').value=''; $('#region').value=''; $('#regionalExposure').value=''; $('#tmtVertical').value=''; $('#sector').value=''; $('#label').value=''; $('#stage').value=''; load(); });
 $('#exportBtn')?.addEventListener('click', exportMd);
 $('#detailCloseBtn')?.addEventListener('click', () => $('#companyDetailDialog')?.close());
 load().then(() => {

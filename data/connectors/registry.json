@@ -7,6 +7,7 @@
     {"connectorId":"dealroom_v1","sourceId":"dealroom_v1","version":"1.0.0","capabilities":["organizations","funding_rounds","investors"],"mode":"incremental","credentialEnvVars":["DEALROOM_API_KEY"],"rightsProfile":"internal_only","supportsCursor":true,"status":"missing_credential"},
     {"connectorId":"pitchbook_csv_v1","sourceId":"pitchbook_csv_v1","version":"1.0.0","capabilities":["organizations","funding_rounds","investors","metrics"],"mode":"manual_preview","credentialEnvVars":[],"rightsProfile":"internal_only","supportsCursor":false,"status":"not_imported"},
     {"connectorId":"official_company_release_v1","sourceId":"official_company_release_v1","version":"1.0.0","capabilities":["organizations","funding_rounds","metrics","evidence"],"mode":"manual_url_seed","credentialEnvVars":[],"rightsProfile":"public_allowed","supportsCursor":false,"status":"available"},
-    {"connectorId":"google_news_rss_v1","sourceId":"google_news_rss_v1","version":"1.0.0","capabilities":["media_signals","evidence_candidates"],"mode":"on_demand","credentialEnvVars":[],"rightsProfile":"sanitized_derived","supportsCursor":false,"status":"available_media_signal_only"}
+    {"connectorId":"google_news_rss_v1","sourceId":"google_news_rss_v1","version":"1.0.0","capabilities":["media_signals","evidence_candidates"],"mode":"on_demand","credentialEnvVars":[],"rightsProfile":"sanitized_derived","supportsCursor":false,"status":"available_media_signal_only"},
+    {"connectorId":"asia_reviewed_seed_v1","sourceId":"asia_reviewed_seed_v1","version":"1.0.0","capabilities":["organizations","funding_rounds","evidence","regional_exposure"],"mode":"manual_preview_apply","credentialEnvVars":[],"rightsProfile":"public_allowed","supportsCursor":false,"status":"available"}
   ]
 }
