@@ -35,7 +35,16 @@ To replace a previously applied seed, pass a reviewed replacement manifest. The 
 python3 scripts/import_tmt_seed.py --input data/connectors/tmt_seed_20260802_batch1.json --replace-manifest data/connectors/tmt_seed_20260802_batch1_replacement.json --apply
 ```
 
-The importer rejects draft/unverified records, non-North-American headquarters, stale or future-dated evidence, non-HTTP(S) or credential-bearing source URLs, duplicate names/aliases, ambiguous existing matches, non-private status, noncanonical taxonomy values, unknown fields, and all valuation-shaped fields. Idempotency is based on canonical JSON content, so whitespace/key-order changes do not reapply a seed. Existing facts default to protected evidence strength; a seed can replace a populated taxonomy field only when its recorded confidence/date outranks the existing `tmtFieldEvidence`. Source evidence is append-only and deduplicated. No valuation is inferred or synthesized.
+The original corrected-digest manifest remains intact. The subsequent financing enrichment uses `data/connectors/tmt_seed_20260802_batch1_financing_replacement.json`, retaining both verified migration steps.
+
+The importer rejects draft/unverified records, non-North-American headquarters, stale or future-dated evidence, non-HTTP(S) or credential-bearing source URLs, duplicate names/aliases, ambiguous existing matches, non-private status, noncanonical taxonomy values, unknown fields, and all valuation-shaped fields. Optional `latestFinancing` accepts exactly `roundType`, `amountDisplay`, `announcedDate`, `financingType`, and `sourceUrl`; the URL/date pair must exactly match one listed public source. Idempotency is based on canonical JSON content, so whitespace/key-order changes do not reapply a seed. Existing facts default to protected evidence strength; a seed can replace a populated taxonomy field only when its recorded confidence/date outranks the existing `tmtFieldEvidence`. Source evidence is append-only and deduplicated. No valuation is inferred or synthesized.
+
+Legacy TMT normalization is dry-run by default and atomically persists canonical profiles only with `--apply`. It protects reviewed seed profiles, requires the expected 143-record legacy boundary, maps unrecognized values to canonical `Other`, and can atomically write an external receipt:
+
+```bash
+python3 scripts/normalize_legacy_tmt.py --receipt data/exports/legacy_tmt_normalization_receipt.json
+python3 scripts/normalize_legacy_tmt.py --apply --receipt data/exports/legacy_tmt_normalization_receipt.json
+```
 
 ## Public projection policy
 

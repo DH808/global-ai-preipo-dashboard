@@ -406,12 +406,13 @@ function renderMvp8Sidebars() {
   renderRankList($('#topLayers'), layerRows, layerRows[0]?.[1] || 1);
   const health = $('#dataHealth');
   if (health) {
-    const rows = [
-      ['估值', companies.filter(c => (c.latestValuationZh || c.latestAvailableValuation) && !/未披露|待验证|not disclosed|待确认/i.test(c.latestValuationZh || c.latestAvailableValuation)).length],
-      ['收入', companies.filter(c => (c.revenueScaleZh || c.revenueScale) && !/未披露|待验证|待确认/i.test(c.revenueScaleZh || c.revenueScale)).length],
-      ['证据', companies.filter(c => (c.evidence || []).length).length]
-    ];
-    health.innerHTML = rows.map(([k,v]) => `<div class="health-row"><span>${esc(k)}</span><b>${esc(v)}/${companies.length}</b><em><i style="width:${Math.round(v / Math.max(1, companies.length) * 100)}%"></i></em></div>`).join('');
+    const labels = { classification: '分类', businessModel: '商业模式', customerType: '客户类型', monetization: '变现',
+      financing: '融资', investors: '投资人', revenue: '收入', evidence: '证据', sourceVintage: '来源时效' };
+    const metrics = state.dashboard?.completeness || {};
+    health.innerHTML = Object.entries(labels).map(([key,label]) => {
+      const row = metrics[key] || { present: 0, unknown: 0, missing: companies.length };
+      return `<div class="health-row" title="未知 ${row.unknown || 0} · 缺失 ${row.missing || 0}"><span>${esc(label)}</span><b>${esc(row.present || 0)}/${companies.length}</b><em><i style="width:${Math.round((row.present || 0) / Math.max(1, companies.length) * 100)}%"></i></em></div>`;
+    }).join('');
   }
 }
 
@@ -484,10 +485,12 @@ function renderCoverageMatrix() {
     const key = `${company.tmtVertical}\u0000${company.lifecycleStage}`;
     counts.set(key, (counts.get(key) || 0) + 1);
   }
+  const completeness = state.dashboard?.completeness || {};
+  const completenessLabels = { classification: 'Classification', businessModel: 'Business model', customerType: 'Customer type', monetization: 'Monetization', financing: 'Financing', investors: 'Investors', revenue: 'Revenue', evidence: 'Evidence', sourceVintage: 'Source vintage' };
   box.innerHTML = `<table class="coverage-matrix"><thead><tr><th>TMT vertical</th>${stages.map(s => `<th title="${esc(s.label)}">${esc(s.label)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${verticals.map(vertical => {
     const values = stages.map(stage => counts.get(`${vertical}\u0000${stage.id}`) || 0);
     return `<tr><th>${esc(vertical)}</th>${values.map(value => `<td class="${value ? 'covered' : 'empty'}">${value}</td>`).join('')}<td class="total">${values.reduce((a,b) => a + b, 0)}</td></tr>`;
-  }).join('')}</tbody></table>`;
+  }).join('')}</tbody></table><table class="coverage-matrix completeness-matrix"><thead><tr><th>Completeness</th><th>Present</th><th>Unknown</th><th>Missing</th></tr></thead><tbody>${Object.entries(completenessLabels).map(([key,label]) => { const row = completeness[key] || {}; return `<tr><th>${esc(label)}</th><td class="covered">${row.present || 0}</td><td>${row.unknown || 0}</td><td class="${row.missing ? 'empty' : 'covered'}">${row.missing || 0}</td></tr>`; }).join('')}</tbody></table>`;
 }
 function fillSelect(sel, values) {
   const el = $(sel), first = el.options[0];

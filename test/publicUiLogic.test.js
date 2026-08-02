@@ -18,6 +18,7 @@ const app = fs.readFileSync(path.join(root, 'public/app.js'), 'utf8');
 const html = fs.readFileSync(path.join(root, 'public/index.html'), 'utf8');
 assert.match(app, /\$\('#stage'\)\.addEventListener\('change', \(\) => load\(\)\)/, 'stage selector must trigger a reload');
 assert.match(app, /function renderCoverageMatrix\(\)/, 'coverage matrix must be rendered deterministically');
+for (const field of ['classification','businessModel','customerType','monetization','financing','investors','revenue','evidence','sourceVintage']) assert.ok(app.includes(field), `${field} completeness missing`);
 assert.ok(html.includes('id="tmtVertical"') && html.includes('id="coverageMatrix"'), 'TMT vertical filter and coverage matrix are required');
 const css = fs.readFileSync(path.join(root, 'public/style.css'), 'utf8');
 assert.match(css, /\.coverage-matrix-wrap\{overflow:auto/, 'wide coverage matrix must scroll responsively');

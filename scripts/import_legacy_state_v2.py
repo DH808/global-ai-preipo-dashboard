@@ -11,7 +11,10 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
-from run_migrations_v2 import migrate
+try:
+    from .run_migrations_v2 import migrate
+except ImportError:  # Direct script execution.
+    from run_migrations_v2 import migrate
 
 MISSING_RE = re.compile(r"未披露|待验证|待确认|not disclosed|unknown|unclear|coverage_gap|not captured|placeholder|^\s*$", re.I)
 CONFLICT_RE = re.compile(r"conflict|divergen|higher|lower|unverified|discrepan|冲突|分歧", re.I)
@@ -132,6 +135,39 @@ def explicit_claim_types(evidence: dict) -> set[str]:
     return {clean(value).lower() for value in values if clean(value)}
 
 
+def expanded_funding_rounds(state: dict) -> list[dict]:
+    """Map source-bound structured financing into canonical round input without valuations."""
+    rounds = [dict(row) for row in arr(state.get("fundingRounds")) if isinstance(row, dict)]
+    identities = {(clean(row.get("companyId")), clean(row.get("date")), clean(row.get("round")), clean(row.get("amount"))) for row in rounds}
+    required = {"roundType", "amountDisplay", "announcedDate", "financingType", "sourceUrl"}
+    for company in arr(state.get("companies")):
+        if not isinstance(company, dict) or not isinstance(company.get("latestFinancing"), dict):
+            continue
+        financing = company["latestFinancing"]
+        if set(financing) != required or financing.get("financingType") not in {"equity", "debt", "mixed", "unknown"}:
+            continue
+        announced = clean(financing.get("announcedDate"))
+        source_url = clean(financing.get("sourceUrl"))
+        source = next((item for item in arr(company.get("evidence")) if isinstance(item, dict)
+                       and clean(item.get("url")) == source_url
+                       and clean(item.get("date") or item.get("asOf")) == announced), None)
+        if not source:
+            continue
+        identity = (clean(company.get("id")), announced, clean(financing.get("roundType")), clean(financing.get("amountDisplay")))
+        if identity in identities:
+            continue
+        rounds.append({
+            "id": f"{identity[0]}-latest-financing-{announced}", "companyId": identity[0],
+            "companyName": clean(company.get("name")), "date": announced, "round": identity[2],
+            "amount": identity[3], "financingType": financing["financingType"],
+            "url": source_url,
+            "confidence": clean(source.get("confidence") or company.get("confidence"), "medium"),
+            "sourceType": clean(source.get("type"), "media/manual"),
+        })
+        identities.add(identity)
+    return rounds
+
+
 def input_derived_minimums(state: dict, public_projection_only: bool = False) -> dict[str, int]:
     """Derive non-decreasing QC floors from canonical identities present in this input."""
     companies = arr(state.get("companies"))
@@ -145,7 +181,7 @@ def input_derived_minimums(state: dict, public_projection_only: bool = False) ->
         for name in arr(company.get("investors")) if clean(name).rstrip(",")
     }
     round_ids: set[str] = set()
-    for row in arr(state.get("fundingRounds")):
+    for row in expanded_funding_rounds(state):
         if not isinstance(row, dict):
             continue
         company_id = clean(row.get("companyId") or slug(row.get("companyName")))
@@ -228,11 +264,12 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
         return result
 
     companies = arr(state.get("companies"))
-    rounds = arr(state.get("fundingRounds"))
+    source_rounds = arr(state.get("fundingRounds"))
+    rounds = expanded_funding_rounds(state)
     tasks = arr(state.get("tasks"))
     interactions = arr(state.get("interactions"))
     source_rows = arr(state.get("sourceRegistry"))
-    records_seen = len(companies) + len(rounds) + len(tasks) + len(interactions) + len(source_rows)
+    records_seen = len(companies) + len(source_rounds) + len(tasks) + len(interactions) + len(source_rows)
     conn.execute("""
       INSERT INTO ingestion_runs(id,source_id,connector_version,started_at,status,records_seen,
         records_inserted,records_rejected,request_fingerprint)
@@ -476,6 +513,9 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
         source_type = clean(round_row.get("sourceType"), "media/manual")
         selected = source_rank(source_type) >= 3
         status = "confirmed" if selected else "candidate_media_signal"
+        financing_type = clean(round_row.get("financingType")).lower()
+        if financing_type not in {"equity", "debt", "mixed", "unknown"}:
+            financing_type = ""
         conn.execute("""
           INSERT INTO canonical_funding_rounds(
             id,organization_id,announced_date,round_type,amount_value,amount_currency,amount_display,
@@ -495,9 +535,10 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
               clean(round_row.get("round"), "Round"), amount_value, amount_currency, clean(round_row.get("amount")) or None,
               valuation_value, valuation_currency, clean(round_row.get("valuation")) or None,
               1 if re.search(r"secondary|tender", clean(round_row.get("round")), re.I) else 0,
-              1 if re.search(r"debt|credit", clean(round_row.get("round")), re.I) else 0,
+              1 if financing_type in {"debt", "mixed"} or re.search(r"debt|credit", clean(round_row.get("round")), re.I) else 0,
               status, clean(round_row.get("confidence"), "medium"), raw_id if selected else None,
-              canonical_json({"legacySourceName": clean(round_row.get("sourceName")), "mediaNotPromoted": not selected}), timestamp, timestamp))
+              canonical_json({"legacySourceName": clean(round_row.get("sourceName")), "mediaNotPromoted": not selected,
+                              **({"financingType": financing_type} if financing_type else {})}), timestamp, timestamp))
         conn.execute("""DELETE FROM funding_round_sources WHERE funding_round_id=? AND source_record_id IN (
                          SELECT id FROM raw_records WHERE source_id='legacy_state_json')""", (f"round_{rid}",))
         conn.execute("DELETE FROM canonical_round_investors WHERE funding_round_id=? AND source_record_id IN (SELECT id FROM raw_records WHERE source_id='legacy_state_json')", (f"round_{rid}",))
@@ -506,7 +547,10 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
                        source_record_id=excluded.source_record_id,field_map_json=excluded.field_map_json,
                        confidence=excluded.confidence,is_selected=excluded.is_selected""",
                      (stable_id("round_source", rid, raw_id), f"round_{rid}", raw_id,
-                      canonical_json({"amount": "amount_display", "valuation": "valuation_display"}),
+                      canonical_json({**({"date": "announced_date", "round": "round_type"} if financing_type else {}),
+                                      "amount": "amount_display",
+                                      **({"financingType": "metadata.financingType"} if financing_type else {}),
+                                      **({"valuation": "valuation_display"} if clean(round_row.get("valuation")) else {})}),
                       clean(round_row.get("confidence"), "medium"), 1 if selected else 0))
         for role, names in (("lead", arr(round_row.get("leadInvestors"))), ("participant", arr(round_row.get("participants")))):
             for value in names:

@@ -278,7 +278,7 @@ function latestAvailableValuation(c) {
   return c.latestValuation || c.valuationView || c.latestFunding || '未披露/待验证';
 }
 
-function enrichedCompany(c) {
+function enrichedCompany(c, options = {}) {
   const scored = { ...c, ...labelCompany(c), score: scoreCompany(c), scoreBreakdown: scoreBreakdown(c) };
   scored.layer = c.layer || c.sector || '';
   scored.companyDescription = companyDescription(c);
@@ -289,7 +289,7 @@ function enrichedCompany(c) {
   scored.keyDiligence = c.keyDiligence || (c.openQuestions || []).join('; ') || '';
   scored.ipoWindow = c.ipoWindow || '待确认';
   scored.priorityClass = priorityClass(c.priorityTier);
-  return publicProjection.projectCompany(scored, lifecycleCoverage);
+  return publicProjection.projectCompany(scored, lifecycleCoverage, options);
 }
 
 const PUBLIC_OMIT_KEYS = new Set([
@@ -531,7 +531,8 @@ function sanitizePublicStatePayload(payload) {
 
 function pipelineCompanies(state, filters = {}) {
   if (!publicProjection.snapshotReceipt(state)) return [];
-  const base = (state.companies || []).map(c => enrichedCompany(normalizeCompany(c) && { ...c })).filter(c => {
+  const fundingIds = new Set((state.fundingRounds || []).filter(r => !/coverage_gap|placeholder|待补|待确认|unknown/i.test([r.sourceType,r.round,r.amount].join(' '))).map(r => r.companyId));
+  const base = (state.companies || []).map(c => enrichedCompany(normalizeCompany(c) && { ...c }, { hasFinancing: fundingIds.has(c.id) })).filter(c => {
     if (filters.status && c.status !== filters.status) return false;
     if (filters.region && c.region !== filters.region) return false;
     if (filters.northAmerica === '1' && !/^(US|USA|United States|Canada|Mexico|North America)$/i.test(String(c.region || c.country || ''))) return false;
@@ -578,7 +579,7 @@ async function apiState(req, res, urlObj) {
   const filters = Object.fromEntries(urlObj.searchParams.entries());
   const companies = pipelineCompanies(state, filters);
   const projected = publicProjection.projectState(state, lifecycleCoverage);
-  json(res, 200, { meta: projected.meta, publicSnapshotVersion: projected.publicSnapshotVersion, taxonomy: STAGES.map(([id,label]) => ({ id, label })), tmtTaxonomy: TMT_VERTICALS, dashboard: { total: companies.length, privateCount: companies.length }, companies });
+  json(res, 200, { meta: projected.meta, publicSnapshotVersion: projected.publicSnapshotVersion, taxonomy: STAGES.map(([id,label]) => ({ id, label })), tmtTaxonomy: TMT_VERTICALS, dashboard: { total: companies.length, privateCount: companies.length, completeness: publicProjection.completenessMetrics(companies) }, companies });
 }
 
 async function apiCompany(req, res, id) {
@@ -586,7 +587,7 @@ async function apiCompany(req, res, id) {
   const c = state.companies.find(x => x.id === id);
   if (!c) return json(res, 404, { error: 'NOT_FOUND' });
   if (!publicProjection.snapshotReceipt(state)) return json(res, 404, { error: 'NOT_FOUND' });
-  const company = enrichedCompany(c);
+  const company = enrichedCompany(c, { hasFinancing: (state.fundingRounds || []).some(r => r.companyId === c.id && !/coverage_gap|placeholder|待补|待确认|unknown/i.test([r.sourceType,r.round,r.amount].join(' '))) });
   json(res, 200, {
     company,
     fundingRounds: (state.fundingRounds || []).filter(r => r.companyId === c.id).map(publicProjection.projectFunding),

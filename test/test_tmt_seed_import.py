@@ -19,6 +19,7 @@ def valid_seed():
             "monetization": ["Subscription"], "lifecycleStage": "series_a_b", "sourceVintage": "2026-07-01",
             "sources": [{"url": "https://example.com/company/status", "date": "2026-07-01", "type": "official", "confidence": "high"}],
             "confidence": "high",
+            "latestFinancing": {"roundType": "Series B", "amountDisplay": "$80m", "announcedDate": "2026-07-01", "financingType": "equity", "sourceUrl": "https://example.com/company/status"},
             "privateStatusBoundary": {"status": "private", "asOf": "2026-07-01", "sourceUrl": "https://example.com/company/status", "confidence": "high"},
             "investabilityAccessLane": "relationship_development"
         }]
@@ -61,6 +62,7 @@ class TmtSeedImportTests(unittest.TestCase):
         self.assertEqual(self.state_path.read_bytes(), first_apply)
         company = json.loads(first_apply)["companies"][0]
         self.assertNotIn("latestValuation", company)
+        self.assertEqual(company["latestFinancing"]["amountDisplay"], "$80m")
         self.assertEqual(company["tmtVertical"], "Enterprise Software")
         applied_state = json.loads(first_apply)
         self.assertEqual(applied_state["meta"]["asOf"], "2026-08-01")
@@ -91,12 +93,34 @@ class TmtSeedImportTests(unittest.TestCase):
         stale = valid_seed(); stale["records"][0]["sourceVintage"] = "2023-01-01"; stale["records"][0]["sources"][0]["date"] = "2023-01-01"; stale["records"][0]["privateStatusBoundary"]["asOf"] = "2023-01-01"; cases.append((stale, "SOURCE_STALE"))
         unverified = valid_seed(); unverified["records"][0]["privateStatusBoundary"]["confidence"] = "low"; cases.append((unverified, "PRIVATE_STATUS_UNVERIFIED"))
         valuation = valid_seed(); valuation["records"][0]["latestValuation"] = "$1B"; cases.append((valuation, "VALUATION_FIELDS_FORBIDDEN"))
+        nested_valuation = valid_seed(); nested_valuation["records"][0]["latestFinancing"]["valuation"] = "$1B"; cases.append((nested_valuation, "VALUATION_FIELDS_FORBIDDEN"))
+        disguised_valuation = valid_seed(); disguised_valuation["records"][0]["latestFinancing"]["amountDisplay"] = "post-money valuation $1B"; cases.append((disguised_valuation, "VALUATION_FIELDS_FORBIDDEN"))
         for index, (seed, expected) in enumerate(cases):
             with self.subTest(case=index):
                 self.write_seed(seed)
                 result = self.execute_import()
                 self.assertEqual(result["status"], "invalid")
                 self.assertIn(expected, {e["code"] for e in result["errors"]})
+
+    def test_latest_financing_date_must_be_source_bound(self):
+        seed = valid_seed()
+        seed["records"][0]["latestFinancing"]["announcedDate"] = "2026-06-30"
+        self.write_seed(seed)
+        result = self.execute_import()
+        self.assertEqual(result["status"], "invalid")
+        self.assertIn("LATEST_FINANCING_SOURCE_BINDING_MISMATCH", {e["code"] for e in result["errors"]})
+
+    def test_latest_financing_url_and_date_must_bind_to_the_same_source(self):
+        seed = valid_seed()
+        seed["records"][0]["sources"].append({
+            "url": "https://example.com/company/other-round", "date": "2026-06-30",
+            "type": "reputable_media", "confidence": "high",
+        })
+        seed["records"][0]["latestFinancing"]["sourceUrl"] = "https://example.com/company/other-round"
+        self.write_seed(seed)
+        result = self.execute_import()
+        self.assertEqual(result["status"], "invalid")
+        self.assertIn("LATEST_FINANCING_SOURCE_BINDING_MISMATCH", {e["code"] for e in result["errors"]})
 
     def test_stronger_existing_evidence_is_not_overwritten(self):
         seed = valid_seed()

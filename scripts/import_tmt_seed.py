@@ -39,13 +39,16 @@ PUBLIC_BOUNDARY_VALUES = {
     "public", "listed", "acquired", "publicly_traded", "ipo_completed", "merged",
 }
 REQUIRED_RECORD_FIELDS = {"name", "aliases", "headquartersCountry", "tmtVertical", "businessModel", "customerType", "monetization", "lifecycleStage", "sourceVintage", "sources", "confidence", "privateStatusBoundary", "investabilityAccessLane"}
-OPTIONAL_RECORD_FIELDS = {"id", "sector", "subSector", "companyDescription"}
+OPTIONAL_RECORD_FIELDS = {"id", "sector", "subSector", "companyDescription", "latestFinancing"}
+LATEST_FINANCING_FIELDS = {"roundType", "amountDisplay", "announcedDate", "financingType", "sourceUrl"}
+FINANCING_TYPES = {"equity", "debt", "mixed", "unknown"}
 FORBIDDEN_FACT_RE = re.compile(r"valuation|post.?money|pre.?money|enterprise.?value|market.?cap", re.I)
 FIELD_MAP = {
     "headquartersCountry": "country", "tmtVertical": "tmtVertical", "businessModel": "businessModel",
     "customerType": "customerType", "monetization": "monetization", "lifecycleStage": "lifecycleStage",
     "sourceVintage": "sourceVintage", "confidence": "confidence", "investabilityAccessLane": "investabilityAccessLane",
     "sector": "sector", "subSector": "subSector", "companyDescription": "companyDescription",
+    "latestFinancing": "latestFinancing",
 }
 
 
@@ -189,6 +192,30 @@ def validate_seed(seed: dict[str, Any], as_of_override: date | None = None, max_
         monetization = record.get("monetization")
         if not isinstance(monetization, list) or not monetization or not all(isinstance(x, str) for x in monetization) or len(set(monetization)) != len(monetization) or any(x not in MONETIZATION for x in monetization):
             add_error(errors, index, "MONETIZATION_INVALID", "monetization must be a non-empty unique canonical array")
+        latest_financing = record.get("latestFinancing")
+        financing_date = None
+        if latest_financing is not None:
+            if not isinstance(latest_financing, dict) or set(latest_financing) != LATEST_FINANCING_FIELDS:
+                extra = set(latest_financing) - LATEST_FINANCING_FIELDS if isinstance(latest_financing, dict) else set()
+                code = "VALUATION_FIELDS_FORBIDDEN" if any(FORBIDDEN_FACT_RE.search(str(k)) for k in extra) else "LATEST_FINANCING_INVALID"
+                add_error(errors, index, code, "latestFinancing must contain exactly roundType/amountDisplay/announcedDate/financingType/sourceUrl")
+            else:
+                if any(not isinstance(latest_financing.get(field), str) or not latest_financing[field].strip()
+                       or latest_financing[field] != latest_financing[field].strip() or len(latest_financing[field]) > 100
+                       for field in ("roundType", "amountDisplay")):
+                    add_error(errors, index, "LATEST_FINANCING_INVALID", "roundType and amountDisplay must be bounded non-empty strings")
+                elif any(FORBIDDEN_FACT_RE.search(latest_financing[field]) for field in ("roundType", "amountDisplay")):
+                    add_error(errors, index, "VALUATION_FIELDS_FORBIDDEN", "latestFinancing may not encode valuation facts")
+                if latest_financing.get("financingType") not in FINANCING_TYPES:
+                    add_error(errors, index, "LATEST_FINANCING_INVALID", "financingType must be equity/debt/mixed/unknown")
+                try:
+                    financing_date = parse_date(latest_financing.get("announcedDate"), "latestFinancing.announcedDate")
+                except ValueError as exc:
+                    add_error(errors, index, "LATEST_FINANCING_INVALID", str(exc))
+                try:
+                    safe_url(latest_financing.get("sourceUrl"), "latestFinancing.sourceUrl")
+                except ValueError as exc:
+                    add_error(errors, index, "LATEST_FINANCING_INVALID", str(exc))
         try:
             vintage = parse_date(record.get("sourceVintage"), "sourceVintage")
         except ValueError as exc:
@@ -223,6 +250,12 @@ def validate_seed(seed: dict[str, Any], as_of_override: date | None = None, max_
                     add_error(errors, index, "SOURCE_UNVERIFIED", f"source {source_index} type/confidence is not canonical")
         if vintage and source_dates and vintage != max(source_dates):
             add_error(errors, index, "SOURCE_VINTAGE_MISMATCH", "sourceVintage must equal the newest source date")
+        if financing_date is not None and isinstance(latest_financing, dict):
+            financing_url = latest_financing.get("sourceUrl")
+            supporting_source = source_by_url.get(financing_url)
+            if supporting_source is None or supporting_source[0] != financing_date:
+                add_error(errors, index, "LATEST_FINANCING_SOURCE_BINDING_MISMATCH",
+                          "latestFinancing sourceUrl/announcedDate must equal one listed source URL/date pair")
         source_ranks = [{"low": 1, "medium": 2, "high": 3}.get(str(source.get("confidence")), 0) for source in sources or [] if isinstance(source, dict)]
         if source_ranks and {"low": 1, "medium": 2, "high": 3}.get(str(record.get("confidence")), 0) > max(source_ranks):
             add_error(errors, index, "CONFIDENCE_UNSUPPORTED", "record confidence exceeds every supporting source")

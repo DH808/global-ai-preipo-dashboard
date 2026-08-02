@@ -38,6 +38,17 @@
           "sector": {"type": "string", "maxLength": 200},
           "subSector": {"type": "string", "maxLength": 200},
           "companyDescription": {"type": "string", "maxLength": 500},
+          "latestFinancing": {
+            "type": "object", "additionalProperties": false,
+            "required": ["roundType", "amountDisplay", "announcedDate", "financingType", "sourceUrl"],
+            "properties": {
+              "roundType": {"type": "string", "minLength": 1, "maxLength": 100},
+              "amountDisplay": {"type": "string", "minLength": 1, "maxLength": 100},
+              "announcedDate": {"type": "string", "format": "date"},
+              "financingType": {"enum": ["equity", "debt", "mixed", "unknown"]},
+              "sourceUrl": {"type": "string", "format": "uri", "pattern": "^https?://"}
+            }
+          },
           "privateStatusBoundary": {
             "type": "object", "additionalProperties": false,
             "required": ["status", "asOf", "sourceUrl", "confidence"],

@@ -11,6 +11,8 @@ import unittest
 from pathlib import Path
 from urllib.parse import urlencode, urlparse
 
+from scripts.import_legacy_state_v2 import expanded_funding_rounds
+
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "data" / "state.json"
 IMPORTER = ROOT / "scripts" / "import_legacy_state_v2.py"
@@ -40,7 +42,7 @@ def importer_expected_counts(state: dict) -> dict[str, int]:
         raise AssertionError("test input must contain unique, identified companies")
 
     valid_company_ids = set(company_ids)
-    rounds = as_list(state.get("fundingRounds"))
+    rounds = expanded_funding_rounds(state)
     valid_rounds = [row for row in rounds if str(row.get("companyId") or "").strip() in valid_company_ids]
     if len(valid_rounds) != len(rounds):
         raise AssertionError("test input contains a funding round without a canonical company")
@@ -201,8 +203,17 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             self.assertEqual(source_company["privateStatusAsOf"], dated_source["date"])
             self.assertEqual(source_company["evidence"], [dated_source])
             self.assertEqual(public_company["evidence"], [dated_source])
+            self.assertEqual(source_company["latestFinancing"], record["latestFinancing"])
+            self.assertEqual(public_company["latestFinancing"], record["latestFinancing"])
+            self.assertEqual(set(public_company["latestFinancing"]), {"roundType", "amountDisplay", "announcedDate", "financingType", "sourceUrl"})
+            self.assertEqual(public_company["latestFinancing"]["sourceUrl"], dated_source["url"])
+            self.assertNotIn("valuation", public_company["latestFinancing"])
             self.assertNotIn("aliases", public_company)
             self.assertNotIn("tmtFieldEvidence", public_company)
+            self.assertEqual(set(public_company["completeness"]), {
+                "classification", "businessModel", "customerType", "monetization", "financing",
+                "investors", "revenue", "evidence", "sourceVintage",
+            })
 
         self.assertEqual(state_by_id["candid-health"]["sourceVintage"], "2026-07-22")
         self.assertEqual(state_by_id["stoke-space"]["evidence"][0]["url"],
@@ -215,13 +226,21 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         with sqlite3.connect(self.public_db) as conn:
             self.assertEqual(conn.execute("SELECT count(*) FROM organizations WHERE organization_type='company'").fetchone()[0], expected_public_count)
             seed_evidence = conn.execute(
-                "SELECT source_locator,as_of FROM canonical_evidence_items WHERE organization_id IN (%s)" %
+                "SELECT source_locator,as_of FROM canonical_evidence_items WHERE id NOT LIKE 'evidence_funding_%%' AND organization_id IN (%s)" %
                 ",".join("?" for _ in seed_ids), [f"org_{company_id}" for company_id in sorted(seed_ids)]
             ).fetchall()
             self.assertEqual(len(seed_evidence), 11)
             self.assertIn(("https://www.mobihealthnews.com/news/candid-health-raises-120m-ai-revenue-cycle-management-platform", "2026-07-22"), seed_evidence)
             self.assertIn(("https://www.geekwire.com/2026/stoke-space-350m-added-funding/", "2026-02-10"), seed_evidence)
             self.assertFalse(any(urlparse(url).path in ("", "/") for url, _ in seed_evidence))
+            latest_rounds = conn.execute(
+                "SELECT announced_date,round_type,amount_display,valuation_display,metadata_json "
+                "FROM canonical_funding_rounds WHERE organization_id IN (%s)" %
+                ",".join("?" for _ in seed_ids), [f"org_{company_id}" for company_id in sorted(seed_ids)]
+            ).fetchall()
+            structured = [row for row in latest_rounds if json.loads(row[4] or "{}").get("financingType")]
+            self.assertEqual(len(structured), 11)
+            self.assertTrue(all(row[3] is None for row in structured))
 
         status, v1_state = self.http("/api/state")
         self.assertEqual(status, 200)
@@ -246,6 +265,10 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             status, detail = self.http("/api/v2/companies/" + record["id"])
             self.assertEqual(status, 200)
             self.assertEqual(detail["data"]["identity"]["name"], record["name"])
+            self.assertEqual(detail["data"]["latestFunding"]["announcedDate"], record["latestFinancing"]["announcedDate"])
+            self.assertEqual(detail["data"]["latestFunding"]["amountDisplay"], record["latestFinancing"]["amountDisplay"])
+            self.assertEqual(detail["data"]["latestFunding"]["financingType"], record["latestFinancing"]["financingType"])
+            self.assertNotIn("valuationDisplay", detail["data"]["latestFunding"])
             # The detail alias is the public legacy slug, not a private seed alias.
             self.assertEqual(detail["data"]["aliases"], [record["id"]])
             v2_payloads.append(detail)
@@ -321,6 +344,10 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         changed["meta"]["coverage"] = "Diligence ask: Ask for COVERAGE_NEXT_ACTION_7f91"
         changed["companies"][0]["nextAction"] = markers[2]
         changed["companies"][0]["evidence"][0]["note"] = f"{markers[0]}: {markers[1]}"
+        changed["companies"][0]["latestFinancing"] = {
+            "roundType": "Series Z", "amountDisplay": "$1m", "announcedDate": changed["companies"][0]["evidence"][0].get("date"),
+            "financingType": "equity", "valuation": "VALUATION_MUST_NOT_LEAK_7f91",
+        }
         source = self.tmp / "adversarial-public-build.json"
         public_file = self.tmp / "adversarial-public-build.public.json"
         db = self.tmp / "adversarial-public-build.sqlite"
@@ -330,6 +357,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         snapshot_text = public_file.read_text(encoding="utf-8")
         for marker in markers:
             self.assertNotIn(marker, snapshot_text)
+        self.assertNotIn("VALUATION_MUST_NOT_LEAK_7f91", snapshot_text)
         with sqlite3.connect(db) as conn:
             raw_payloads = [json.loads(row[0]) for row in conn.execute("SELECT payload_json FROM raw_records")]
         raw_text = json.dumps(raw_payloads, ensure_ascii=False)
@@ -602,8 +630,10 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
               (r"credential token=sk-test-secret C:\\Users\\name\\file.csv", public_raw))
             round_id = conn.execute("SELECT id FROM canonical_funding_rounds WHERE organization_id='org_databricks' LIMIT 1").fetchone()[0]
             conn.execute("UPDATE canonical_funding_rounds SET round_type='MIXED SOURCE SECRET' WHERE id=?", (round_id,))
+            conn.execute("UPDATE canonical_funding_rounds SET metadata_json=? WHERE id=?",
+                         (json.dumps({"financingType": "debt"}), round_id))
             conn.execute("""INSERT INTO funding_round_sources(id,funding_round_id,source_record_id,field_map_json,confidence,is_selected)
-              VALUES('mixed_internal_source',?,'raw_rights_projection','{"round":"round_type"}','high',0)""", (round_id,))
+              VALUES('mixed_internal_source',?,'raw_rights_projection','{"round":"round_type","financingType":"metadata.financingType"}','high',0)""", (round_id,))
             conn.commit()
         _, listing = self.http("/api/v2/companies?limit=100&q=NULL LINEAGE SECRET")
         self.assertEqual(listing["data"], [])
@@ -613,6 +643,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         self.assertNotIn("NULL PROVENANCE SECRET", json.dumps(company))
         _, funding = self.http("/api/v2/companies/databricks/funding-rounds")
         self.assertNotIn("MIXED SOURCE SECRET", json.dumps(funding))
+        self.assertFalse(any(row.get("financingType") == "debt" for row in funding["data"]))
         _, evidence = self.http("/api/v2/companies/databricks/evidence")
         serialized = json.dumps(evidence)
         self.assertNotIn("sk-test-secret", serialized)

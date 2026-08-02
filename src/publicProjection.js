@@ -15,12 +15,15 @@ const PUBLIC_COMPANY_FIELDS = Object.freeze([
   'presentationCleanedAsOf','investmentSummaryZh','riskSummaryZh','keyMetrics','readinessLabel','score','label',
   'priorityClass','lifecycleStage','lifecycleStageLabel','stageConfidence','coverageGaps',
   'tmtVertical','businessModel','customerType','monetization','sourceVintage','confidence',
-  'privateStatus','privateStatusAsOf','privateStatusConfidence','investabilityAccessLane'
+  'privateStatus','privateStatusAsOf','privateStatusConfidence','investabilityAccessLane',
+  'classificationMethod','classificationConfidence'
 ]);
 const PUBLIC_EVIDENCE_FIELDS = Object.freeze(['type','claimType','url','asOf','date','confidence']);
 const PUBLIC_META_FIELDS = Object.freeze(['title','asOf','schemaVersion','updatedAt','snapshotVersion','lastUpdatedAt','readOnly','writesEnabled']);
-const PUBLIC_FUNDING_FIELDS = Object.freeze(['companyId','date','round','amount','valuation','leadInvestors','participants','url','confidence','companyName','id']);
-const URL_FIELDS = new Set(['url','website']);
+const PUBLIC_FUNDING_FIELDS = Object.freeze(['companyId','date','round','amount','valuation','leadInvestors','participants','url','confidence','companyName','id','financingType']);
+const LATEST_FINANCING_FIELDS = Object.freeze(['roundType','amountDisplay','announcedDate','financingType','sourceUrl']);
+const COMPLETENESS_FIELDS = Object.freeze(['classification','businessModel','customerType','monetization','financing','investors','revenue','evidence','sourceVintage']);
+const URL_FIELDS = new Set(['url','website','sourceUrl']);
 const trustedSnapshots = new WeakMap();
 
 const SENSITIVE = new RegExp([
@@ -78,6 +81,50 @@ function allowlistedObject(input, fields) {
   return out;
 }
 
+function projectLatestFinancing(company) {
+  const value = company?.latestFinancing;
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+  if (!['equity','debt','mixed','unknown'].includes(value.financingType)) return undefined;
+  if (!value.roundType || !value.amountDisplay || !/^\d{4}-\d{2}-\d{2}$/.test(String(value.announcedDate || ''))) return undefined;
+  const sourceUrl = safeHttpUrl(value.sourceUrl);
+  const sourceBound = sourceUrl && (company.evidence || []).some(item =>
+    safeHttpUrl(item.url) === sourceUrl && (item.date || item.asOf) === value.announcedDate
+  );
+  if (!sourceBound) return undefined;
+  const projected = allowlistedObject(value, LATEST_FINANCING_FIELDS);
+  return Object.keys(projected).length === LATEST_FINANCING_FIELDS.length ? projected : undefined;
+}
+
+function completenessStatus(value, unknown = () => false) {
+  if (value === undefined || value === null || value === '' || (Array.isArray(value) && !value.length)) return 'missing';
+  return unknown(value) ? 'unknown' : 'present';
+}
+
+function companyCompleteness(company, latestFinancing, hasFinancing = false) {
+  const placeholder = value => /未披露|待验证|待确认|待补充|not disclosed|unknown|unclear/i.test(String(value));
+  const other = value => value === 'Other' || (Array.isArray(value) && value.length === 1 && value[0] === 'Other');
+  const revenue = company.revenueScaleZh || company.revenueScale;
+  return {
+    classification: completenessStatus(company.tmtVertical, other),
+    businessModel: completenessStatus(company.businessModel, other),
+    customerType: completenessStatus(company.customerType, other),
+    monetization: completenessStatus(company.monetization, other),
+    financing: latestFinancing || hasFinancing ? 'present' : 'missing',
+    investors: completenessStatus(company.investors),
+    revenue: completenessStatus(revenue, placeholder),
+    evidence: completenessStatus(company.evidence),
+    sourceVintage: completenessStatus(company.sourceVintage, placeholder),
+  };
+}
+
+function completenessMetrics(companies) {
+  return Object.fromEntries(COMPLETENESS_FIELDS.map(field => [field, {
+    present: companies.filter(c => c.completeness?.[field] === 'present').length,
+    unknown: companies.filter(c => c.completeness?.[field] === 'unknown').length,
+    missing: companies.filter(c => c.completeness?.[field] === 'missing').length,
+  }]));
+}
+
 function canonicalJson(value) {
   if (Array.isArray(value)) return `[${value.map(canonicalJson).join(',')}]`;
   if (value && typeof value === 'object') return `{${Object.keys(value).sort().map(k => `${JSON.stringify(k)}:${canonicalJson(value[k])}`).join(',')}}`;
@@ -93,22 +140,37 @@ function markTrustedSnapshot(state, receipt = {}) {
 
 function snapshotReceipt(state) { return trustedSnapshots.get(state) || null; }
 
-function projectCompany(company, lifecycleCoverage) {
+function projectCompany(company, lifecycleCoverage, options = {}) {
   const derived = lifecycleCoverage(company);
   const publicGaps = (derived.coverageGaps || []).filter(gap => ['stage_precision','public_evidence'].includes(gap));
   const out = allowlistedObject({ ...company, tmtVertical: inferTmtVertical(company), lifecycleStage: derived.stage, lifecycleStageLabel: derived.stageLabel,
     stageConfidence: derived.stageConfidence, coverageGaps: publicGaps }, PUBLIC_COMPANY_FIELDS);
   out.evidence = (company.evidence || []).map(item => allowlistedObject(item, PUBLIC_EVIDENCE_FIELDS));
+  const financing = projectLatestFinancing(company);
+  if (financing) out.latestFinancing = financing;
+  out.completeness = companyCompleteness({ ...company, tmtVertical: out.tmtVertical, evidence: out.evidence }, financing, options.hasFinancing);
   return out;
 }
 
 function projectState(state, lifecycleCoverage) {
   const receipt = snapshotReceipt(state);
   if (!receipt) return { meta: { readOnly: true, publicProjection: 'unavailable' }, companies: [], fundingRounds: [], dashboard: { total: 0 }, publicSnapshotVersion: null };
-  const companies = (state.companies || []).map(c => projectCompany(c, lifecycleCoverage));
+  const knownFundingIds = new Set((state.fundingRounds || []).filter(row =>
+    !/coverage_gap|placeholder|待补|待确认|unknown/i.test([row.sourceType,row.round,row.amount].join(' '))
+  ).map(row => row.companyId));
+  const companies = (state.companies || []).map(c => projectCompany(c, lifecycleCoverage, { hasFinancing: knownFundingIds.has(c.id) }));
+  const fundingRounds = (state.fundingRounds || []).map(row => allowlistedObject(row, PUBLIC_FUNDING_FIELDS));
+  for (const company of companies) {
+    const item = company.latestFinancing;
+    if (!item || fundingRounds.some(row => row.companyId === company.id && row.date === item.announcedDate && row.amount === item.amountDisplay)) continue;
+    fundingRounds.push({ companyId: company.id, companyName: company.name, date: item.announcedDate,
+      round: item.roundType, amount: item.amountDisplay, financingType: item.financingType,
+      url: item.sourceUrl, confidence: company.confidence });
+  }
   return { meta: allowlistedObject(state.meta || {}, PUBLIC_META_FIELDS), companies,
-    fundingRounds: (state.fundingRounds || []).map(row => allowlistedObject(row, PUBLIC_FUNDING_FIELDS)),
-    dashboard: { total: companies.length, privateCount: companies.filter(c => c.status === 'private').length },
+    fundingRounds,
+    dashboard: { total: companies.length, privateCount: companies.filter(c => c.status === 'private').length,
+      completeness: completenessMetrics(companies) },
     publicSnapshotVersion: receipt.version };
 }
 
@@ -126,4 +188,5 @@ function projectFunding(row) { return allowlistedObject(row, PUBLIC_FUNDING_FIEL
 
 module.exports = { PUBLIC_COMPANY_FIELDS, PUBLIC_EVIDENCE_FIELDS, PUBLIC_META_FIELDS, PUBLIC_FUNDING_FIELDS,
   projectCompany, projectState, projectFunding, snapshotReceipt, immutableSnapshotVersion, markTrustedSnapshot,
-  buildPublicSnapshot, cleanScalar, safeHttpUrl, canonicalJson };
+  buildPublicSnapshot, cleanScalar, safeHttpUrl, canonicalJson, projectLatestFinancing, companyCompleteness,
+  completenessMetrics, COMPLETENESS_FIELDS };

@@ -93,10 +93,26 @@
     "lastUpdatedAt": "2026-06-21T14:50:08Z",
     "tmtSeedImports": [
       {
-        "sha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e",
+        "sha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6",
         "schemaVersion": "1.0.0",
         "asOf": "2026-08-02",
         "recordCount": 11
+      }
+    ],
+    "legacyTmtNormalizationReceipts": [
+      {
+        "inputSha256": "06171293e0019a6b34428d4006175fafd8abae683ee9bdd0b53a48331869a213",
+        "rulesVersion": "2.0.0",
+        "classificationMethod": "deterministic_legacy_mapping",
+        "companyCount": 154,
+        "legacyNormalized": 143,
+        "reviewedPreserved": 11,
+        "unknown": {
+          "tmtVertical": 0,
+          "businessModel": 80,
+          "customerType": 94,
+          "monetization": 80
+        }
       }
     ]
   },
@@ -224,7 +240,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "furiosaai",
@@ -321,7 +345,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "deepx",
@@ -403,7 +435,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "upstage",
@@ -489,7 +529,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "panmnesia",
@@ -585,7 +633,15 @@
       "relationshipRouteZh": "InterVest + Samsung/SK/Naver/KT ecosystem + Korean securities underwriter｜pre-IPO round, KRX/KOSDAQ/KOSPI timetable, data room, Samsung/SK customer validation",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "nota-ai",
@@ -662,7 +718,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "sakana-ai",
@@ -746,7 +810,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "preferred-networks",
@@ -829,7 +901,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "lambda",
@@ -933,7 +1013,15 @@
       "relationshipRouteZh": "lead investors + customer/channel checks + project-finance/private-capital desks｜secondary/next round access plus unit-economics diligence",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "databricks",
@@ -1042,7 +1130,15 @@
       "relationshipRouteZh": "Company capital markets + Temasek/ICONIQ/a16z/NEA/Microsoft/CapitalG + IPO banks｜approved secondary, tender, IPO anchor/cornerstone, or data-room access",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "mistral-ai",
@@ -1130,7 +1226,15 @@
         "enterprise AI + LLM developer",
         "ARR/GM not public"
       ],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "nscale",
@@ -1223,7 +1327,15 @@
       "investmentSummaryZh": "A-/B+：强主题但贵且执行期长；适合结构化条款，不适合高溢价SPV盲投。",
       "riskSummaryZh": "主要风险：估值高、交付远期、LOI非收入、融资/建设/并网/GPU供给多重执行风险。",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "deepl",
@@ -1300,7 +1412,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "SaaS",
+      "customerType": "Other",
+      "monetization": [
+        "Subscription"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "stepfun",
@@ -1378,7 +1498,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "moonshot-ai",
@@ -1457,7 +1585,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "cohere",
@@ -1535,7 +1671,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "together-ai",
@@ -1641,7 +1785,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "glean",
@@ -1720,7 +1872,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "elevenlabs",
@@ -1832,7 +1992,15 @@
         "$100M tender offer",
         "530 teammates / 50+ countries"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "harvey",
@@ -1911,7 +2079,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "synthesia",
@@ -1995,7 +2171,15 @@
         "expected >$200M ARR in 2026 media",
         "AI video creation software"
       ],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "vast-data",
@@ -2080,7 +2264,15 @@
       "relationshipRouteZh": "strategic investors + semiconductor/customer design-win checks｜data-room access, strategic co-invest, customer design-win proof, next round",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "crusoe",
@@ -2203,7 +2395,15 @@
       "relationshipRouteZh": "lead investors + customer/channel checks + project-finance/private-capital desks｜secondary/next round access plus unit-economics diligence",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "cerebras",
@@ -2328,7 +2528,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "groq",
@@ -2434,7 +2642,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "hugging-face",
@@ -2515,7 +2731,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "xai",
@@ -2598,7 +2822,15 @@
       "investmentSummaryZh": "X｜Exclude / public, acquired or not clean pre-IPO。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：very_high",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "perplexity",
@@ -2680,7 +2912,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "anysphere",
@@ -2760,7 +3000,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "runway",
@@ -2839,7 +3087,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "abridge",
@@ -2939,7 +3195,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "grammarly",
@@ -3016,7 +3280,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "rippling",
@@ -3096,7 +3368,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "anduril",
@@ -3198,7 +3478,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为机器人 / Physical AI；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Hardware",
+      "customerType": "B2G",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "neysa",
@@ -3279,7 +3567,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "zutacore",
@@ -3370,7 +3666,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Hardware",
+      "customerType": "B2B",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "scintil",
@@ -3448,7 +3752,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "ayar-labs",
@@ -3538,7 +3850,15 @@
       "relationshipRouteZh": "strategic investors + semiconductor/customer design-win checks｜data-room access, strategic co-invest, customer design-win proof, next round",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "lightmatter",
@@ -3634,7 +3954,15 @@
       "relationshipRouteZh": "strategic investors + semiconductor/customer design-win checks｜data-room access, strategic co-invest, customer design-win proof, next round",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "celestial-ai",
@@ -3725,7 +4053,15 @@
       "relationshipRouteZh": "strategic investors + semiconductor/customer design-win checks｜data-room access, strategic co-invest, customer design-win proof, next round",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "d-matrix",
@@ -3824,7 +4160,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "tenstorrent",
@@ -3917,7 +4261,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "weights-biases",
@@ -3996,7 +4348,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "pinecone",
@@ -4075,7 +4435,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "scale-ai",
@@ -4159,7 +4527,15 @@
       "investmentSummaryZh": "X｜Exclude / public, acquired or not clean pre-IPO。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "wirorobotics",
@@ -4236,7 +4612,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为机器人 / Physical AI；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "aniai",
@@ -4313,7 +4697,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为机器人 / Physical AI；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "telepix",
@@ -4390,7 +4782,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为空间与卫星 AI；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "mobilint",
@@ -4466,7 +4866,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 芯片 / 加速器；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "higgsfield",
@@ -4567,7 +4975,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "suno",
@@ -4669,7 +5085,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：very_high",
       "keyMetrics": [],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Consumer Internet/Media/Gaming",
+      "businessModel": "Subscription",
+      "customerType": "Other",
+      "monetization": [
+        "Subscription"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "heygen",
@@ -4775,7 +5199,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "lovable",
@@ -4899,7 +5331,15 @@
         "media Series B ~$6B+",
         "ARR/run-rate claims need verification"
       ],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "physicsx",
@@ -4993,7 +5433,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "black-forest-labs",
@@ -5088,7 +5536,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "cuspai",
@@ -5181,7 +5637,15 @@
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "psiquantum",
@@ -5278,7 +5742,15 @@
       "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
       "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "alphasense",
@@ -5379,7 +5851,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "kraken-technologies",
@@ -5470,7 +5950,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "drivenets",
@@ -5573,7 +6061,15 @@
       "relationshipRouteZh": "strategic investors + semiconductor/customer design-win checks｜data-room access, strategic co-invest, customer design-win proof, next round",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "firmus",
@@ -5658,7 +6154,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "dayone-data-centers",
@@ -5742,7 +6246,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "sierra",
@@ -5831,7 +6343,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "parloa",
@@ -5918,7 +6438,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "baseten",
@@ -6029,7 +6557,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "openrouter",
@@ -6126,7 +6662,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "clay",
@@ -6212,7 +6756,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C2｜应用层观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "celero-communications",
@@ -6296,7 +6848,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "neye-systems",
@@ -6382,7 +6942,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "B2B",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "empower-semiconductor",
@@ -6466,7 +7034,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Hardware",
+      "customerType": "B2B",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "physical-intelligence",
@@ -6554,7 +7130,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为大模型 / 基础模型；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "bellwether-electronics",
@@ -6667,7 +7251,15 @@
       "relationshipRouteZh": "Yuanta Securities lead underwriter / Yuanta Securities｜IPO/pre-listing allocation, underwriting price range, prospectus/data room, customer/channel checks",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "hermes-testing",
@@ -6774,7 +7366,15 @@
       "relationshipRouteZh": "SinoPac Securities lead underwriter / SinoPac Securities｜IPO/pre-listing allocation, underwriting price range, prospectus/data room, customer/channel checks",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "asrock-industrial",
@@ -6882,7 +7482,15 @@
       "relationshipRouteZh": "Yuanta Securities lead underwriter / Yuanta Securities｜IPO/pre-listing allocation, underwriting price range, prospectus/data room, customer/channel checks",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "B2B",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "climax-technology",
@@ -6990,7 +7598,15 @@
       "relationshipRouteZh": "Fubon Securities lead underwriter / Fubon Securities｜IPO/pre-listing allocation, underwriting price range, prospectus/data room, customer/channel checks",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "taiwan-ai-cloud",
@@ -7076,7 +7692,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "xalloy",
@@ -7180,7 +7804,15 @@
       "relationshipRouteZh": "lead underwriter / company IR｜IPO/pre-listing allocation, underwriting price range, prospectus/data room, customer/channel checks",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "jtpc",
@@ -7284,7 +7916,15 @@
       "relationshipRouteZh": "lead underwriter / company IR｜IPO/pre-listing allocation, underwriting price range, prospectus/data room, customer/channel checks",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "yesiang",
@@ -7389,7 +8029,15 @@
       "relationshipRouteZh": "lead underwriter / company IR｜IPO/pre-listing allocation, underwriting price range, prospectus/data room, customer/channel checks",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "A：IC-ready draft"
+      "readinessLabel": "A：IC-ready draft",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "mg-cooling",
@@ -7473,7 +8121,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为AI 云、供电与冷却基础设施；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：medium_high",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Hardware",
+      "customerType": "B2B",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "best-oeic",
@@ -7559,7 +8215,15 @@
       "presentationCleanedAsOf": "2026-06-19",
       "investmentSummaryZh": "C3｜关系观察。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险等级：high",
-      "readinessLabel": "C：Needs data-room proof"
+      "readinessLabel": "C：Needs data-room proof",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "weka",
@@ -7635,7 +8299,15 @@
       "relationshipRouteZh": "strategic investors + semiconductor/customer design-win checks｜data-room access, strategic co-invest, customer design-win proof, next round",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "ddn",
@@ -7709,7 +8381,15 @@
       "relationshipRouteZh": "lead investors + customer/channel checks + project-finance/private-capital desks｜secondary/next round access plus unit-economics diligence",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "hammerspace",
@@ -7781,7 +8461,15 @@
       "relationshipRouteZh": "lead investors + customer/channel checks + project-finance/private-capital desks｜secondary/next round access plus unit-economics diligence",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "minio",
@@ -7856,7 +8544,15 @@
       "relationshipRouteZh": "lead investors + customer/channel checks + project-finance/private-capital desks｜secondary/next round access plus unit-economics diligence",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "anyscale",
@@ -7944,7 +8640,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "arrcus",
@@ -8022,7 +8726,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "encharge-ai",
@@ -8098,7 +8810,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "etched",
@@ -8187,7 +8907,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "fireworks-ai",
@@ -8276,7 +9004,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "liquidstack",
@@ -8351,7 +9087,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "matx",
@@ -8426,7 +9170,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "modal",
@@ -8512,7 +9264,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Usage-based",
+      "customerType": "Other",
+      "monetization": [
+        "Usage-based"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "submer",
@@ -8587,7 +9347,15 @@
       "relationshipRouteZh": "existing investors + customer/reference checks｜commercial proof, customer references, next financing or secondary watch",
       "relationshipOwner": "Deal Team",
       "nextTouchDate": "2026-06-30",
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "avicena",
@@ -8652,7 +9420,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "dustphotonics",
@@ -8714,7 +9490,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "hedgehog",
@@ -8772,7 +9556,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "hyperlume",
@@ -8832,7 +9624,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "netbox-labs",
@@ -8893,7 +9693,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "nile",
@@ -8953,7 +9761,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "openlight",
@@ -9016,7 +9832,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "ranovus",
@@ -9077,7 +9901,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "selector-ai",
@@ -9138,7 +9970,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为AI 集群网络与互连；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "xscape-photonics",
@@ -9201,7 +10041,15 @@
       "investmentSummaryZh": "C1｜Tech Radar / 早期或M&A watch。公司定位为光互连 / 硅光 / CPO；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
       "riskSummaryZh": "风险暂未整理",
       "keyMetrics": [],
-      "readinessLabel": "D：Watch / relationship build"
+      "readinessLabel": "D：Watch / relationship build",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "fluidstack",
@@ -9280,7 +10128,15 @@
       "investmentSummaryZh": "B+：dark horse；若Anthropic合同和资本结构透明可升A，否则只跟踪。",
       "riskSummaryZh": "主要风险：新闻headline很大但股权经济/合同/债务归属不透明。",
       "keyMetrics": [],
-      "readinessLabel": "需要商业/收入/估值验证"
+      "readinessLabel": "需要商业/收入/估值验证",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "tensorwave",
@@ -9361,7 +10217,15 @@
       "investmentSummaryZh": "B：AMD路线期权；技术和客户验证通过后可小票配置。",
       "riskSummaryZh": "主要风险：ROCm/CUDA生态差距、客户迁移成本、规模和融资能力弱于Lambda/Crusoe。",
       "keyMetrics": [],
-      "readinessLabel": "需要商业/收入/估值验证"
+      "readinessLabel": "需要商业/收入/估值验证",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "runpod",
@@ -9442,7 +10306,15 @@
       "investmentSummaryZh": "B：developer-first AI compute option；适合低估值/平台型暴露。",
       "riskSummaryZh": "主要风险：护城河弱、容易被hyperscaler/neocloud/Modal/Baseten挤压。",
       "keyMetrics": [],
-      "readinessLabel": "需要商业/收入/估值验证"
+      "readinessLabel": "需要商业/收入/估值验证",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Usage-based",
+      "customerType": "B2B",
+      "monetization": [
+        "Usage-based"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "replicate",
@@ -9520,7 +10392,15 @@
       "investmentSummaryZh": "B：长尾模型API/marketplace option；不是主仓推理平台。",
       "riskSummaryZh": "主要风险：marketplace供应质量、enterprise SLA、价格竞争、provider绕行。",
       "keyMetrics": [],
-      "readinessLabel": "需要商业/收入/估值验证"
+      "readinessLabel": "需要商业/收入/估值验证",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Marketplace",
+      "customerType": "Other",
+      "monetization": [
+        "Take rate"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "lepton-ai",
@@ -9597,7 +10477,15 @@
       "investmentSummaryZh": "B-/C+：inference platform watch；信息不足，不急投。",
       "riskSummaryZh": "主要风险：独立股权经济与NVIDIA合作边界不清，商业规模待验证。",
       "keyMetrics": [],
-      "readinessLabel": "需要商业/收入/估值验证"
+      "readinessLabel": "需要商业/收入/估值验证",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "sambanova",
@@ -9674,7 +10562,15 @@
       "investmentSummaryZh": "B-/C+：enterprise AI systems watch。",
       "riskSummaryZh": "主要风险：历史融资/商业化周期长，差异化和毛利需重新验证。",
       "keyMetrics": [],
-      "readinessLabel": "需要商业/收入/估值验证"
+      "readinessLabel": "需要商业/收入/估值验证",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "voltage-park-lightning-ai",
@@ -9752,7 +10648,15 @@
       "investmentSummaryZh": "B：GPU fleet + AI developer platform期权。",
       "riskSummaryZh": "主要风险：ARR口径、GPU折旧、合并后cap table、平台黏性不明。",
       "keyMetrics": [],
-      "readinessLabel": "需要商业/收入/估值验证"
+      "readinessLabel": "需要商业/收入/估值验证",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "foundry-technologies",
@@ -9830,7 +10734,15 @@
       "investmentSummaryZh": "C+：观察，不作为主投对象。",
       "riskSummaryZh": "主要风险：marketplace质量控制、SLA、低take-rate、被大cloud/neocloud压缩。",
       "keyMetrics": [],
-      "readinessLabel": "需要商业/收入/估值验证"
+      "readinessLabel": "需要商业/收入/估值验证",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Marketplace",
+      "customerType": "Other",
+      "monetization": [
+        "Take rate"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "starling-bank",
@@ -9947,7 +10859,15 @@
         "6.2M platform accounts/customers",
         "Apr 2022 valuation £2.5B+ pre-money"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "SaaS",
+      "customerType": "Mixed",
+      "monetization": [
+        "Subscription"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "trade-republic",
@@ -10070,7 +10990,15 @@
         "€12.5B valuation",
         "profitable for 3 consecutive years"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Transactional",
+      "customerType": "B2B",
+      "monetization": [
+        "Transaction fees"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "zopa",
@@ -10181,7 +11109,15 @@
         "£3.8B gross loans",
         "£6.4B deposits"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Other",
+      "customerType": "B2C",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "bitdefender",
@@ -10296,7 +11232,15 @@
         "580+ patents filed",
         "2024 revenue ~$435M per local media"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Cybersecurity/Identity",
+      "businessModel": "Other",
+      "customerType": "Mixed",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "bolt",
@@ -10415,7 +11359,15 @@
         "600+ cities",
         "Jan 2022 valuation €7.4B"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Marketplace",
+      "customerType": "Other",
+      "monetization": [
+        "Take rate"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "celonis",
@@ -10537,7 +11489,15 @@
         "5,000+ deployments",
         "$6.5B realized customer value"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "doctolib",
@@ -10655,7 +11615,15 @@
         "80M patient accounts",
         "400k healthcare professional subscribers"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Digital Health",
+      "businessModel": "SaaS",
+      "customerType": "Other",
+      "monetization": [
+        "Subscription"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "getyourguide",
@@ -10772,7 +11740,15 @@
         "16k+ creators",
         "80M+ bookings since launch"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Marketplace",
+      "customerType": "B2C",
+      "monetization": [
+        "Take rate"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "infobip",
@@ -10898,7 +11874,15 @@
         "7B+ devices reach",
         "9,700+ connections"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "kpler",
@@ -11017,7 +12001,15 @@
         ">$1B Sixth Street investment",
         ">$3.7B valuation"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "B2G",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "kraken-technology",
@@ -11136,7 +12128,15 @@
         "85% client NPS",
         "up to 15GWh managed daily"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Climate/Industrial Tech",
+      "businessModel": "SaaS",
+      "customerType": "Other",
+      "monetization": [
+        "Subscription"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "legora",
@@ -11233,7 +12233,15 @@
         "ARR/revenue not publicly verified",
         "customer logos/usage require data-room proof"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "lendable",
@@ -11329,7 +12337,15 @@
         "Public detailed revenue/profit not verified",
         "lending volumes, loss rates and funding cost require data room"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Marketplace",
+      "customerType": "B2C",
+      "monetization": [
+        "Take rate"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "mews",
@@ -11426,7 +12442,15 @@
         "Public metrics include thousands of hotel customers/locations in company materials",
         "ARR/revenue/profit not fully public here"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "mirakl",
@@ -11523,7 +12547,15 @@
         "Company/customer metrics public in marketing",
         "ARR/revenue not verified in this pass"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Marketplace",
+      "customerType": "Other",
+      "monetization": [
+        "Take rate"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "multiverse-computing",
@@ -11621,7 +12653,15 @@
         "Commercial revenue not fully public",
         "needs paid deployment proof for model-compression economics"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "n8n",
@@ -11717,7 +12757,15 @@
         "Usage/community metrics public",
         "ARR/revenue not verified here"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "nord-security",
@@ -11813,7 +12861,15 @@
         "Public customer/subscriber metrics need verification",
         "revenue/profit not publicly audited here"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Cybersecurity/Identity",
+      "businessModel": "Other",
+      "customerType": "B2C",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "odoo",
@@ -11910,7 +12966,15 @@
         "Company has large user/community footprint",
         "ARR/revenue/profit not fully captured here"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "oxford-quantum-circuits",
@@ -12006,7 +13070,15 @@
         "Commercial revenue not public",
         "quantum hardware roadmap and customer pilots need verification"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "personio",
@@ -12105,7 +13177,15 @@
         "Company disclosed 10k+ customers/SMB footprint in public materials",
         "current ARR/profit not verified here"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "poolside",
@@ -12203,7 +13283,15 @@
         "Revenue/ARR not publicly verified",
         "likely pre-revenue/early commercial relative to valuation"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "qonto",
@@ -12303,7 +13391,15 @@
         "Public customer count has grown materially",
         "current revenue/profit not verified here"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "quantexa",
@@ -12402,7 +13498,15 @@
         "ARR/revenue not fully public",
         "enterprise financial-crime/customer logos public"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Data/Analytics",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "thought-machine",
@@ -12500,7 +13604,15 @@
         "Revenue not public",
         "bank customer wins/logos require validation by deployment status not announcements"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Other",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "trendyol",
@@ -12598,7 +13710,15 @@
         "Public GMV/revenue/profit not verified here",
         "Turkey market leadership and international expansion need current data"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Marketplace",
+      "customerType": "Other",
+      "monetization": [
+        "Take rate"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "wayve",
@@ -12695,7 +13815,15 @@
         "Revenue likely pilot/strategic",
         "commercial deployments and OEM contracts require data-room proof"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "cmr-surgical",
@@ -12792,7 +13920,15 @@
         "Installed base/revenue not fully public",
         "procedure volumes and regulatory approvals need current diligence"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "huma",
@@ -12889,7 +14025,15 @@
         "Revenue not public",
         "regulatory clearances, patient volumes and pharma contracts require diligence"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Other",
+      "customerType": "B2C",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "medical-microinstruments",
@@ -12987,7 +14131,15 @@
         "Revenue not public",
         "commercialization/installed base and regulatory status need diligence"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Hardware",
+      "customerType": "Other",
+      "monetization": [
+        "Hardware sales"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "owkin",
@@ -13085,7 +14237,15 @@
         "Revenue not public",
         "pharma milestones/partnership economics and clinical pipeline require diligence"
       ],
-      "readinessLabel": "B：Route-ready / diligence-ready"
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Digital Health",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived"
     },
     {
       "id": "applied-intuition",
@@ -13105,62 +14265,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2025-06-17",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-06-17",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13178,6 +14343,13 @@
       "sector": "Robotics / Mobility",
       "subSector": "自动驾驶与车辆智能开发、仿真和验证软件",
       "companyDescription": "已成为汽车、卡车、国防和非公路车辆自主系统的开发工具链，软件平台属性和客户嵌入深度突出。",
+      "latestFinancing": {
+        "roundType": "Series F",
+        "amountDisplay": "$600m",
+        "announcedDate": "2025-06-17",
+        "financingType": "equity",
+        "sourceUrl": "https://www.applied.co/blog/series-f"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-06-17",
       "privateStatusConfidence": "high"
@@ -13200,62 +14372,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2026-05-06",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-05-06",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13273,6 +14450,13 @@
       "sector": "Communications TMT / Space Tech",
       "subSector": "小型高轨通信卫星与专用带宽基础设施",
       "companyDescription": "以小型MicroGEO卫星为国家、运营商和政府客户提供专用通信容量，介于卫星制造商与通信基础设施运营商之间。",
+      "latestFinancing": {
+        "roundType": "financing",
+        "amountDisplay": "$450m",
+        "announcedDate": "2026-05-06",
+        "financingType": "mixed",
+        "sourceUrl": "https://spacenews.com/astranis-secures-450-million-in-equity-debt-to-expand-small-geo-satellite-production/"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-05-06",
       "privateStatusConfidence": "high"
@@ -13295,62 +14479,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2026-02-04",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-02-04",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13368,6 +14557,13 @@
       "sector": "Robotics / Industrial Mobility",
       "subSector": "工程机械自主化软件与改装平台",
       "companyDescription": "通过改装既有挖掘机和压路机切入建筑自动化，避免自建整车，软件栈可跨OEM和工程场景复制。",
+      "latestFinancing": {
+        "roundType": "Series B",
+        "amountDisplay": "$270m",
+        "announcedDate": "2026-02-04",
+        "financingType": "equity",
+        "sourceUrl": "https://siliconangle.com/2026/02/04/bedrock-robotics-raises-270m-scale-autonomous-construction-fleets/"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-02-04",
       "privateStatusConfidence": "high"
@@ -13390,62 +14586,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2026-07-22",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-07-22",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13463,6 +14664,13 @@
       "sector": "Healthtech",
       "subSector": "AI原生医疗收入周期管理基础设施",
       "companyDescription": "瞄准美国医疗账单与收入周期的高成本刚需，平台化程度和替代传统外包RCM的潜力高于单点医疗AI应用。",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$120m",
+        "announcedDate": "2026-07-22",
+        "financingType": "equity",
+        "sourceUrl": "https://www.mobihealthnews.com/news/candid-health-raises-120m-ai-revenue-cycle-management-platform"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-07-22",
       "privateStatusConfidence": "high"
@@ -13485,62 +14693,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2025-06-12",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2025-06-12",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13559,6 +14772,13 @@
       "sector": "Climate / Industrial Technology",
       "subSector": "关键基础设施检测机器人与资产数据软件",
       "companyDescription": "机器人采集与基础设施数字孪生软件相结合，覆盖能源、国防和工业资产，收入并非单纯硬件销售。",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$125m",
+        "announcedDate": "2025-06-12",
+        "financingType": "equity",
+        "sourceUrl": "https://www.cnbc.com/2025/06/12/gecko-robotics-funding-unicorn-critical-infrastructure.html"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-06-12",
       "privateStatusConfidence": "high"
@@ -13581,62 +14801,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2026-06-02",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-06-02",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13654,6 +14879,13 @@
       "sector": "Space Tech",
       "subSector": "轨道转移、在轨机动与空间运输基础设施",
       "companyDescription": "在发射之后提供轨道机动与高能运输，定位为空间经济物流层，受益于军用快速响应和商业卫星多轨道部署。",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$500m",
+        "announcedDate": "2026-06-02",
+        "financingType": "equity",
+        "sourceUrl": "https://spacenews.com/impulse-space-raises-500-million/"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-06-02",
       "privateStatusConfidence": "high"
@@ -13676,62 +14908,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2026-03-05",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-03-05",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13749,6 +14986,13 @@
       "sector": "Industrial Software",
       "subSector": "复杂硬件测试、遥测分析与任务运营软件",
       "companyDescription": "为航空航天、国防和高端制造提供统一测试与运营数据层，属于物理产业AI基础设施而非普通横向SaaS。",
+      "latestFinancing": {
+        "roundType": "Series B-2",
+        "amountDisplay": "$80m",
+        "announcedDate": "2026-03-05",
+        "financingType": "equity",
+        "sourceUrl": "https://siliconangle.com/2026/03/05/hardware-testing-startup-nominal-raises-80m-1b-valuation/"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-03-05",
       "privateStatusConfidence": "high"
@@ -13771,62 +15015,67 @@
         "country": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "medium",
           "sourceDate": "2026-05-20",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "medium",
+          "sourceDate": "2026-05-20",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13844,6 +15093,13 @@
       "sector": "Digital Health",
       "subSector": "保险覆盖的虚拟营养医疗平台",
       "companyDescription": "将营养师供给、保险理赔和患者匹配整合为全国性平台，商业模式比纯消费者健康订阅更具支付方支撑。",
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$100m",
+        "announcedDate": "2026-05-20",
+        "financingType": "equity",
+        "sourceUrl": "https://hlth.com/insights/news/nourish-raises-100m-to-expand-virtual-nutrition-care-platform"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-05-20",
       "privateStatusConfidence": "medium"
@@ -13866,62 +15122,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2026-01-21",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-01-21",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -13939,6 +15200,13 @@
       "sector": "Digital Health",
       "subSector": "医生临床知识检索与决策支持平台",
       "companyDescription": "以免费医生入口形成高频临床分发，叠加医学出版内容合作，可能成为医生端医疗知识与AI Agent入口。",
+      "latestFinancing": {
+        "roundType": "growth round",
+        "amountDisplay": "$250m",
+        "announcedDate": "2026-01-21",
+        "financingType": "equity",
+        "sourceUrl": "https://www.openevidence.com/announcements"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-01-21",
       "privateStatusConfidence": "high"
@@ -13961,62 +15229,67 @@
         "country": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "medium",
           "sourceDate": "2026-02-10",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "medium",
+          "sourceDate": "2026-02-10",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -14034,6 +15307,13 @@
       "sector": "Space Tech",
       "subSector": "完全可重复使用运载火箭及发射基础设施",
       "companyDescription": "Nova若实现上下级完全复用，可能成为SpaceX之外的重要发射基础设施平台，但尚存在首飞和规模制造风险。",
+      "latestFinancing": {
+        "roundType": "financing extension",
+        "amountDisplay": "$350m",
+        "announcedDate": "2026-02-10",
+        "financingType": "unknown",
+        "sourceUrl": "https://www.geekwire.com/2026/stoke-space-350m-added-funding/"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-02-10",
       "privateStatusConfidence": "medium"
@@ -14056,62 +15336,67 @@
         "country": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "tmtVertical": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "businessModel": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "customerType": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "monetization": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "lifecycleStage": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sourceVintage": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "confidence": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "investabilityAccessLane": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "sector": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "subSector": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         },
         "companyDescription": {
           "confidence": "high",
           "sourceDate": "2026-04-28",
-          "seedSha256": "a7ecbe3568f3424aefe5ec99f54438f7ace75127e21f5f548a4bb32a713e192e"
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
+        },
+        "latestFinancing": {
+          "confidence": "high",
+          "sourceDate": "2026-04-28",
+          "seedSha256": "aa091f03b8c2c9fe288882829e058320578562549f9588a71a74176c9dc506e6"
         }
       },
       "country": "United States",
@@ -14129,6 +15414,13 @@
       "sector": "Space Tech",
       "subSector": "空间态势感知、机动卫星与空间防御平台",
       "companyDescription": "将自主卫星、任务软件和空间域数据结合，直接受益于美国空间防御与Golden Dome相关需求。",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$650m",
+        "announcedDate": "2026-04-28",
+        "financingType": "equity",
+        "sourceUrl": "https://spacenews.com/true-anomaly-raises-650-million-reaching-2-2-billion-valuation/"
+      },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-04-28",
       "privateStatusConfidence": "high"

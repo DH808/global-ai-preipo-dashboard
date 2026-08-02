@@ -38,7 +38,7 @@ GET /api/v2/companies/:id/evidence
 GET /api/v2/companies/:id/lineage
 ```
 
-`:id` accepts a published canonical ID or a redistributable alias/external ID. Identifier provenance is checked independently; a restricted alias cannot resolve an otherwise public company. Absent and restricted identifiers return the same generic 404. Mixed-source funding publishes only fields mapped to redistributable sources. Public opportunity DTOs omit owner and next-action fields. Evidence requires `publication_eligible=1`.
+`:id` accepts a published canonical ID or a redistributable alias/external ID. Identifier provenance is checked independently; a restricted alias cannot resolve an otherwise public company. Absent and restricted identifiers return the same generic 404. Mixed-source funding publishes only fields mapped to redistributable sources, and `financingType` is emitted only when a public field map explicitly proves `metadata.financingType`. Reviewed structured financing binds `announcedDate`, `roundType`, `amountDisplay`, and `financingType` to one exact public source URL/date pair; valuation is neither accepted nor synthesized by that path. Public opportunity DTOs omit owner and next-action fields. Evidence requires `publication_eligible=1`.
 
 ### Operations resources
 

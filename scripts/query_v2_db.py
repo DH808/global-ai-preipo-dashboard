@@ -172,6 +172,12 @@ class PublicProjectionPolicy:
                 value = self.safe_text(row[column])
                 if value is not None:
                     dto[public_name] = value
+            try:
+                financing_type = json.loads(row["metadata_json"] or "{}").get("financingType")
+            except (TypeError, ValueError):
+                financing_type = None
+            if financing_type in {"equity", "debt", "mixed", "unknown"} and "metadata.financingType" in proven:
+                dto["financingType"] = financing_type
             if dto:
                 output.append(dto)
         return output

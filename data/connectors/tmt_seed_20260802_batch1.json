@@ -30,6 +30,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "Series F",
+        "amountDisplay": "$600m",
+        "announcedDate": "2025-06-17",
+        "financingType": "equity",
+        "sourceUrl": "https://www.applied.co/blog/series-f"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2025-06-17",
@@ -64,6 +71,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "financing",
+        "amountDisplay": "$450m",
+        "announcedDate": "2026-05-06",
+        "financingType": "mixed",
+        "sourceUrl": "https://spacenews.com/astranis-secures-450-million-in-equity-debt-to-expand-small-geo-satellite-production/"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-05-06",
@@ -98,6 +112,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "Series B",
+        "amountDisplay": "$270m",
+        "announcedDate": "2026-02-04",
+        "financingType": "equity",
+        "sourceUrl": "https://siliconangle.com/2026/02/04/bedrock-robotics-raises-270m-scale-autonomous-construction-fleets/"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-02-04",
@@ -132,6 +153,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$120m",
+        "announcedDate": "2026-07-22",
+        "financingType": "equity",
+        "sourceUrl": "https://www.mobihealthnews.com/news/candid-health-raises-120m-ai-revenue-cycle-management-platform"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-07-22",
@@ -167,6 +195,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$125m",
+        "announcedDate": "2025-06-12",
+        "financingType": "equity",
+        "sourceUrl": "https://www.cnbc.com/2025/06/12/gecko-robotics-funding-unicorn-critical-infrastructure.html"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2025-06-12",
@@ -201,6 +236,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$500m",
+        "announcedDate": "2026-06-02",
+        "financingType": "equity",
+        "sourceUrl": "https://spacenews.com/impulse-space-raises-500-million/"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-06-02",
@@ -235,6 +277,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "Series B-2",
+        "amountDisplay": "$80m",
+        "announcedDate": "2026-03-05",
+        "financingType": "equity",
+        "sourceUrl": "https://siliconangle.com/2026/03/05/hardware-testing-startup-nominal-raises-80m-1b-valuation/"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-03-05",
@@ -269,6 +318,13 @@
         }
       ],
       "confidence": "medium",
+      "latestFinancing": {
+        "roundType": "Series C",
+        "amountDisplay": "$100m",
+        "announcedDate": "2026-05-20",
+        "financingType": "equity",
+        "sourceUrl": "https://hlth.com/insights/news/nourish-raises-100m-to-expand-virtual-nutrition-care-platform"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-05-20",
@@ -303,6 +359,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "growth round",
+        "amountDisplay": "$250m",
+        "announcedDate": "2026-01-21",
+        "financingType": "equity",
+        "sourceUrl": "https://www.openevidence.com/announcements"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-01-21",
@@ -337,6 +400,13 @@
         }
       ],
       "confidence": "medium",
+      "latestFinancing": {
+        "roundType": "financing extension",
+        "amountDisplay": "$350m",
+        "announcedDate": "2026-02-10",
+        "financingType": "unknown",
+        "sourceUrl": "https://www.geekwire.com/2026/stoke-space-350m-added-funding/"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-02-10",
@@ -371,6 +441,13 @@
         }
       ],
       "confidence": "high",
+      "latestFinancing": {
+        "roundType": "Series D",
+        "amountDisplay": "$650m",
+        "announcedDate": "2026-04-28",
+        "financingType": "equity",
+        "sourceUrl": "https://spacenews.com/true-anomaly-raises-650-million-reaching-2-2-billion-valuation/"
+      },
       "privateStatusBoundary": {
         "status": "private",
         "asOf": "2026-04-28",
