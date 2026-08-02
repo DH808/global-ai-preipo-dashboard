@@ -8,7 +8,7 @@ The OS now covers the full private-company lifecycle with North America prioriti
 
 ```text
 trusted bundled state → centralized public projection → public-state.json
-  → public-only schema 002 runtime database
+  → public-only schema 003 runtime database
 
 internal/local migration only: legacy state / future connectors
   → RAW: connector registry → ingestion runs → immutable raw records

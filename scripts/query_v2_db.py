@@ -16,6 +16,12 @@ PUBLIC_RIGHTS = frozenset({"sanitized_derived", "public_allowed"})
 REGIONAL_TAGS = frozenset({"china", "taiwan", "japan", "south_korea", "singapore"})
 REGIONAL_LANES = frozenset({"taiwan_market_access", "monitor_or_strategic_relationship", "relationship_or_local_private", "monitor_only"})
 REGIONAL_LINEAGE = frozenset({"canonical_hq", "reviewed_explicit_exposure"})
+IPO_HORIZONS = ("0_12m", "12_24m", "24_48m", "48m_plus", "evergreen_private", "unknown")
+IPO_HORIZON_CONFIDENCES = frozenset({"high", "medium", "low", "unverified"})
+IPO_HORIZON_BASES = frozenset({"official_filing", "exchange_application", "company_statement", "recent_financing",
+                               "secondary_liquidity", "stage_heuristic", "insufficient_evidence"})
+IPO_HORIZON_DISCLAIMER_ZH = "IPO / 退出周期仅表示监测预期，不是上市预测或公司计划声明。"
+IPO_HORIZON_DISCLAIMER_EN = "IPO / exit horizons are monitoring expectations, not forecasts or claims of a planned IPO."
 
 
 def now() -> str:
@@ -150,17 +156,18 @@ class PublicProjectionPolicy:
         patterns = (
             ("secondary_tender", r"secondary|tender|二级|老股"),
             ("crossover_pipe_strategic", r"\bpipe\b|crossover|strategic|战略"),
-            ("project_finance", r"project[ -]?finance|项目融资"),
-            ("formation_pre_seed", r"formation|pre[ -]?seed|angel|天使|成立期"),
+            ("project_finance", r"project[ _-]?finance|项目融资"),
+            ("formation_pre_seed", r"formation|pre[ _-]?seed|angel|天使|成立期"),
             ("seed", r"(^|\W)seed(\W|$)|种子"), ("series_a_b", r"series\s*[ab](\W|$)|[ab]轮"),
-            ("pre_ipo", r"pre[ -]?ipo|准上市|上市前"),
-            ("growth_late_stage", r"growth|late[ -]?stage|series\s*[cdef](\W|$)|成长|后期"),
+            ("pre_ipo", r"pre[ _-]?ipo|准上市|上市前"),
+            ("growth_late_stage", r"growth|late[ _-]?stage|series\s*[cdef](\W|$)|成长|后期"),
         )
         return next((name for name, pattern in patterns if re.search(pattern, text, re.I)), "stage_unverified")
 
     def opportunities(self, org_id: str):
         rows = self.conn.execute("""
-          SELECT opportunity_type,stage,status,owner,next_action,source_record_id
+          SELECT opportunity_type,stage,status,owner,next_action,source_record_id,ipo_horizon,
+            ipo_horizon_confidence,ipo_horizon_basis
           FROM opportunities WHERE organization_id=? ORDER BY updated_at DESC,id
         """, (org_id,)).fetchall()
         result = []
@@ -170,6 +177,12 @@ class PublicProjectionPolicy:
             values = {"opportunityType": row["opportunity_type"], "stage": row["stage"], "status": row["status"]}
             values = {k: self.safe_text(v) for k, v in values.items()}
             values["lifecycleStage"] = self.lifecycle(row["stage"])
+            horizon, confidence = row["ipo_horizon"], row["ipo_horizon_confidence"]
+            basis = row["ipo_horizon_basis"]
+            if (horizon not in IPO_HORIZONS or confidence not in IPO_HORIZON_CONFIDENCES or
+                    basis not in IPO_HORIZON_BASES):
+                continue
+            values.update({"ipoHorizon": horizon, "ipoHorizonConfidence": confidence, "ipoHorizonBasis": basis})
             result.append(values)
         return result
 
@@ -219,7 +232,8 @@ class PublicProjectionPolicy:
             "identity": identity, "investmentProfile": opportunities[0] if opportunities else None,
             "latestFunding": funding[0] if funding else None,
             "lifecycle": {"stage": stage, "stageConfidence": "unverified" if stage == "stage_unverified" else "deterministic",
-                          "coverageGaps": (["stage_precision"] if stage == "stage_unverified" else [])},
+                          "coverageGaps": ((["stage_precision"] if stage == "stage_unverified" else []) +
+                                           (["ipo_horizon_evidence"] if opportunities and opportunities[0]["ipoHorizonConfidence"] in {"low", "unverified"} else []))},
             "recordVersion": org["record_version"], "updatedAt": org["updated_at"],
         }
         regional = self.regional_exposure(org)
@@ -257,16 +271,27 @@ def cursor_decode(value: str) -> str:
 
 
 def envelope(data, generated: str, **extra):
-    return {"schemaVersion": "002", "generatedAt": generated, **extra, "data": data}
+    return {"schemaVersion": "003", "generatedAt": generated,
+            "ipoHorizonDisclaimerZh": IPO_HORIZON_DISCLAIMER_ZH,
+            "ipoHorizonDisclaimerEn": IPO_HORIZON_DISCLAIMER_EN, **extra, "data": data}
 
 
 def query(conn: sqlite3.Connection, operation: str, args: dict) -> dict:
     generated, policy = now(), PublicProjectionPolicy(conn)
     if operation == "meta":
         public_count = sum(policy.organization_visible(r) for r in conn.execute("SELECT * FROM organizations WHERE organization_type='company'"))
-        return {"schemaVersion": "002", "publicSnapshotVersion": policy.snapshot_version(), "generatedAt": generated,
-                "service": "private-investment-opportunity-os", "apiVersion": "v2", "counts": {"companies": public_count}, "readOnly": True}
+        visible = [policy.company(row) for row in conn.execute("SELECT * FROM organizations WHERE organization_type='company'")
+                   if policy.organization_visible(row)]
+        distribution = {horizon: sum(item.get("investmentProfile", {}).get("ipoHorizon") == horizon for item in visible)
+                        for horizon in IPO_HORIZONS}
+        return {"schemaVersion": "003", "publicSnapshotVersion": policy.snapshot_version(), "generatedAt": generated,
+                "service": "private-investment-opportunity-os", "apiVersion": "v2", "counts": {"companies": public_count},
+                "horizonDistribution": distribution, "ipoHorizonDisclaimerZh": IPO_HORIZON_DISCLAIMER_ZH,
+                "ipoHorizonDisclaimerEn": IPO_HORIZON_DISCLAIMER_EN, "readOnly": True}
     if operation == "companies":
+        horizon_filter = set(filter(None, str(args.get("ipoHorizon", "")).split(",")))
+        if horizon_filter and not horizon_filter <= set(IPO_HORIZONS):
+            raise ApiError("INVALID_PARAMETER", "ipoHorizon contains an unsupported value.", 400, {"parameter": "ipoHorizon"})
         try: limit = int(args.get("limit", 25))
         except (TypeError, ValueError): raise ApiError("INVALID_PARAMETER", "limit must be an integer.", 400, {"parameter": "limit"})
         if not 1 <= limit <= 100:
@@ -286,10 +311,13 @@ def query(conn: sqlite3.Connection, operation: str, args: dict) -> dict:
             if args.get("asiaPriority") == "1" and not dto.get("regionalExposure"): continue
             if args.get("status") and dto["identity"].get("status") != args["status"]: continue
             if args.get("stage") and dto["lifecycle"]["stage"] != args["stage"]: continue
+            if horizon_filter and dto.get("investmentProfile", {}).get("ipoHorizon") not in horizon_filter: continue
             rows.append(dto)
-            if len(rows) > limit: break
         page, has_more = rows[:limit], len(rows) > limit
-        return envelope(page, generated, page={"limit": limit, "nextCursor": cursor_encode(page[-1]["id"]) if has_more else None, "hasMore": has_more})
+        distribution = {horizon: sum(item.get("investmentProfile", {}).get("ipoHorizon") == horizon for item in rows)
+                        for horizon in IPO_HORIZONS}
+        return envelope(page, generated, horizonDistribution=distribution,
+                        page={"limit": limit, "nextCursor": cursor_encode(page[-1]["id"]) if has_more else None, "hasMore": has_more})
     if operation == "company":
         return envelope(policy.company(policy.resolve_public_org(str(args.get("id", ""))), True), generated)
     if operation in {"funding", "metrics", "evidence", "lineage"}:

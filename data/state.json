@@ -173,8 +173,35 @@
         "identityGraphSha256": "366259794f69583c785a479080c18d375fcde7555a5b10928e719c4ced798f20",
         "replacesApplicationSha256": "992e30790954e7dfe4501857b161a3d19d99a0a200fdcc919cc1c33983afe852",
         "receiptSha256": "1ddb66294640fa029f362bf3a5144578263fed17979328b1f260e26d7409379f"
+      },
+      {
+        "applicationSha256": "1288cfe707355e82b363bbf32af121313c52817322305a1e1875c4a7554bb192",
+        "schemaVersion": "1.0.0",
+        "profileId": "asia-tmt-expansion-v1",
+        "asOf": "2026-08-02",
+        "recordCount": 13,
+        "created": 13,
+        "matched": 0,
+        "expectedPostCompanyCount": 184,
+        "stateBusinessSha256": "1ee93a3321d955120e849c5bacbf3f7b5bacf49b8f0abce8c7fd57dbdea90730",
+        "identityGraphSha256": "ef9317b76c715bdc48c0a8625ca1630dc5f6cbbbd6d64ecf041fb9bb6cb81d15",
+        "replacesApplicationSha256": null,
+        "receiptSha256": "71bbd2e67f5edf3816a562da10290b8d25c96491ab3e0ac09624ec17a3de2052"
       }
-    ]
+    ],
+    "ipoHorizonFramework": {
+      "version": "1",
+      "companyCount": 184,
+      "distribution": {
+        "0_12m": 4,
+        "12_24m": 0,
+        "24_48m": 81,
+        "48m_plus": 83,
+        "evergreen_private": 10,
+        "unknown": 6
+      },
+      "evidenceGapCount": 180
+    }
   },
   "companies": [
     {
@@ -318,7 +345,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "furiosaai",
@@ -433,7 +467,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "deepx",
@@ -533,7 +574,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "upstage",
@@ -637,7 +685,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "panmnesia",
@@ -751,7 +806,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "nota-ai",
@@ -846,7 +908,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "sakana-ai",
@@ -948,7 +1017,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "preferred-networks",
@@ -1067,7 +1143,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "lambda",
@@ -1179,7 +1262,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "secondary_liquidity",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "databricks",
@@ -1296,7 +1386,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "mistral-ai",
@@ -1392,7 +1489,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "nscale",
@@ -1493,7 +1597,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "deepl",
@@ -1578,7 +1689,14 @@
         "Subscription"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "stepfun",
@@ -1674,7 +1792,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "moonshot-ai",
@@ -1798,7 +1923,14 @@
       "confidence": "high",
       "privateStatus": "private",
       "privateStatusAsOf": "2026-05-07",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "cohere",
@@ -1884,7 +2016,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "together-ai",
@@ -1998,7 +2137,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "glean",
@@ -2133,7 +2279,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-06-10",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "elevenlabs",
@@ -2253,7 +2406,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "harvey",
@@ -2340,7 +2500,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "synthesia",
@@ -2432,7 +2599,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "vast-data",
@@ -2525,7 +2699,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "crusoe",
@@ -2656,7 +2837,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "secondary_liquidity",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "cerebras",
@@ -2789,7 +2977,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "company_statement",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "groq",
@@ -2903,7 +3098,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "hugging-face",
@@ -2992,7 +3194,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "xai",
@@ -3083,7 +3292,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "perplexity",
@@ -3173,7 +3389,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "anysphere",
@@ -3261,7 +3484,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "runway",
@@ -3348,7 +3578,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "abridge",
@@ -3456,7 +3693,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "grammarly",
@@ -3541,7 +3785,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "rippling",
@@ -3629,7 +3880,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "anduril",
@@ -3739,7 +3997,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "neysa",
@@ -3828,7 +4093,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "zutacore",
@@ -3927,7 +4199,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "scintil",
@@ -4013,7 +4292,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "ayar-labs",
@@ -4111,7 +4397,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "lightmatter",
@@ -4215,7 +4508,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "celestial-ai",
@@ -4314,7 +4614,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "d-matrix",
@@ -4421,7 +4728,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "tenstorrent",
@@ -4522,7 +4836,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "weights-biases",
@@ -4609,7 +4930,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "pinecone",
@@ -4696,7 +5024,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "scale-ai",
@@ -4788,7 +5123,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "wirorobotics",
@@ -4883,7 +5225,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "aniai",
@@ -4968,7 +5317,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "telepix",
@@ -5063,7 +5419,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "mobilint",
@@ -5157,7 +5520,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "higgsfield",
@@ -5266,7 +5636,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "suno",
@@ -5376,7 +5753,14 @@
         "Subscription"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "heygen",
@@ -5490,7 +5874,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "lovable",
@@ -5622,7 +6013,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "physicsx",
@@ -5724,7 +6122,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "black-forest-labs",
@@ -5827,7 +6232,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "cuspai",
@@ -5928,7 +6340,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "psiquantum",
@@ -6033,7 +6452,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "alphasense",
@@ -6160,7 +6586,14 @@
         "asOf": "2026-06-03",
         "sourceUrl": "https://www.alpha-sense.com/press/alphasense-raises-350m-at-7-5b-valuation-and-surpasses-600m-in-annual-recurring-revenue/",
         "confidence": "high"
-      }
+      },
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "kraken-technologies",
@@ -6277,7 +6710,14 @@
         "asOf": "2025-12-29",
         "sourceUrl": "https://www.kraken.tech/press-releases/octopus-energy-group-to-spin-out-kraken-at-valuation-of-usd8-65bn",
         "confidence": "high"
-      }
+      },
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "drivenets",
@@ -6406,7 +6846,14 @@
         "asOf": "2026-06-01",
         "sourceUrl": "https://drivenets.com/news-and-events/press-release/drivenets-secures-410m-series-d-to-meet-surging-demand-for-ethernet-fabric-in-large-scale-ai-deployments/",
         "confidence": "high"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "firmus",
@@ -6499,7 +6946,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "dayone-data-centers",
@@ -6591,7 +7045,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "sierra",
@@ -6736,7 +7197,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-05-04",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "parloa",
@@ -6849,7 +7317,14 @@
         "asOf": "2025-05-06",
         "sourceUrl": "https://www.parloa.com/parloa-in-the-press/parloa-raises-120m-series-c-to-reinvent-customer-service-with-agentic-ai/",
         "confidence": "high"
-      }
+      },
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "baseten",
@@ -6968,7 +7443,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "openrouter",
@@ -7073,7 +7555,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "clay",
@@ -7215,7 +7704,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-08-05",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "celero-communications",
@@ -7307,7 +7803,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "neye-systems",
@@ -7401,7 +7904,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "empower-semiconductor",
@@ -7493,7 +8003,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "physical-intelligence",
@@ -7589,7 +8106,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "bellwether-electronics",
@@ -7720,7 +8244,12 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "0_12m",
+      "ipoHorizonConfidence": "high",
+      "ipoHorizonBasis": "exchange_application",
+      "ipoHorizonClassificationMethod": "exchange_application",
+      "coverageGaps": []
     },
     {
       "id": "hermes-testing",
@@ -7845,7 +8374,12 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "0_12m",
+      "ipoHorizonConfidence": "high",
+      "ipoHorizonBasis": "exchange_application",
+      "ipoHorizonClassificationMethod": "exchange_application",
+      "coverageGaps": []
     },
     {
       "id": "asrock-industrial",
@@ -7971,7 +8505,12 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "0_12m",
+      "ipoHorizonConfidence": "high",
+      "ipoHorizonBasis": "exchange_application",
+      "ipoHorizonClassificationMethod": "exchange_application",
+      "coverageGaps": []
     },
     {
       "id": "climax-technology",
@@ -8097,7 +8636,12 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "0_12m",
+      "ipoHorizonConfidence": "high",
+      "ipoHorizonBasis": "exchange_application",
+      "ipoHorizonClassificationMethod": "exchange_application",
+      "coverageGaps": []
     },
     {
       "id": "taiwan-ai-cloud",
@@ -8201,7 +8745,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "unknown",
+      "ipoHorizonConfidence": "unverified",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "insufficient_evidence",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "xalloy",
@@ -8323,7 +8874,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "unknown",
+      "ipoHorizonConfidence": "unverified",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "insufficient_evidence",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "jtpc",
@@ -8445,7 +9003,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "unknown",
+      "ipoHorizonConfidence": "unverified",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "insufficient_evidence",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "yesiang",
@@ -8568,7 +9133,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "unknown",
+      "ipoHorizonConfidence": "unverified",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "insufficient_evidence",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "mg-cooling",
@@ -8670,7 +9242,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "unknown",
+      "ipoHorizonConfidence": "unverified",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "insufficient_evidence",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "best-oeic",
@@ -8774,7 +9353,14 @@
         "rightsProfile": "sanitized_derived",
         "publicationEligible": true,
         "lineage": "canonical_hq"
-      }
+      },
+      "ipoHorizon": "unknown",
+      "ipoHorizonConfidence": "unverified",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "insufficient_evidence",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "weka",
@@ -8858,7 +9444,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "ddn",
@@ -8940,7 +9533,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "secondary_liquidity",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "hammerspace",
@@ -9020,7 +9620,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "secondary_liquidity",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "minio",
@@ -9103,7 +9710,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "secondary_liquidity",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "anyscale",
@@ -9199,7 +9813,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "arrcus",
@@ -9285,7 +9906,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "encharge-ai",
@@ -9369,7 +9997,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "etched",
@@ -9466,7 +10101,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "fireworks-ai",
@@ -9563,7 +10205,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "liquidstack",
@@ -9646,7 +10295,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "matx",
@@ -9729,7 +10385,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "modal",
@@ -9823,7 +10486,14 @@
         "Usage-based"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "submer",
@@ -9906,7 +10576,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "avicena",
@@ -9979,7 +10656,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "dustphotonics",
@@ -10049,7 +10733,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "hedgehog",
@@ -10115,7 +10806,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "hyperlume",
@@ -10183,7 +10881,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "netbox-labs",
@@ -10252,7 +10957,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "nile",
@@ -10320,7 +11032,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "openlight",
@@ -10391,7 +11110,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "ranovus",
@@ -10460,7 +11186,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "selector-ai",
@@ -10529,7 +11262,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "xscape-photonics",
@@ -10600,7 +11340,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "evergreen_private",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "fluidstack",
@@ -10687,7 +11434,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "tensorwave",
@@ -10776,7 +11530,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "runpod",
@@ -10865,7 +11626,14 @@
         "Usage-based"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "replicate",
@@ -10951,7 +11719,14 @@
         "Take rate"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "lepton-ai",
@@ -11036,7 +11811,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "sambanova",
@@ -11121,7 +11903,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "voltage-park-lightning-ai",
@@ -11207,7 +11996,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "foundry-technologies",
@@ -11293,7 +12089,14 @@
         "Take rate"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "starling-bank",
@@ -11418,7 +12221,14 @@
         "Subscription"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "trade-republic",
@@ -11549,7 +12359,14 @@
         "Transaction fees"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "secondary_liquidity",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "zopa",
@@ -11685,7 +12502,14 @@
         "asOf": "2024-12-06",
         "sourceUrl": "https://techcrunch.com/2024/12/05/zopa-the-uk-neobank-snaps-up-85m-at-a-1b-valuation-eschewing-the-ipo-route/",
         "confidence": "high"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "bitdefender",
@@ -11808,7 +12632,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "bolt",
@@ -11935,7 +12766,14 @@
         "Take rate"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "celonis",
@@ -12065,7 +12903,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "doctolib",
@@ -12191,7 +13036,14 @@
         "Subscription"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "secondary_liquidity",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "getyourguide",
@@ -12316,7 +13168,14 @@
         "Take rate"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "infobip",
@@ -12467,7 +13326,14 @@
         "asOf": "2025-07-02",
         "sourceUrl": "https://www.infobip.com/news/infobip-secures-520m-direct-lending-facility",
         "confidence": "high"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "company_statement",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "kpler",
@@ -12611,7 +13477,14 @@
         "asOf": "2026-06-03",
         "sourceUrl": "https://sixthstreet.com/investment_announce/kpler-announces-strategic-growth-equity-investment-from-sixth-street/",
         "confidence": "high"
-      }
+      },
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "kraken-technology",
@@ -12738,7 +13611,14 @@
         "Subscription"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "legora",
@@ -12843,7 +13723,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "lendable",
@@ -12947,7 +13834,14 @@
         "Take rate"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "mews",
@@ -13052,7 +13946,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "mirakl",
@@ -13157,7 +14058,14 @@
         "Take rate"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "multiverse-computing",
@@ -13263,7 +14171,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "n8n",
@@ -13367,7 +14282,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "nord-security",
@@ -13471,7 +14393,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "odoo",
@@ -13576,7 +14505,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "oxford-quantum-circuits",
@@ -13680,7 +14616,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "personio",
@@ -13787,7 +14730,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "poolside",
@@ -13893,7 +14843,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "qonto",
@@ -14001,7 +14958,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "quantexa",
@@ -14108,7 +15072,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "thought-machine",
@@ -14214,7 +15185,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "trendyol",
@@ -14320,7 +15298,14 @@
         "Take rate"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "wayve",
@@ -14425,7 +15410,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "cmr-surgical",
@@ -14530,7 +15522,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "huma",
@@ -14635,7 +15634,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "medical-microinstruments",
@@ -14741,7 +15747,14 @@
         "Hardware sales"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "owkin",
@@ -14847,7 +15860,14 @@
         "Other"
       ],
       "classificationMethod": "deterministic_legacy_mapping",
-      "classificationConfidence": "derived"
+      "classificationConfidence": "derived",
+      "ipoHorizon": "24_48m",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "applied-intuition",
@@ -14954,7 +15974,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-06-17",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "astranis",
@@ -15061,7 +16088,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-05-06",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "bedrock-robotics",
@@ -15168,7 +16202,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-02-04",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "candid-health",
@@ -15275,7 +16316,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-07-22",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "gecko-robotics",
@@ -15383,7 +16431,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-06-12",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "impulse-space",
@@ -15490,7 +16545,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-06-02",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "nominal",
@@ -15597,7 +16659,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-03-05",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "nourish",
@@ -15704,7 +16773,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-05-20",
-      "privateStatusConfidence": "medium"
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "openevidence",
@@ -15811,7 +16887,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-01-21",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "stoke-space",
@@ -15918,7 +17001,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-02-10",
-      "privateStatusConfidence": "medium"
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "true-anomaly",
@@ -16025,7 +17115,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-04-28",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "bestow",
@@ -16132,7 +17229,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-05-13",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "chapter",
@@ -16238,7 +17342,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-04-16",
-      "privateStatusConfidence": "medium"
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "federato",
@@ -16344,7 +17455,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2024-11-20",
-      "privateStatusConfidence": "medium"
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "harper",
@@ -16450,7 +17568,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-02-25",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "mercury",
@@ -16556,7 +17681,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-03-26",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "plaid",
@@ -16662,7 +17794,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-04-03",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "rain",
@@ -16768,7 +17907,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-04-08",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "substack",
@@ -16874,7 +18020,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-07-17",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "cyera",
@@ -16980,7 +18133,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-01-08",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "grafana-labs",
@@ -17086,7 +18246,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2024-08-21",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "island",
@@ -17192,7 +18359,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-03-26",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "linear",
@@ -17298,7 +18472,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2025-06-10",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "supabase",
@@ -17404,7 +18585,14 @@
       },
       "privateStatus": "private",
       "privateStatusAsOf": "2026-06-05",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "pixverse",
@@ -17457,7 +18645,14 @@
       "confidence": "high",
       "privateStatus": "private",
       "privateStatusAsOf": "2026-07-13",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "layerx",
@@ -17510,7 +18705,14 @@
       "confidence": "high",
       "privateStatus": "private",
       "privateStatusAsOf": "2025-09-01",
-      "privateStatusConfidence": "high"
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "moloco",
@@ -17557,7 +18759,14 @@
       "privateStatus": "private",
       "privateStatusAsOf": "2024-08-31",
       "privateStatusConfidence": "medium",
-      "privateStatusVerificationDue": "2026-08-30"
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     },
     {
       "id": "viva-republica",
@@ -17606,7 +18815,727 @@
       "privateStatus": "private",
       "privateStatusAsOf": "2024-08-31",
       "privateStatusConfidence": "medium",
-      "privateStatusVerificationDue": "2026-08-30"
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "unitree-robotics",
+      "name": "Unitree Robotics",
+      "status": "private",
+      "country": "China",
+      "region": "China",
+      "aliases": [
+        "Unitree"
+      ],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2026/02/28/why-chinas-humanoid-robot-industry-is-winning-the-early-market/",
+          "date": "2026-02-28",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Robotics",
+      "subSector": "Humanoid robotics",
+      "companyDescription": "Unitree Robotics is monitored as a private Robotics/Mobility company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "china"
+        ],
+        "accessLane": "monitor_or_strategic_relationship",
+        "asOf": "2026-02-28",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-02-28",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-02-28",
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax",
+      "status": "private",
+      "country": "China",
+      "region": "China",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/01/15/chinese-ai-company-minimax-releases-new-models-it-claims-are-competitive-with-the-industrys-best/",
+          "date": "2025-01-15",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Artificial intelligence",
+      "subSector": "Model platform",
+      "companyDescription": "MiniMax is monitored as a private AI/Cloud/Semiconductor Infrastructure company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "china"
+        ],
+        "accessLane": "monitor_or_strategic_relationship",
+        "asOf": "2025-01-15",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-01-15",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-01-15",
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "xiaohongshu",
+      "name": "Xiaohongshu",
+      "status": "private",
+      "country": "China",
+      "region": "China",
+      "aliases": [
+        "RedNote"
+      ],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/01/13/xiaohongshu-rednote-chinas-answer-to-instagram-hits-no-1-on-the-app-store-as-tiktok-faces-us-shutdown/",
+          "date": "2025-01-13",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Consumer internet",
+      "subSector": "Social media",
+      "companyDescription": "Xiaohongshu is monitored as a private Consumer Internet/Media/Gaming company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "china"
+        ],
+        "accessLane": "monitor_or_strategic_relationship",
+        "asOf": "2025-01-13",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Consumer Internet/Media/Gaming",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-01-13",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-01-13",
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "bytedance",
+      "name": "ByteDance",
+      "status": "private",
+      "country": "China",
+      "region": "China",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/12/18/tiktok-agrees-to-deal-to-cede-control-of-u-s-business-to-american-investor-group/",
+          "date": "2025-12-18",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Consumer internet",
+      "subSector": "Digital media",
+      "companyDescription": "ByteDance is monitored as a private Consumer Internet/Media/Gaming company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "china"
+        ],
+        "accessLane": "monitor_or_strategic_relationship",
+        "asOf": "2025-12-18",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Consumer Internet/Media/Gaming",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2025-12-18",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-12-18",
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "legalon-technologies",
+      "name": "LegalOn Technologies",
+      "status": "private",
+      "country": "Japan",
+      "region": "Japan",
+      "aliases": [
+        "LegalOn"
+      ],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2025/07/24/softbank-backed-legalon-fuels-ai-for-in-house-legal-team-with-50m-series-e/",
+          "date": "2025-07-24",
+          "type": "reputable_media",
+          "confidence": "high",
+          "claimType": "latest_financing",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Enterprise software",
+      "subSector": "Legal technology",
+      "companyDescription": "LegalOn Technologies is monitored as a private Enterprise Software company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "japan"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2025-07-24",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "high",
+      "tmtVertical": "Enterprise Software",
+      "businessModel": "SaaS",
+      "customerType": "B2B",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "latestFinancing": {
+        "roundType": "Series E",
+        "amountDisplay": "$50M",
+        "announcedDate": "2025-07-24",
+        "financingType": "equity",
+        "sourceUrl": "https://techcrunch.com/2025/07/24/softbank-backed-legalon-fuels-ai-for-in-house-legal-team-with-50m-series-e/"
+      },
+      "sourceVintage": "2025-07-24",
+      "confidence": "high",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2025-07-24",
+      "privateStatusConfidence": "high",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "recent_financing",
+      "ipoHorizonClassificationMethod": "recent_financing_monitor",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "mujin",
+      "name": "Mujin",
+      "status": "private",
+      "country": "Japan",
+      "region": "Japan",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2026/04/05/japan-is-proving-experimental-physical-ai-is-ready-for-the-real-world/",
+          "date": "2026-04-05",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Robotics",
+      "subSector": "Industrial robotics",
+      "companyDescription": "Mujin is monitored as a private Robotics/Mobility company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "japan"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2026-04-05",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Robotics/Mobility",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2026-04-05",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2026-04-05",
+      "privateStatusConfidence": "medium",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "yanolja",
+      "name": "Yanolja",
+      "status": "private",
+      "country": "South Korea",
+      "region": "South Korea",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Commerce/Marketplaces",
+      "subSector": "Other",
+      "companyDescription": "Yanolja is monitored as a private Commerce/Marketplaces company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "kurly",
+      "name": "Kurly",
+      "status": "private",
+      "country": "South Korea",
+      "region": "South Korea",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Commerce/Marketplaces",
+      "subSector": "Other",
+      "companyDescription": "Kurly is monitored as a private Commerce/Marketplaces company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "dunamu",
+      "name": "Dunamu",
+      "status": "private",
+      "country": "South Korea",
+      "region": "South Korea",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Fintech/Payments/Insurtech",
+      "subSector": "Other",
+      "companyDescription": "Dunamu is monitored as a private Fintech/Payments/Insurtech company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "musinsa",
+      "name": "Musinsa",
+      "status": "private",
+      "country": "South Korea",
+      "region": "South Korea",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Commerce/Marketplaces",
+      "subSector": "Other",
+      "companyDescription": "Musinsa is monitored as a private Commerce/Marketplaces company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "bucketplace",
+      "name": "Bucketplace",
+      "status": "private",
+      "country": "South Korea",
+      "region": "South Korea",
+      "aliases": [
+        "O!House"
+      ],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Commerce/Marketplaces",
+      "subSector": "Other",
+      "companyDescription": "Bucketplace is monitored as a private Commerce/Marketplaces company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "zigbang",
+      "name": "ZigBang",
+      "status": "private",
+      "country": "South Korea",
+      "region": "South Korea",
+      "aliases": [],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Commerce/Marketplaces",
+      "subSector": "Other",
+      "companyDescription": "ZigBang is monitored as a private Commerce/Marketplaces company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Commerce/Marketplaces",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
+    },
+    {
+      "id": "korea-credit-data",
+      "name": "Korea Credit Data",
+      "status": "private",
+      "country": "South Korea",
+      "region": "South Korea",
+      "aliases": [
+        "KCD"
+      ],
+      "evidence": [
+        {
+          "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/",
+          "date": "2024-08-31",
+          "type": "reputable_media",
+          "confidence": "medium",
+          "claimType": "private_status",
+          "rightsProfile": "public_allowed",
+          "publicationEligible": true
+        }
+      ],
+      "sector": "Fintech/Payments/Insurtech",
+      "subSector": "Other",
+      "companyDescription": "Korea Credit Data is monitored as a private Fintech/Payments/Insurtech company.",
+      "regionalExposureProfile": {
+        "tags": [
+          "south_korea"
+        ],
+        "accessLane": "relationship_or_local_private",
+        "asOf": "2024-08-31",
+        "rightsProfile": "public_allowed",
+        "publicationEligible": true,
+        "lineage": "canonical_hq"
+      },
+      "classificationMethod": "reviewed_asia_seed",
+      "classificationConfidence": "medium",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Other",
+      "customerType": "Other",
+      "monetization": [
+        "Other"
+      ],
+      "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31",
+      "confidence": "medium",
+      "privateStatus": "private",
+      "privateStatusAsOf": "2024-08-31",
+      "privateStatusConfidence": "medium",
+      "privateStatusVerificationDue": "2026-08-30",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "stage_heuristic",
+      "ipoHorizonClassificationMethod": "lifecycle_stage_heuristic",
+      "coverageGaps": [
+        "ipo_horizon_evidence"
+      ]
     }
   ],
   "fundingRounds": [

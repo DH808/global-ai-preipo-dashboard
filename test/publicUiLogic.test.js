@@ -16,13 +16,19 @@ assert.deepEqual(Array.from(context.tmtTaxonomy.TMT_VERTICALS), require('../src/
 
 const app = fs.readFileSync(path.join(root, 'public/app.js'), 'utf8');
 const html = fs.readFileSync(path.join(root, 'public/index.html'), 'utf8');
-assert.match(app, /\$\('#stage'\)\.addEventListener\('change', \(\) => load\(\)\)/, 'stage selector must trigger a reload');
+assert.match(app, /\['stage','ipoHorizon'\]/, 'stage and horizon selectors must trigger reloads');
 assert.match(app, /function renderCoverageMatrix\(\)/, 'coverage matrix must be rendered deterministically');
 for (const field of ['classification','businessModel','customerType','monetization','financing','investors','revenue','evidence','sourceVintage']) assert.ok(app.includes(field), `${field} completeness missing`);
 assert.ok(html.includes('id="tmtVertical"') && html.includes('id="coverageMatrix"'), 'TMT vertical filter and coverage matrix are required');
 assert.ok(html.includes('id="regionalExposure"') && html.includes('Asia Priority'), 'Asia exposure filter and preset are required');
+assert.ok(html.includes('id="ipoHorizon"') && html.includes('monitoring expectations, not forecasts'), 'horizon filter and bilingual disclaimer are required');
+for (const legacy of ['24–36m strategic/pre-IPO path', '12–24m IPO / approved secondary', '18–36m secondary/IPO/next-round path', 'IPO 窗口', '流动性窗口']) {
+  assert.ok(!app.includes(legacy) && !html.includes(legacy), `public UI retained legacy IPO-window claim: ${legacy}`);
+}
+for (const marker of ['IPO_HORIZON_LABELS','horizonDistribution','近期监测 · 0–24m','24–48m 机会','长期机会 · 48m+','Asia · 24–48m+']) assert.ok(app.includes(marker), `${marker} horizon desktop/mobile logic missing`);
 for (const marker of ['asiaPriorityOnly', 'regionalExposure', 'asia-coverage-matrix', "['china','taiwan','japan','south_korea','singapore']"]) assert.ok(app.includes(marker), `${marker} Asia desktop/mobile logic missing`);
 assert.match(app, /asiaPriorityOnly=false/, 'reset must clear Asia Priority on desktop and mobile');
+assert.match(app, /\$\('#ipoHorizon'\)\.value=''/, 'reset must clear horizon on desktop and mobile');
 const css = fs.readFileSync(path.join(root, 'public/style.css'), 'utf8');
 assert.match(css, /\.coverage-matrix-wrap\{overflow:auto/, 'wide coverage matrix must scroll responsively');
 assert.match(css, /@media\(max-width:720px\)/, 'mobile breakpoint must remain present');

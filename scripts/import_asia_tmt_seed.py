@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import tempfile
 import unicodedata
 from datetime import date, datetime
@@ -40,6 +41,8 @@ VALUATION_KEY = re.compile(r"valuation|post.?money|pre.?money|enterprise.?value|
 HEX_SHA256 = re.compile(r"[0-9a-f]{64}")
 TOP_LEVEL_FIELDS = {"schemaVersion", "profileId", "asOf", "expectedPostCompanyCount", "expectedResult", "replacement", "review", "records"}
 REPLACEMENT_FIELDS = {"schemaVersion", "operation", "supersededReceipt", "expectedPreReplacement", "removeCreatedCompany", "guardedFieldReplacements"}
+ASIA_BATCH_2_IDS = {"unitree-robotics", "minimax", "xiaohongshu", "bytedance", "legalon-technologies", "mujin",
+                    "yanolja", "kurly", "dunamu", "musinsa", "bucketplace", "zigbang", "korea-credit-data"}
 
 
 class DuplicateJsonKey(ValueError):
@@ -194,25 +197,32 @@ def validate_seed(seed: dict[str, Any], profile: dict[str, Any], clock: date, ma
     if not isinstance(records, list) or not records:
         add_error(errors, "RECORDS_INVALID", "records must be a non-empty array")
         return errors
-    if seed.get("expectedPostCompanyCount") != 171:
-        add_error(errors, "EXPECTED_COMPANY_COUNT_INVALID", "the reviewed Asia batch must produce exactly 171 companies")
-    if seed.get("expectedResult") != {"created": 4, "matched": 1}:
-        add_error(errors, "EXPECTED_RESULT_INVALID", "the reviewed baseline result must be exactly 4 creates and 1 match")
+    batch_2 = {record.get("id") for record in records if isinstance(record, dict)} == ASIA_BATCH_2_IDS
+    expected_contract = (184, {"created": 13, "matched": 0}) if batch_2 else (171, {"created": 4, "matched": 1})
+    if seed.get("expectedPostCompanyCount") != expected_contract[0]:
+        add_error(errors, "EXPECTED_COMPANY_COUNT_INVALID", f"the reviewed Asia batch must produce exactly {expected_contract[0]} companies")
+    if seed.get("expectedResult") != expected_contract[1]:
+        add_error(errors, "EXPECTED_RESULT_INVALID", f"the reviewed Asia batch result must be exactly {expected_contract[1]['created']} creates and {expected_contract[1]['matched']} matches")
     replacement = seed.get("replacement")
-    if not isinstance(replacement, dict) or set(replacement) != REPLACEMENT_FIELDS or replacement.get("schemaVersion") != SCHEMA_VERSION or replacement.get("operation") != "replace-applied-asia-import":
+    if batch_2 and replacement is None:
+        replacement = None
+    elif batch_2:
+        add_error(errors, "REPLACEMENT_MANIFEST_INVALID", "Asia batch 2 must not replace a prior import")
+        replacement = None
+    elif not isinstance(replacement, dict) or set(replacement) != REPLACEMENT_FIELDS or replacement.get("schemaVersion") != SCHEMA_VERSION or replacement.get("operation") != "replace-applied-asia-import":
         add_error(errors, "REPLACEMENT_MANIFEST_INVALID", "an exact applied-batch replacement manifest is required")
         replacement = {}
-    expected_pre = replacement.get("expectedPreReplacement")
-    if not isinstance(expected_pre, dict) or set(expected_pre) != {"companyCount", "stateBusinessSha256"} or expected_pre.get("companyCount") != 171 or not HEX_SHA256.fullmatch(str(expected_pre.get("stateBusinessSha256") or "")):
+    expected_pre = None if batch_2 else replacement.get("expectedPreReplacement")
+    if not batch_2 and (not isinstance(expected_pre, dict) or set(expected_pre) != {"companyCount", "stateBusinessSha256"} or expected_pre.get("companyCount") != 171 or not HEX_SHA256.fullmatch(str(expected_pre.get("stateBusinessSha256") or ""))):
         add_error(errors, "REPLACEMENT_MANIFEST_INVALID", "pre-replacement count and business digest must be exact")
-    removed = replacement.get("removeCreatedCompany")
-    if not isinstance(removed, dict) or set(removed) != {"id", "replacementId", "sha256"} or removed.get("id") != "toss" or removed.get("replacementId") != "viva-republica" or not HEX_SHA256.fullmatch(str(removed.get("sha256") or "")):
+    removed = None if batch_2 else replacement.get("removeCreatedCompany")
+    if not batch_2 and (not isinstance(removed, dict) or set(removed) != {"id", "replacementId", "sha256"} or removed.get("id") != "toss" or removed.get("replacementId") != "viva-republica" or not HEX_SHA256.fullmatch(str(removed.get("sha256") or ""))):
         add_error(errors, "REPLACEMENT_MANIFEST_INVALID", "the exact Toss-to-Viva replacement guard is required")
-    superseded = replacement.get("supersededReceipt")
-    if not isinstance(superseded, dict) or set(superseded) != {"applicationSha256", "schemaVersion", "profileId", "asOf", "recordCount", "created", "matched"}:
+    superseded = None if batch_2 else replacement.get("supersededReceipt")
+    if not batch_2 and (not isinstance(superseded, dict) or set(superseded) != {"applicationSha256", "schemaVersion", "profileId", "asOf", "recordCount", "created", "matched"}):
         add_error(errors, "REPLACEMENT_MANIFEST_INVALID", "the exact superseded receipt is required")
-    guards = replacement.get("guardedFieldReplacements")
-    if not isinstance(guards, list) or not guards:
+    guards = [] if batch_2 else replacement.get("guardedFieldReplacements")
+    if not batch_2 and (not isinstance(guards, list) or not guards):
         add_error(errors, "REPLACEMENT_MANIFEST_INVALID", "guarded field replacements are required")
         guards = []
     guard_keys = set()
@@ -308,8 +318,8 @@ def validate_seed(seed: dict[str, Any], profile: dict[str, Any], clock: date, ma
                     raise ValueError("private status must bind to the newest source and private_status claim")
                 if "verificationDue" in boundary:
                     due = iso_date(boundary["verificationDue"], "privateStatusBoundary.verificationDue")
-                    if record["id"] not in {"moloco", "viva-republica"} or due <= (as_of or clock) or due >= date(2026, 8, 31) or (due - when).days > max_age:
-                        raise ValueError("verificationDue must signal Moloco/Viva re-verification before source expiry")
+                    if due <= (as_of or clock) or (due - when).days >= max_age:
+                        raise ValueError("verificationDue must require re-verification before source expiry")
             except (KeyError, ValueError) as exc:
                 add_error(errors, "PRIVATE_STATUS_INVALID", str(exc), number)
         financing = record.get("latestFinancing")
@@ -367,8 +377,20 @@ def backfill(companies, profile, as_of, skip_ids=None):
             continue
         wanted = exposure_profile([profile["canonicalHeadquarters"][country]], profile["deterministicBackfill"][country], as_of, "sanitized_derived", "canonical_hq")
         current = company.get("regionalExposureProfile")
-        if current not in (None, wanted):
-            raise ValueError(f"EXISTING_REGIONAL_PROFILE_CONFLICT: {company.get('id')} has a non-canonical profile")
+        if current is not None:
+            expected_fields = {"tags", "accessLane", "asOf", "rightsProfile", "publicationEligible", "lineage"}
+            valid = isinstance(current, dict) and set(current) == expected_fields and isinstance(current.get("tags"), list) and current["tags"] and \
+                len(current["tags"]) == len(set(current["tags"])) and set(current["tags"]) <= set(profile["regionalExposureTags"]) and \
+                profile["canonicalHeadquarters"][country] in current["tags"] and current.get("accessLane") == profile["deterministicBackfill"][country] and \
+                current.get("rightsProfile") in profile["publicProjection"]["allowedRightsProfiles"] and current.get("publicationEligible") is True and \
+                current.get("lineage") in profile["publicProjection"]["allowedLineage"]
+            try:
+                valid = valid and iso_date(current.get("asOf"), "regionalExposureProfile.asOf") <= iso_date(as_of, "asOf")
+            except ValueError:
+                valid = False
+            if not valid:
+                raise ValueError(f"EXISTING_REGIONAL_PROFILE_CONFLICT: {company.get('id')} has a non-canonical profile")
+            continue
         if current is None:
             company["regionalExposureProfile"] = wanted
             changes.append(company.get("id"))
@@ -388,6 +410,8 @@ def contains_company_reference(value: Any, company_id: str) -> bool:
 def prepare_replacement(state: dict[str, Any], seed: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
     result = copy.deepcopy(state)
     manifest = seed["replacement"]
+    if manifest is None:
+        return result, {"performed": False, "removedCompanyIds": [], "guardedFields": []}
     imports = result.setdefault("meta", {}).setdefault("asiaSeedImports", [])
     old_receipt = manifest["supersededReceipt"]
     positions = [pos for pos, receipt in enumerate(imports) if receipt == old_receipt]
@@ -426,6 +450,30 @@ def receipt_payload(receipt: dict[str, Any]) -> dict[str, Any]:
     return {key: value for key, value in receipt.items() if key != "receiptSha256"}
 
 
+def apply_shared_ipo_classifier(companies: list[dict[str, Any]], as_of: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    try:
+        process = subprocess.run(["node", str(ROOT / "scripts" / "classify_ipo_horizon_records.js")],
+                                 input=json.dumps({"asOf": as_of, "companies": companies}, ensure_ascii=False),
+                                 text=True, capture_output=True, timeout=30)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        raise ValueError("IPO_HORIZON_CLASSIFIER_FAILED: classifier could not complete") from exc
+    if process.returncode != 0:
+        raise ValueError(f"IPO_HORIZON_CLASSIFIER_FAILED: {process.stderr.strip()[:500]}")
+    try:
+        value = json.loads(process.stdout)
+    except (TypeError, json.JSONDecodeError) as exc:
+        raise ValueError("IPO_HORIZON_CLASSIFIER_FAILED: classifier returned invalid JSON") from exc
+    framework = value.get("framework") if isinstance(value, dict) else None
+    if not isinstance(value, dict) or not isinstance(value.get("companies"), list) or len(value["companies"]) != len(companies) or \
+            not isinstance(framework, dict) or set(framework) != {"version", "companyCount", "distribution", "evidenceGapCount"} or \
+            framework.get("version") != "1" or framework.get("companyCount") != len(companies) or not isinstance(framework.get("distribution"), dict) or \
+            sum(framework["distribution"].values()) != len(companies) or not isinstance(framework.get("evidenceGapCount"), int):
+        raise ValueError("IPO_HORIZON_CLASSIFIER_FAILED: classifier returned an invalid company set")
+    if [row.get("id") for row in value["companies"]] != [row.get("id") for row in companies]:
+        raise ValueError("IPO_HORIZON_CLASSIFIER_FAILED: classifier changed company identity or order")
+    return value["companies"], framework
+
+
 def assert_replay_integrity(state: dict[str, Any], seed: dict[str, Any], profile: dict[str, Any], application_digest: str, receipt: dict[str, Any]) -> None:
     expected_fields = {"applicationSha256", "schemaVersion", "profileId", "asOf", "recordCount", "created", "matched", "expectedPostCompanyCount", "stateBusinessSha256", "identityGraphSha256", "replacesApplicationSha256", "receiptSha256"}
     if set(receipt) != expected_fields or receipt.get("receiptSha256") != digest(receipt_payload(receipt)):
@@ -442,6 +490,9 @@ def assert_replay_integrity(state: dict[str, Any], seed: dict[str, Any], profile
         raise ValueError("REPLAY_IDENTITY_GRAPH_MISMATCH: company identity graph differs from the receipt")
     if state_business_digest(state) != receipt.get("stateBusinessSha256"):
         raise ValueError("REPLAY_STATE_DIGEST_MISMATCH: state business digest differs from the receipt")
+    canonical_companies, canonical_framework = apply_shared_ipo_classifier(copy.deepcopy(companies), seed["asOf"])
+    if canonical_companies != companies or state.get("meta", {}).get("ipoHorizonFramework") != canonical_framework:
+        raise ValueError("REPLAY_IPO_HORIZON_MISMATCH: shared classifier fields or framework differ")
     probe = copy.deepcopy(companies)
     if backfill(probe, profile, seed["asOf"], {record["id"] for record in seed["records"]}):
         raise ValueError("REPLAY_REGIONAL_BACKFILL_MISMATCH: deterministic regional backfill is incomplete")
@@ -471,7 +522,7 @@ def merge(state, seed, profile, application_digest):
     if len(applied) > 1:
         raise ValueError("REPLAY_RECEIPT_DUPLICATED: corrected receipt is duplicated")
     if applied:
-        if any(item == seed["replacement"]["supersededReceipt"] for item in imports):
+        if seed["replacement"] is not None and any(item == seed["replacement"]["supersededReceipt"] for item in imports):
             raise ValueError("REPLACEMENT_STATE_INVALID: old and corrected receipts both exist")
         assert_replay_integrity(result, seed, profile, application_digest, applied[0])
         return result, {"alreadyApplied": True, "created": 0, "matched": 0, "updated": 0, "unchanged": len(seed["records"]), "backfilled": 0, "changes": []}
@@ -490,7 +541,10 @@ def merge(state, seed, profile, application_digest):
         if created:
             if any(company.get("id") == record["id"] for company in companies):
                 raise ValueError(f"DUPLICATE_ID: {record['id']}")
-            company = {"id": record["id"], "name": record["name"], "status": "private", "country": record["headquartersCountry"], "region": record["headquartersCountry"], "aliases": sorted(record["aliases"], key=str.casefold), "evidence": []}
+            company = {"id": record["id"], "name": record["name"], "status": "private", "country": record["headquartersCountry"],
+                       "region": record["headquartersCountry"], "aliases": sorted(record["aliases"], key=str.casefold), "evidence": [],
+                       "sector": record.get("sector") or record["tmtVertical"], "subSector": record.get("subSector") or "Other",
+                       "companyDescription": record.get("companyDescription") or f"{record['name']} is monitored as a private {record['tmtVertical']} company."}
             companies.append(company); pos = len(companies) - 1; report["created"] += 1
         else:
             pos = next(iter(matches)); company = companies[pos]; report["matched"] += 1
@@ -538,16 +592,19 @@ def merge(state, seed, profile, application_digest):
         report["changes"].append({"record": number, "id": company["id"], "action": "create" if created else ("update" if changed else "unchanged"), "fields": sorted(set(changed))})
     if seed["asOf"] >= str(meta.get("asOf") or ""):
         meta["asOf"] = seed["asOf"]; meta["updatedAt"] = seed["review"]["reviewedAt"]
+    companies[:], framework = apply_shared_ipo_classifier(companies, seed["asOf"])
+    meta["ipoHorizonFramework"] = framework
     if len(companies) != seed["expectedPostCompanyCount"]:
         raise ValueError(f"POST_IMPORT_COMPANY_COUNT_MISMATCH: expected {seed['expectedPostCompanyCount']}, got {len(companies)}")
     graph_sha = assert_identity_graph(companies)
     logical = seed["expectedResult"]
     if not replacement["performed"] and (report["created"], report["matched"]) != (logical["created"], logical["matched"]):
-        raise ValueError("POST_IMPORT_RESULT_MISMATCH: expected exactly 4 creates and 1 match")
+        raise ValueError(f"POST_IMPORT_RESULT_MISMATCH: expected exactly {logical['created']} creates and {logical['matched']} matches")
+    replacement_sha = seed["replacement"]["supersededReceipt"]["applicationSha256"] if replacement["performed"] else None
     receipt = {"applicationSha256": application_digest, "schemaVersion": SCHEMA_VERSION, "profileId": PROFILE_ID,
         "asOf": seed["asOf"], "recordCount": len(seed["records"]), "created": logical["created"], "matched": logical["matched"],
         "expectedPostCompanyCount": seed["expectedPostCompanyCount"], "stateBusinessSha256": state_business_digest(result),
-        "identityGraphSha256": graph_sha, "replacesApplicationSha256": seed["replacement"]["supersededReceipt"]["applicationSha256"]}
+        "identityGraphSha256": graph_sha, "replacesApplicationSha256": replacement_sha}
     receipt["receiptSha256"] = digest(receipt)
     imports.append(receipt)
     return result, report

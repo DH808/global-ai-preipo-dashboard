@@ -10,6 +10,7 @@ const { sourceStatus, refreshInterVest, fetchCompanyNews } = require('./src/conn
 const { queryV2 } = require('./src/v2Repository');
 const { STAGES, lifecycleCoverage } = require('./src/lifecycle');
 const { TMT_VERTICALS } = require('./src/tmtTaxonomy');
+const { IPO_HORIZONS, IPO_HORIZON_DISCLAIMER_ZH, IPO_HORIZON_DISCLAIMER_EN, horizonDistribution } = require('./src/ipoHorizon');
 const publicProjection = require('./src/publicProjection');
 
 const APP_DIR = __dirname;
@@ -196,7 +197,7 @@ function v2PublicProjectionReadiness() {
   const result = queryV2('meta');
   const value = result.ok ? result.value : null;
   const companyCount = Number(value?.counts?.companies || 0);
-  const ready = value?.schemaVersion === '002' && companyCount > 0;
+  const ready = value?.schemaVersion === '003' && companyCount > 0;
   return {
     ready,
     schemaVersion: ready ? value.schemaVersion : null,
@@ -374,10 +375,6 @@ function publicCleanText(value) {
     .replace(/\bin latest 融资轮\b/gi, '最近一轮融资')
     .replace(/\babove\s*\$([0-9.]+B)/gi, '超过 $$$1')
     .replace(/later media higher/gi, '后续媒体报道估值更高')
-    .replace(/24[–-]36m strategic\/pre-IPO path; earlier only if 客户设计定点 convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；客户设计定点兑现后可提前')
-    .replace(/24[–-]36m 战略投资 \/ Pre-IPO 路径; earlier only if 客户设计定点 convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；客户设计定点兑现后可提前')
-    .replace(/12[–-]24m IPO \/ approved 二级份额 now/gi, '12–24个月 IPO / 已批准二级份额窗口')
-    .replace(/18[–-]36m 二级份额\/IPO\/next-round path; terms and unit economics decide/gi, '18–36个月二级份额 / IPO / 下一轮窗口；取决于条款与单位经济')
     .replace(/Highest-maturity AI\/data platform; pursue 二级份额\/IPO allocation only 与 price discipline\.?/gi, '成熟度最高的数据与 AI 平台；仅在具备价格纪律时推进二级份额或 IPO allocation。')
     .replace(/高-priority AI infrastructure target; pursue via ([^.]+)\.?/gi, '高优先级 AI 基础设施标的；优先通过 $1 建立接触。')
     .replace(/Photonic AI compute\/interconnect; 核验 commercialization 和 2026 round\/IPO path\.?/gi, '光子计算 / 光互连标的；重点核验商业化进度与 2026 年融资 / IPO 路径。')
@@ -549,8 +546,9 @@ function pipelineCompanies(state, filters = {}) {
     if (filters.sector && (c.layer || c.sector) !== filters.sector && c.sector !== filters.sector) return false;
     if (filters.label && labelCompany(c).label !== filters.label && c.priorityTier !== filters.label) return false;
     if (filters.stage && !String(filters.stage).split(',').filter(Boolean).includes(c.lifecycleStage)) return false;
+    if (filters.ipoHorizon && !String(filters.ipoHorizon).split(',').filter(Boolean).includes(c.ipoHorizon)) return false;
     if (filters.q) {
-      const hay = [c.name, c.country, c.region, c.sector, c.subSector, c.layer, c.tmtVertical, c.businessModel, c.customerType, c.priorityTier, c.ipoWindow,
+      const hay = [c.name, c.country, c.region, c.sector, c.subSector, c.layer, c.tmtVertical, c.businessModel, c.customerType, c.priorityTier, c.ipoHorizon,
         c.regionalAccessLane, ...(c.regionalExposure || []),
         c.latestValuation, c.latestFunding, c.revenueScale, c.companyDescription, c.investmentSummaryZh,
         ...(c.tags || []), ...(c.investors || [])].join(' ').toLowerCase();
@@ -581,7 +579,8 @@ async function apiPipeline(req, res, urlObj) {
   const filters = Object.fromEntries(urlObj.searchParams.entries());
   const companies = pipelineCompanies(state, filters);
   const highPriority = companies.filter(c => /^A[0-2]/.test(String(c.priorityTier || ''))).length;
-  json(res, 200, { meta: publicProjection.projectState(state, lifecycleCoverage).meta, companies, taxonomy: STAGES.map(([id,label]) => ({ id, label })), tmtTaxonomy: TMT_VERTICALS, dashboard: { total: companies.length, highPriority } });
+  json(res, 200, { meta: publicProjection.projectState(state, lifecycleCoverage).meta, companies, taxonomy: STAGES.map(([id,label]) => ({ id, label })),
+    tmtTaxonomy: TMT_VERTICALS, ipoHorizons: IPO_HORIZONS, dashboard: { total: companies.length, highPriority, horizonDistribution: horizonDistribution(companies) } });
 }
 
 async function apiState(req, res, urlObj) {
@@ -589,7 +588,9 @@ async function apiState(req, res, urlObj) {
   const filters = Object.fromEntries(urlObj.searchParams.entries());
   const companies = pipelineCompanies(state, filters);
   const projected = publicProjection.projectState(state, lifecycleCoverage);
-  json(res, 200, { meta: projected.meta, publicSnapshotVersion: projected.publicSnapshotVersion, taxonomy: STAGES.map(([id,label]) => ({ id, label })), tmtTaxonomy: TMT_VERTICALS, dashboard: { total: companies.length, privateCount: companies.length, completeness: publicProjection.completenessMetrics(companies) }, companies });
+  json(res, 200, { meta: projected.meta, publicSnapshotVersion: projected.publicSnapshotVersion, taxonomy: STAGES.map(([id,label]) => ({ id, label })),
+    tmtTaxonomy: TMT_VERTICALS, ipoHorizons: IPO_HORIZONS, dashboard: { total: companies.length, privateCount: companies.length,
+      completeness: publicProjection.completenessMetrics(companies), horizonDistribution: horizonDistribution(companies) }, companies });
 }
 
 async function apiCompany(req, res, id) {
@@ -603,7 +604,9 @@ async function apiCompany(req, res, id) {
   json(res, 200, {
     company,
     fundingRounds: publicState.fundingRounds.filter(r => r.companyId === c.id),
-    evidence: company.evidence || []
+    evidence: company.evidence || [],
+    ipoHorizonDisclaimerZh: IPO_HORIZON_DISCLAIMER_ZH,
+    ipoHorizonDisclaimerEn: IPO_HORIZON_DISCLAIMER_EN
   });
 }
 
@@ -641,10 +644,12 @@ async function apiExport(req, res) {
   lines.push(`# ${state.meta.title || 'Global AI Pre-IPO Pipeline'}`);
   lines.push(`As-of: ${state.meta.asOf || ''}`);
   lines.push(`Snapshot source: ${state.meta.snapshotSource || 'local'}`);
+  lines.push(IPO_HORIZON_DISCLAIMER_ZH);
+  lines.push(IPO_HORIZON_DISCLAIMER_EN);
   lines.push('');
-  lines.push('| Score | Label | Company | Region | Sector | IPO Signal | Latest Valuation |');
-  lines.push('|---:|---|---|---|---|---|---|');
-  for (const c of companies) lines.push(`| ${c.score} | ${c.label} | ${c.name} | ${c.region} | ${c.sector} / ${c.subSector} | ${c.ipoSignal} | ${String(c.latestValuation).replace(/\|/g,'/')} |`);
+  lines.push('| Score | Label | Company | Region | Sector | IPO Horizon | Confidence | Basis | Latest Valuation |');
+  lines.push('|---:|---|---|---|---|---|---|---|---|');
+  for (const c of companies) lines.push(`| ${c.score} | ${c.label} | ${c.name} | ${c.region} | ${c.sector} / ${c.subSector} | ${c.ipoHorizon} | ${c.ipoHorizonConfidence} | ${c.ipoHorizonBasis} | ${String(c.latestValuation).replace(/\|/g,'/')} |`);
   json(res, 200, { markdown: lines.join('\n') });
 }
 
@@ -656,8 +661,10 @@ async function apiExportJson(req, res) {
 async function apiExportCsv(req, res) {
   const state = await readState();
   const companies = pipelineCompanies(state, { status: 'private' }).sort((a,b)=>b.score-a.score);
-  const cols = ['score','label','name','region','country','sector','subSector','ipoSignal','latestValuation'];
-  const csv = [cols.join(',')].concat(companies.map(c => cols.map(k => '"' + String(c[k] ?? '').replace(/"/g,'""') + '"').join(','))).join('\n');
+  const cols = ['score','label','name','region','country','sector','subSector','ipoHorizon','ipoHorizonConfidence','ipoHorizonBasis',
+    'ipoHorizonDisclaimerZh','ipoHorizonDisclaimerEn','latestValuation'];
+  const rows = companies.map(c => ({ ...c, ipoHorizonDisclaimerZh: IPO_HORIZON_DISCLAIMER_ZH, ipoHorizonDisclaimerEn: IPO_HORIZON_DISCLAIMER_EN }));
+  const csv = [cols.join(',')].concat(rows.map(c => cols.map(k => '"' + String(c[k] ?? '').replace(/"/g,'""') + '"').join(','))).join('\n');
   res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Cache-Control': 'no-store' });
   res.end(csv);
 }

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Private Investment Opportunity OS</title>
-  <link rel="stylesheet" href="/style.css?v=19" />
+  <link rel="stylesheet" href="/style.css?v=20" />
 </head>
 <body>
   <header class="topbar pipeline-topbar">
@@ -27,11 +27,14 @@
       <select id="sector"><option value="">全部细分赛道</option></select>
       <select id="label"><option value="">全部优先级</option></select>
       <select id="stage"><option value="">全部生命周期阶段</option></select>
+      <select id="ipoHorizon"><option value="">全部 IPO / 退出监测周期</option></select>
       <button id="resetBtn">重置</button>
     </section>
 
+    <p class="horizon-disclaimer">IPO / 退出周期仅表示监测预期，不是上市预测或公司计划声明。 IPO / exit horizons are monitoring expectations, not forecasts or claims of a planned IPO.</p>
+
     <section class="panel coverage-matrix-panel" aria-labelledby="coverageMatrixTitle">
-      <div class="section-head compact-head"><div><div class="section-title" id="coverageMatrixTitle">TMT 覆盖矩阵</div><div class="sub">当前筛选结果按 canonical vertical × lifecycle 及 Asia market × vertical 展示；0 表示待覆盖，不代表公司不存在。</div></div><span class="pill blue">North America / Asia Priority presets</span></div>
+      <div class="section-head compact-head"><div><div class="section-title" id="coverageMatrixTitle">TMT 覆盖矩阵与监测周期分布</div><div class="sub">当前筛选结果按 canonical vertical × lifecycle、Asia market × vertical 及 IPO / exit horizon 展示；0 表示待覆盖，不代表公司不存在。</div></div><span class="pill blue">North America / Asia Priority presets</span></div>
       <div id="coverageMatrix" class="coverage-matrix-wrap"></div>
     </section>
 
@@ -71,7 +74,7 @@
           </aside>
           <div class="mvp8-table-area">
             <table id="companyTable" class="pipeline-table excel-pipeline">
-              <thead><tr><th>公司</th><th>阶段</th><th>公司描述</th><th>最新估值</th><th>优先级</th><th>收入 / ARR</th><th>赛道</th><th>投资人</th><th>流动性窗口</th><th>覆盖缺口</th></tr></thead>
+              <thead><tr><th>公司</th><th>阶段</th><th>公司描述</th><th>最新估值</th><th>优先级</th><th>收入 / ARR</th><th>赛道</th><th>投资人</th><th>IPO / 退出监测周期</th><th>覆盖缺口</th></tr></thead>
               <tbody></tbody>
             </table>
             <div id="mobileCards" class="mobile-cards"></div>
@@ -95,6 +98,6 @@
   <script src="/connectorStatus.js?v=1"></script>
   <script src="/lifecycle.js?v=1"></script>
   <script src="/tmtTaxonomy.js?v=1"></script>
-  <script src="/app.js?v=23"></script>
+  <script src="/app.js?v=24"></script>
 </body>
 </html>

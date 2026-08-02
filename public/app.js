@@ -3,6 +3,7 @@ let selected = null;
 let showAllMobile = false;
 let northAmericaOnly = false;
 let asiaPriorityOnly = false;
+const IPO_HORIZON_LABELS = { '0_12m':'0–12个月', '12_24m':'12–24个月', '24_48m':'24–48个月', '48m_plus':'48个月以上', evergreen_private:'长期保持私有', unknown:'待确认' };
 if (location.pathname.startsWith('/company/')) document.body.classList.add('company-profile-page');
 const $ = sel => document.querySelector(sel);
 
@@ -120,10 +121,6 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/\bin latest 融资轮\b/gi, '最近一轮融资')
     .replace(/\babove\s*\$([0-9.]+B)/gi, '超过 $$$1')
     .replace(/later media higher/gi, '后续媒体报道估值更高')
-    .replace(/24[–-]36m strategic\/pre-IPO path; earlier only if 客户设计定点 convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；客户设计定点兑现后可提前')
-    .replace(/24[–-]36m 战略投资 \/ Pre-IPO 路径; earlier only if 客户设计定点 convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；客户设计定点兑现后可提前')
-    .replace(/12[–-]24m IPO \/ approved 二级份额 now/gi, '12–24个月 IPO / 已批准二级份额窗口')
-    .replace(/18[–-]36m 二级份额\/IPO\/next-round path; terms and unit economics decide/gi, '18–36个月二级份额 / IPO / 下一轮窗口；取决于条款与单位经济')
     .replace(/v\d+ expanded .*?verify (with )?primary sources before IC use\.?/gi, '')
     .replace(/Highest-maturity AI\/data platform; pursue 二级份额\/IPO allocation only 与 price discipline\.?/gi, '成熟度最高的数据与 AI 平台；仅在具备价格纪律时推进二级份额或 IPO allocation。')
     .replace(/高-priority AI infrastructure target; pursue via ([^.]+)\.?/gi, '高优先级 AI 基础设施标的；优先通过 $1 建立接触。')
@@ -192,9 +189,6 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/IPO lock-up TBD/gi, 'IPO lock-up 待确认')
     .replace(/structured from existing tracker \+ public\/manual enrichment/gi, '基于现有 tracker 与公开/手工资料结构化清洗')
     .replace(/existing tracker data/gi, '现有 tracker 数据')
-    .replace(/24–36m strategic\/pre-IPO path; earlier only if design wins convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；设计赢单兑现后可提前')
-    .replace(/12–24m IPO \/ approved secondary now/gi, '12–24个月 IPO / 已批准二级份额窗口')
-    .replace(/18–36m secondary\/IPO\/next-round path; terms and unit economics decide/gi, '18–36个月二级份额 / IPO / 下一轮窗口；取决于条款与单位经济')
     .replace(/strategic investor\/company route/gi, '战略投资人 / 公司路径')
     .replace(/company-approved secondary/gi, '公司批准的二级份额')
     .replace(/next growth round/gi, '下一轮增长融资')
@@ -253,9 +247,6 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/\bfrom\b/gi, '来自')
     .replace(/\bfor\b/gi, '针对')
     .replace(/\bin\b/gi, '在')
-    .replace(/12[–-]24m IPO \/ approved 二级份额 now/gi, '12–24个月 IPO / 已批准二级份额窗口')
-    .replace(/24[–-]36m strategic\/pre-IPO path; earlier only if 设计赢单 convert/gi, '24–36个月战略投资 / Pre-IPO 窗口；设计赢单兑现后可提前')
-    .replace(/18[–-]36m 二级份额\/IPO\/next-round path; terms and unit economics decide/gi, '18–36个月二级份额 / IPO / 下一轮窗口；取决于条款与单位经济')
     .replace(/客户 qualification/gi, '客户验证')
     .replace(/ and next-round\/IPO path/gi, '，以及下一轮融资 / IPO 路径')
     .replace(/next-round\/IPO path/gi, '下一轮融资 / IPO 路径')
@@ -305,7 +296,7 @@ function homepageRevenue(c) {
 }
 function icActionLabel(c) {
   const h = priorityHead(c);
-  if (h === 'A0') return '成熟资产：持续跟踪二级份额 / IPO 窗口';
+  if (h === 'A0') return '成熟资产：持续跟踪二级份额与 canonical IPO / 退出监测周期';
   if (h === 'A1') return '架构瓶颈：优先建立关系与验证份额';
   if (h === 'A2') return '准上市供应链：跟踪申报与承销节奏';
   if (/^B/.test(h)) return '积极尽调：补关键经营与交易口径';
@@ -319,7 +310,7 @@ function memoList(items, empty = '暂无结构化信息。') {
 
 function filters() {
   return { q: $('#search').value.trim(), region: $('#region').value, northAmerica: northAmericaOnly ? '1' : '', asiaPriority: asiaPriorityOnly ? '1' : '', regionalExposure: $('#regionalExposure').value, tmtVertical: $('#tmtVertical').value, sector: $('#sector').value, label: $('#label').value,
-    stage: lifecycleTaxonomy.stageFilterValue($('#stage').value), status: 'private' };
+    stage: lifecycleTaxonomy.stageFilterValue($('#stage').value), ipoHorizon: $('#ipoHorizon').value, status: 'private' };
 }
 
 function qs(obj) {
@@ -423,6 +414,10 @@ function renderQuickChips() {
   const chips = [
     ['北美全域', { northAmerica: true }],
     ['Asia Priority', { asiaPriority: true }],
+    ['近期监测 · 0–24m', { ipoHorizon: '0_12m,12_24m' }],
+    ['24–48m 机会', { ipoHorizon: '24_48m' }],
+    ['长期机会 · 48m+', { ipoHorizon: '48m_plus,evergreen_private' }],
+    ['Asia · 24–48m+', { asiaPriority: true, ipoHorizon: '24_48m,48m_plus,evergreen_private' }],
     ['美国', { region: 'US' }],
     ['加拿大', { region: 'Canada' }],
     ['Formation–Series B', { stage: 'formation_series_b' }],
@@ -443,6 +438,7 @@ function renderQuickChips() {
     $('#sector').value = f.sector || '';
     $('#label').value = f.label || '';
     $('#stage').value = f.stage || '';
+    $('#ipoHorizon').value = f.ipoHorizon || '';
     northAmericaOnly = Boolean(f.northAmerica);
     asiaPriorityOnly = Boolean(f.asiaPriority);
     load();
@@ -477,6 +473,12 @@ async function renderFilters() {
   fillSelect('#label', [...new Set(companies.map(c => c.label))].sort());
   const stages = (all.taxonomy || lifecycleTaxonomy.STAGES.map(([id,label]) => ({id,label}))).map(x => ({ value: x.id, label: x.label }));
   fillSelect('#stage', [{ value: 'formation_series_b', label: 'Formation–Series B' }, ...stages]);
+  fillSelect('#ipoHorizon', [
+    { value: '0_12m,12_24m', label: '近期监测 · 0–24个月' },
+    { value: '24_48m,48m_plus,evergreen_private', label: '24–48个月 / 长期机会' },
+    { value: '48m_plus,evergreen_private', label: '长期机会 · 48个月以上' },
+    ...(all.ipoHorizons || Object.keys(IPO_HORIZON_LABELS)).map(value => ({ value, label: IPO_HORIZON_LABELS[value] }))
+  ]);
   $('#region').dataset.ready = '1';
 }
 
@@ -491,6 +493,7 @@ function renderCoverageMatrix() {
     counts.set(key, (counts.get(key) || 0) + 1);
   }
   const completeness = state.dashboard?.completeness || {};
+  const horizons = state.dashboard?.horizonDistribution || {};
   const completenessLabels = { classification: 'Classification', businessModel: 'Business model', customerType: 'Customer type', monetization: 'Monetization', financing: 'Financing', investors: 'Investors', revenue: 'Revenue', evidence: 'Evidence', sourceVintage: 'Source vintage' };
   const markets = ['china','taiwan','japan','south_korea','singapore'];
   const marketCounts = new Map();
@@ -498,7 +501,7 @@ function renderCoverageMatrix() {
     const key = `${market}\u0000${company.tmtVertical}`;
     marketCounts.set(key, (marketCounts.get(key) || 0) + 1);
   }
-  box.innerHTML = `<table class="coverage-matrix"><thead><tr><th>TMT vertical</th>${stages.map(s => `<th title="${esc(s.label)}">${esc(s.label)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${verticals.map(vertical => {
+  box.innerHTML = `<table class="coverage-matrix horizon-distribution"><thead><tr>${Object.keys(IPO_HORIZON_LABELS).map(value => `<th>${esc(IPO_HORIZON_LABELS[value])}</th>`).join('')}</tr></thead><tbody><tr>${Object.keys(IPO_HORIZON_LABELS).map(value => `<td class="${horizons[value] ? 'covered' : 'empty'}">${horizons[value] || 0}</td>`).join('')}</tr></tbody></table><table class="coverage-matrix"><thead><tr><th>TMT vertical</th>${stages.map(s => `<th title="${esc(s.label)}">${esc(s.label)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${verticals.map(vertical => {
     const values = stages.map(stage => counts.get(`${vertical}\u0000${stage.id}`) || 0);
     return `<tr><th>${esc(vertical)}</th>${values.map(value => `<td class="${value ? 'covered' : 'empty'}">${value}</td>`).join('')}<td class="total">${values.reduce((a,b) => a + b, 0)}</td></tr>`;
   }).join('')}</tbody></table><table class="coverage-matrix asia-coverage-matrix"><thead><tr><th>Asia market</th>${verticals.map(vertical => `<th>${esc(vertical)}</th>`).join('')}<th>Total</th></tr></thead><tbody>${markets.map(market => { const values = verticals.map(vertical => marketCounts.get(`${market}\u0000${vertical}`) || 0); return `<tr><th>${esc(market)}</th>${values.map(value => `<td class="${value ? 'covered' : 'empty'}">${value}</td>`).join('')}<td class="total">${values.reduce((a,b) => a + b, 0)}</td></tr>`; }).join('')}</tbody></table><table class="coverage-matrix completeness-matrix"><thead><tr><th>Completeness</th><th>Present</th><th>Unknown</th><th>Missing</th></tr></thead><tbody>${Object.entries(completenessLabels).map(([key,label]) => { const row = completeness[key] || {}; return `<tr><th>${esc(label)}</th><td class="covered">${row.present || 0}</td><td>${row.unknown || 0}</td><td class="${row.missing ? 'empty' : 'covered'}">${row.missing || 0}</td></tr>`; }).join('')}</tbody></table>`;
@@ -521,7 +524,7 @@ function renderTable() {
       <td class="metric-cell"><span class="metric-label">口径</span>${shortText(homepageRevenue(c), 86)}</td>
       <td><span class="layer-pill">${shortText(c.tmtVertical || zhLayer(c), 58)}</span><div class="sub">${shortText(zhLayer(c), 38)}</div></td>
       <td>${investorChips(c)}</td>
-      <td><span class="window-pill">${esc(cleanDisplayText(c.ipoWindow || c.ipoSignal || '待确认'))}</span></td>
+      <td><span class="window-pill">${esc(IPO_HORIZON_LABELS[c.ipoHorizon] || '待确认')}</span><div class="sub">${esc(c.ipoHorizonConfidence || 'unverified')} · ${esc(c.ipoHorizonBasis || 'insufficient_evidence')}</div></td>
       <td><div class="coverage-gaps">${(c.coverageGaps || []).length ? (c.coverageGaps || []).map(x => `<span>${esc(x)}</span>`).join('') : '<b>覆盖完成</b>'}</div></td>
     </tr>`).join('');
   tbody.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => showDetail(tr.dataset.id)));
@@ -534,7 +537,7 @@ function renderMobileCards() {
   const isMobile = window.matchMedia('(max-width: 720px)').matches;
   const companies = isMobile && !showAllMobile ? state.companies.slice(0, 25) : state.companies;
   box.innerHTML = companies.map(c => `<button class="mobile-company-card" type="button" data-id="${esc(c.id)}">
-    <div class="mobile-card-top"><span class="priority-badge ${esc(priorityTone(c))}">${esc(priorityHead(c))}</span><span class="window-pill">${esc(cleanDisplayText(c.ipoWindow || '', '窗口待确认'))}</span></div>
+    <div class="mobile-card-top"><span class="priority-badge ${esc(priorityTone(c))}">${esc(priorityHead(c))}</span><span class="window-pill">${esc(IPO_HORIZON_LABELS[c.ipoHorizon] || '周期待确认')}</span></div>
     <div class="mobile-title-row"><div class="avatar">${esc(String(c.name || '?').slice(0,1))}</div><div><h3>${esc(c.name)}</h3><div class="sub">点击查看详情</div></div></div>
     ${companyBriefHtml(c, { compact: true })}
     <div class="mobile-meta memo-mobile-meta"><div><b>估值口径</b><span>${shortText(valuationLine(c), 96)}</span></div><div><b>商业验证</b><span>${shortText(homepageRevenue(c), 72)}</span></div></div>
@@ -703,7 +706,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
           ${metricTile('优先级', `${priorityHead(c)}｜${icActionLabel(c)}`, 'green')}
           ${metricTile('最新估值', valuationLine(c), 'blue')}
           ${metricTile('收入 / 商业验证', homepageRevenue(c), 'amber')}
-          ${metricTile('IPO / 流动性窗口', c.ipoWindow || c.ipoSignal, 'gray')}
+          ${metricTile('IPO / 退出监测周期', `${IPO_HORIZON_LABELS[c.ipoHorizon] || '待确认'} · ${c.ipoHorizonConfidence || 'unverified'}`, 'gray')}
         </div>
         <div class="memo-card wide thesis-card"><h4>为什么进入管线</h4>${checklistHtml(thesisBullets(c))}</div>
       </div>
@@ -820,8 +823,8 @@ async function exportMd() {
 }
 
 ['search','region','regionalExposure','tmtVertical','sector','label'].forEach(id => $('#'+id).addEventListener('input', () => load()));
-$('#stage').addEventListener('change', () => load());
-$('#resetBtn').addEventListener('click', () => { northAmericaOnly=false; asiaPriorityOnly=false; $('#search').value=''; $('#region').value=''; $('#regionalExposure').value=''; $('#tmtVertical').value=''; $('#sector').value=''; $('#label').value=''; $('#stage').value=''; load(); });
+['stage','ipoHorizon'].forEach(id => $('#'+id).addEventListener('change', () => load()));
+$('#resetBtn').addEventListener('click', () => { northAmericaOnly=false; asiaPriorityOnly=false; $('#search').value=''; $('#region').value=''; $('#regionalExposure').value=''; $('#tmtVertical').value=''; $('#sector').value=''; $('#label').value=''; $('#stage').value=''; $('#ipoHorizon').value=''; load(); });
 $('#exportBtn')?.addEventListener('click', exportMd);
 $('#detailCloseBtn')?.addEventListener('click', () => $('#companyDetailDialog')?.close());
 load().then(() => {

@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "1.0.0",
+  "profileId": "asia-tmt-expansion-v1",
+  "asOf": "2026-08-02",
+  "expectedPostCompanyCount": 184,
+  "expectedResult": { "created": 13, "matched": 0 },
+  "replacement": null,
+  "review": {
+    "status": "approved",
+    "reviewedBy": "Hermes Asia source-gate",
+    "reviewedAt": "2026-08-02T12:00:00+08:00"
+  },
+  "records": [
+    {
+      "id": "unitree-robotics", "name": "Unitree Robotics", "aliases": ["Unitree"],
+      "headquartersCountry": "China", "regionalExposure": ["china"], "regionalAccessLane": "monitor_or_strategic_relationship",
+      "tmtVertical": "Robotics/Mobility", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"],
+      "lifecycleStage": "growth_late_stage", "sector": "Robotics", "subSector": "Humanoid robotics", "sourceVintage": "2026-02-28", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2026-02-28", "sourceUrl": "https://techcrunch.com/2026/02/28/why-chinas-humanoid-robot-industry-is-winning-the-early-market/", "confidence": "medium" },
+      "sources": [{ "url": "https://techcrunch.com/2026/02/28/why-chinas-humanoid-robot-industry-is-winning-the-early-market/", "date": "2026-02-28", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "minimax", "name": "MiniMax", "aliases": [],
+      "headquartersCountry": "China", "regionalExposure": ["china"], "regionalAccessLane": "monitor_or_strategic_relationship",
+      "tmtVertical": "AI/Cloud/Semiconductor Infrastructure", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"],
+      "lifecycleStage": "growth_late_stage", "sector": "Artificial intelligence", "subSector": "Model platform", "sourceVintage": "2025-01-15", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2025-01-15", "sourceUrl": "https://techcrunch.com/2025/01/15/chinese-ai-company-minimax-releases-new-models-it-claims-are-competitive-with-the-industrys-best/", "confidence": "medium" },
+      "sources": [{ "url": "https://techcrunch.com/2025/01/15/chinese-ai-company-minimax-releases-new-models-it-claims-are-competitive-with-the-industrys-best/", "date": "2025-01-15", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "xiaohongshu", "name": "Xiaohongshu", "aliases": ["RedNote"],
+      "headquartersCountry": "China", "regionalExposure": ["china"], "regionalAccessLane": "monitor_or_strategic_relationship",
+      "tmtVertical": "Consumer Internet/Media/Gaming", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"],
+      "lifecycleStage": "growth_late_stage", "sector": "Consumer internet", "subSector": "Social media", "sourceVintage": "2025-01-13", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2025-01-13", "sourceUrl": "https://techcrunch.com/2025/01/13/xiaohongshu-rednote-chinas-answer-to-instagram-hits-no-1-on-the-app-store-as-tiktok-faces-us-shutdown/", "confidence": "medium" },
+      "sources": [{ "url": "https://techcrunch.com/2025/01/13/xiaohongshu-rednote-chinas-answer-to-instagram-hits-no-1-on-the-app-store-as-tiktok-faces-us-shutdown/", "date": "2025-01-13", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "bytedance", "name": "ByteDance", "aliases": [],
+      "headquartersCountry": "China", "regionalExposure": ["china"], "regionalAccessLane": "monitor_or_strategic_relationship",
+      "tmtVertical": "Consumer Internet/Media/Gaming", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"],
+      "lifecycleStage": "growth_late_stage", "sector": "Consumer internet", "subSector": "Digital media", "sourceVintage": "2025-12-18", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2025-12-18", "sourceUrl": "https://techcrunch.com/2025/12/18/tiktok-agrees-to-deal-to-cede-control-of-u-s-business-to-american-investor-group/", "confidence": "medium" },
+      "sources": [{ "url": "https://techcrunch.com/2025/12/18/tiktok-agrees-to-deal-to-cede-control-of-u-s-business-to-american-investor-group/", "date": "2025-12-18", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "legalon-technologies", "name": "LegalOn Technologies", "aliases": ["LegalOn"],
+      "headquartersCountry": "Japan", "regionalExposure": ["japan"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Enterprise Software", "businessModel": "SaaS", "customerType": "B2B", "monetization": ["Other"],
+      "lifecycleStage": "growth_late_stage", "sector": "Enterprise software", "subSector": "Legal technology", "sourceVintage": "2025-07-24", "confidence": "high",
+      "latestFinancing": { "roundType": "Series E", "amountDisplay": "$50M", "announcedDate": "2025-07-24", "financingType": "equity", "sourceUrl": "https://techcrunch.com/2025/07/24/softbank-backed-legalon-fuels-ai-for-in-house-legal-team-with-50m-series-e/" },
+      "privateStatusBoundary": { "status": "private", "asOf": "2025-07-24", "sourceUrl": "https://techcrunch.com/2025/07/24/softbank-backed-legalon-fuels-ai-for-in-house-legal-team-with-50m-series-e/", "confidence": "high" },
+      "sources": [{ "url": "https://techcrunch.com/2025/07/24/softbank-backed-legalon-fuels-ai-for-in-house-legal-team-with-50m-series-e/", "date": "2025-07-24", "type": "reputable_media", "confidence": "high", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure", "latest_financing"] }]
+    },
+    {
+      "id": "mujin", "name": "Mujin", "aliases": [],
+      "headquartersCountry": "Japan", "regionalExposure": ["japan"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Robotics/Mobility", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"],
+      "lifecycleStage": "growth_late_stage", "sector": "Robotics", "subSector": "Industrial robotics", "sourceVintage": "2026-04-05", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2026-04-05", "sourceUrl": "https://techcrunch.com/2026/04/05/japan-is-proving-experimental-physical-ai-is-ready-for-the-real-world/", "confidence": "medium" },
+      "sources": [{ "url": "https://techcrunch.com/2026/04/05/japan-is-proving-experimental-physical-ai-is-ready-for-the-real-world/", "date": "2026-04-05", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "yanolja", "name": "Yanolja", "aliases": [],
+      "headquartersCountry": "South Korea", "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Commerce/Marketplaces", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"], "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30" },
+      "sources": [{ "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "kurly", "name": "Kurly", "aliases": [],
+      "headquartersCountry": "South Korea", "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Commerce/Marketplaces", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"], "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30" },
+      "sources": [{ "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "dunamu", "name": "Dunamu", "aliases": [],
+      "headquartersCountry": "South Korea", "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Fintech/Payments/Insurtech", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"], "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30" },
+      "sources": [{ "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "musinsa", "name": "Musinsa", "aliases": [],
+      "headquartersCountry": "South Korea", "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Commerce/Marketplaces", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"], "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30" },
+      "sources": [{ "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "bucketplace", "name": "Bucketplace", "aliases": ["O!House"],
+      "headquartersCountry": "South Korea", "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Commerce/Marketplaces", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"], "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30" },
+      "sources": [{ "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "zigbang", "name": "ZigBang", "aliases": [],
+      "headquartersCountry": "South Korea", "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Commerce/Marketplaces", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"], "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30" },
+      "sources": [{ "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    },
+    {
+      "id": "korea-credit-data", "name": "Korea Credit Data", "aliases": ["KCD"],
+      "headquartersCountry": "South Korea", "regionalExposure": ["south_korea"], "regionalAccessLane": "relationship_or_local_private",
+      "tmtVertical": "Fintech/Payments/Insurtech", "businessModel": "Other", "customerType": "Other", "monetization": ["Other"], "lifecycleStage": "growth_late_stage",
+      "sourceVintage": "2024-08-31", "confidence": "medium",
+      "privateStatusBoundary": { "status": "private", "asOf": "2024-08-31", "sourceUrl": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "confidence": "medium", "verificationDue": "2026-08-30" },
+      "sources": [{ "url": "https://techcrunch.com/2024/08/31/watch-out-for-these-10-hot-startups-from-south-korea/", "date": "2024-08-31", "type": "reputable_media", "confidence": "medium", "rightsProfile": "public_allowed", "publicationEligible": true, "claimTypes": ["company_profile", "private_status", "regional_exposure"] }]
+    }
+  ]
+}

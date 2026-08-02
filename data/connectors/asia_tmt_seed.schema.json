@@ -9,13 +9,14 @@
     "schemaVersion": {"const": "1.0.0"},
     "profileId": {"const": "asia-tmt-expansion-v1"},
     "asOf": {"type": "string", "format": "date"},
-    "expectedPostCompanyCount": {"const": 171},
+    "expectedPostCompanyCount": {"enum": [171, 184]},
     "expectedResult": {
       "type": "object", "additionalProperties": false,
       "required": ["created", "matched"],
-      "properties": {"created": {"const": 4}, "matched": {"const": 1}}
+      "properties": {"created": {"enum": [4, 13]}, "matched": {"enum": [0, 1]}}
     },
     "replacement": {
+      "oneOf": [{"type": "null"}, {
       "type": "object", "additionalProperties": false,
       "required": ["schemaVersion", "operation", "supersededReceipt", "expectedPreReplacement", "removeCreatedCompany", "guardedFieldReplacements"],
       "properties": {
@@ -44,7 +45,7 @@
           "type": "array", "minItems": 1,
           "items": {"type": "object", "additionalProperties": false, "required": ["id", "field", "from", "to"], "properties": {"id": {"type": "string"}, "field": {"type": "string"}, "from": {}, "to": {}}}
         }
-      }
+      }}]
     },
     "review": {
       "type": "object", "additionalProperties": false,

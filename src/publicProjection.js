@@ -2,14 +2,16 @@
 
 const crypto = require('crypto');
 const { TMT_VERTICALS, BUSINESS_MODELS, CUSTOMER_TYPES, MONETIZATION, CONFIDENCE_LEVELS, ACCESS_LANES, inferTmtVertical } = require('./tmtTaxonomy');
+const { IPO_HORIZON_GAP, IPO_HORIZON_DISCLAIMER_ZH, IPO_HORIZON_DISCLAIMER_EN,
+  withIpoHorizon, horizonDistribution, validPublicIpoHorizonFields } = require('./ipoHorizon');
 
 // This is the public publication boundary used by the v1 API and the production
 // build. Operational workflow fields deliberately do not appear here.
 const PUBLIC_COMPANY_FIELDS = Object.freeze([
-  'id','name','country','region','sector','subSector','stage','status','ipoSignal','revenueQuality',
+  'id','name','country','region','sector','subSector','stage','status','revenueQuality',
   'investorQuality','strategicRelevance','accessFit','riskLevel','latestValuation','latestFunding','investors',
-  'ipoSignals','tags','dealStage','targetExchange','leadUnderwriters','krxReviewStatus','lockup',
-  'preIpoRoundStatus','redFlags','priorityTier','layer','revenueScale','ipoWindow','updatedAt','companyDescription',
+  'tags','dealStage','targetExchange','leadUnderwriters','krxReviewStatus','lockup',
+  'preIpoRoundStatus','redFlags','priorityTier','layer','revenueScale','updatedAt','companyDescription',
   'latestAvailableValuation','investorSummary','investorDataQuality','dataCompleteness','enrichedAsOf','layerZh',
   'homepageDescriptionZh','latestValuationZh','revenueScaleZh','priorityZh','presentationLanguage',
   'presentationCleanedAsOf','investmentSummaryZh','riskSummaryZh','keyMetrics','readinessLabel','score','label',
@@ -17,10 +19,12 @@ const PUBLIC_COMPANY_FIELDS = Object.freeze([
   'tmtVertical','businessModel','customerType','monetization','sourceVintage','confidence',
   'privateStatus','privateStatusAsOf','privateStatusConfidence','investabilityAccessLane',
   'classificationMethod','classificationConfidence','regionalExposure','regionalAccessLane',
-  'regionalExposureAsOf','regionalExposureRights','regionalExposureLineage'
+  'regionalExposureAsOf','regionalExposureRights','regionalExposureLineage',
+  'ipoHorizon','ipoHorizonConfidence','ipoHorizonBasis'
 ]);
 const PUBLIC_EVIDENCE_FIELDS = Object.freeze(['type','claimType','url','asOf','date','confidence']);
-const PUBLIC_META_FIELDS = Object.freeze(['title','asOf','schemaVersion','updatedAt','snapshotVersion','lastUpdatedAt','readOnly','writesEnabled']);
+const PUBLIC_META_FIELDS = Object.freeze(['title','asOf','schemaVersion','updatedAt','snapshotVersion','lastUpdatedAt','readOnly','writesEnabled',
+  'ipoHorizonDisclaimerZh','ipoHorizonDisclaimerEn']);
 const PUBLIC_FUNDING_FIELDS = Object.freeze(['companyId','date','round','amount','valuation','leadInvestors','participants','url','confidence','companyName','id','financingType']);
 const LATEST_FINANCING_FIELDS = Object.freeze(['roundType','amountDisplay','announcedDate','financingType','sourceUrl']);
 const MAX_LATEST_FINANCING_AGE_DAYS = 730;
@@ -284,7 +288,8 @@ function validEvidence(item) {
 }
 
 const REQUIRED_COMPANY_FIELDS = new Set(['id','name','region','sector','subSector','status','companyDescription','tmtVertical',
-  'businessModel','customerType','monetization','lifecycleStage','lifecycleStageLabel','stageConfidence','coverageGaps','evidence','completeness']);
+  'businessModel','customerType','monetization','lifecycleStage','lifecycleStageLabel','stageConfidence','coverageGaps',
+  'ipoHorizon','ipoHorizonConfidence','ipoHorizonBasis','evidence','completeness']);
 const LIFECYCLE_STAGES = new Set(['formation_pre_seed','seed','series_a_b','growth_late_stage','pre_ipo','secondary_tender',
   'crossover_pipe_strategic','project_finance','stage_unverified']);
 const LIFECYCLE_LABELS = new Map([
@@ -315,8 +320,9 @@ function validateProjectedCompany(company) {
       !Array.isArray(company.monetization) || !company.monetization.length || company.monetization.length !== new Set(company.monetization).size ||
       !company.monetization.every(item => MONETIZATION.includes(item)) || !LIFECYCLE_STAGES.has(company.lifecycleStage) ||
       company.lifecycleStageLabel !== LIFECYCLE_LABELS.get(company.lifecycleStage) || !['deterministic','unverified'].includes(company.stageConfidence) ||
-      !Array.isArray(company.coverageGaps) || company.coverageGaps.length > 2 ||
-      !company.coverageGaps.every(item => ['stage_precision','public_evidence'].includes(item)) ||
+      !Array.isArray(company.coverageGaps) || company.coverageGaps.length > 3 ||
+      !company.coverageGaps.every(item => ['stage_precision','public_evidence',IPO_HORIZON_GAP].includes(item)) ||
+      !validPublicIpoHorizonFields(company) ||
       (company.confidence !== undefined && !CONFIDENCE_LEVELS.includes(company.confidence)) ||
       (company.sourceVintage !== undefined && !isoDate(company.sourceVintage)) ||
       (company.privateStatusAsOf !== undefined && !isoDate(company.privateStatusAsOf)) ||
@@ -385,9 +391,11 @@ function validateAndMarkPublicSnapshot(state, receipt = {}, key = process.env[HM
 
 function projectCompany(company, lifecycleCoverage, options = {}) {
   const derived = lifecycleCoverage(company);
-  const publicGaps = (derived.coverageGaps || []).filter(gap => ['stage_precision','public_evidence'].includes(gap));
+  const horizon = withIpoHorizon(company, { asOf: options.snapshotAsOf });
+  const publicGaps = [...new Set([...(derived.coverageGaps || []).filter(gap => ['stage_precision','public_evidence'].includes(gap)),
+    ...(horizon.coverageGaps || []).filter(gap => gap === IPO_HORIZON_GAP)])];
   const regional = projectRegionalExposure(company, options.snapshotAsOf) || {};
-  const out = allowlistedObject({ ...company, ...regional, tmtVertical: inferTmtVertical(company), lifecycleStage: derived.stage, lifecycleStageLabel: derived.stageLabel,
+  const out = allowlistedObject({ ...company, ...horizon, ...regional, tmtVertical: inferTmtVertical(company), lifecycleStage: derived.stage, lifecycleStageLabel: derived.stageLabel,
     stageConfidence: derived.stageConfidence, coverageGaps: publicGaps }, PUBLIC_COMPANY_FIELDS);
   for (const field of VALUATION_FIELDS) {
     if (out[field] !== undefined && !validFieldLineage(company, field, 'valuation', company.evidence || [])) delete out[field];
@@ -402,6 +410,11 @@ function projectCompany(company, lifecycleCoverage, options = {}) {
   return out;
 }
 
+function projectMeta(meta = {}) {
+  return allowlistedObject({ ...meta, ipoHorizonDisclaimerZh: IPO_HORIZON_DISCLAIMER_ZH,
+    ipoHorizonDisclaimerEn: IPO_HORIZON_DISCLAIMER_EN }, PUBLIC_META_FIELDS);
+}
+
 function projectState(state, lifecycleCoverage) {
   const receipt = snapshotReceipt(state);
   if (!receipt) return { meta: { readOnly: true, publicProjection: 'unavailable' }, companies: [], fundingRounds: [], dashboard: { total: 0 }, publicSnapshotVersion: null };
@@ -412,10 +425,10 @@ function projectState(state, lifecycleCoverage) {
       ...(company.latestFinancing ? { latestFinancing: allowlistedObject(company.latestFinancing, LATEST_FINANCING_FIELDS) } : {}),
       completeness: Object.fromEntries(COMPLETENESS_FIELDS.map(key => [key, company.completeness[key]]))
     }));
-    return { meta: allowlistedObject(state.meta || {}, PUBLIC_META_FIELDS), companies,
+    return { meta: projectMeta(state.meta), companies,
       fundingRounds: state.fundingRounds.map(row => allowlistedObject(row, PUBLIC_FUNDING_FIELDS)),
       dashboard: { total: companies.length, privateCount: companies.filter(c => c.status === 'private').length,
-        completeness: completenessMetrics(companies) }, publicSnapshotVersion: receipt.version };
+        completeness: completenessMetrics(companies), horizonDistribution: horizonDistribution(companies) }, publicSnapshotVersion: receipt.version };
   }
   const knownFundingIds = new Set((state.fundingRounds || []).filter(row =>
     !/coverage_gap|placeholder|待补|待确认|unknown/i.test([row.sourceType,row.round,row.amount].join(' '))
@@ -439,10 +452,10 @@ function projectState(state, lifecycleCoverage) {
       round: item.roundType, amount: item.amountDisplay, financingType: item.financingType,
       leadInvestors: [], participants: [], url: item.sourceUrl, confidence: company.confidence || boundEvidence?.confidence || 'medium' });
   }
-  return { meta: allowlistedObject(state.meta || {}, PUBLIC_META_FIELDS), companies,
+  return { meta: projectMeta(state.meta), companies,
     fundingRounds,
     dashboard: { total: companies.length, privateCount: companies.filter(c => c.status === 'private').length,
-      completeness: completenessMetrics(companies) },
+      completeness: completenessMetrics(companies), horizonDistribution: horizonDistribution(companies) },
     publicSnapshotVersion: receipt.version };
 }
 

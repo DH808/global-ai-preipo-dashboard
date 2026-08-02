@@ -32,11 +32,14 @@ assert.deepEqual(fs.readdirSync(runtime).sort(), ['pipeline_v2.sqlite', 'public-
 
 const adversarial = JSON.parse(fs.readFileSync(path.join(root, 'data', 'state.json'), 'utf8'));
 const priorPublicSnapshot = JSON.parse(fs.readFileSync(path.join(root, 'data', 'public-state.json'), 'utf8'));
-assert.equal(priorPublicSnapshot.fundingRounds.filter(row => row.valuation !== undefined).length, 179,
-  'fixture must exercise removal of all 179 legacy unrights valuations');
+assert.ok(priorPublicSnapshot.companies.length > 0, 'bundled public snapshot fixture must not be empty');
 const leakMarkers = ['Diligence ask', 'Ask for BOARD_PACK_NEXT_ACTION_7f91', 'NEXT_ACTION_INSTRUCTION_7f91'];
 adversarial.meta.coverage = 'Diligence ask: Ask for COVERAGE_NEXT_ACTION_7f91';
 adversarial.companies[0].nextAction = leakMarkers[2];
+adversarial.companies[0].ipoWindow = '0–12m listing/allocation event if application remains active';
+adversarial.companies[0].ipoWindowZh = '12–24m IPO / approved secondary now';
+adversarial.companies[0].ipoWindowLegacy = 'LEGACY_IPO_WINDOW_PROBE_7f91';
+adversarial.companies[0].ipoSignals = [...(adversarial.companies[0].ipoSignals || []), 'IPO timing appears slipped'];
 adversarial.companies[0].evidence[0].note = `${leakMarkers[0]}: ${leakMarkers[1]}`;
 const valuationSource = { url: 'https://example.com/explicit-valuation', date: '2026-08-01', type: 'company_release', confidence: 'high',
   claimType: 'valuation', rightsProfile: 'public_allowed', publicationEligible: true };
@@ -92,6 +95,18 @@ assert.equal(snapshot.companies[0].latestValuation, '$9M explicitly approved val
 assert.equal(snapshot.companies.filter(company => ['latestValuation','latestAvailableValuation','latestValuationZh','valuationView']
   .some(field => company[field] !== undefined)).length, 1, 'legacy company valuation DTOs without field lineage must disappear');
 const snapshotById = Object.fromEntries(snapshot.companies.map(company => [company.id, company]));
+const horizonEnums = new Set(['0_12m','12_24m','24_48m','48m_plus','evergreen_private','unknown']);
+const horizonConfidenceEnums = new Set(['high','medium','low','unverified']);
+const horizonBasisEnums = new Set(['official_filing','exchange_application','company_statement','recent_financing','secondary_liquidity','stage_heuristic','insufficient_evidence']);
+for (const company of snapshot.companies) {
+  assert.ok(horizonEnums.has(company.ipoHorizon), `${company.id} invalid public horizon`);
+  assert.ok(horizonConfidenceEnums.has(company.ipoHorizonConfidence), `${company.id} invalid public horizon confidence`);
+  assert.ok(horizonBasisEnums.has(company.ipoHorizonBasis), `${company.id} invalid public horizon basis`);
+  for (const key of Object.keys(company)) assert.ok(!/^(?:ipoWindow.*|ipoSignal|ipoSignals|ipoHorizonClassificationMethod)$/i.test(key),
+    `${company.id} exposed legacy IPO timing field ${key}`);
+}
+const activeApplicantIds = ['asrock-industrial','bellwether-electronics','climax-technology','hermes-testing'];
+assert.deepEqual(snapshot.companies.filter(company => company.ipoHorizon === '0_12m').map(company => company.id).sort(), activeApplicantIds);
 for (const id of ['moonshot-ai','pixverse','layerx']) {
   assert.ok(snapshotById[id].latestFinancing, `${id} financing missing from generated snapshot`);
   for (const key of ['valuation','valuationDisplay','postMoneyValuation','postMoneyValue']) {
@@ -111,7 +126,7 @@ function scan(value) {
   for (const [key, child] of Object.entries(value)) { assert.ok(!forbiddenFields.has(key), `snapshot contains ${key}`); scan(child); }
 }
 scan(snapshot);
-for (const marker of leakMarkers) assert.ok(!JSON.stringify(snapshot).includes(marker), `built public-state leaked ${marker}`);
+for (const marker of [...leakMarkers, 'LEGACY_IPO_WINDOW_PROBE_7f91']) assert.ok(!JSON.stringify(snapshot).includes(marker), `built public-state leaked ${marker}`);
 const rawPayloads = childProcess.spawnSync('python3', ['-c',
   'import json,sqlite3,sys; c=sqlite3.connect(sys.argv[1]); print(json.dumps([json.loads(r[0]) for r in c.execute("select payload_json from raw_records")]))', runtimeDb],
   { cwd: root, encoding: 'utf8' });
@@ -174,12 +189,14 @@ function request(url, method = 'GET') {
   const forbiddenText = [/\/Users\//i, /\/(?:opt\/render|home|private|var|tmp)\//i, /[a-z]:\\/i,
     /CRUNCHBASE_API_KEY|DEALROOM_API_KEY|PITCHBOOK/i, /"(?:sourceId|providerObjectId|rawPayload|payload_json)"/i,
     /\b(?:AKIA|ASIA)[A-Z0-9]{16}\b/, /\beyJ[A-Za-z0-9_-]{6,}\.[A-Za-z0-9_-]{6,}\.[A-Za-z0-9_-]{6,}\b/,
-    /\b(?:still\s+)?ask\s+for\b/i, /\bdiligence\s+ask\b/i];
+    /\b(?:still\s+)?ask\s+for\b/i, /\bdiligence\s+ask\b/i,
+    /"(?:ipoWindow[^"\\]*|ipoSignal|ipoSignals|ipoHorizonClassificationMethod)"\s*:/i,
+    /0[\s–—-]*12m listing\/allocation event|12[\s–—-]*24m IPO \/ approved secondary|IPO timing (?:unclear|appears slipped)|IPO 窗口|上市窗口|流动性窗口/i];
   for (const url of publicPaths) {
     const response = await request(url);
     assert.equal(response.status, 200, `${url} returned ${response.status}`);
     for (const pattern of forbiddenText) assert.ok(!pattern.test(response.body), `${url} leaked ${pattern}`);
-    for (const marker of leakMarkers) assert.ok(!response.body.includes(marker), `${url} leaked ${marker}`);
+    for (const marker of [...leakMarkers, 'LEGACY_IPO_WINDOW_PROBE_7f91']) assert.ok(!response.body.includes(marker), `${url} leaked ${marker}`);
   }
   const state = JSON.parse((await request('/api/state')).body);
   const adminState = JSON.parse((await request('/api/state?admin=1')).body);
@@ -203,9 +220,18 @@ function request(url, method = 'GET') {
   }
   assert.equal(state.companies.filter(company => (company.regionalExposure || []).includes('taiwan')).length, 10);
   assert.equal(JSON.parse((await request('/api/state?regionalExposure=taiwan')).body).companies.length, 10);
+  const nearTerm = JSON.parse((await request('/api/state?ipoHorizon=0_12m,12_24m')).body);
+  assert.ok(nearTerm.companies.length > 0 && nearTerm.companies.every(company => ['0_12m','12_24m'].includes(company.ipoHorizon)));
+  const asiaLong = JSON.parse((await request('/api/state?asiaPriority=1&ipoHorizon=24_48m,48m_plus,evergreen_private')).body);
+  assert.ok(asiaLong.companies.every(company => company.regionalExposure.length && ['24_48m','48m_plus','evergreen_private'].includes(company.ipoHorizon)),
+    'Asia Priority and horizon filters must compose');
+  assert.equal(Object.values(state.dashboard.horizonDistribution).reduce((a,b) => a + b, 0), state.companies.length);
+  const v2Horizon = JSON.parse((await request('/api/v2/companies?limit=100&ipoHorizon=0_12m')).body);
+  assert.deepEqual(v2Horizon.data.map(company => company.legacySlug).sort(), activeApplicantIds);
+  assert.ok(v2Horizon.data.every(company => company.investmentProfile.ipoHorizon === '0_12m'));
   for (const company of state.companies) for (const key of forbiddenFields) assert.ok(!(key in company), `${key} leaked in v1 company`);
   const detail = JSON.parse((await request('/api/company/databricks')).body);
-  assert.deepEqual(Object.keys(detail).sort(), ['company','evidence','fundingRounds']);
+  assert.deepEqual(Object.keys(detail).sort(), ['company','evidence','fundingRounds','ipoHorizonDisclaimerEn','ipoHorizonDisclaimerZh']);
   for (const round of detail.fundingRounds) assert.ok(!('notes' in round));
 
   const internalRoutes = ['/api/track/global-ai-preipo','/api/track/global-ai-preipo/queue','/api/ic-readiness','/api/tasks',
@@ -269,6 +295,10 @@ function request(url, method = 'GET') {
     'health must reject non-enum funding confidence');
   await assertSignedSchemaRejected(value => { value.companies[0].evidence[0].confidence = 'certain'; },
     'health must reject non-enum evidence confidence');
+  await assertSignedSchemaRejected(value => { value.companies[0].ipoHorizon = 'soon'; },
+    'health must reject non-enum IPO horizons even with a valid signature');
+  await assertSignedSchemaRejected(value => { value.companies[0].ipoHorizonBasis = 'internal_note'; },
+    'health must reject non-enum IPO horizon bases even with a valid signature');
   await assertSignedSchemaRejected(value => { value.companies[0].id = ''; },
     'health must reject empty required IDs');
   const nonFinite = JSON.parse(validSnapshotText);

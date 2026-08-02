@@ -34,7 +34,7 @@ For a clean production checkout, use the reviewed build wrapper instead of retai
 PIPELINE_V2_DB_FILE=data/pipeline_v2.sqlite npm run build
 ```
 
-It projects the bundled input through `src/publicProjection.js` into deterministic, gitignored `data/public-state.json`, then imports only that reduced snapshot. Tasks, interactions, source registry/provider metadata, funding notes, relationship routes, owners, diligence, and next actions are excluded. Validation scans the snapshot and SQLite raw payloads, requires empty operational tables, schema `002`, integrity, foreign keys, a nonzero derived company count, and equality with the v2 public count. There is no fixed-count gate, so legitimate additions are accepted automatically. Render runs this command during its build phase.
+It projects the bundled input through `src/publicProjection.js` into deterministic, gitignored `data/public-state.json`, then imports only that reduced snapshot. Tasks, interactions, source registry/provider metadata, funding notes, relationship routes, owners, diligence, and next actions are excluded. Validation scans the snapshot and SQLite raw payloads, requires empty operational tables, schema `003`, integrity, foreign keys, a nonzero derived company count, and equality with the v2 public count. There is no fixed-count gate, so legitimate additions are accepted automatically. Render runs this command during its build phase.
 
 ```bash
 python3 - <<'PY'

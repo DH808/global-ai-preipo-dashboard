@@ -18,7 +18,7 @@ except ImportError:  # Direct script execution.
 
 MISSING_RE = re.compile(r"未披露|待验证|待确认|not disclosed|unknown|unclear|coverage_gap|not captured|placeholder|^\s*$", re.I)
 CONFLICT_RE = re.compile(r"conflict|divergen|higher|lower|unverified|discrepan|冲突|分歧", re.I)
-SCHEMA_VERSION = "002"
+SCHEMA_VERSION = "003"
 
 CONNECTORS = [
     ("legacy_state_json", "Legacy state.json", "legacy_json", "local_file", "imported", None, "sanitized_derived", "manual", ["organizations", "funding_rounds", "investors", "evidence", "tasks"]),
@@ -347,14 +347,20 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
         stage = clean(company.get("dealStage") or company.get("stage"), "monitor")
         conn.execute("""INSERT INTO opportunities(
                        id,organization_id,opportunity_type,stage,status,owner,thesis,next_action,
-                       created_at,updated_at,source_record_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)
+                       created_at,updated_at,source_record_id,ipo_horizon,ipo_horizon_confidence,
+                       ipo_horizon_basis,ipo_horizon_classification_method) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                      ON CONFLICT(id) DO UPDATE SET organization_id=excluded.organization_id,
                        opportunity_type=excluded.opportunity_type,stage=excluded.stage,status=excluded.status,
                        owner=excluded.owner,thesis=excluded.thesis,next_action=excluded.next_action,
-                       updated_at=excluded.updated_at,source_record_id=excluded.source_record_id""",
+                       updated_at=excluded.updated_at,source_record_id=excluded.source_record_id,
+                       ipo_horizon=excluded.ipo_horizon,ipo_horizon_confidence=excluded.ipo_horizon_confidence,
+                       ipo_horizon_basis=excluded.ipo_horizon_basis,
+                       ipo_horizon_classification_method=excluded.ipo_horizon_classification_method""",
                      (opp_id, org_id, "private_market", stage, "active", clean(company.get("owner")) or None,
                       clean(company.get("whyInTrack") or company.get("recommendation")) or None,
-                      clean(company.get("nextAction")) or None, timestamp, timestamp, raw_id))
+                      clean(company.get("nextAction")) or None, timestamp, timestamp, raw_id,
+                      clean(company.get("ipoHorizon")) or None, clean(company.get("ipoHorizonConfidence")) or None,
+                      clean(company.get("ipoHorizonBasis")) or None, clean(company.get("ipoHorizonClassificationMethod")) or None))
         conn.execute("""INSERT INTO opportunity_stage_history VALUES(?,?,?,?,?,?,?)
                      ON CONFLICT(id) DO UPDATE SET opportunity_id=excluded.opportunity_id,
                        from_stage=excluded.from_stage,to_stage=excluded.to_stage,changed_at=excluded.changed_at,

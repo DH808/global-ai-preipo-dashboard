@@ -12,6 +12,7 @@ from scripts.import_asia_tmt_seed import run
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / "data" / "state.json"
 SEED = ROOT / "data" / "connectors" / "asia_tmt_seed_20260802.json"
+BATCH2_SEED = ROOT / "data" / "connectors" / "asia_tmt_seed_batch2_20260802.json"
 PROFILE = ROOT / "data" / "connectors" / "asia_expansion.profile.json"
 BASELINE_STATE = subprocess.check_output(["git", "show", "d0fb350:data/state.json"], cwd=ROOT)
 TEST_PUBLIC_SNAPSHOT_HMAC_KEY = "8f67c021d43a9e55b17d09c3a04f5e71c693bc8d2a6f190e4b7a25cd913ef806"
@@ -149,6 +150,13 @@ class AsiaTmtSeedImportTests(unittest.TestCase):
         seed = json.loads(SEED.read_text(encoding="utf-8"))
         manifest = seed["replacement"]
         state = json.loads(self.state.read_text(encoding="utf-8"))
+        state["meta"].pop("ipoHorizonFramework", None)
+        for company in state["companies"]:
+            for field in ("ipoHorizon", "ipoHorizonConfidence", "ipoHorizonBasis", "ipoHorizonClassificationMethod"):
+                company.pop(field, None)
+            company["coverageGaps"] = [gap for gap in company.get("coverageGaps", []) if gap != "ipo_horizon_evidence"]
+            if not company["coverageGaps"]:
+                company.pop("coverageGaps", None)
         by_id = {row["id"]: row for row in state["companies"]}
         for guard in manifest["guardedFieldReplacements"]:
             by_id[guard["id"]][guard["field"]] = guard["from"]
@@ -191,7 +199,7 @@ class AsiaTmtSeedImportTests(unittest.TestCase):
                 self.assertEqual(result["status"], "invalid")
                 self.assertEqual(self.state.read_bytes(), before)
 
-    def test_public_v1_v2_counts_projection_financing_and_schema_002(self):
+    def test_public_v1_v2_counts_projection_financing_and_schema_003(self):
         self.result(True)
         public_state, db = self.tmp / "public-state.json", self.tmp / "public.sqlite"
         built = subprocess.run(["python3", str(ROOT / "scripts" / "build_public_v2_db.py"), "--state-file", str(self.state), "--public-state-file", str(public_state), "--db", str(db)], cwd=ROOT, text=True, capture_output=True, check=True)
@@ -208,7 +216,7 @@ class AsiaTmtSeedImportTests(unittest.TestCase):
         with sqlite3.connect(db) as conn:
             self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
             self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
-            self.assertEqual(conn.execute("SELECT max(version) FROM schema_migrations").fetchone()[0], "002")
+            self.assertEqual(conn.execute("SELECT max(version) FROM schema_migrations").fetchone()[0], "003")
             rows = conn.execute("SELECT organization_id,valuation_display,post_money_value,metadata_json FROM canonical_funding_rounds WHERE organization_id IN ('org_moonshot-ai','org_pixverse','org_layerx','org_moloco','org_viva-republica')").fetchall()
             structured = [row for row in rows if json.loads(row[3] or "{}").get("financingType")]
             self.assertEqual({row[0] for row in structured}, {"org_moonshot-ai", "org_pixverse", "org_layerx"})
@@ -234,6 +242,118 @@ class AsiaTmtSeedImportTests(unittest.TestCase):
         by_id = {row["id"]: row for row in snapshot["companies"]}
         self.assertEqual(by_id["moloco"]["evidence"], [])
         self.assertEqual(by_id["viva-republica"]["evidence"], [])
+
+    def apply_batch2(self):
+        self.result(True)
+        return run(BATCH2_SEED, self.state, PROFILE, True, date(2026, 8, 2))
+
+    def test_batch2_exact_identities_regions_horizons_and_idempotent_replay(self):
+        before = json.loads(BASELINE_STATE)
+        self.result(True)
+        batch1 = json.loads(self.state.read_text(encoding="utf-8"))
+        preview = run(BATCH2_SEED, self.state, PROFILE, False, date(2026, 8, 2))
+        self.assertEqual((preview["status"], preview["beforeCompanyCount"], preview["afterCompanyCount"]), ("valid", 171, 184))
+        self.assertEqual((preview["summary"]["created"], preview["summary"]["matched"]), (13, 0))
+        applied = self.apply_batch2()
+        self.assertTrue(applied["mutated"])
+        applied_bytes = self.state.read_bytes()
+        replay = run(BATCH2_SEED, self.state, PROFILE, True, date(2026, 8, 2))
+        self.assertTrue(replay["summary"]["alreadyApplied"])
+        self.assertFalse(replay["mutated"])
+        self.assertEqual(self.state.read_bytes(), applied_bytes)
+
+        seed = json.loads(BATCH2_SEED.read_text(encoding="utf-8"))
+        state = json.loads(applied_bytes)
+        by_id = {row["id"]: row for row in state["companies"]}
+        self.assertEqual(len(state["companies"]), 184)
+        self.assertEqual({row["id"] for row in seed["records"]}, {
+            "unitree-robotics", "minimax", "xiaohongshu", "bytedance", "legalon-technologies", "mujin",
+            "yanolja", "kurly", "dunamu", "musinsa", "bucketplace", "zigbang", "korea-credit-data",
+        })
+        for record in seed["records"]:
+            company = by_id[record["id"]]
+            self.assertEqual((company["name"], company["aliases"]), (record["name"], sorted(record["aliases"], key=str.casefold)))
+            self.assertIn(company["ipoHorizonConfidence"], {"low", "unverified"})
+            self.assertIn(company["ipoHorizonBasis"], {"recent_financing", "stage_heuristic", "insufficient_evidence"})
+            self.assertNotIn("planned", json.dumps({key: company[key] for key in ("ipoHorizon", "ipoHorizonConfidence", "ipoHorizonBasis", "ipoHorizonClassificationMethod")}))
+        self.assertEqual(by_id["xiaohongshu"]["aliases"], ["RedNote"])
+        self.assertEqual(by_id["bucketplace"]["aliases"], ["O!House"])
+        self.assertEqual(by_id["korea-credit-data"]["aliases"], ["KCD"])
+
+        asia = [row for row in state["companies"] if row.get("regionalExposureProfile")]
+        expected_regions = {"China": 6, "Taiwan": 10, "Japan": 5, "South Korea": 18, "Singapore": 1}
+        tags = {"China": "china", "Taiwan": "taiwan", "Japan": "japan", "South Korea": "south_korea", "Singapore": "singapore"}
+        self.assertEqual({country: sum(tag in row["regionalExposureProfile"]["tags"] for row in asia) for country, tag in tags.items()}, expected_regions)
+        self.assertEqual(len(asia), 40)
+        batch1_by_id = {row["id"]: row for row in batch1["companies"]}
+        north_america_ids = {row["id"] for row in before["companies"] if row.get("country") in {"United States", "Canada"}}
+        self.assertEqual({key: by_id[key] for key in north_america_ids}, {key: batch1_by_id[key] for key in north_america_ids})
+
+    def test_batch2_source_private_financing_and_fail_closed_boundaries(self):
+        self.apply_batch2()
+        state = json.loads(self.state.read_text(encoding="utf-8"))
+        by_id = {row["id"]: row for row in state["companies"]}
+        batch2_ids = {row["id"] for row in json.loads(BATCH2_SEED.read_text(encoding="utf-8"))["records"]}
+        financed = {company_id for company_id in batch2_ids if by_id[company_id].get("latestFinancing")}
+        self.assertEqual(financed, {"legalon-technologies"})
+        legalon = by_id["legalon-technologies"]
+        self.assertEqual(legalon["latestFinancing"], {
+            "roundType": "Series E", "amountDisplay": "$50M", "announcedDate": "2025-07-24", "financingType": "equity",
+            "sourceUrl": "https://techcrunch.com/2025/07/24/softbank-backed-legalon-fuels-ai-for-in-house-legal-team-with-50m-series-e/",
+        })
+        self.assertFalse(any("valuation" in key.lower() for key in legalon["latestFinancing"]))
+        korean_ids = {"yanolja", "kurly", "dunamu", "musinsa", "bucketplace", "zigbang", "korea-credit-data"}
+        for company_id in korean_ids:
+            company = by_id[company_id]
+            self.assertNotIn("latestFinancing", company)
+            self.assertEqual(company["privateStatusVerificationDue"], "2026-08-30")
+            self.assertEqual(company["sourceVintage"], "2024-08-31")
+
+        pristine = self.state.read_bytes()
+        mutations = [
+            lambda seed: seed.update(expectedPostCompanyCount=185),
+            lambda seed: seed["records"][0]["aliases"].append("RedNote"),
+            lambda seed: seed["records"][6].update(latestFinancing={"roundType": "old round", "amountDisplay": "$1", "announcedDate": "2024-08-31", "financingType": "equity", "sourceUrl": seed["records"][6]["sources"][0]["url"]}),
+            lambda seed: seed["records"][6]["privateStatusBoundary"].update(verificationDue="2026-08-31"),
+        ]
+        for mutation in mutations:
+            with self.subTest(mutation=mutation):
+                value = json.loads(BATCH2_SEED.read_text(encoding="utf-8")); mutation(value)
+                self.seed.write_text(json.dumps(value), encoding="utf-8")
+                result = run(self.seed, self.state, PROFILE, True, date(2026, 8, 2))
+                self.assertEqual(result["status"], "invalid")
+                self.assertEqual(self.state.read_bytes(), pristine)
+
+    def test_batch2_schema003_filters_signed_runtime_and_no_private_leakage(self):
+        self.apply_batch2()
+        public_state, db = self.tmp / "batch2-public-state.json", self.tmp / "batch2-public.sqlite"
+        built = subprocess.run(["python3", str(ROOT / "scripts" / "build_public_v2_db.py"), "--state-file", str(self.state), "--public-state-file", str(public_state), "--db", str(db)], cwd=ROOT, text=True, capture_output=True, check=True)
+        receipt = json.loads(built.stdout)
+        self.assertEqual((receipt["schemaVersion"], receipt["publicCompanyCount"]), ("003", 184))
+        snapshot = json.loads(public_state.read_text(encoding="utf-8"))
+        self.assertEqual((len(snapshot["companies"]), snapshot["meta"]["publicCompanyCount"]), (184, 184))
+        with sqlite3.connect(db) as conn:
+            self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
+            self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
+            self.assertEqual(conn.execute("SELECT max(version) FROM schema_migrations").fetchone()[0], "003")
+            row = conn.execute("SELECT valuation_display,post_money_value,metadata_json FROM canonical_funding_rounds WHERE organization_id='org-legalon-technologies'").fetchone()
+            if row is None:
+                row = conn.execute("SELECT valuation_display,post_money_value,metadata_json FROM canonical_funding_rounds WHERE organization_id='org_legalon-technologies'").fetchone()
+            self.assertIsNotNone(row)
+            self.assertIsNone(row[0]); self.assertIsNone(row[1])
+        env = os.environ.copy(); env.update({"PIPELINE_V2_DB_FILE": str(db), "PUBLIC_STATE_FILE": str(public_state), "NODE_ENV": "production", "ENABLE_WRITES": "false"})
+        def http(path):
+            request = json.dumps({"path": path, "method": "GET", "body": ""})
+            return json.loads(subprocess.run(["node", "test/api_contract_runner_v2.js", request], cwd=ROOT, env=env, text=True, capture_output=True, check=True).stdout)["payload"]
+        asia = http("/api/state?asiaPriority=1")
+        self.assertEqual((asia["dashboard"]["total"], len(asia["companies"])), (40, 40))
+        composed = http("/api/state?asiaPriority=1&ipoHorizon=48m_plus")
+        self.assertTrue(composed["companies"] and all(row["regionalExposure"] and row["ipoHorizon"] == "48m_plus" for row in composed["companies"]))
+        v2 = http("/api/v2/companies?asiaPriority=1&ipoHorizon=48m_plus&limit=100")
+        self.assertTrue(v2["data"] and all(row["regionalExposure"] and row["investmentProfile"]["ipoHorizon"] == "48m_plus" for row in v2["data"]))
+        public_text = json.dumps(snapshot, ensure_ascii=False)
+        for marker in ("asiaSeedImports", "privateStatusVerificationDue", "reviewedBy", "applicationSha256", "Hermes Asia source-gate"):
+            self.assertNotIn(marker, public_text)
 
 
 if __name__ == "__main__":

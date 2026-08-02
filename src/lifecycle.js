@@ -18,12 +18,12 @@ function lifecycleStage(company = {}) {
   const tests = [
     ['secondary_tender', /secondary|tender|二级|老股/],
     ['crossover_pipe_strategic', /\bpipe\b|crossover|strategic|战略/],
-    ['project_finance', /project[ -]?finance|项目融资/],
-    ['formation_pre_seed', /formation|pre[ -]?seed|angel|天使|成立期/],
+    ['project_finance', /project[ _-]?finance|项目融资/],
+    ['formation_pre_seed', /formation|pre[ _-]?seed|angel|天使|成立期/],
     ['seed', /(^|\W)seed(\W|$)|种子/],
     ['series_a_b', /series\s*[ab](\W|$)|[ab]轮/],
-    ['pre_ipo', /pre[ -]?ipo|准上市|上市前/],
-    ['growth_late_stage', /growth|late[ -]?stage|series\s*[cdef](\W|$)|成长|后期/]
+    ['pre_ipo', /pre[ _-]?ipo|准上市|上市前/],
+    ['growth_late_stage', /growth|late[ _-]?stage|series\s*[cdef](\W|$)|成长|后期/]
   ];
   return (tests.find(([, re]) => re.test(explicit)) || ['stage_unverified'])[0];
 }

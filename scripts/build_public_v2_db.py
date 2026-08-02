@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the production public snapshot and schema-002 DB from bundled input."""
+"""Build the production public snapshot and schema-003 DB from bundled input."""
 from __future__ import annotations
 
 import argparse
@@ -23,7 +23,7 @@ APP = Path(__file__).resolve().parents[1]
 DEFAULT_STATE = APP / "data" / "state.json"
 DEFAULT_PUBLIC_STATE = APP / "data" / "public-state.json"
 DEFAULT_DB = APP / "data" / "pipeline_v2.sqlite"
-EXPECTED_SCHEMA = "002"
+EXPECTED_SCHEMA = "003"
 EXPECTED_PUBLIC_SNAPSHOT_SCHEMA = "1"
 EXPECTED_PUBLIC_SNAPSHOT_MARKER = "generated-public-snapshot"
 EXPECTED_PUBLIC_SNAPSHOT_GENERATOR = "project_public_snapshot.js"
@@ -34,6 +34,7 @@ FORBIDDEN_KEYS = {
     "openQuestions", "relationshipRoute", "relationshipRouteZh", "routeToAccess", "relationshipOwner",
     "investorGroup", "sourceRegistry", "providerMetadata", "note", "coverage",
 }
+FORBIDDEN_PUBLIC_IPO_KEYS = re.compile(r"^(?:ipoWindow.*|ipoSignal|ipoSignals|ipoHorizonClassificationMethod)$", re.I)
 SENSITIVE = re.compile(
     r"(?i)(?:\b(?:api[_-]?key|secret|password|passwd|authorization|token|private[_-]?key)\b\s*[:=]\s*\S+|"
     r"\bbearer\s+[A-Za-z0-9._~+/=-]{12,}|\b(?:AKIA|ASIA)[A-Z0-9]{16}\b|"
@@ -101,7 +102,7 @@ def validate_snapshot(snapshot_path: Path) -> dict:
     if not isinstance(companies, list) or not companies:
         raise RuntimeError("PUBLIC_SNAPSHOT_EMPTY")
     for item_path, key, value in walk(snapshot):
-        if key in FORBIDDEN_KEYS:
+        if key in FORBIDDEN_KEYS or FORBIDDEN_PUBLIC_IPO_KEYS.fullmatch(key):
             raise RuntimeError(f"PUBLIC_SNAPSHOT_FORBIDDEN_FIELD:{item_path}")
         if isinstance(value, str) and SENSITIVE.search(value):
             raise RuntimeError(f"PUBLIC_SNAPSHOT_SENSITIVE_TEXT:{item_path}")

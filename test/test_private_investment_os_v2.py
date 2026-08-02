@@ -45,7 +45,8 @@ def release_identity_union(state: dict) -> set[str]:
     """Return canonical IDs in the normalization baseline plus every seed batch."""
     seed_files = sorted((ROOT / "data" / "connectors").glob("tmt_seed_20260802_batch[0-9].json"))
     seed_batches = [json.loads(path.read_text(encoding="utf-8"))["records"] for path in seed_files]
-    asia_records = json.loads((ROOT / "data" / "connectors" / "asia_tmt_seed_20260802.json").read_text(encoding="utf-8"))["records"]
+    asia_files = sorted((ROOT / "data" / "connectors").glob("asia_tmt_seed*20260802.json"))
+    asia_records = [record for path in asia_files for record in json.loads(path.read_text(encoding="utf-8"))["records"]]
     legacy_ids = {
         company["id"] for company in state["companies"]
         if company.get("classificationMethod") == "deterministic_legacy_mapping"
@@ -133,10 +134,10 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         db = self.tmp / "migration_only.sqlite"
         first = run_json("python3", str(MIGRATOR), "--db", str(db))
         second = run_json("python3", str(MIGRATOR), "--db", str(db))
-        self.assertEqual(first["applied"], ["001", "002"])
-        self.assertEqual(second["skipped"], ["001", "002"])
+        self.assertEqual(first["applied"], ["001", "002", "003"])
+        self.assertEqual(second["skipped"], ["001", "002", "003"])
         with sqlite3.connect(db) as conn:
-            self.assertEqual(conn.execute("SELECT count(*) FROM schema_migrations").fetchone()[0], 2)
+            self.assertEqual(conn.execute("SELECT count(*) FROM schema_migrations").fetchone()[0], 3)
 
     def test_01a_failing_migration_rolls_back_schema_and_record(self):
         migrations = self.tmp / "failing-migrations"
@@ -301,7 +302,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         for marker in private_markers:
             self.assertNotIn(marker, public_raw)
 
-    def test_02g_batch2_release_survives_seed_v1_v2_and_schema_002_end_to_end(self):
+    def test_02g_batch2_release_survives_seed_v1_v2_and_schema_003_end_to_end(self):
         state = json.loads(STATE.read_text(encoding="utf-8"))
         seed = json.loads(BATCH2_SEED.read_text(encoding="utf-8"))
         snapshot = json.loads(self.public_state.read_text(encoding="utf-8"))
@@ -614,7 +615,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         self.assertFalse(replay["mutated"])
         self.assertEqual(replay_state.read_bytes(), applied_bytes)
 
-    def test_02i_legacy_financing_batch_survives_schema_002_without_private_metadata_or_valuations(self):
+    def test_02i_legacy_financing_batch_survives_schema_003_without_private_metadata_or_valuations(self):
         state = json.loads(STATE.read_text(encoding="utf-8"))
         snapshot = json.loads(self.public_state.read_text(encoding="utf-8"))
         manifest = json.loads(LEGACY_FINANCING_MANIFEST.read_text(encoding="utf-8"))
@@ -626,11 +627,11 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
 
         self.assertEqual(len(records), 8)
         self.assertEqual(len(target_ids), 8)
-        self.assertEqual(len(state["companies"]), 171)
-        self.assertEqual(len(snapshot["companies"]), 171)
-        self.assertEqual(snapshot["meta"]["publicCompanyCount"], 171)
-        self.assertEqual(self.public_build_receipt["schemaVersion"], "002")
-        self.assertEqual(self.public_build_receipt["publicCompanyCount"], 171)
+        expected_company_count = len(state["companies"])
+        self.assertEqual(len(snapshot["companies"]), expected_company_count)
+        self.assertEqual(snapshot["meta"]["publicCompanyCount"], expected_company_count)
+        self.assertEqual(self.public_build_receipt["schemaVersion"], "003")
+        self.assertEqual(self.public_build_receipt["publicCompanyCount"], expected_company_count)
         for record in records:
             source = state_by_id[record["id"]]
             public = public_by_id[record["id"]]
@@ -648,11 +649,11 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
 
         status, v1 = self.http("/api/state")
         self.assertEqual(status, 200)
-        self.assertEqual(v1["dashboard"]["total"], 171)
+        self.assertEqual(v1["dashboard"]["total"], expected_company_count)
         status, v2_meta = self.http("/api/v2/meta")
         self.assertEqual(status, 200)
-        self.assertEqual(v2_meta["schemaVersion"], "002")
-        self.assertEqual(v2_meta["counts"]["companies"], 171)
+        self.assertEqual(v2_meta["schemaVersion"], "003")
+        self.assertEqual(v2_meta["counts"]["companies"], expected_company_count)
         v2_payloads = []
         for record in records:
             status, detail = self.http(f"/api/v2/companies/{record['id']}")
@@ -669,7 +670,7 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             self.assertEqual(conn.execute("PRAGMA integrity_check").fetchone()[0], "ok")
             self.assertEqual(conn.execute("PRAGMA foreign_key_check").fetchall(), [])
             versions = [row[0] for row in conn.execute("SELECT version FROM schema_migrations ORDER BY version")]
-            self.assertEqual(versions[-1], "002")
+            self.assertEqual(versions[-1], "003")
             rows = conn.execute(
                 "SELECT organization_id,valuation_display,valuation_currency,pre_money_value,post_money_value,metadata_json "
                 f"FROM canonical_funding_rounds WHERE organization_id IN ({placeholders})",
@@ -1067,6 +1068,28 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         self.assertTrue(all("stage_precision" in row["lifecycle"]["coverageGaps"] for row in unverified))
         _, filtered = self.http("/api/v2/companies?limit=100&stage=stage_unverified")
         self.assertTrue(all(row["lifecycle"]["stage"] == "stage_unverified" for row in filtered["data"]))
+
+    def test_07b_ipo_horizon_enums_distribution_and_filter(self):
+        horizons = {"0_12m", "12_24m", "24_48m", "48m_plus", "evergreen_private", "unknown"}
+        confidences = {"high", "medium", "low", "unverified"}
+        bases = {"official_filing", "exchange_application", "company_statement", "recent_financing",
+                 "secondary_liquidity", "stage_heuristic", "insufficient_evidence"}
+        _, meta = self.http("/api/v2/meta")
+        self.assertEqual(set(meta["horizonDistribution"]), horizons)
+        self.assertEqual(sum(meta["horizonDistribution"].values()), len(json.loads(STATE.read_text(encoding="utf-8"))["companies"]))
+        _, page = self.http("/api/v2/companies?limit=100&ipoHorizon=0_12m,12_24m")
+        self.assertEqual(set(page["horizonDistribution"]), horizons)
+        self.assertTrue(page["data"])
+        for row in page["data"]:
+            profile = row["investmentProfile"]
+            self.assertEqual(set(profile) & {"ipoHorizon", "ipoHorizonConfidence", "ipoHorizonBasis", "ipoHorizonClassificationMethod"},
+                             {"ipoHorizon", "ipoHorizonConfidence", "ipoHorizonBasis"})
+            self.assertIn(profile["ipoHorizon"], {"0_12m", "12_24m"})
+            self.assertIn(profile["ipoHorizonConfidence"], confidences)
+            self.assertIn(profile["ipoHorizonBasis"], bases)
+        status, error = self.http("/api/v2/companies?ipoHorizon=soon")
+        self.assertEqual(status, 400)
+        self.assertEqual(error["error"]["code"], "INVALID_PARAMETER")
 
     def test_08_v1_contract_and_read_only_guard(self):
         for path in ("/api/state", "/api/pipeline", "/api/company/databricks"):
