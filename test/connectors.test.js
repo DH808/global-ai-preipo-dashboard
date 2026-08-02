@@ -1,5 +1,6 @@
 const assert = require('assert');
 const { parseInterVestPortfolio, parseNewsRss, sourceStatus } = require('../src/connectors');
+const { classifyConnectorStatus } = require('../public/connectorStatus');
 
 function test(name, fn) {
   try { fn(); console.log('✓', name); }
@@ -25,4 +26,13 @@ test('sourceStatus reports Crunchbase credential missing or present', () => {
   const cb = sources.find(s => s.id === 'crunchbase');
   assert(cb);
   assert(['missing_credential', 'credential_present_not_tested'].includes(cb.runtimeStatus));
+});
+
+test('dashboard connector health uses exact status sets', () => {
+  assert.equal(classifyConnectorStatus('available'), 'healthy');
+  assert.equal(classifyConnectorStatus('imported'), 'healthy');
+  assert.equal(classifyConnectorStatus('available_media_signal_only'), 'healthy');
+  assert.equal(classifyConnectorStatus('not_imported'), 'pending');
+  assert.equal(classifyConnectorStatus('missing_credential'), 'pending');
+  assert.equal(classifyConnectorStatus('unavailable'), 'unknown');
 });

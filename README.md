@@ -1,63 +1,33 @@
-# Global AI Pre-IPO Dashboard
+# Private Investment Opportunity OS
 
-The provider-neutral Private Investment Opportunity OS v2 Phase 1 is documented in [Engineering](docs/PRIVATE_INVESTMENT_OS_V2_ENGINEERING.md), [API v2](docs/API_V2.md), [Connector Contract](docs/CONNECTOR_CONTRACT.md), and [Migration Runbook](docs/MIGRATION_RUNBOOK.md). Existing v1 dashboard behavior remains compatible.
+North-America-first, full-lifecycle private-company opportunity dashboard. Formation/pre-seed, seed, Series A/B, growth/late-stage, Pre-IPO, secondary/tender, crossover/PIPE/strategic, and project-finance are first-class lifecycle lenses. The historical Global AI Pre-IPO view remains available through the same v1 routes and exports.
 
-Operational dashboard for a global AI / AI supply-chain private-company and pre-IPO pipeline.
-
-## URLs
-
-- Local: `http://127.0.0.1:8826`
-- Tailscale: `https://macmac-mini.tail603623.ts.net/preipo`
-- Render: `https://global-ai-preipo-dashboard.onrender.com`
-
-## Data model
-
-The local Mac is the editable source of truth. The public Render deployment is read-only and can read the latest published snapshot through `AGENT_SNAPSHOT_URL`.
-
-Recommended flow:
-
-```text
-Local dashboard data/state.json
-  -> scripts/publish_snapshot.py
-  -> DH808/global-ai-preipo-dashboard-data snapshots/latest.json
-  -> Render reads AGENT_SNAPSHOT_URL with cache + fallback
-```
-
-Render falls back to bundled `data/state.json` if the snapshot URL is unavailable.
-
-## Commands
+## Run and verify
 
 ```bash
 npm test
 npm run check
-npm start
+npm run build
+NODE_ENV=production ENABLE_WRITES=false npm start
 ```
 
-Health and data checks:
+Primary endpoints remain `/api/state`, `/api/pipeline`, `/api/company/:id`, and the v1 export routes. Provider-neutral v2 lives under `/api/v2`; see [API v2](docs/API_V2.md) and [engineering notes](docs/PRIVATE_INVESTMENT_OS_V2_ENGINEERING.md).
 
-```bash
-curl http://127.0.0.1:8826/api/health
-curl http://127.0.0.1:8826/api/state
-```
+## Public projection policy
 
-Exports:
+Public production is read-only and fail-closed. Render ignores `AGENT_SNAPSHOT_URL` and reads only the build-generated, gitignored `data/public-state.json`. Payload-declared rights/version fields never establish trust. Development remote snapshots require an operator-controlled `AGENT_SNAPSHOT_SHA256` match. v2 requires explicit redistributable provenance for every published record, including aliases and external identifiers.
 
-```text
-/api/export.md
-/api/export.csv
-/api/export.json
-```
+Lineage is a safe aggregate receipt only. Public DTO fields are allowlisted centrally in `src/publicProjection.js` (v1) and `PublicProjectionPolicy` in `scripts/query_v2_db.py` (v2). Rights-sensitive caches default to disabled in production.
 
-## Environment variables
+## Production controls
 
-- `PORT`: server port, default `8826`
-- `HOST`: server host, default `0.0.0.0`
-- `NODE_ENV=production`: makes writes read-only by default
-- `ENABLE_WRITES=true|false`: explicit write toggle
-- `AGENT_SNAPSHOT_URL`: remote JSON snapshot for hosted deployment
-- `SNAPSHOT_CACHE_TTL_MS`: default `300000`
-- `SNAPSHOT_FETCH_TIMEOUT_MS`: default `8000`
+- `NODE_ENV=production` and `ENABLE_WRITES=false` keep writes blocked.
+- `SNAPSHOT_CACHE_TTL_MS=0` and `V2_CACHE_TTL_MS=0` avoid stale rights after a downgrade.
+- `V2_RATE_LIMIT_CLIENTS` hard-bounds limiter state (default 2048).
+- `npm run build` projects the trusted bundled input through the centralized allowlist, writes `data/public-state.json`, imports only that reduced snapshot into schema 002, scans raw payloads/tables, and requires a nonzero count equal in v1 and v2. Additions do not require changing a hardcoded count.
+- `/api/health` returns 503 unless both the v1 bundled projection and schema-002 v2 projection are ready with equal nonzero counts.
+- Render uses the documented first valid `X-Forwarded-For` entry. A missing or malformed chain falls back to the connected peer bucket.
+- Production exposes only v1 state/pipeline/company/exports/health plus `/api/v2/*`; legacy graph, ops, CRM, source, task, entity, refresh, and equivalent internal routes return generic 404.
+- The existing Render service name remains `global-ai-preipo-dashboard` so deployment updates in place.
 
-## Public deployment policy
-
-Public/Render should stay read-only. Edit on the local/Tailscale dashboard, publish snapshots, and let Render consume those snapshots.
+The Render configuration is read-only. This repository workflow does not push or deploy.

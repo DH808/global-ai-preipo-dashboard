@@ -1,9 +1,6 @@
 let state = null;
-let ops = null;
 let selected = null;
 let showAllMobile = false;
-const IS_ADMIN = new URLSearchParams(location.search).get('admin') === '1';
-if (IS_ADMIN) document.body.classList.add('admin-mode');
 if (location.pathname.startsWith('/company/')) document.body.classList.add('company-profile-page');
 const $ = sel => document.querySelector(sel);
 
@@ -14,6 +11,10 @@ async function api(path, opts) {
 }
 
 function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function safeUrl(value) {
+  try { const u = new URL(String(value || ''), location.origin); return /^(https?):$/.test(u.protocol) ? u.href : ''; }
+  catch (_) { return ''; }
+}
 function colorClass(label) { return ({'Core / Act Now':'green','Strategic Watch':'blue','Build Relationship':'amber','Monitor Only':'orange','Low Priority':'red','Excluded / Comp':'gray'})[label] || 'gray'; }
 function shortText(s, n) {
   const raw = String(s ?? '');
@@ -29,7 +30,6 @@ function readinessScore(c) {
   if (c.latestAvailableValuation && !/未披露|待验证|not disclosed|待确认/i.test(c.latestAvailableValuation)) score += 1;
   if (c.revenueScale && !/未披露|待验证|待确认/i.test(c.revenueScale)) score += 1;
   if ((c.investors || []).length) score += 1;
-  if (c.relationshipRoute) score += 1;
   if ((c.evidence || []).length) score += 1;
   return score;
 }
@@ -47,15 +47,6 @@ function valuationCell(c) {
   const has = !/未披露|待验证|not disclosed|待确认/i.test(v);
   return `<div class="valuation-wrap"><b>${shortText(v, 92)}</b><div class="mini-bar ${has ? 'has-data' : 'missing'}"><i style="width:${has ? Math.min(96, 42 + Math.max(0, String(v).length % 45)) : 18}%"></i></div></div>`;
 }
-function accessType(text) {
-  const t = String(text || '').toLowerCase();
-  if (/secondary|tender|old shareholder|老股|二级/.test(t)) return '老股/二级';
-  if (/ipo|anchor|cornerstone|underwriter|承销/.test(t)) return 'IPO/承销';
-  if (/strategic|cvc|nvidia|amd|samsung|temasek/.test(t)) return '战略股东';
-  if (/banker|broker|券商/.test(t)) return '券商/中介';
-  return '关系路径';
-}
-
 function cleanDisplayText(s, fallback = '待确认') {
   const text = String(s ?? '').replace(/\s+/g, ' ').trim();
   if (!text || /^(none|null|undefined|unknown|待补充|tbd)$/i.test(text)) return fallback;
@@ -73,7 +64,6 @@ function cleanDisplayText(s, fallback = '待确认') {
     .replace(/primary-source verification/gi, '一手来源核验')
     .replace(/source boundary/gi, '来源限制')
     .replace(/public\/captcha-limited/gi, '公开资料受限')
-    .replace(/Diligence ask:?\s*/gi, '尽调需核验：')
     .replace(/query path/gi, '检索路径')
     .replace(/company release claimed/gi, '公司公告披露')
     .replace(/media_signal_only_not_confirmed/gi, '仅媒体信号，尚未确认')
@@ -302,8 +292,6 @@ function metricTile(label, value, tone = '') {
 function thesisLine(c) {
   return cleanDisplayText(c.investmentSummaryZh || c.recommendationClean || c.whyInTrack || c.recommendation || c.mandateFit || c.notesClean || c.notes, '投资判断待整理');
 }
-function routeLine(c) { return cleanDisplayText(c.relationshipRoute || c.routeToAccess, '接触路径待整理'); }
-function nextLine(c) { return cleanDisplayText(c.nextActionZh || c.keyDiligence || c.nextAction, '下一步待整理'); }
 function valuationLine(c) { return cleanDisplayText(c.latestValuationZh || c.latestAvailableValuation || c.latestValuation || c.latestFunding, '未披露/待验证'); }
 function revenueLine(c) { return cleanDisplayText(c.revenueScaleZh || c.revenueScale, '未披露/待验证'); }
 function homepageRevenue(c) {
@@ -312,16 +300,6 @@ function homepageRevenue(c) {
   if (/secured business/i.test(rev) || /已锁定业务/i.test(rev)) return '公开资料显示 >$1B 已锁定业务；现金流为正';
   if (/未披露|待验证|公开资料待补充/i.test(rev)) return '未披露；待核验收入 / 订单储备';
   return cleanDisplayText(rev.replace(/^官方\/公司公开口径显示[:：]?\s*/, '').split(/[;；.]/).filter(Boolean).slice(0,2).join('；'), '未披露/待验证');
-}
-function homepageRoute(c) {
-  const r = routeModel(c);
-  const nodes = r.nodes.slice(0, 2).join(' / ') || '入口节点待确认';
-  return nodes;
-}
-function homepageNext(c) {
-  const asks = splitChecklist(c.nextActionZh || c.keyDiligence || c.nextAction || '', 3);
-  if (asks.length) return asks.slice(0, 2).join('；');
-  return icActionLabel(c);
 }
 function icActionLabel(c) {
   const h = priorityHead(c);
@@ -338,7 +316,8 @@ function memoList(items, empty = '暂无结构化信息。') {
 }
 
 function filters() {
-  return { q: $('#search').value.trim(), region: $('#region').value, sector: $('#sector').value, label: $('#label').value, status: 'private' };
+  return { q: $('#search').value.trim(), region: $('#region').value, sector: $('#sector').value, label: $('#label').value,
+    stage: lifecycleTaxonomy.stageFilterValue($('#stage').value), status: 'private' };
 }
 
 function qs(obj) {
@@ -349,22 +328,11 @@ function qs(obj) {
 
 async function load() {
   state = await api('/api/state?' + qs(filters()));
-  ops = await api('/api/ops');
   await renderDataArchitecture();
   renderSummary();
   renderVintageBanner();
   renderQuickChips();
   renderMvp8Sidebars();
-  if (IS_ADMIN) {
-    renderPriorityBoard();
-    renderDeltaView();
-    renderDealKanban();
-    renderOperatingSystem();
-    await renderPipelineOps();
-    await render来源s();
-    await renderCrmBoards();
-  }
-  applyResponsiveDefaults();
   renderFilters();
   renderTable();
   const pathMatch = location.pathname.match(/^\/company\/([^/?#]+)/);
@@ -378,36 +346,21 @@ async function renderDataArchitecture() {
   try {
     const [sources, quality] = await Promise.all([api('/api/v2/sources'), api('/api/v2/data-quality')]);
     const rows = sources.data || [];
-    const healthy = rows.filter(s => /available|imported/.test(s.status)).length;
-    const unavailable = rows.filter(s => /missing_credential|not_imported/.test(s.status)).length;
+    const classify = connectorStatus.classifyConnectorStatus;
+    const healthy = rows.filter(s => classify(s.status) === 'healthy').length;
+    const unavailable = rows.filter(s => classify(s.status) === 'pending').length;
     const q = quality.summary || {};
     box.innerHTML = `<div class="architecture-kpis">
       <div><span>可用 / 已导入</span><b>${healthy}</b></div><div><span>待授权 / 待导入</span><b>${unavailable}</b></div>
       <div><span>陈旧</span><b>${q.stale || 0}</b></div><div><span>冲突</span><b>${q.conflict || 0}</b></div>
       <div><span>缺 lineage</span><b>${q.missingLineage || 0}</b></div><div><span>权限受限源</span><b>${q.rightsRestricted || 0}</b></div>
-    </div><div class="connector-strip">${rows.map(s => `<span class="connector-status ${/available|imported/.test(s.status) ? 'ok' : 'pending'}"><i></i>${esc(s.name)} · ${esc(s.status)}</span>`).join('')}</div>`;
+    </div><div class="connector-strip">${rows.map(s => `<span class="connector-status ${classify(s.status) === 'healthy' ? 'ok' : 'pending'}"><i></i>${esc(s.name)} · ${esc(s.status)}</span>`).join('')}</div>`;
   } catch (_) {
     box.innerHTML = '<div class="sub">v2 本地数据库尚未初始化；现有 v1 投资管线继续只读可用。请按迁移 runbook 生成 PIPELINE_V2_DB_FILE。</div>';
   }
 }
 
-async function render来源s() {
-  const box = $('#sources');
-  if (!box || box.dataset.loaded) return;
-  const data = await api('/api/sources');
-  box.innerHTML = data.sources.map(s => `<div class="source-card"><div><b>${esc(s.name)}</b></div><div class="sub">${esc(s.type)}</div><div class="pill ${s.runtimeStatus === 'missing_credential' ? 'orange' : s.runtimeStatus === 'enabled' ? 'green' : 'gray'}">${esc(s.runtimeStatus || s.status)}</div><p>${esc(s.coverage || '')}</p><div class="sub">${esc(s.limitations || '')}</div></div>`).join('');
-  box.dataset.loaded = '1';
-}
-
 async function loadAllForFilters() { return api('/api/state?status=private'); }
-
-async function renderCrmBoards() {
-  const fbox = $('#fundingBoard'), tbox = $('#taskBoard');
-  if (!fbox || !tbox) return;
-  const crm = await api('/api/crm');
-  fbox.innerHTML = crm.fundingRounds.slice(0, 8).map(r => `<div class="mini-item"><b>${esc(r.companyName)}</b> <span class="pill gray">${esc(r.round)}</span><div>${esc(r.amount)} · ${esc(r.valuation)}</div><div class="sub">${esc(r.date)} · ${esc(r.confidence)} · ${esc((r.participants||[]).join(', '))}</div></div>`).join('');
-  tbox.innerHTML = crm.tasks.slice(0, 10).map(t => `<div class="mini-item"><b>${esc(t.companyName)}</b> <span class="pill ${t.priority === 'High' ? 'orange' : 'gray'}">${esc(t.priority)}</span><div>${esc(t.title)}</div><div class="sub">${esc(t.owner)} · due ${esc(t.dueDate)} · ${esc(t.category)}</div></div>`).join('');
-}
 
 function renderSummary() {
   const d = state.dashboard;
@@ -417,11 +370,13 @@ function renderSummary() {
   const db = state.meta?.sqlitePath ? 'SQLite' : (state.meta?.database || 'JSON');
   const withValuation = companies.filter(c => c.latestAvailableValuation && !/未披露|待验证|not disclosed|待确认/i.test(c.latestAvailableValuation)).length;
   const withSources = companies.filter(c => (c.evidence || []).length).length;
+  const northAmerica = companies.filter(c => /^(US|USA|United States|Canada|North America)$/i.test(c.region || c.country || '')).length;
+  const earlyStage = companies.filter(c => ['formation_pre_seed','seed','series_a_b'].includes(c.lifecycleStage)).length;
   const cards = [
-    ['公司数', d.privateCount || companies.length, '追踪中'],
-    ['A0/A1/A2', high, '高优先级'],
-    ['估值覆盖', withValuation, '有估值口径'],
-    ['来源覆盖', withSources, '有可展示来源']
+    ['机会数', d.privateCount || companies.length, '全生命周期'],
+    ['北美优先', northAmerica, 'US / Canada'],
+    ['早期覆盖', earlyStage, 'Formation–Series B'],
+    ['证据覆盖', withSources, '有可展示来源']
   ];
   $('#summary').innerHTML = cards.map(c => `<div class="card"><div class="label">${esc(c[0])}</div><div class="num">${esc(c[1])}</div><div class="sub">${esc(c[2])}</div></div>`).join('');
 }
@@ -452,7 +407,6 @@ function renderMvp8Sidebars() {
     const rows = [
       ['估值', companies.filter(c => (c.latestValuationZh || c.latestAvailableValuation) && !/未披露|待验证|not disclosed|待确认/i.test(c.latestValuationZh || c.latestAvailableValuation)).length],
       ['收入', companies.filter(c => (c.revenueScaleZh || c.revenueScale) && !/未披露|待验证|待确认/i.test(c.revenueScaleZh || c.revenueScale)).length],
-      ['路径', companies.filter(c => c.relationshipRoute).length],
       ['证据', companies.filter(c => (c.evidence || []).length).length]
     ];
     health.innerHTML = rows.map(([k,v]) => `<div class="health-row"><span>${esc(k)}</span><b>${esc(v)}/${companies.length}</b><em><i style="width:${Math.round(v / Math.max(1, companies.length) * 100)}%"></i></em></div>`).join('');
@@ -463,6 +417,8 @@ function renderQuickChips() {
   const box = $('#quickChips');
   if (!box || box.dataset.ready) return;
   const chips = [
+    ['北美优先', { region: 'US' }],
+    ['Formation–Series B', { stage: 'formation_series_b' }],
     ['A0 成熟必跟踪', { q: 'A0' }],
     ['A1 架构核心', { q: 'A1' }],
     ['A2 台湾准上市', { q: 'A2' }],
@@ -477,121 +433,10 @@ function renderQuickChips() {
     $('#region').value = f.region || '';
     $('#sector').value = f.sector || '';
     $('#label').value = f.label || '';
+    $('#stage').value = f.stage || '';
     load();
   }));
   box.dataset.ready = '1';
-}
-
-function renderPriorityBoard() {
-  const box = $('#priorityBoard');
-  if (!box) return;
-  const isMobile = window.matchMedia('(max-width: 720px)').matches;
-  const top = (state.companies || []).slice(0, isMobile ? 6 : 10);
-  box.innerHTML = top.map((c, i) => `<button class="priority-card" type="button" data-id="${esc(c.id)}">
-    <div class="rank">#${i + 1}</div>
-    <div class="priority-main"><b>${esc(c.name)}</b><span>${esc(c.region)} · ${esc(c.sector)}</span></div>
-    <div class="priority-score ${colorClass(c.label)}">${esc(c.score)}</div>
-    <p>${esc(c.recommendation || c.nextAction || c.notes || '').slice(0, 150)}</p>
-  </button>`).join('');
-  box.querySelectorAll('.priority-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
-}
-
-function deltaBuckets(companies) {
-  const addedNames = new Set(['AlphaSense','Kraken Technologies','Crusoe','DriveNets','Firmus','DayOne Data Centers','Baseten','OpenRouter','Abridge','PhysicsX','Black Forest Labs','CuspAI','PsiQuantum','貝爾威勒 / Bellwether','漢測 / Hermes Testing','東擎科技 / ASRock Industrial','大鵬科CLMX / Climax','和淞','創鉅材料','鈺祥','元鈦科','台智雲','元澄半導體']);
-  const added = companies.filter(c => addedNames.has(c.name) || /CapitalG|GV|Temasek|crossover|Taiwan ESB|Google/i.test([...(c.tags||[]), ...(c.investors||[]), c.notes].join(' '))).slice(0, 12);
-  const upgraded = companies.filter(c => String(c.priorityTier || '').startsWith('1') || (c.label === 'Core / Act Now' && !added.includes(c))).slice(0, 10);
-  const needsProof = companies.filter(c => /verify|confirm|核验|确认|ARR|margin|gross|customer|客户|Data room/i.test([c.nextAction, c.notes, ...(c.进行中Questions||[])].join(' '))).slice(0, 10);
-  const deRisk = companies.filter(c => {
-    const riskText = [c.notes, c.nextAction, ...(c.redFlags||[])].join(' ');
-    return c.label === 'Monitor Only' || c.label === 'Low Priority' || (c.label !== 'Core / Act Now' && /risk|风险|regulatory|出口|valuation|估值过高/i.test(riskText));
-  }).slice(0, 10);
-  return [
-    ['新增/强化', added, '今天写入或显著补强的数据源/公司'],
-    ['上调优先级', upgraded, '进入 Act Now 或明确 allocation 路径'],
-    ['待验证', needsProof, '下一步必须补 ARR、margin、客户或 data room'],
-    ['降噪/谨慎', deRisk, '估值、监管、路径或证据不足，避免占用主线']
-  ];
-}
-
-function renderDeltaView() {
-  const box = $('#deltaView');
-  if (!box) return;
-  const buckets = deltaBuckets(state.companies || []);
-  box.innerHTML = buckets.map(([title, items, subtitle]) => `<div class="delta-card">
-    <div class="delta-head"><b>${esc(title)}</b><span>${items.length}</span></div>
-    <div class="sub">${esc(subtitle)}</div>
-    <div class="delta-list">${items.slice(0, 5).map(c => `<button type="button" data-id="${esc(c.id)}"><span>${esc(c.name)}</span><em>${esc(c.score)} · ${esc(c.label)}</em></button>`).join('')}</div>
-  </div>`).join('');
-  box.querySelectorAll('button[data-id]').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
-}
-
-function kanbanBucket(c) {
-  const stage = String(c.dealStage || '').toLowerCase();
-  if (c.label === 'Core / Act Now' || String(c.priorityTier || '').startsWith('1') || /act|secondary|source round|ipo watch/.test(stage)) return 'Act Now';
-  if (c.label === 'Strategic Watch' || /active|diligence|source/.test(stage)) return 'Active Diligence';
-  if (c.label === 'Build Relationship' || /relationship|build/.test(stage)) return 'Build Relationship';
-  return 'Monitor';
-}
-
-function renderDealKanban() {
-  const box = $('#dealKanban');
-  if (!box) return;
-  const columns = ['Act Now','Active Diligence','Build Relationship','Monitor'];
-  const grouped = Object.fromEntries(columns.map(c => [c, []]));
-  (state.companies || []).forEach(c => (grouped[kanbanBucket(c)] || grouped.Monitor).push(c));
-  box.innerHTML = columns.map(col => `<div class="kanban-col">
-    <div class="kanban-title"><b>${esc(col)}</b><span>${grouped[col].length}</span></div>
-    ${grouped[col].slice(0, 7).map(c => `<button class="kanban-item" type="button" data-id="${esc(c.id)}"><b>${esc(c.name)}</b><span>${esc(c.region)} · ${esc(c.sector)}</span><em>${esc(c.nextAction || c.recommendation || '').slice(0, 92)}</em></button>`).join('')}
-  </div>`).join('');
-  box.querySelectorAll('.kanban-item').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
-}
-
-function decisionClass(decision) {
-  if (/Buy|Pursue|Advance/.test(decision)) return 'green';
-  if (/Need/.test(decision)) return 'orange';
-  if (/Wait/.test(decision)) return 'amber';
-  return 'gray';
-}
-
-function renderOperatingSystem() {
-  if (!ops) return;
-  const ic = $('#icView'), rel = $('#relationshipMap'), aging = $('#taskAging'), qp = $('#onePagerQueue');
-  if (!ic || !rel || !aging || !qp) return;
-  ic.innerHTML = (ops.icView || []).map((c, i) => `<button class="ic-card" type="button" data-id="${esc(c.companyId)}">
-    <div class="ic-top"><span>#${i + 1}</span><b class="${decisionClass(c.decision)}">${esc(c.decision)}</b></div>
-    <h4>${esc(c.name)}</h4><div class="sub">${esc(c.region)} · ${esc(c.sector)} · score ${esc(c.score)}</div>
-    <p>${esc(c.thesis).slice(0, 130)}</p>
-  </button>`).join('');
-  rel.innerHTML = (ops.relationshipMap || []).slice(0, 12).map(r => `<div class="relationship-item">
-    <div class="relationship-head"><b>${esc(r.investor)}</b><span>${esc(r.coreCount)} core / ${esc(r.companies.length)} total</span></div>
-    <div class="relationship-companies">${r.companies.slice(0,4).map(c => `<button type="button" data-id="${esc(c.id)}">${esc(c.name)} <em>${esc(c.score)}</em></button>`).join('')}</div>
-  </div>`).join('');
-  const risk = ops.followUpRisks || {};
-  const overdue = risk.overdue || [], dueSoon = risk.dueSoon || [], noOwner = risk.noOwnerCore || [], noEvidence = risk.thesisNoEvidence || [];
-  aging.innerHTML = `<div class="risk-metrics"><div><b>${overdue.length}</b><span>已逾期</span></div><div><b>${dueSoon.length}</b><span>近期到期</span></div><div><b>${noOwner.length}</b><span>无负责人</span></div><div><b>${noEvidence.length}</b><span>缺证据</span></div></div>
-    ${(ops.taskAging || []).slice(0, 8).map(t => `<button class="risk-task ${t.agingStatus}" type="button" data-id="${esc(t.companyId)}"><b>${esc(t.companyName)}</b><span>${esc(t.title)}</span><em>${esc(t.dueDate || '无截止日')} · ${esc(t.agingStatus)}${t.daysUntilDue !== null ? ' · D' + (t.daysUntilDue >= 0 ? '-' + t.daysUntilDue : '+' + Math.abs(t.daysUntilDue)) : ''}</em></button>`).join('')}`;
-  qp.innerHTML = (ops.onePagerQueue || []).slice(0, 8).map(p => `<button class="onepager-item" type="button" data-id="${esc(p.companyId)}"><b>${esc(p.name)}</b><span class="pill ${decisionClass(p.decision)}">${esc(p.decision)}</span><p>${esc(p.routeToAccess).slice(0, 120)}</p></button>`).join('');
-  document.querySelectorAll('#icView [data-id], #relationshipMap [data-id], #taskAging [data-id], #onePagerQueue [data-id]').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
-}
-
-function applyResponsiveDefaults() {
-  if (!window.matchMedia('(max-width: 720px)').matches) return;
-  const crm = document.querySelector('.crm-details');
-  if (crm && !crm.dataset.mobileTuned) {
-    crm.removeAttribute('进行中');
-    crm.dataset.mobileTuned = '1';
-  }
-}
-
-async function renderPipelineOps() {
-  const [sources, rel, missing] = await Promise.all([api('/api/sources'), api('/api/relationships'), api('/api/missing-data')]);
-  const sbox = $('#sourceRegistry');
-  if (sbox) sbox.innerHTML = (sources.sources || []).slice(0, 8).map(s => `<div class="source-card"><b>${esc(s.name)}</b><div class="sub">${esc(s.type)}</div><span class="pill ${s.runtimeStatus === 'missing_credential' ? 'orange' : s.runtimeStatus === 'enabled_local_only' || s.runtimeStatus === 'enabled' ? 'green' : 'gray'}">${esc(s.runtimeStatus)}</span><p>${esc(s.coverage || '')}</p><div class="sub">${esc(s.limitations || '')}</div></div>`).join('');
-  const rbox = $('#relationshipCrm');
-  if (rbox) rbox.innerHTML = (rel.grouped || []).slice(0, 10).map(r => `<div class="relationship-item"><div class="relationship-head"><b>${esc(r.routeNode)}</b><span>${esc(r.highPriorityCount)} 高优 / ${esc(r.companies.length)} 合计</span></div><div class="relationship-companies">${r.companies.slice(0,5).map(c => `<button type="button" data-id="${esc(c.id)}">${esc(c.name)}</button>`).join('')}</div><div class="sub">诉求：${esc(r.ask)}</div></div>`).join('');
-  const mbox = $('#missingData');
-  if (mbox) mbox.innerHTML = `<div class="risk-metrics"><div><b>${esc(missing.summary.noRevenue)}</b><span>缺收入</span></div><div><b>${esc(missing.summary.noRoute)}</b><span>缺路径</span></div><div><b>${esc(missing.summary.noEvidence)}</b><span>缺证据</span></div><div><b>${esc(missing.highPriorityGaps.length)}</b><span>高优缺口</span></div></div>` + (missing.highPriorityGaps || []).slice(0, 8).map(r => `<button class="risk-task due_soon" type="button" data-id="${esc(r.id)}"><b>${esc(r.name)}</b><span>${esc(r.priorityTier)} · missing: ${esc(r.missing.join(', '))}</span><em>${esc(r.nextAction || '')}</em></button>`).join('');
-  document.querySelectorAll('#relationshipCrm [data-id], #missingData [data-id]').forEach(btn => btn.addEventListener('click', () => showDetail(btn.dataset.id)));
 }
 
 function renderVintageBanner() {
@@ -605,14 +450,9 @@ function renderVintageBanner() {
   $('#vintageBanner').innerHTML = `
     <div class="vintage-row">
       <div><b>数据版本</b><div class="sub">As-of ${esc(m.asOf || m.updatedAt || '待确认')} · loaded ${esc(m.snapshotLoadedAt || '')}</div></div>
-      <div><b>来源</b><div class="sub">${esc(sourceLabel)}${m.snapshotUrl ? ` · <a href="${esc(m.snapshotUrl)}" target="_blank">snapshot</a>` : ''}</div></div>
+      <div><b>来源</b><div class="sub">${esc(sourceLabel)}${safeUrl(m.snapshotUrl) ? ` · <a href="${esc(safeUrl(m.snapshotUrl))}" target="_blank" rel="noopener noreferrer">snapshot</a>` : ''}</div></div>
       <div><b>模式</b><div class="sub">${esc(readOnly)}${m.snapshotError ? ` · fallback: ${esc(m.snapshotError)}` : ''}</div></div>
     </div>`;
-  const newBtn = $('#newBtn');
-  if (newBtn && m.readOnly) {
-    newBtn.disabled = true;
-    newBtn.title = 'Public/Render deployment is read-only; edit through the local Tailscale dashboard.';
-  }
 }
 
 async function renderFilters() {
@@ -622,12 +462,14 @@ async function renderFilters() {
   fillSelect('#region', [...new Set(companies.map(c => c.region))].sort());
   fillSelect('#sector', [...new Set(companies.map(c => c.sector))].sort());
   fillSelect('#label', [...new Set(companies.map(c => c.label))].sort());
+  const stages = (all.taxonomy || lifecycleTaxonomy.STAGES.map(([id,label]) => ({id,label}))).map(x => ({ value: x.id, label: x.label }));
+  fillSelect('#stage', [{ value: 'formation_series_b', label: 'Formation–Series B' }, ...stages]);
   $('#region').dataset.ready = '1';
 }
 function fillSelect(sel, values) {
   const el = $(sel), first = el.options[0];
   el.innerHTML = ''; el.appendChild(first);
-  values.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = v; el.appendChild(o); });
+  values.filter(Boolean).forEach(v => { const o = document.createElement('option'); o.value = typeof v === 'object' ? v.value : v; o.textContent = typeof v === 'object' ? v.label : v; el.appendChild(o); });
 }
 
 function renderTable() {
@@ -635,6 +477,7 @@ function renderTable() {
   tbody.innerHTML = state.companies.map(c => `
     <tr data-id="${esc(c.id)}">
       <td class="company-sticky"><div class="company-cell"><div class="avatar">${esc(String(c.name || '?').slice(0,1))}</div><div><div class="company-name">${esc(c.name)}</div><div class="sub">${esc(c.region)} · ${esc(c.country || c.stage || '')}</div></div></div></td>
+      <td><span class="stage-pill ${c.lifecycleStage === 'stage_unverified' ? 'gap' : ''}">${esc(c.lifecycleStageLabel)}</span></td>
       <td class="description-cell">${companyBriefHtml(c)}</td>
       <td class="valuation-cell">${valuationCell(c)}</td>
       <td><span class="priority-badge ${esc(priorityTone(c))}">${esc(priorityHead(c))}</span><div class="sub ic-action-mini">${esc(icActionLabel(c))}</div></td>
@@ -642,9 +485,7 @@ function renderTable() {
       <td><span class="layer-pill">${shortText(zhLayer(c), 58)}</span></td>
       <td>${investorChips(c)}</td>
       <td><span class="window-pill">${esc(cleanDisplayText(c.ipoWindow || c.ipoSignal || '待确认'))}</span></td>
-      <td><div class="access-cell"><span>${esc(accessType(routeLine(c)))}</span><em>${shortText(homepageRoute(c), 78)}</em></div></td>
-      <td>${readinessBlocks(c)}</td>
-      <td class="next-cell"><span class="metric-label">下一步</span>${shortText(homepageNext(c), 86)}</td>
+      <td><div class="coverage-gaps">${(c.coverageGaps || []).length ? (c.coverageGaps || []).map(x => `<span>${esc(x)}</span>`).join('') : '<b>覆盖完成</b>'}</div></td>
     </tr>`).join('');
   tbody.querySelectorAll('tr').forEach(tr => tr.addEventListener('click', () => showDetail(tr.dataset.id)));
   renderMobileCards();
@@ -661,7 +502,6 @@ function renderMobileCards() {
     ${companyBriefHtml(c, { compact: true })}
     <div class="mobile-meta memo-mobile-meta"><div><b>估值口径</b><span>${shortText(valuationLine(c), 96)}</span></div><div><b>商业验证</b><span>${shortText(homepageRevenue(c), 72)}</span></div></div>
     ${investorChips(c, 2)}
-    <p class="mobile-route"><b>${esc(accessType(routeLine(c)))}</b> · ${shortText(homepageNext(c), 92)}</p>
   </button>`).join('') + (isMobile && !showAllMobile && state.companies.length > companies.length ? `<button class="load-more" type="button">显示全部 ${state.companies.length} 家</button>` : '');
   box.querySelectorAll('.mobile-company-card').forEach(card => card.addEventListener('click', () => showDetail(card.dataset.id)));
   const more = box.querySelector('.load-more');
@@ -669,21 +509,6 @@ function renderMobileCards() {
 }
 
 
-function asCleanArray(value, fallback = []) {
-  const arr = Array.isArray(value) ? value : String(value || '').split(/[;；。]\s*|\s+和\s+|\s+与\s+/);
-  return arr.map(x => cleanDisplayText(x, '')).map(x => x.replace(/^[:：,，、\-\s]+/, '').trim()).filter(Boolean).filter(x => !/^(待确认|未披露|暂无)$/.test(x)).filter((x, i, a) => a.indexOf(x) === i).slice(0, 10);
-}
-function splitChecklist(text, limit = 8) {
-  let t = cleanDisplayText(text, '');
-  t = t
-    .replace(/^联系\s+([^，,。；;]+)[，,]\s*核验\s*/i, '联系 $1｜核验 ')
-    .replace(/^通过\s+([^：:]+)[：:]\s*/i, '通过 $1｜核验 ')
-    .replace(/^核验\s+/i, '')
-    .replace(/^确认\s+/i, '')
-    .replace(/\.$/, '');
-  const parts = t.split(/\s*｜\s*|[;；]\s*|[，,]\s+(?=(?:核验|确认|获取|更新|客户|最近|股份|转让|IPO|NRR|FCF|AI|收入|订单|资料|估值|lead|主承销|lock|valuation))/i);
-  return parts.map(x => x.trim()).filter(Boolean).slice(0, limit);
-}
 function checklistHtml(items, empty = '待补充') {
   const arr = (items || []).filter(Boolean);
   if (!arr.length) return `<p class="sub">${esc(empty)}</p>`;
@@ -749,33 +574,11 @@ function tractionTable(c) {
   const rows = parseTractionRows(c);
   return `<div class="structured-table traction-table"><div class="st-head"><span>指标</span><span>当前口径</span><span>状态</span></div>${rows.map(r=>`<div class="st-row"><span>${esc(r.metric)}</span><b>${esc(cleanDisplayText(r.value, '待确认'))}</b><em>${esc(r.status)}</em></div>`).join('')}</div>`;
 }
-function routeModel(c) {
-  const route = routeLine(c);
-  const investors = (c.investors || []).slice(0, 5);
-  const nodes = investors.length ? investors : asCleanArray(route, []).slice(0, 4);
-  const askSource = c.keyDiligence || c.nextAction || route;
-  const asks = splitChecklist(askSource, 7).map(x => x.replace(/^Ask\s+针对\s+/i, '').replace(/^针对\s+/, ''));
-  return {
-    type: accessType(route),
-    nodes,
-    ask: asks.length ? asks : ['确认资料室可得性', '核验下一轮融资 / IPO 时间表', '获取关键经营口径'],
-    confidence: c.relationshipConfidence || c.routeConfidence || (nodes.length ? '中' : '待确认')
-  };
-}
-function routeStructuredHtml(c) {
-  const r = routeModel(c);
-  return `<div class="route-structured">
-    ${metricTile('路径类型', r.type, 'blue')}
-    ${metricTile('置信度', r.confidence, 'amber')}
-    <div class="route-box"><span>入口节点</span><div class="investor-chips">${r.nodes.slice(0,6).map(x=>`<span class="investor-chip">${esc(cleanDisplayText(x, '待确认'))}</span>`).join('') || '<span class="sub">待确认</span>'}</div></div>
-    <div class="route-box"><span>核心诉求</span>${checklistHtml(r.ask, '接触诉求待补充。')}</div>
-  </div>`;
-}
 function evidenceStats(extra, c) {
   const evidence = extra.evidence || c.evidence || [];
   const claims = extra.claims || [];
-  const official = evidence.filter(e => /official|公司|官方/i.test([e.type,e.sourceType,e.note].join(' '))).length;
-  const media = evidence.filter(e => /media|news|Reuters|媒体/i.test([e.type,e.sourceType,e.note].join(' '))).length;
+  const official = evidence.filter(e => /official|公司|官方/i.test([e.type,e.sourceType].join(' '))).length;
+  const media = evidence.filter(e => /media|news|Reuters|媒体/i.test([e.type,e.sourceType].join(' '))).length;
   const openClaims = claims.filter(cl => !/confirmed|verified|已确认|confirmed/i.test(String(cl.status || ''))).length;
   return { evidence: evidence.length, official, media, claims: claims.length, openClaims };
 }
@@ -815,8 +618,7 @@ function fundingTimeline(rounds) {
         </div>
         <div class="funding-investors"><span>领投方</span>${(r.leadInvestors||[]).length ? (r.leadInvestors||[]).map(x=>`<i>${esc(cleanDisplayText(x, '待确认'))}</i>`).join('') : '<i>未披露/待确认</i>'}</div>
         <div class="funding-investors"><span>参与方</span>${(r.participants||[]).length ? (r.participants||[]).slice(0,14).map(x=>`<i>${esc(cleanDisplayText(x, '待确认'))}</i>`).join('') : '<i>未披露/待确认</i>'}</div>
-        <div class="funding-source"><span>来源：${esc(cleanDisplayText(r.sourceName || r.sourceType, '待确认'))}</span>${r.url ? `<a href="${esc(r.url)}" target="_blank">来源</a>` : ''}</div>
-        ${IS_ADMIN && r.notes ? `<p>${esc(cleanDisplayText(r.notes, ''))}</p>` : ''}
+        <div class="funding-source"><span>来源：${esc(cleanDisplayText(r.sourceName || r.sourceType, '待确认'))}</span>${safeUrl(r.url) ? `<a href="${esc(safeUrl(r.url))}" target="_blank" rel="noopener noreferrer">来源</a>` : ''}</div>
       </div>
     </article>`).join('')}</div>`;
 }
@@ -832,41 +634,11 @@ function renderScoreBreakdown(c) {
     }).join('')}
   </div>`;
 }
-function parseEvidenceNote(note) {
-  let raw = cleanDisplayText(note, '');
-  raw = raw
-    .replace(/^已有公开指标\s*\/\s*(高|中|低)[:：]\s*/i, '')
-    .replace(/^公开资料未披露\s*\/\s*(高|中|低)[:：]\s*/i, '')
-    .replace(/^Missing\s*\([^)]*\)[:：]?\s*/i, '')
-    .trim();
-  const parts = raw.split(/尽调需核验[:：]/);
-  const disclosedRaw = parts[0] || '';
-  const diligenceRaw = parts.slice(1).join('尽调需核验：');
-  const disclosed = [];
-  const asks = [];
-  let left = disclosedRaw.replace(/^官方\/公司公开口径显示[:：]?\s*/i, '').trim();
-  const still = left.split(/仍需核验/i);
-  left = still[0].trim();
-  if (still[1]) asks.push(...splitChecklist(still[1], 6));
-  left.split(/[;；。]\s*/).map(x=>x.trim()).filter(Boolean).forEach(x => {
-    const y = cleanDisplayText(x, '');
-    if (!y) return;
-    if (/未披露|待核验|待确认/.test(y)) asks.push(y);
-    else disclosed.push(y.replace(/\.$/, ''));
-  });
-  if (diligenceRaw) asks.push(...splitChecklist(diligenceRaw, 8));
-  const normalizedAsks = asks.flatMap(x => String(x).split(/[，,]\s*|\s+和\s+/)).map(x => x.replace(/^[:：,，、\-\s]+/, '').trim()).filter(Boolean);
-  return {
-    disclosed: disclosed.slice(0, 5),
-    asks: normalizedAsks.filter((x, i, a) => a.indexOf(x) === i).slice(0, 10),
-    fallback: safeSentence(note, '资料说明待整理。')
-  };
-}
 function formatEvidenceItem(e) {
   const type = e.type === 'official' ? '官方' : e.type === 'media' ? '媒体' : cleanDisplayText(e.type, '来源');
-  const parsed = parseEvidenceNote(e.note);
-  const structured = parsed.disclosed.length || parsed.asks.length;
-  return `<div class="evidence memo-evidence structured-evidence"><div><span class="pill gray">${esc(type)}</span> <b>${esc(cleanDisplayText(e.date, '日期待确认'))}</b></div>${structured ? `<div class="evidence-note-grid">${parsed.disclosed.length ? `<div><span>已披露 / 可展示</span>${checklistHtml(parsed.disclosed)}</div>` : ''}${parsed.asks.length ? `<div><span>待核验</span>${checklistHtml(parsed.asks)}</div>` : ''}</div>` : `<p>${esc(parsed.fallback)}</p>`}${e.url?`<a href="${esc(e.url)}" target="_blank">查看来源</a>`:''}</div>`;
+  const date = e.date || e.asOf;
+  const confidence = cleanDisplayText(e.confidence, '');
+  return `<div class="evidence memo-evidence structured-evidence"><div><span class="pill gray">${esc(type)}</span> <b>${esc(cleanDisplayText(date, '日期待确认'))}</b>${confidence ? ` <em>${esc(confidence)}</em>` : ''}</div>${safeUrl(e.url) ? `<a href="${esc(safeUrl(e.url))}" target="_blank" rel="noopener noreferrer">查看来源</a>` : ''}</div>`;
 }
 function detailHtml(c, rounds, tasks, interactions, extra = {}) {
   const profile = businessProfile(c);
@@ -874,20 +646,18 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
   const evidenceItems = (extra.evidence || c.evidence || []).map(e => ({
     type: e.type || e.evidenceType || e.sourceType || '来源',
     date: e.date || e.asOf || e.capturedAt || '',
-    note: e.note || e.claim || e.value || e.extractedClaim || '',
-    url: e.url || e.sourceUrl || ''
+    confidence: e.confidence || '',
+    url: e.url || ''
   }));
   const scores = extra.scores || [];
   const icScore = scores.find(s => s.scoreType === 'ic_readiness');
-  const topTasks = splitChecklist(nextLine(c), 8).concat((tasks || []).slice(0, 3).map(t => cleanDisplayText(t.title, ''))).filter(Boolean).slice(0, 8);
-  const risks = asCleanArray(c.redFlags || [], []).concat(asCleanArray(c.riskSummaryZh || c.riskLevel || '', [])).slice(0, 5);
   return `<div class="detail ic-detail database-detail">
     <div class="detail-hero memo-hero database-hero">
       <div class="avatar big">${esc(String(c.name || '?').slice(0,1))}</div>
       <div class="memo-hero-copy"><div class="eyebrow">COMPANY PROFILE</div><h2>${esc(c.name)}</h2><div class="sub">${esc(profile.region)} · ${esc(profile.role)} · ${esc(profile.direction)}</div></div>
       <div class="memo-score"><span class="score ${colorClass(c.label)}">${esc(c.score)}</span><em>${esc(priorityHead(c))}</em></div>
     </div>
-    <div class="detail-tabs memo-tabs"><button data-tab="overview" type="button">概览</button><button data-tab="investors" type="button">投资人</button><button data-tab="funding" type="button">融资</button><button data-tab="work" type="button">跟进</button><button data-tab="evidence" type="button">来源</button><button data-tab="lineage" type="button">Lineage</button></div>
+    <div class="detail-tabs memo-tabs"><button data-tab="overview" type="button">概览</button><button data-tab="investors" type="button">投资人</button><button data-tab="funding" type="button">融资</button><button data-tab="evidence" type="button">来源</button><button data-tab="lineage" type="button">Lineage</button></div>
 
     <section class="detail-section memo-section profile-layout" data-section="overview">
       <div class="profile-main">
@@ -920,7 +690,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
     <section class="detail-section memo-section" data-section="overview">
       <div class="memo-section-title"><span>03</span><b>Commercial Traction</b></div>
       ${tractionTable(c)}
-      ${IS_ADMIN && keyMetrics.length ? `<div class="memo-card wide"><h4>已记录关键指标</h4>${memoList(keyMetrics)}</div>` : ''}
+      ${keyMetrics.length ? `<div class="memo-card wide"><h4>已记录关键指标</h4>${memoList(keyMetrics)}</div>` : ''}
     </section>
 
     <section class="detail-section memo-section" data-section="overview">
@@ -934,9 +704,8 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
     </section>
 
     <section class="detail-section memo-section" data-section="investors">
-      <div class="memo-section-title"><span>05</span><b>Investors & Access Route</b></div>
+      <div class="memo-section-title"><span>05</span><b>Investors</b></div>
       <div class="memo-card wide"><h4>主要投资人</h4><div class="investor-chips detail-investors">${(c.investors||[]).map(x=>`<span class="investor-chip">${esc(x)}</span>`).join('') || '<span class="sub">暂无具名投资人。</span>'}</div></div>
-      ${routeStructuredHtml(c)}
     </section>
 
     <section class="detail-section memo-section" data-section="funding">
@@ -948,22 +717,12 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
       ${fundingTimeline(rounds)}
     </section>
 
-    <section class="detail-section memo-section" data-section="work">
-      <div class="memo-section-title"><span>07</span><b>Next Actions / Open Questions</b></div>
-      <div class="memo-two-col">
-        <div class="memo-card"><h4>下一步 checklist</h4>${checklistHtml(topTasks, '下一步待整理。')}</div>
-        <div class="memo-card"><h4>主要风险 / 待核验事项</h4>${checklistHtml(risks.length ? risks : splitChecklist(c.keyDiligence || '', 6), '风险事项待整理。')}</div>
-      </div>
-      ${IS_ADMIN ? (tasks.map(t=>`<div class="evidence memo-evidence"><b>${esc(cleanDisplayText(t.title, '事项'))}</b><div class="sub">负责人：${esc(cleanDisplayText(t.owner, '待定'))} · 截止：${esc(cleanDisplayText(t.dueDate, '待确认'))} · 状态：${esc(cleanDisplayText(t.status, '待确认'))} · 优先级：${esc(cleanDisplayText(t.priority, '待确认'))}</div></div>`).join('') || '<p class="sub">暂无事项。</p>') : ''}
-      ${IS_ADMIN ? (interactions.map(i=>`<div class="evidence memo-evidence"><b>${esc(cleanDisplayText(i.date, '日期待确认'))} · ${esc(cleanDisplayText(i.counterparty, '对手方待确认'))}</b><div>${esc(cleanDisplayText(i.summary, '摘要待整理'))}</div><div class="sub">下一步：${esc(cleanDisplayText(i.nextStep, '待确认'))}</div></div>`).join('') || '<p class="sub">暂无互动记录。</p>') : ''}
-    </section>
-
     <section class="detail-section memo-section" data-section="evidence">
       <div class="memo-section-title"><span>08</span><b>Evidence & Source Quality</b></div>
       ${evidenceSummaryHtml(extra, c)}
       <div class="memo-card wide"><h4>资料边界</h4><p>公开展示仅保留可读来源摘要；未披露经营数据、交易条款和资料室内容，需要通过正式文件、资料室或公司/投资人渠道进一步核验。</p></div>
       ${evidenceItems.map(formatEvidenceItem).join('') || '<p class="sub">暂无可展示来源。</p>'}
-      ${IS_ADMIN ? `<div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+      <div class="tags">${(c.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>
     </section>
 
     <section class="detail-section memo-section" data-section="lineage">
@@ -971,11 +730,7 @@ function detailHtml(c, rounds, tasks, interactions, extra = {}) {
       ${lineageHtml(extra.lineage)}
     </section>
 
-    ${IS_ADMIN ? `<section class="detail-section memo-section" data-section="overview">
-      <div class="memo-section-title"><span>附</span><b>Scorecard</b></div>
-      ${renderScoreBreakdown(c)}
-    </section>` : ''}
-    ${state.meta.readOnly ? '<div class="read-only-note">当前为只读部署：请在本机/Tailscale 版本编辑，并通过 snapshot sync 发布。</div>' : `<div class="actions"><button onclick="进行中Edit(selected)">编辑</button><button onclick="deleteCompany('${esc(c.id)}')">删除</button></div>`}
+    <div class="read-only-note">当前为公开只读展示。</div>
   </div>`;
 }
 
@@ -1019,40 +774,6 @@ async function showDetail(id) {
   }
 }
 
-function 进行中Edit(c) {
-  if (state?.meta?.readOnly) return alert('当前为只读部署：请在本机/Tailscale 版本编辑。');
-  const dialog = $('#editDialog'), form = $('#editForm');
-  form.reset();
-  form.dataset.id = c?.id || '';
-  $('#formTitle').textContent = c ? '编辑公司' : '新增公司';
-  for (const el of form.elements) {
-    if (!el.name) continue;
-    if (el.name === 'investors') el.value = (c?.investors || []).join(', ');
-    else el.value = c?.[el.name] || el.value || '';
-  }
-  dialog.showModal();
-}
-
-async function saveForm(ev) {
-  ev.preventDefault();
-  if (state?.meta?.readOnly) return alert('当前为只读部署：请在本机/Tailscale 版本编辑。');
-  const form = $('#editForm');
-  const data = Object.fromEntries(new FormData(form).entries());
-  data.investors = data.investors.split(',').map(s => s.trim()).filter(Boolean);
-  const id = form.dataset.id;
-  await api(id ? '/api/company/' + encodeURIComponent(id) : '/api/company', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
-  $('#editDialog').close();
-  await load();
-}
-
-async function deleteCompany(id) {
-  if (state?.meta?.readOnly) return alert('当前为只读部署：请在本机/Tailscale 版本编辑。');
-  if (!confirm('确定删除这个 pilot 记录？')) return;
-  await api('/api/company/' + encodeURIComponent(id), { method: 'DELETE' });
-  selected = null; $('#detail').innerHTML = '<div class="empty-state">已删除。点击左侧公司查看详情。</div>';
-  await load();
-}
-
 async function exportMd() {
   const data = await api('/api/export.md');
   const blob = new Blob([data.markdown], { type: 'text/markdown' });
@@ -1062,10 +783,9 @@ async function exportMd() {
 }
 
 ['search','region','sector','label'].forEach(id => $('#'+id).addEventListener('input', () => load()));
-$('#resetBtn').addEventListener('click', () => { $('#search').value=''; $('#region').value=''; $('#sector').value=''; $('#label').value=''; load(); });
-$('#newBtn').addEventListener('click', () => 进行中Edit(null));
-$('#exportBtn').addEventListener('click', exportMd);
-$('#saveBtn').addEventListener('click', saveForm);
+$('#stage').addEventListener('change', () => load());
+$('#resetBtn').addEventListener('click', () => { $('#search').value=''; $('#region').value=''; $('#sector').value=''; $('#label').value=''; $('#stage').value=''; load(); });
+$('#exportBtn')?.addEventListener('click', exportMd);
 $('#detailCloseBtn')?.addEventListener('click', () => $('#companyDetailDialog')?.close());
 load().then(() => {
   const pathMatch = location.pathname.match(/^\/company\/([^/?#]+)/);

@@ -4,9 +4,19 @@ services:
     runtime: node
     plan: free
     region: singapore
-    buildCommand: npm install
+    buildCommand: npm install && npm run build
     startCommand: npm start
     healthCheckPath: /api/health
     envVars:
       - key: NODE_ENV
         value: production
+      - key: ENABLE_WRITES
+        value: "false"
+      - key: SNAPSHOT_CACHE_TTL_MS
+        value: "0"
+      - key: V2_CACHE_TTL_MS
+        value: "0"
+      - key: V2_RATE_LIMIT_CLIENTS
+        value: "2048"
+      - key: PIPELINE_V2_DB_FILE
+        value: data/pipeline_v2.sqlite

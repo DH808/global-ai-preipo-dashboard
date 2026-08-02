@@ -10,4 +10,7 @@ __pycache__/
 *.py[cod]
 IMPROVEMENT_REPORT_zh*
 data/pipeline_v2.sqlite
+data/pipeline_v2.building-*.sqlite*
+data/public-state.json
+data/public-state.building-*.json
 data/exports/*receipt*.json

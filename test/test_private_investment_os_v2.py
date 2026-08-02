@@ -14,6 +14,7 @@ STATE = ROOT / "data" / "state.json"
 IMPORTER = ROOT / "scripts" / "import_legacy_state_v2.py"
 MIGRATOR = ROOT / "scripts" / "run_migrations_v2.py"
 PREVIEW = ROOT / "scripts" / "preview_manual_import_v2.py"
+PUBLIC_BUILD = ROOT / "scripts" / "build_public_v2_db.py"
 
 
 def run_json(*args: str, expected: int = 0) -> dict:
@@ -52,10 +53,10 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         db = self.tmp / "migration_only.sqlite"
         first = run_json("python3", str(MIGRATOR), "--db", str(db))
         second = run_json("python3", str(MIGRATOR), "--db", str(db))
-        self.assertEqual(first["applied"], ["001"])
-        self.assertEqual(second["skipped"], ["001"])
+        self.assertEqual(first["applied"], ["001", "002"])
+        self.assertEqual(second["skipped"], ["001", "002"])
         with sqlite3.connect(db) as conn:
-            self.assertEqual(conn.execute("SELECT count(*) FROM schema_migrations").fetchone()[0], 1)
+            self.assertEqual(conn.execute("SELECT count(*) FROM schema_migrations").fetchone()[0], 2)
 
     def test_01a_failing_migration_rolls_back_schema_and_record(self):
         migrations = self.tmp / "failing-migrations"
@@ -84,6 +85,18 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         replay = run_json("python3", str(IMPORTER), "--state-file", str(STATE), "--db", str(self.db), "--receipt", str(self.tmp / "receipt-2.json"))
         self.assertTrue(replay["idempotentReplay"])
         self.assertEqual(replay["tableCounts"], counts)
+        with sqlite3.connect(self.db) as conn:
+            run = conn.execute(
+                "SELECT records_seen,records_inserted FROM ingestion_runs WHERE id=?",
+                (self.first_receipt["ingestionRunId"],),
+            ).fetchone()
+        state = json.loads(STATE.read_text(encoding="utf-8"))
+        source_rows_seen = sum(len(state.get(key, [])) for key in (
+            "companies", "fundingRounds", "tasks", "interactions", "sourceRegistry"
+        ))
+        self.assertEqual(run[0], source_rows_seen)
+        self.assertEqual(run[1], counts["rawRecords"])
+        self.assertNotEqual(run[0], run[1])
 
     def test_02a_migration_is_additive_on_legacy_database_copy(self):
         legacy_copy = self.tmp / "legacy_pipeline_copy.sqlite"
@@ -95,6 +108,99 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
             self.assertEqual(conn.execute("SELECT count(*) FROM companies").fetchone()[0], 143)
             self.assertEqual(conn.execute("SELECT count(*) FROM funding_rounds").fetchone()[0], 185)
             self.assertTrue(conn.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='raw_records'").fetchone())
+
+    def test_02b_sqlite_backup_captures_committed_wal_pages(self):
+        db = self.tmp / "active-wal.sqlite"
+        backup = self.tmp / "active-wal.backup.sqlite"
+        writer = sqlite3.connect(db)
+        try:
+            writer.execute("PRAGMA journal_mode=WAL")
+            writer.execute("PRAGMA wal_autocheckpoint=0")
+            writer.execute("CREATE TABLE live_rows(id INTEGER PRIMARY KEY, value TEXT)")
+            writer.executemany("INSERT INTO live_rows(value) VALUES(?)", [(f"row-{i}",) for i in range(37)])
+            writer.commit()
+            self.assertTrue(Path(str(db) + "-wal").exists())
+            run_json("python3", str(MIGRATOR), "--db", str(db), "--backup", str(backup))
+            with sqlite3.connect(backup) as copied:
+                self.assertEqual(copied.execute("PRAGMA integrity_check").fetchone()[0], "ok")
+                self.assertEqual(copied.execute("SELECT count(*) FROM live_rows").fetchone()[0], 37)
+        finally:
+            writer.close()
+
+    def test_02c_public_build_count_gate_scales_with_legitimate_additions(self):
+        changed = json.loads(STATE.read_text(encoding="utf-8"))
+        original_count = len(changed["companies"])
+        changed["companies"].append({
+            "id": "legitimate-new-public-company", "name": "Legitimate New Public Company",
+            "status": "private", "country": "US", "region": "US", "sector": "AI Software",
+            "stage": "seed", "companyDescription": "Public company profile for count-gate regression.",
+        })
+        changed_file = self.tmp / "public-build-added-company.json"
+        public_file = self.tmp / "public-build-added-company.public.json"
+        db = self.tmp / "public-build-added-company.sqlite"
+        changed_file.write_text(json.dumps(changed, ensure_ascii=False), encoding="utf-8")
+        result = run_json("python3", str(PUBLIC_BUILD), "--state-file", str(changed_file),
+                          "--public-state-file", str(public_file), "--db", str(db))
+        self.assertEqual(result["publicCompanyCount"], original_count + 1)
+        public = json.loads(public_file.read_text(encoding="utf-8"))
+        self.assertEqual(public["meta"]["publicCompanyCount"], original_count + 1)
+        with sqlite3.connect(db) as conn:
+            self.assertEqual(conn.execute("SELECT count(*) FROM canonical_tasks").fetchone()[0], 0)
+            self.assertEqual(conn.execute("SELECT count(*) FROM canonical_relationships").fetchone()[0], 0)
+            self.assertEqual({row[0] for row in conn.execute("SELECT DISTINCT provider_object_type FROM raw_records")},
+                             {"organization", "funding_round", "evidence"})
+
+    def test_02d_public_build_removes_evidence_prose_metadata_coverage_and_operational_asks(self):
+        changed = json.loads(STATE.read_text(encoding="utf-8"))
+        markers = ("Diligence ask", "Ask for BOARD_PACK_NEXT_ACTION_7f91", "NEXT_ACTION_INSTRUCTION_7f91")
+        changed["meta"]["coverage"] = "Diligence ask: Ask for COVERAGE_NEXT_ACTION_7f91"
+        changed["companies"][0]["nextAction"] = markers[2]
+        changed["companies"][0]["evidence"][0]["note"] = f"{markers[0]}: {markers[1]}"
+        source = self.tmp / "adversarial-public-build.json"
+        public_file = self.tmp / "adversarial-public-build.public.json"
+        db = self.tmp / "adversarial-public-build.sqlite"
+        source.write_text(json.dumps(changed, ensure_ascii=False), encoding="utf-8")
+        run_json("python3", str(PUBLIC_BUILD), "--state-file", str(source),
+                 "--public-state-file", str(public_file), "--db", str(db))
+        snapshot_text = public_file.read_text(encoding="utf-8")
+        for marker in markers:
+            self.assertNotIn(marker, snapshot_text)
+        with sqlite3.connect(db) as conn:
+            raw_payloads = [json.loads(row[0]) for row in conn.execute("SELECT payload_json FROM raw_records")]
+        raw_text = json.dumps(raw_payloads, ensure_ascii=False)
+        for marker in markers:
+            self.assertNotIn(marker, raw_text)
+        self.assertFalse(any(key in {"note", "coverage"}
+                             for payload in raw_payloads
+                             for _, key, _ in self._walk(payload)))
+
+    def test_02e_python_public_build_rejects_exact_standalone_secret_classes(self):
+        samples = [
+            "Bearer abcdefghijklmnopqrstuvwxyz012345", "AKIAABCDEFGHIJKLMNOP",
+            "eyJabcdefghi.abcdefghijkl.abcdefghijkl", "sk-abcdefghijklmnopqrstuvwxyz123456",
+            "sk-proj-abcdefghijklmnopqrstuvwxyz123456", "ghp_abcdefghijklmnopqrstuvwxyz123456",
+            "github_pat_11AAabcdefghijklmnopqrstuvwxyz123456", "xox" + "b-" + "a" * 40,
+            "AIzaSyDabcdefghijklmnopqrstuvwxyz123456", "sk_" + "live_" + "a" * 32,
+            "pk_" + "live_" + "a" * 32, "-----BEGIN OPENSSH PRIVATE KEY-----",
+        ]
+        code = (
+            "import json,sys;sys.path.insert(0,sys.argv[1]);"
+            "from build_public_v2_db import SENSITIVE;"
+            "print(json.dumps([bool(SENSITIVE.search(x)) for x in json.loads(sys.argv[2])]))"
+        )
+        result = subprocess.run(["python3", "-c", code, str(ROOT / "scripts"), json.dumps(samples)],
+                                cwd=ROOT, text=True, capture_output=True, check=True)
+        self.assertEqual(json.loads(result.stdout), [True] * len(samples))
+
+    @staticmethod
+    def _walk(value, path="$"):
+        if isinstance(value, dict):
+            for key, child in value.items():
+                yield f"{path}.{key}", key, child
+                yield from PrivateInvestmentOsV2Tests._walk(child, f"{path}.{key}")
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                yield from PrivateInvestmentOsV2Tests._walk(child, f"{path}[{index}]")
 
     def test_03_raw_record_hash_dedupe_and_provider_neutral_columns(self):
         with sqlite3.connect(self.db) as conn:
@@ -147,7 +253,8 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
     def test_06_lineage_is_redacted_and_company_dto_is_provider_neutral(self):
         status, lineage = self.http("/api/v2/companies/databricks/lineage")
         self.assertEqual(status, 200)
-        self.assertEqual(lineage["data"]["redaction"], {"rawPayloadsExposed": False, "localPathsExposed": False, "licensedLocatorsExposed": False})
+        self.assertEqual(lineage["data"]["publicationStatus"], "public_projection")
+        self.assertTrue(all(value is False for value in lineage["data"]["redaction"].values()))
         serialized = json.dumps(lineage).lower()
         self.assertNotIn("payload_json", serialized)
         self.assertNotIn("/users/", serialized)
@@ -181,29 +288,203 @@ class PrivateInvestmentOsV2Tests(unittest.TestCase):
         self.assertEqual(status, 200)
         serialized = json.dumps(evidence)
         self.assertNotIn("DO NOT EXPOSE", serialized)
-        self.assertTrue(all(item["publicationEligible"] == 1 for item in evidence["data"]))
+        self.assertTrue(all(set(item) <= {"type", "url", "asOf", "confidence"} for item in evidence["data"]))
+
+    def test_06b_internal_only_values_are_removed_from_all_public_v2_projections(self):
+        timestamp = "2026-08-02T00:00:00Z"
+        with sqlite3.connect(self.db) as conn:
+            conn.execute("""INSERT INTO ingestion_runs(
+                id,source_id,connector_version,started_at,status,request_fingerprint
+              ) VALUES('run_rights_projection','pitchbook_csv_v1','test',?,'completed','test-rights-projection')""",
+                (timestamp,))
+            conn.execute("""INSERT INTO raw_records(
+                id,source_id,ingestion_run_id,provider_object_type,provider_object_id,
+                ingested_at,payload_json,payload_sha256,rights_profile_id
+              ) VALUES('raw_rights_projection','pitchbook_csv_v1','run_rights_projection','organization','rights-test',
+                ?, '{}', ?, 'internal_only')""", (timestamp, "b" * 64))
+            conn.execute("""INSERT INTO organizations(
+                id,canonical_name,legal_name,organization_type,status,country,region,hq_location,website,
+                description,source_record_id,created_at,updated_at
+              ) VALUES('org_rights_test','SECRET COMPANY','SECRET LEGAL','company','private','SECRET COUNTRY',
+                'SECRET REGION','SECRET HQ','https://secret.invalid','SECRET DESCRIPTION','raw_rights_projection',?,?)""",
+                (timestamp, timestamp))
+            conn.execute("""INSERT INTO organization_aliases VALUES(
+                'alias_rights_test','org_rights_test','SECRET ALIAS','provider_name',NULL,
+                'raw_rights_projection','high')""")
+            conn.execute("""INSERT INTO opportunities(
+                id,organization_id,opportunity_type,stage,status,owner,thesis,next_action,created_at,updated_at
+              ) VALUES(
+                'opp_rights_test','org_rights_test','direct','SECRET STAGE','open','SECRET OWNER',
+                'SECRET THESIS','SECRET ACTION',?,?)""", (timestamp, timestamp))
+            conn.execute("""INSERT INTO canonical_field_decisions VALUES(
+                'decision_rights_test','org_rights_test','identity.canonicalName','\"SECRET DECISION\"',
+                'raw_rights_projection','provider_selected','test',?)""", (timestamp,))
+            conn.execute("""INSERT INTO canonical_funding_rounds(
+                id,organization_id,announced_date,round_type,amount_value,amount_currency,amount_display,
+                post_money_value,valuation_currency,valuation_display,status,canonical_confidence,
+                selected_source_record_id,created_at,updated_at
+              ) VALUES('round_rights_test','org_rights_test','2026-01-01','SECRET ROUND',999,'USD','$999 SECRET',
+                9999,'USD','$9999 SECRET','confirmed','high','raw_rights_projection',?,?)""", (timestamp, timestamp))
+            metric_definition = conn.execute("SELECT id FROM metric_definitions LIMIT 1").fetchone()[0]
+            conn.execute("""INSERT INTO metric_observations(
+                id,organization_id,metric_definition_id,value_numeric,value_text,source_record_id,confidence,is_canonical
+              ) VALUES('metric_rights_test','org_rights_test',?,123,'SECRET METRIC','raw_rights_projection','high',1)""",
+                (metric_definition,))
+            conn.commit()
+
+        paths = (
+            "/api/v2/companies/org_rights_test",
+            "/api/v2/companies/org_rights_test/funding-rounds",
+            "/api/v2/companies/org_rights_test/metrics",
+            "/api/v2/companies/org_rights_test/lineage",
+        )
+        responses = []
+        for path in paths:
+            status, payload = self.http(path)
+            self.assertEqual(status, 404, path)
+            responses.append(payload)
+        serialized = json.dumps(responses)
+        self.assertNotIn("SECRET", serialized)
+        self.assertTrue(all(item["error"]["code"] == "NOT_FOUND" for item in responses))
+        _, search = self.http("/api/v2/companies?q=SECRET")
+        self.assertEqual(search["data"], [])
 
     def test_07_connector_statuses_and_quality(self):
         _, sources = self.http("/api/v2/sources")
-        by_id = {row["id"]: row for row in sources["data"]}
-        self.assertEqual(by_id["crunchbase_v1"]["status"], "missing_credential")
-        self.assertEqual(by_id["dealroom_v1"]["status"], "missing_credential")
-        self.assertEqual(by_id["pitchbook_csv_v1"]["status"], "not_imported")
-        self.assertNotIn("credentialEnvVar", json.dumps(sources))
+        serialized = json.dumps(sources).lower()
+        self.assertNotIn("crunchbase", serialized)
+        self.assertNotIn("dealroom", serialized)
+        self.assertNotIn("pitchbook", serialized)
+        self.assertTrue(all(set(row) == {"sourceClass", "status", "accessMode"} for row in sources["data"]))
         _, quality = self.http("/api/v2/data-quality")
-        self.assertIn("missingLineage", quality["summary"])
+        self.assertEqual(set(quality["summary"]), {"publicCoverageGaps"})
+
+    def test_06d_restricted_aliases_and_external_ids_do_not_resolve_visible_companies(self):
+        timestamp = "2026-08-02T00:00:00Z"
+        with sqlite3.connect(self.db) as conn:
+            conn.execute("""INSERT INTO ingestion_runs(
+              id,source_id,connector_version,started_at,status,request_fingerprint)
+              VALUES('run_restricted_identifier','pitchbook_csv_v1','test',?,'completed','restricted-id')""", (timestamp,))
+            conn.execute("""INSERT INTO raw_records(
+              id,source_id,ingestion_run_id,provider_object_type,provider_object_id,ingested_at,
+              payload_json,payload_sha256,rights_profile_id)
+              VALUES('raw_restricted_identifier','pitchbook_csv_v1','run_restricted_identifier','organization',
+              'restricted-id',?,'{}',?,'internal_only')""", (timestamp, "d" * 64))
+            conn.execute("""INSERT INTO organization_aliases VALUES(
+              'alias_restricted_identifier','org_databricks','TOP_SECRET_ALIAS','licensed_name',NULL,
+              'raw_restricted_identifier','high')""")
+            conn.execute("""INSERT INTO external_ids VALUES(
+              'ext_restricted_identifier','org_databricks','pitchbook_csv_v1','company','TOP_SECRET_EXTERNAL',
+              0,'raw_restricted_identifier')""")
+            conn.commit()
+        for identifier in ("TOP_SECRET_ALIAS", "TOP_SECRET_EXTERNAL"):
+            status, payload = self.http("/api/v2/companies/" + identifier)
+            self.assertEqual(status, 404)
+            self.assertEqual(payload["error"]["code"], "NOT_FOUND")
+            self.assertNotIn(identifier, json.dumps(payload))
+        status, _ = self.http("/api/v2/companies/databricks")
+        self.assertEqual(status, 200)
+
+    def test_06e_standalone_tokens_absolute_paths_and_unsafe_websites_are_removed(self):
+        public_raw = None
+        with sqlite3.connect(self.db) as conn:
+            public_raw = conn.execute("SELECT id FROM raw_records WHERE source_id='legacy_state_json' LIMIT 1").fetchone()[0]
+            samples = (
+                "Bearer abcdefghijklmnopqrstuvwxyz012345",
+                "AKIAABCDEFGHIJKLMNOP",
+                "eyJabcdefghi.abcdefghijkl.abcdefghijkl",
+                "sk-abcdefghijklmnopqrstuvwxyz123456",
+                "sk-proj-abcdefghijklmnopqrstuvwxyz123456",
+                "ghp_abcdefghijklmnopqrstuvwxyz123456",
+                "github_pat_11AAabcdefghijklmnopqrstuvwxyz123456",
+                "xox" + "b-" + "a" * 40,
+                "AIzaSyDabcdefghijklmnopqrstuvwxyz123456",
+                "sk_" + "live_" + "a" * 32,
+                "pk_" + "live_" + "a" * 32,
+                "-----BEGIN OPENSSH PRIVATE KEY-----",
+                "/opt/render/project/src/private.json",
+                "/custom/root/private.json",
+            )
+            from scripts.query_v2_db import PublicProjectionPolicy
+            for sample in samples:
+                self.assertRegex(sample, PublicProjectionPolicy.SENSITIVE_TEXT)
+            for index, sample in enumerate(samples):
+                conn.execute("""INSERT INTO canonical_evidence_items VALUES(
+                  ?, 'org_databricks','manual',?,NULL,NULL,'high',?,1)""",
+                  (f"evidence_sensitive_{index}", sample, public_raw))
+            conn.execute("UPDATE organizations SET website='javascript:alert(1)' WHERE id='org_databricks'")
+            conn.execute("DELETE FROM canonical_field_decisions WHERE organization_id='org_databricks' AND field_path='identity.website'")
+            conn.commit()
+        _, evidence = self.http("/api/v2/companies/databricks/evidence")
+        serialized = json.dumps(evidence)
+        for marker in ("Bearer", "AKIA", "eyJ", "sk-", "ghp_", "github_pat_", "xoxb-", "AIza",
+                       "sk_live_", "pk_live_", "PRIVATE KEY", "/opt/render", "/custom/root"):
+            self.assertNotIn(marker, serialized)
+        _, company = self.http("/api/v2/companies/databricks")
+        self.assertIsNone(company["data"]["identity"]["website"])
+
+    def test_06c_null_lineage_mixed_funding_and_secret_text_fail_closed(self):
+        timestamp = "2026-08-02T00:00:00Z"
+        with sqlite3.connect(self.db) as conn:
+            conn.execute("""INSERT INTO organizations(id,canonical_name,organization_type,status,created_at,updated_at)
+              VALUES('org_null_lineage','NULL LINEAGE SECRET','company','private',?,?)""", (timestamp, timestamp))
+            public_raw = conn.execute("SELECT id FROM raw_records WHERE source_id='legacy_state_json' LIMIT 1").fetchone()[0]
+            conn.execute("""INSERT INTO opportunities(
+              id,organization_id,opportunity_type,stage,status,next_action,created_at,updated_at)
+              VALUES('opp_null','org_databricks','direct','seed','open','NULL PROVENANCE SECRET',?,?)""", (timestamp, timestamp))
+            conn.execute("""INSERT INTO canonical_evidence_items VALUES(
+              'evidence_secret_path','org_databricks','manual',?,NULL,NULL,'high',?,1)""",
+              (r"credential token=sk-test-secret C:\\Users\\name\\file.csv", public_raw))
+            round_id = conn.execute("SELECT id FROM canonical_funding_rounds WHERE organization_id='org_databricks' LIMIT 1").fetchone()[0]
+            conn.execute("UPDATE canonical_funding_rounds SET round_type='MIXED SOURCE SECRET' WHERE id=?", (round_id,))
+            conn.execute("""INSERT INTO funding_round_sources(id,funding_round_id,source_record_id,field_map_json,confidence,is_selected)
+              VALUES('mixed_internal_source',?,'raw_rights_projection','{"round":"round_type"}','high',0)""", (round_id,))
+            conn.commit()
+        _, listing = self.http("/api/v2/companies?limit=100&q=NULL LINEAGE SECRET")
+        self.assertEqual(listing["data"], [])
+        status, _ = self.http("/api/v2/companies/org_null_lineage")
+        self.assertEqual(status, 404)
+        _, company = self.http("/api/v2/companies/databricks")
+        self.assertNotIn("NULL PROVENANCE SECRET", json.dumps(company))
+        _, funding = self.http("/api/v2/companies/databricks/funding-rounds")
+        self.assertNotIn("MIXED SOURCE SECRET", json.dumps(funding))
+        _, evidence = self.http("/api/v2/companies/databricks/evidence")
+        serialized = json.dumps(evidence)
+        self.assertNotIn("sk-test-secret", serialized)
+        self.assertNotIn("Users", serialized)
+
+    def test_07a_lifecycle_taxonomy_filter_and_conservative_gap(self):
+        _, page = self.http("/api/v2/companies?limit=100")
+        allowed = {"formation_pre_seed", "seed", "series_a_b", "growth_late_stage", "pre_ipo",
+                   "secondary_tender", "crossover_pipe_strategic", "project_finance", "stage_unverified"}
+        self.assertTrue(all(row["lifecycle"]["stage"] in allowed for row in page["data"]))
+        unverified = [row for row in page["data"] if row["lifecycle"]["stage"] == "stage_unverified"]
+        self.assertTrue(unverified)
+        self.assertTrue(all("stage_precision" in row["lifecycle"]["coverageGaps"] for row in unverified))
+        _, filtered = self.http("/api/v2/companies?limit=100&stage=stage_unverified")
+        self.assertTrue(all(row["lifecycle"]["stage"] == "stage_unverified" for row in filtered["data"]))
 
     def test_08_v1_contract_and_read_only_guard(self):
-        for path in ("/api/state", "/api/pipeline", "/api/company/databricks", "/api/ops"):
+        for path in ("/api/state", "/api/pipeline", "/api/company/databricks"):
             status, payload = self.http(path)
             self.assertEqual(status, 200, path)
             self.assertIsInstance(payload, dict)
+        status, payload = self.http("/api/ops")
+        self.assertEqual(status, 404)
+        self.assertEqual(payload, {"error": "NOT_FOUND"})
         status, payload = self.http("/api/company/databricks", "POST", b"{}")
         self.assertEqual(status, 403)
         self.assertEqual(payload["error"], "READ_ONLY_DEPLOYMENT")
         status, payload = self.http("/api/v2/imports/preview", "POST", b"{}")
         self.assertEqual(status, 403)
         self.assertEqual(payload["error"]["code"], "READ_ONLY_DEPLOYMENT")
+
+    def test_08a_error_envelopes_do_not_reflect_sensitive_paths_or_ids(self):
+        status, payload = self.http("/api/v2/secret=sk-do-not-reflect/C:%5CUsers%5Cprivate")
+        self.assertEqual(status, 404)
+        serialized = json.dumps(payload)
+        self.assertNotIn("sk-do-not-reflect", serialized)
+        self.assertNotIn("Users", serialized)
 
     def test_09_sqlite_integrity_and_foreign_keys(self):
         with sqlite3.connect(self.db) as conn:

@@ -15,7 +15,7 @@ from run_migrations_v2 import migrate
 
 MISSING_RE = re.compile(r"未披露|待验证|待确认|not disclosed|unknown|unclear|coverage_gap|not captured|placeholder|^\s*$", re.I)
 CONFLICT_RE = re.compile(r"conflict|divergen|higher|lower|unverified|discrepan|冲突|分歧", re.I)
-SCHEMA_VERSION = "001"
+SCHEMA_VERSION = "002"
 
 CONNECTORS = [
     ("legacy_state_json", "Legacy state.json", "legacy_json", "local_file", "imported", None, "sanitized_derived", "manual", ["organizations", "funding_rounds", "investors", "evidence", "tasks"]),
@@ -132,7 +132,7 @@ def explicit_claim_types(evidence: dict) -> set[str]:
     return {clean(value).lower() for value in values if clean(value)}
 
 
-def register_sources(conn: sqlite3.Connection, timestamp: str) -> None:
+def register_sources(conn: sqlite3.Connection, timestamp: str, public_projection_only: bool = False) -> None:
     rights = [
         ("internal_only", "internal_only", "source-license-dependent", 0, "Never expose raw payloads."),
         ("sanitized_derived", "sanitized_derived", "retain-local", 25, "Only allowlisted derived fields may be published."),
@@ -140,7 +140,11 @@ def register_sources(conn: sqlite3.Connection, timestamp: str) -> None:
     ]
     conn.executemany("INSERT OR IGNORE INTO source_rights_profiles VALUES(?,?,?,?,?,?)",
                      [(*row, timestamp) for row in rights])
-    for cid, name, ptype, mode, status, credential, rights_id, refresh, capabilities in CONNECTORS:
+    connectors = CONNECTORS if not public_projection_only else [(
+        "legacy_state_json", "Bundled public snapshot", "bundled_public_snapshot", "bundled",
+        "imported", None, "sanitized_derived", "build_time", ["organizations", "funding_rounds", "evidence"],
+    )]
+    for cid, name, ptype, mode, status, credential, rights_id, refresh, capabilities in connectors:
         conn.execute("""
           INSERT INTO connector_registry(
             id,display_name,provider_type,access_mode,connector_status,credential_env_var,
@@ -152,7 +156,8 @@ def register_sources(conn: sqlite3.Connection, timestamp: str) -> None:
         """, (cid, name, ptype, mode, status, credential, rights_id, refresh, canonical_json(capabilities), timestamp, timestamp))
 
 
-def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_path: Path | None = None) -> dict:
+def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_path: Path | None = None,
+                 public_projection_only: bool = False) -> dict:
     input_bytes = state_path.read_bytes()
     input_sha = sha(input_bytes)
     state = json.loads(input_bytes)
@@ -161,7 +166,9 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys=ON")
-    register_sources(conn, timestamp)
+    if public_projection_only and any(state.get(key) for key in ("tasks", "interactions", "sourceRegistry")):
+        raise RuntimeError("PUBLIC_SNAPSHOT_CONTAINS_OPERATIONAL_COLLECTIONS")
+    register_sources(conn, timestamp, public_projection_only)
 
     run_id = stable_id("run", "legacy_state_json", input_sha)
     idem_key = f"legacy-state:{input_sha}"
@@ -240,14 +247,16 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
 
         opp_id = f"opp_{legacy_id}_legacy"
         stage = clean(company.get("dealStage") or company.get("stage"), "monitor")
-        conn.execute("""INSERT INTO opportunities VALUES(?,?,?,?,?,?,?,?,?,?)
+        conn.execute("""INSERT INTO opportunities(
+                       id,organization_id,opportunity_type,stage,status,owner,thesis,next_action,
+                       created_at,updated_at,source_record_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)
                      ON CONFLICT(id) DO UPDATE SET organization_id=excluded.organization_id,
                        opportunity_type=excluded.opportunity_type,stage=excluded.stage,status=excluded.status,
                        owner=excluded.owner,thesis=excluded.thesis,next_action=excluded.next_action,
-                       updated_at=excluded.updated_at""",
+                       updated_at=excluded.updated_at,source_record_id=excluded.source_record_id""",
                      (opp_id, org_id, "private_market", stage, "active", clean(company.get("owner")) or None,
                       clean(company.get("whyInTrack") or company.get("recommendation")) or None,
-                      clean(company.get("nextAction")) or None, timestamp, timestamp))
+                      clean(company.get("nextAction")) or None, timestamp, timestamp, raw_id))
         conn.execute("""INSERT INTO opportunity_stage_history VALUES(?,?,?,?,?,?,?)
                      ON CONFLICT(id) DO UPDATE SET opportunity_id=excluded.opportunity_id,
                        from_stage=excluded.from_stage,to_stage=excluded.to_stage,changed_at=excluded.changed_at,
@@ -257,7 +266,8 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
         route = clean(company.get("relationshipRoute") or company.get("relationshipRouteZh") or company.get("routeToAccess"))
         route_type = classify_route(route)
         conn.execute("DELETE FROM canonical_relationships WHERE organization_id=? AND source_record_id IN (SELECT id FROM raw_records WHERE source_id='legacy_state_json')", (org_id,))
-        conn.execute("""INSERT INTO canonical_relationships VALUES(?,?,?,?,?,?,?,?,?,?)
+        if not public_projection_only:
+            conn.execute("""INSERT INTO canonical_relationships VALUES(?,?,?,?,?,?,?,?,?,?)
                      ON CONFLICT(id) DO UPDATE SET organization_id=excluded.organization_id,
                        route_node=excluded.route_node,route_type=excluded.route_type,
                        route_description=excluded.route_description,access_goal=excluded.access_goal,
@@ -498,7 +508,7 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
 
     inserted_raw = conn.execute("SELECT count(*) FROM raw_records WHERE ingestion_run_id=?", (run_id,)).fetchone()[0]
     conn.execute("UPDATE ingestion_runs SET ended_at=?,status=?,records_seen=?,records_inserted=?,records_rejected=? WHERE id=?",
-                 (timestamp, "completed_with_rejects" if rejects else "completed", inserted_raw, inserted_raw, len(rejects), run_id))
+                 (timestamp, "completed_with_rejects" if rejects else "completed", records_seen, inserted_raw, len(rejects), run_id))
 
     count_queries = {
         "companies": "SELECT count(*) FROM organizations WHERE organization_type='company'",
@@ -515,7 +525,9 @@ def import_state(state_path: Path, db_path: Path, receipt_path: Path, backup_pat
     counts = {name: conn.execute(sql).fetchone()[0] for name, sql in count_queries.items()}
     foreign_keys = [list(row) for row in conn.execute("PRAGMA foreign_key_check").fetchall()]
     integrity = conn.execute("PRAGMA integrity_check").fetchone()[0]
-    minimums = {"companies": 143, "fundingRounds": 185, "investors": 402, "evidenceItems": 387, "claims": 572, "tasks": 180}
+    minimums = ({"companies": len(companies), "fundingRounds": len(rounds), "tasks": 0, "relationships": 0}
+                if public_projection_only else
+                {"companies": 143, "fundingRounds": 185, "investors": 402, "evidenceItems": 387, "claims": 572, "tasks": 180})
     qc = {
         "status": "pass" if integrity == "ok" and not foreign_keys and all(counts[k] >= v for k, v in minimums.items()) else "fail",
         "integrityCheck": integrity,
@@ -556,8 +568,9 @@ def main() -> None:
     parser.add_argument("--db", required=True, type=Path)
     parser.add_argument("--receipt", required=True, type=Path)
     parser.add_argument("--backup", type=Path, help="Optional safety backup when importing into an existing DB")
+    parser.add_argument("--public-projection-only", action="store_true")
     args = parser.parse_args()
-    import_state(args.state_file, args.db, args.receipt, args.backup)
+    import_state(args.state_file, args.db, args.receipt, args.backup, args.public_projection_only)
 
 
 if __name__ == "__main__":

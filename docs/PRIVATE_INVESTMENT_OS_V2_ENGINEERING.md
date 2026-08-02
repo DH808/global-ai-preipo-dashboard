@@ -2,12 +2,15 @@
 
 ## Scope
 
-Phase 1 adds an additive, provider-neutral data foundation to the existing dashboard. The legacy JSON/SQLite tables, v1 APIs, exports, scoring, and read-only deployment behavior remain intact. No production database, snapshot checkout, deployment, or paid connector is modified.
+The OS now covers the full private-company lifecycle with North America prioritized in discovery. The historical Pre-IPO track remains a lens. Additive migration `002` gives opportunities record provenance. No live checkout, deployment, or paid connector is modified.
 
 ## Runtime architecture
 
 ```text
-legacy state / future connectors
+trusted bundled state → centralized public projection → public-state.json
+  → public-only schema 002 runtime database
+
+internal/local migration only: legacy state / future connectors
   → RAW: connector registry → ingestion runs → immutable raw records
   → CANONICAL: organizations / funding / metrics / opportunities /
                evidence / claims / tasks / relationships
@@ -15,14 +18,14 @@ legacy state / future connectors
   → read-only SQLite query bridge → /api/v2 DTOs → lineage UI
 ```
 
-SQLite and Python stdlib remain the persistence/query boundary; Node has no added dependency. `src/v2Repository.js` invokes `scripts/query_v2_db.py` with an argument array, never a shell command. Queries open v2 SQLite read-only.
+SQLite and Python stdlib remain the persistence/query boundary; Node has no added dependency. `src/v2Repository.js` invokes `scripts/query_v2_db.py` with an argument array, never a shell command. Queries open v2 SQLite read-only. Production result caching is disabled for rights-downgrade safety. Optional development caching, subprocess duration, and rate-limit state are bounded; 429 responses are structured.
 
 ## Layer boundaries
 
-- RAW records include source payload and SHA256. Database triggers reject updates/deletes; the composite unique key deduplicates identical provider objects.
+- Production RAW records contain only sanitized public envelopes and SHA256; the build rejects operational collections/fields, sensitive tokens/paths, and unsafe URLs. Internal migration databases retain the fuller immutable RAW model and must never be deployed publicly.
 - CANONICAL columns contain business concepts only. Provider fields are allowed only in raw JSON, connector manifests, and adapter mappings. Media-only funding rows are `candidate_media_signal`; their source is not selected canonical.
 - SERVING/AUDIT records are rebuildable and do not replace raw history.
-- Public v2 DTOs omit raw payloads, local paths, credential variable names, request fingerprints, provider cursors, raw errors, and licensed locators.
+- Public v2 DTOs are constructed only by `PublicProjectionPolicy`. Null provenance is restricted; restricted organizations are removed before search and pagination.
 
 ## Identity and idempotency
 
@@ -34,11 +37,15 @@ A changed legacy snapshot appends new raw versions and updates the stable canoni
 
 ## Database selection
 
-`PIPELINE_V2_DB_FILE` selects the v2 SQLite database. Its safe default is `data/pipeline_v2.sqlite`. There is no implicit v2 fallback to legacy `data/pipeline.sqlite`. If v2 is absent, v2 endpoints return `503 V2_DATABASE_UNAVAILABLE`; v1 continues from legacy data.
+`PIPELINE_V2_DB_FILE` selects the v2 SQLite database. Its safe default is `data/pipeline_v2.sqlite`. There is no implicit fallback to legacy `data/pipeline.sqlite` or raw `data/state.json`. Health returns 503 when either the v1 public snapshot or v2 projection is unavailable.
 
 ## Security and rights
 
-Rights are `internal_only`, `sanitized_derived`, or `public_allowed`. Public evidence requires both `publication_eligible=1` and redistributable raw-record rights; internal/licensed notes are never returned. Crunchbase and Dealroom are honestly `missing_credential`; PitchBook is `not_imported`. No credential value is stored. Google News is explicitly media-signal/evidence-candidate only.
+Rights are `internal_only`, `sanitized_derived`, or `public_allowed`. Mixed-source funding is projected field by field; opportunities, aliases, and external IDs require explicit record provenance. Lineage is a source-free/count-free aggregate receipt. Central text safety rejects Unix/Windows and generic absolute paths, credential assignments, standalone bearer/JWT-like tokens, AWS-style keys, and credential-bearing URLs. v1 trust comes from the bundled loader or an external pinned hash, never payload metadata.
+
+## Lifecycle taxonomy
+
+Taxonomy IDs are `formation_pre_seed`, `seed`, `series_a_b`, `growth_late_stage`, `pre_ipo`, `secondary_tender`, `crossover_pipe_strategic`, `project_finance`, and `stage_unverified`. Ambiguous records stay `stage_unverified` with a `stage_precision` coverage gap; the projection invents no factual stage or valuation.
 
 ## Phase 1 limitations
 

@@ -1,39 +1,22 @@
 #!/usr/bin/env python3
-"""Small stdlib SQLite query bridge for the no-dependency Node v2 API."""
+"""Fail-closed, allowlisted public projection for the dependency-free v2 API."""
 from __future__ import annotations
 
 import base64
 import datetime as dt
+import hashlib
+import ipaddress
 import json
 import re
 import sqlite3
 import sys
 from pathlib import Path
 
+PUBLIC_RIGHTS = frozenset({"sanitized_derived", "public_allowed"})
+
 
 def now() -> str:
     return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-
-
-def public_text(value: str | None) -> str | None:
-    if value is None: return None
-    return re.sub(r"/(?:Users|home|private|var|tmp)/[^\s,;]+", "[local path redacted]", value)
-
-
-def cursor_encode(org_id: str) -> str:
-    return base64.urlsafe_b64encode(f"company-v1:{org_id}".encode()).decode().rstrip("=")
-
-
-def cursor_decode(value: str) -> str:
-    try:
-        padded = value + "=" * (-len(value) % 4)
-        decoded = base64.urlsafe_b64decode(padded).decode()
-        prefix, org_id = decoded.split(":", 1)
-        if prefix != "company-v1" or not org_id.startswith("org_"):
-            raise ValueError
-        return org_id
-    except Exception as exc:
-        raise ApiError("INVALID_CURSOR", "The companies cursor is invalid.", 400, {"parameter": "cursor"}) from exc
 
 
 class ApiError(Exception):
@@ -42,207 +25,299 @@ class ApiError(Exception):
         self.code, self.message, self.status, self.details = code, message, status, details or {}
 
 
-def resolve_org(conn: sqlite3.Connection, identifier: str) -> sqlite3.Row:
-    row = conn.execute("SELECT * FROM organizations WHERE id=? AND organization_type='company'", (identifier,)).fetchone()
-    if not row:
-        row = conn.execute("""
+class PublicProjectionPolicy:
+    """The single public boundary: provenance checks, DTO allowlists and text safety."""
+
+    IDENTITY_FIELDS = {
+        "name": ("identity.canonicalName", "canonical_name"),
+        "legalName": ("identity.legalName", "legal_name"),
+        "status": ("identity.status", "status"),
+        "country": ("identity.country", "country"),
+        "region": ("identity.region", "region"),
+        "hqLocation": ("identity.hqLocation", "hq_location"),
+        "website": ("identity.website", "website"),
+        "description": ("identity.description", "description"),
+    }
+    FUNDING_FIELDS = {
+        "announcedDate": "announced_date", "roundType": "round_type",
+        "amountValue": "amount_value", "amountCurrency": "amount_currency", "amountDisplay": "amount_display",
+        "postMoneyValue": "post_money_value", "valuationCurrency": "valuation_currency",
+        "valuationDisplay": "valuation_display", "isSecondary": "is_secondary", "isDebt": "is_debt",
+        "status": "status", "confidence": "canonical_confidence",
+    }
+    SENSITIVE_TEXT = re.compile(
+        r"(?i)(?:\b(?:crunchbase|dealroom|pitchbook)(?:_v\d+)?\b|\b(?:api[_-]?key|secret|password|passwd|authorization|token|private[_-]?key)\b\s*[:=]\s*\S+|"
+        r"\bbearer\s+[A-Za-z0-9._~+/=-]{12,}|\b(?:AKIA|ASIA)[A-Z0-9]{16}\b|"
+        r"\beyJ[A-Za-z0-9_-]{6,}\.[A-Za-z0-9_-]{6,}\.[A-Za-z0-9_-]{6,}\b|"
+        r"\bsk-(?:proj-)?[A-Za-z0-9_-]{16,}\b|"
+        r"\b(?:ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})\b|"
+        r"\bxox[baprs]-[A-Za-z0-9-]{10,}\b|\bAIza[0-9A-Za-z_-]{20,}\b|"
+        r"\b(?:sk|pk)_live_[A-Za-z0-9]{16,}\b|-----BEGIN [A-Z0-9 ]*PRIVATE KEY-----|"
+        r"(?:[a-z]:\\(?:[^\\\s]+\\)*[^\\\s]+)|(?<![A-Za-z0-9:/])/(?:[A-Za-z0-9._-]+/)+[A-Za-z0-9._-]+|"
+        r"(?:https?://[^/@\s]+:[^/@\s]+@))"
+    )
+
+    def __init__(self, conn: sqlite3.Connection):
+        self.conn = conn
+
+    def safe_text(self, value):
+        if value is None or not isinstance(value, str):
+            return value
+        return None if self.SENSITIVE_TEXT.search(value) else value
+
+    def safe_url(self, value):
+        value = self.safe_text(value)
+        return value if isinstance(value, str) and re.match(r"^https?://", value, re.I) else None
+
+    def source_public(self, source_record_id: str | None) -> bool:
+        if not source_record_id:
+            return False
+        row = self.conn.execute("""
+          SELECT rp.redistribution FROM raw_records rr
+          JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id WHERE rr.id=?
+        """, (source_record_id,)).fetchone()
+        return bool(row and row[0] in PUBLIC_RIGHTS)
+
+    def field_value(self, org: sqlite3.Row, field_path: str, column: str):
+        decision = self.conn.execute("""
+          SELECT selected_source_record_id FROM canonical_field_decisions
+          WHERE organization_id=? AND field_path=? ORDER BY decided_at DESC,id DESC LIMIT 1
+        """, (org["id"], field_path)).fetchone()
+        source_id = decision[0] if decision else org["source_record_id"]
+        return self.safe_text(org[column]) if self.source_public(source_id) else None
+
+    def organization_visible(self, org: sqlite3.Row) -> bool:
+        return bool(self.field_value(org, "identity.canonicalName", "canonical_name"))
+
+    def resolve_public_org(self, identifier: str) -> sqlite3.Row:
+        candidates = self.conn.execute("""
+          SELECT o.* FROM organizations o WHERE o.organization_type='company' AND o.id=?
+          UNION
           SELECT o.* FROM organizations o JOIN external_ids e ON e.organization_id=o.id
-          WHERE e.source_id='legacy_state_json' AND e.provider_object_type='company'
-            AND e.provider_object_id=? AND o.organization_type='company'
-        """, (identifier,)).fetchone()
-    if not row:
-        row = conn.execute("""
+            JOIN raw_records rr ON rr.id=e.source_record_id
+            JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id
+            WHERE o.organization_type='company' AND e.provider_object_id=?
+              AND rp.redistribution IN ('sanitized_derived','public_allowed')
+          UNION
           SELECT o.* FROM organizations o JOIN organization_aliases a ON a.organization_id=o.id
-          WHERE a.alias=? AND o.organization_type='company' LIMIT 1
-        """, (identifier,)).fetchone()
-    if not row:
-        raise ApiError("NOT_FOUND", "Company was not found.", 404, {"resource": "company", "id": identifier})
-    return row
+            JOIN raw_records rr ON rr.id=a.source_record_id
+            JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id
+            WHERE o.organization_type='company' AND a.alias=?
+              AND rp.redistribution IN ('sanitized_derived','public_allowed')
+          ORDER BY id LIMIT 8
+        """, (identifier, identifier, identifier)).fetchall()
+        for org in candidates:
+            if self.organization_visible(org):
+                return org
+        # Same response for absent and restricted entities prevents enumeration.
+        raise ApiError("NOT_FOUND", "Company was not found.", 404, {"resource": "company"})
+
+    def legacy_slug(self, org_id: str):
+        row = self.conn.execute("""
+          SELECT e.provider_object_id,e.source_record_id FROM external_ids e
+          WHERE e.organization_id=? AND e.source_id='legacy_state_json'
+            AND e.provider_object_type='company' ORDER BY e.id LIMIT 1
+        """, (org_id,)).fetchone()
+        return self.safe_text(row[0]) if row and self.source_public(row[1]) else None
+
+    def lifecycle(self, stage: str | None):
+        text = (stage or "").lower()
+        patterns = (
+            ("secondary_tender", r"secondary|tender|二级|老股"),
+            ("crossover_pipe_strategic", r"\bpipe\b|crossover|strategic|战略"),
+            ("project_finance", r"project[ -]?finance|项目融资"),
+            ("formation_pre_seed", r"formation|pre[ -]?seed|angel|天使|成立期"),
+            ("seed", r"(^|\W)seed(\W|$)|种子"), ("series_a_b", r"series\s*[ab](\W|$)|[ab]轮"),
+            ("pre_ipo", r"pre[ -]?ipo|准上市|上市前"),
+            ("growth_late_stage", r"growth|late[ -]?stage|series\s*[cdef](\W|$)|成长|后期"),
+        )
+        return next((name for name, pattern in patterns if re.search(pattern, text, re.I)), "stage_unverified")
+
+    def opportunities(self, org_id: str):
+        rows = self.conn.execute("""
+          SELECT opportunity_type,stage,status,owner,next_action,source_record_id
+          FROM opportunities WHERE organization_id=? ORDER BY updated_at DESC,id
+        """, (org_id,)).fetchall()
+        result = []
+        for row in rows:
+            if not self.source_public(row["source_record_id"]):
+                continue
+            values = {"opportunityType": row["opportunity_type"], "stage": row["stage"], "status": row["status"]}
+            values = {k: self.safe_text(v) for k, v in values.items()}
+            values["lifecycleStage"] = self.lifecycle(row["stage"])
+            result.append(values)
+        return result
+
+    def funding(self, org_id: str):
+        rounds = self.conn.execute("SELECT * FROM canonical_funding_rounds WHERE organization_id=? ORDER BY announced_date DESC,id", (org_id,)).fetchall()
+        output = []
+        for row in rounds:
+            sources = self.conn.execute("SELECT source_record_id,field_map_json FROM funding_round_sources WHERE funding_round_id=?", (row["id"],)).fetchall()
+            public_sources = [s for s in sources if self.source_public(s["source_record_id"])]
+            selected_public = self.source_public(row["selected_source_record_id"])
+            if not selected_public and not public_sources:
+                continue
+            mixed = any(not self.source_public(s["source_record_id"]) for s in sources)
+            proven = set()
+            for source in public_sources:
+                try:
+                    mapping = json.loads(source["field_map_json"] or "{}")
+                    proven.update(str(value) for value in mapping.values())
+                except (TypeError, ValueError):
+                    pass
+            dto = {}
+            for public_name, column in self.FUNDING_FIELDS.items():
+                if mixed and column not in proven:
+                    continue
+                value = self.safe_text(row[column])
+                if value is not None:
+                    dto[public_name] = value
+            if dto:
+                output.append(dto)
+        return output
+
+    def company(self, org: sqlite3.Row, detail: bool = False):
+        identity = {name: self.field_value(org, path, column) for name, (path, column) in self.IDENTITY_FIELDS.items()}
+        identity["website"] = self.safe_url(identity.get("website"))
+        opportunities = self.opportunities(org["id"])
+        funding = self.funding(org["id"])
+        stage = opportunities[0]["lifecycleStage"] if opportunities else "stage_unverified"
+        dto = {
+            "id": org["id"], "legacySlug": self.legacy_slug(org["id"]),
+            "identity": identity, "investmentProfile": opportunities[0] if opportunities else None,
+            "latestFunding": funding[0] if funding else None,
+            "lifecycle": {"stage": stage, "stageConfidence": "unverified" if stage == "stage_unverified" else "deterministic",
+                          "coverageGaps": (["stage_precision"] if stage == "stage_unverified" else [])},
+            "recordVersion": org["record_version"], "updatedAt": org["updated_at"],
+        }
+        if detail:
+            dto["aliases"] = [self.safe_text(r[0]) for r in self.conn.execute("""
+              SELECT alias FROM organization_aliases WHERE organization_id=? AND source_record_id IN (
+                SELECT rr.id FROM raw_records rr JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id
+                WHERE rp.redistribution IN ('sanitized_derived','public_allowed')) ORDER BY alias
+            """, (org["id"],)) if self.safe_text(r[0])]
+            dto["opportunities"] = opportunities
+        return dto
+
+    def snapshot_version(self):
+        rows = self.conn.execute("SELECT version,sha256 FROM schema_migrations ORDER BY version").fetchall()
+        rights = self.conn.execute("SELECT id,redistribution FROM source_rights_profiles ORDER BY id").fetchall()
+        payload = json.dumps([list(r) for r in rows] + [list(r) for r in rights], separators=(",", ":"))
+        return hashlib.sha256(payload.encode()).hexdigest()[:16]
 
 
-def legacy_slug(conn: sqlite3.Connection, org_id: str) -> str | None:
-    row = conn.execute("""
-      SELECT provider_object_id FROM external_ids WHERE organization_id=?
-        AND source_id='legacy_state_json' AND provider_object_type='company' LIMIT 1
-    """, (org_id,)).fetchone()
-    return row[0] if row else None
+def cursor_encode(org_id: str) -> str:
+    return base64.urlsafe_b64encode(f"company-v1:{org_id}".encode()).decode().rstrip("=")
 
 
-def company_dto(conn: sqlite3.Connection, row: sqlite3.Row, include_detail: bool = False) -> dict:
-    latest = conn.execute("""
-      SELECT id,announced_date,round_type,amount_display,valuation_display,status,canonical_confidence
-      FROM canonical_funding_rounds WHERE organization_id=?
-      ORDER BY announced_date DESC,id DESC LIMIT 1
-    """, (row["id"],)).fetchone()
-    opp = conn.execute("SELECT opportunity_type,stage,status,owner,next_action FROM opportunities WHERE organization_id=? ORDER BY id LIMIT 1", (row["id"],)).fetchone()
-    gates = {r[0]: r[1] for r in conn.execute("SELECT gate_type,status FROM readiness_gates WHERE organization_id=?", (row["id"],))}
-    dq = conn.execute("SELECT count(*) FROM data_quality_checks WHERE organization_id=? AND status='open'", (row["id"],)).fetchone()[0]
-    provenance = conn.execute("""
-      SELECT
-        (SELECT count(*) FROM canonical_evidence_items WHERE organization_id=?),
-        (SELECT count(*) FROM metric_observations WHERE organization_id=?),
-        (SELECT count(*) FROM conflict_cases WHERE organization_id=? AND status='open')
-    """, (row["id"], row["id"], row["id"])).fetchone()
-    latest_dto = None if not latest else {
-        "id": latest["id"], "announcedDate": latest["announced_date"], "roundType": latest["round_type"],
-        "amountDisplay": latest["amount_display"], "valuationDisplay": latest["valuation_display"],
-        "status": latest["status"], "confidence": latest["canonical_confidence"],
-    }
-    opp_dto = None if not opp else {
-        "opportunityType": opp["opportunity_type"], "stage": opp["stage"], "status": opp["status"],
-        "owner": opp["owner"], "nextAction": opp["next_action"],
-    }
-    dto = {
-        "id": row["id"],
-        "legacySlug": legacy_slug(conn, row["id"]),
-        "identity": {
-            "name": row["canonical_name"], "legalName": row["legal_name"],
-            "organizationType": row["organization_type"], "status": row["status"],
-            "country": row["country"], "region": row["region"], "hqLocation": row["hq_location"],
-            "website": row["website"], "description": row["description"],
-        },
-        "investmentProfile": opp_dto,
-        "latestFunding": latest_dto,
-        "readiness": gates,
-        "provenanceSummary": {"evidenceCount": provenance[0], "metricObservationCount": provenance[1], "openConflictCount": provenance[2], "openDataQualityCount": dq},
-        "recordVersion": row["record_version"],
-        "updatedAt": row["updated_at"],
-    }
-    if include_detail:
-        dto["aliases"] = [r[0] for r in conn.execute("SELECT alias FROM organization_aliases WHERE organization_id=? ORDER BY alias", (row["id"],))]
-        dto["opportunities"] = [dict(r) for r in conn.execute("SELECT id,opportunity_type,stage,status,owner,next_action,updated_at FROM opportunities WHERE organization_id=? ORDER BY id", (row["id"],))]
-    return dto
+def cursor_decode(value: str) -> str:
+    try:
+        decoded = base64.urlsafe_b64decode(value + "=" * (-len(value) % 4)).decode()
+        prefix, org_id = decoded.split(":", 1)
+        if prefix != "company-v1" or not org_id.startswith("org_"):
+            raise ValueError
+        return org_id
+    except Exception as exc:
+        raise ApiError("INVALID_CURSOR", "The companies cursor is invalid.", 400, {"parameter": "cursor"}) from exc
+
+
+def envelope(data, generated: str, **extra):
+    return {"schemaVersion": "002", "generatedAt": generated, **extra, "data": data}
 
 
 def query(conn: sqlite3.Connection, operation: str, args: dict) -> dict:
-    generated = now()
+    generated, policy = now(), PublicProjectionPolicy(conn)
     if operation == "meta":
-        versions = [r[0] for r in conn.execute("SELECT version FROM schema_migrations ORDER BY version")]
-        counts = {}
-        for name, sql in {
-            "companies": "SELECT count(*) FROM organizations WHERE organization_type='company'",
-            "fundingRounds": "SELECT count(*) FROM canonical_funding_rounds",
-            "metricObservations": "SELECT count(*) FROM metric_observations",
-            "rawRecords": "SELECT count(*) FROM raw_records",
-            "openDataQualityChecks": "SELECT count(*) FROM data_quality_checks WHERE status='open'",
-        }.items(): counts[name] = conn.execute(sql).fetchone()[0]
-        return {"schemaVersion": versions[-1] if versions else None, "generatedAt": generated, "service": "private-investment-opportunity-os", "apiVersion": "v2", "layers": ["RAW", "CANONICAL", "SERVING"], "counts": counts, "readOnly": True}
+        public_count = sum(policy.organization_visible(r) for r in conn.execute("SELECT * FROM organizations WHERE organization_type='company'"))
+        return {"schemaVersion": "002", "publicSnapshotVersion": policy.snapshot_version(), "generatedAt": generated,
+                "service": "private-investment-opportunity-os", "apiVersion": "v2", "counts": {"companies": public_count}, "readOnly": True}
     if operation == "companies":
         try: limit = int(args.get("limit", 25))
         except (TypeError, ValueError): raise ApiError("INVALID_PARAMETER", "limit must be an integer.", 400, {"parameter": "limit"})
-        if limit < 1 or limit > 100: raise ApiError("INVALID_PARAMETER", "limit must be between 1 and 100.", 400, {"parameter": "limit", "minimum": 1, "maximum": 100})
-        clauses, params = ["organization_type='company'"], []
-        if args.get("cursor"):
-            clauses.append("id>?"); params.append(cursor_decode(str(args["cursor"])))
-        if args.get("q"):
-            clauses.append("(lower(canonical_name) LIKE ? OR lower(coalesce(legal_name,'')) LIKE ? OR lower(coalesce(description,'')) LIKE ?)")
-            term = f"%{str(args['q']).lower()}%"; params.extend([term, term, term])
-        if args.get("region"): clauses.append("region=?"); params.append(args["region"])
-        if args.get("status"): clauses.append("status=?"); params.append(args["status"])
-        rows = conn.execute(f"SELECT * FROM organizations WHERE {' AND '.join(clauses)} ORDER BY id LIMIT ?", (*params, limit + 1)).fetchall()
-        has_more = len(rows) > limit
-        page = rows[:limit]
-        return {"schemaVersion": "001", "generatedAt": generated, "data": [company_dto(conn, r) for r in page], "page": {"limit": limit, "nextCursor": cursor_encode(page[-1]["id"]) if has_more and page else None, "hasMore": has_more}}
+        if not 1 <= limit <= 100:
+            raise ApiError("INVALID_PARAMETER", "limit must be between 1 and 100.", 400, {"parameter": "limit", "minimum": 1, "maximum": 100})
+        start = cursor_decode(str(args["cursor"])) if args.get("cursor") else ""
+        candidates = conn.execute("SELECT * FROM organizations WHERE organization_type='company' AND id>? ORDER BY id", (start,)).fetchall()
+        rows = []
+        term = str(args.get("q", "")).casefold()
+        for org in candidates:
+            if not policy.organization_visible(org):
+                continue
+            dto = policy.company(org)
+            searchable = " ".join(str(v or "") for v in dto["identity"].values()).casefold()
+            if term and term not in searchable: continue
+            if args.get("region") and dto["identity"].get("region") != args["region"]: continue
+            if args.get("status") and dto["identity"].get("status") != args["status"]: continue
+            if args.get("stage") and dto["lifecycle"]["stage"] != args["stage"]: continue
+            rows.append(dto)
+            if len(rows) > limit: break
+        page, has_more = rows[:limit], len(rows) > limit
+        return envelope(page, generated, page={"limit": limit, "nextCursor": cursor_encode(page[-1]["id"]) if has_more else None, "hasMore": has_more})
     if operation == "company":
-        row = resolve_org(conn, str(args.get("id", "")))
-        return {"schemaVersion": "001", "generatedAt": generated, "data": company_dto(conn, row, True)}
+        return envelope(policy.company(policy.resolve_public_org(str(args.get("id", ""))), True), generated)
     if operation in {"funding", "metrics", "evidence", "lineage"}:
-        org = resolve_org(conn, str(args.get("id", "")))
-        org_id = org["id"]
+        org = policy.resolve_public_org(str(args.get("id", "")))
         if operation == "funding":
-            data = [dict(r) for r in conn.execute("""
-              SELECT id,announced_date AS announcedDate,round_type AS roundType,amount_value AS amountValue,
-                amount_currency AS amountCurrency,amount_display AS amountDisplay,post_money_value AS postMoneyValue,
-                valuation_currency AS valuationCurrency,valuation_display AS valuationDisplay,is_secondary AS isSecondary,
-                is_debt AS isDebt,status,canonical_confidence AS confidence
-              FROM canonical_funding_rounds WHERE organization_id=? ORDER BY announced_date DESC,id
-            """, (org_id,))]
+            data = policy.funding(org["id"])
         elif operation == "metrics":
             data = [dict(r) for r in conn.execute("""
-              SELECT m.id,d.name AS metricName,d.display_name AS displayName,m.value_numeric AS valueNumeric,
+              SELECT d.name AS metricName,d.display_name AS displayName,m.value_numeric AS valueNumeric,
                 m.value_text AS valueText,m.unit,m.currency,m.period_start AS periodStart,m.period_end AS periodEnd,
                 m.as_of AS asOf,m.vintage_date AS vintageDate,m.confidence,m.is_canonical AS isCanonical
               FROM metric_observations m JOIN metric_definitions d ON d.id=m.metric_definition_id
-              WHERE m.organization_id=? ORDER BY m.as_of DESC,m.id
-            """, (org_id,))]
+              JOIN raw_records rr ON rr.id=m.source_record_id JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id
+              WHERE m.organization_id=? AND rp.redistribution IN ('sanitized_derived','public_allowed') ORDER BY m.as_of DESC,m.id
+            """, (org["id"],))]
+            data = [{k: policy.safe_text(v) for k, v in item.items() if policy.safe_text(v) is not None} for item in data]
         elif operation == "evidence":
             data = [dict(r) for r in conn.execute("""
-              SELECT e.id,e.evidence_type AS evidenceType,e.note,e.as_of AS asOf,e.confidence,
-                e.publication_eligible AS publicationEligible,c.provider_type AS sourceClass,c.display_name AS sourceName
+              SELECT e.evidence_type AS type,e.source_locator AS url,e.as_of AS asOf,e.confidence
               FROM canonical_evidence_items e JOIN raw_records rr ON rr.id=e.source_record_id
-              JOIN connector_registry c ON c.id=rr.source_id
               JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id
               WHERE e.organization_id=? AND e.publication_eligible=1
-                AND rp.redistribution IN ('sanitized_derived','public_allowed')
-              ORDER BY e.as_of DESC,e.id
-            """, (org_id,))]
-            for item in data: item["note"] = public_text(item.get("note"))
+                AND rp.redistribution IN ('sanitized_derived','public_allowed') ORDER BY e.as_of DESC,e.id
+            """, (org["id"],))]
+            data = [{k: (policy.safe_url(v) if k == "url" else policy.safe_text(v))
+                     for k, v in item.items()
+                     if (policy.safe_url(v) if k == "url" else policy.safe_text(v)) is not None} for item in data]
         else:
-            source_rows = [dict(r) for r in conn.execute("""
-              SELECT c.id AS sourceId,c.display_name AS sourceName,c.provider_type AS sourceClass,
-                rp.redistribution AS rightsClass,count(*) AS recordCount,max(rr.observed_at) AS latestObservationAt
-              FROM raw_records rr JOIN connector_registry c ON c.id=rr.source_id
-              JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id
-              WHERE rr.id IN (
-                SELECT source_record_id FROM canonical_evidence_items WHERE organization_id=?
-                UNION SELECT source_record_id FROM metric_observations WHERE organization_id=?
-                UNION SELECT source_record_id FROM funding_round_sources frs JOIN canonical_funding_rounds f ON f.id=frs.funding_round_id WHERE f.organization_id=?
-                UNION SELECT source_record_id FROM organizations WHERE id=?
-              ) GROUP BY c.id,c.display_name,c.provider_type,rp.redistribution ORDER BY c.id
-            """, (org_id, org_id, org_id, org_id))]
-            observations = {"fundingRounds": conn.execute("SELECT count(*) FROM canonical_funding_rounds WHERE organization_id=?", (org_id,)).fetchone()[0], "metrics": conn.execute("SELECT count(*) FROM metric_observations WHERE organization_id=?", (org_id,)).fetchone()[0], "evidence": conn.execute("SELECT count(*) FROM canonical_evidence_items WHERE organization_id=?", (org_id,)).fetchone()[0]}
-            decisions = [dict(r) for r in conn.execute("SELECT field_path AS fieldPath,selected_value_json AS selectedValueJson,rule,decided_by AS decidedBy,decided_at AS decidedAt FROM canonical_field_decisions WHERE organization_id=? ORDER BY field_path", (org_id,))]
-            for decision in decisions: decision["selectedValue"] = json.loads(decision.pop("selectedValueJson"))
-            conflicts = [dict(r) for r in conn.execute("SELECT id,field_path AS fieldPath,status,severity,created_at AS createdAt,resolved_at AS resolvedAt FROM conflict_cases WHERE organization_id=? ORDER BY created_at DESC", (org_id,))]
-            data = {"companyId": org_id, "sources": source_rows, "observations": observations, "canonicalDecisions": decisions, "conflicts": conflicts, "redaction": {"rawPayloadsExposed": False, "localPathsExposed": False, "licensedLocatorsExposed": False}}
-        return {"schemaVersion": "001", "generatedAt": generated, "data": data}
+            # Aggregate receipt only: no source identities, record IDs, decisions, values, or counts.
+            has_evidence = bool(conn.execute("""SELECT 1 FROM canonical_evidence_items e JOIN raw_records rr ON rr.id=e.source_record_id
+              JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id WHERE e.organization_id=? AND e.publication_eligible=1
+              AND rp.redistribution IN ('sanitized_derived','public_allowed') LIMIT 1""", (org["id"],)).fetchone())
+            data = {"publicationStatus": "public_projection", "hasRedistributableEvidence": has_evidence,
+                    "publicSnapshotVersion": policy.snapshot_version(),
+                    "redaction": {"rawPayloadsExposed": False, "sourceIdentitiesExposed": False, "recordCountsExposed": False,
+                                  "localPathsExposed": False, "providerMetadataExposed": False}}
+        return envelope(data, generated)
     if operation == "sources":
-        data = [dict(r) for r in conn.execute("""
-          SELECT c.id,c.display_name AS name,c.provider_type AS providerType,c.access_mode AS accessMode,
-            c.connector_status AS status,c.refresh_policy AS refreshPolicy,c.capabilities_json AS capabilitiesJson,
-            rp.redistribution AS rightsClass,c.last_success_at AS lastSuccessAt,c.last_error_at AS lastErrorAt,
-            (SELECT count(*) FROM ingestion_runs i WHERE i.source_id=c.id) AS ingestionRunCount
-          FROM connector_registry c JOIN source_rights_profiles rp ON rp.id=c.rights_profile_id ORDER BY c.id
-        """)]
-        for row in data: row["capabilities"] = json.loads(row.pop("capabilitiesJson"))
-        return {"schemaVersion": "001", "generatedAt": generated, "data": data}
+        return envelope([], generated, receipt={"status": "redacted"})
     if operation == "data_quality":
-        summary = {r[0]: r[1] for r in conn.execute("SELECT check_type,count(*) FROM data_quality_checks WHERE status='open' GROUP BY check_type")}
-        summary = {"stale": summary.get("stale", 0), "conflict": summary.get("conflict", 0), "missingLineage": summary.get("missing_lineage", 0), "rightsRestricted": conn.execute("SELECT count(*) FROM connector_registry c JOIN source_rights_profiles r ON r.id=c.rights_profile_id WHERE r.redistribution='internal_only'").fetchone()[0], "totalOpen": sum(summary.values())}
-        items = [dict(r) for r in conn.execute("""
-          SELECT d.id,d.check_type AS checkType,d.status,d.severity,d.field_path AS fieldPath,d.message,d.detected_at AS detectedAt,
-            o.id AS companyId,o.canonical_name AS companyName
-          FROM data_quality_checks d LEFT JOIN organizations o ON o.id=d.organization_id
-          WHERE d.status='open' ORDER BY CASE d.severity WHEN 'critical' THEN 0 WHEN 'error' THEN 1 ELSE 2 END,d.id LIMIT 200
-        """)]
-        return {"schemaVersion": "001", "generatedAt": generated, "summary": summary, "data": items}
+        visible = [r["id"] for r in conn.execute("SELECT * FROM organizations WHERE organization_type='company'") if policy.organization_visible(r)]
+        gaps = 0
+        if visible:
+            placeholders = ",".join("?" for _ in visible)
+            gaps = conn.execute(f"SELECT count(*) FROM data_quality_checks WHERE status='open' AND organization_id IN ({placeholders}) AND source_record_id IN (SELECT rr.id FROM raw_records rr JOIN source_rights_profiles rp ON rp.id=rr.rights_profile_id WHERE rp.redistribution IN ('sanitized_derived','public_allowed'))", visible).fetchone()[0]
+        return envelope([], generated, summary={"publicCoverageGaps": gaps})
     if operation == "runs":
-        data = [dict(r) for r in conn.execute("""
-          SELECT i.id,i.source_id AS sourceId,c.display_name AS sourceName,i.connector_version AS connectorVersion,
-            i.started_at AS startedAt,i.ended_at AS endedAt,i.status,i.records_seen AS recordsSeen,
-            i.records_inserted AS recordsInserted,i.records_rejected AS recordsRejected
-          FROM ingestion_runs i JOIN connector_registry c ON c.id=i.source_id ORDER BY i.started_at DESC,i.id LIMIT 100
-        """)]
-        return {"schemaVersion": "001", "generatedAt": generated, "data": data}
-    raise ApiError("NOT_FOUND", "API resource was not found.", 404, {"operation": operation})
+        # Run/source identities and volumes are operational metadata, not a public DTO.
+        return envelope([], generated, receipt={"status": "redacted"})
+    raise ApiError("NOT_FOUND", "API resource was not found.", 404)
 
 
 def main() -> None:
     try:
-        db_path = Path(sys.argv[1])
-        operation = sys.argv[2]
+        db_path, operation = Path(sys.argv[1]), sys.argv[2]
         args = json.loads(sys.argv[3]) if len(sys.argv) > 3 else {}
-        if not db_path.exists():
-            raise ApiError("V2_DATABASE_UNAVAILABLE", "The v2 database has not been initialized.", 503)
-        conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
-        conn.row_factory = sqlite3.Row
+        if not db_path.exists(): raise ApiError("V2_DATABASE_UNAVAILABLE", "The v2 database has not been initialized.", 503)
+        conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True); conn.row_factory = sqlite3.Row
         try:
-            conn.execute("SELECT 1 FROM schema_migrations LIMIT 1").fetchone()
+            conn.execute("SELECT 1 FROM schema_migrations LIMIT 1")
+            # Public projection requires the provenance column; old schemas fail closed.
+            if "source_record_id" not in {r[1] for r in conn.execute("PRAGMA table_info(opportunities)")}:
+                raise ApiError("PUBLIC_PROJECTION_UNAVAILABLE", "The public projection schema is not current.", 503)
             value = query(conn, operation, args)
-        except sqlite3.OperationalError as exc:
-            raise ApiError("V2_DATABASE_UNAVAILABLE", "The configured database does not contain the v2 schema.", 503) from exc
-        finally:
-            conn.close()
+        finally: conn.close()
         print(json.dumps({"ok": True, "value": value}, ensure_ascii=False, separators=(",", ":")))
     except ApiError as exc:
         print(json.dumps({"ok": False, "error": {"code": exc.code, "message": exc.message, "details": exc.details}, "status": exc.status}, ensure_ascii=False, separators=(",", ":")))
@@ -250,5 +325,4 @@ def main() -> None:
         print(json.dumps({"ok": False, "error": {"code": "INTERNAL_ERROR", "message": "The v2 query could not be completed.", "details": {}}, "status": 500}, separators=(",", ":")))
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()

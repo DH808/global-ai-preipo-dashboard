@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Global AI Pre-IPO / IPO Pipeline</title>
+  <title>Private Investment Opportunity OS</title>
   <link rel="stylesheet" href="/style.css?v=19" />
 </head>
 <body>
   <header class="topbar pipeline-topbar">
     <div>
-      <div class="eyebrow">投资管线系统 · 全球 AI Pre-IPO / IPO</div>
-      <h1>全球 AI Pre-IPO / IPO 投资管线</h1>
-      <p>公司第一：每一行看清公司定位、估值口径、投资人、可接触路径和下一步动作。</p>
+      <div class="eyebrow">North America first · Full private-company lifecycle</div>
+      <h1>Private Investment Opportunity OS</h1>
+      <p>从 formation 到 Pre-IPO、二级份额和战略交易；按阶段浏览公开投融资信息。</p>
     </div>
-    <div class="actions internal-only">
+    <div class="actions">
       <button id="exportBtn">导出 Markdown</button>
-      <button id="newBtn">新增公司</button>
     </div>
   </header>
 
   <main>
     <section class="panel controls pipeline-controls table-first-controls">
-      <input id="search" placeholder="搜索公司、投资人、关系节点、技术层：Databricks / NVIDIA / Temasek / photonic..." />
+      <input id="search" placeholder="搜索公司、投资人、地区、技术层：Databricks / NVIDIA / photonic..." />
       <select id="region"><option value="">全部地区</option></select>
       <select id="sector"><option value="">全部赛道 / 层级</option></select>
       <select id="label"><option value="">全部优先级</option></select>
+      <select id="stage"><option value="">全部生命周期阶段</option></select>
       <button id="resetBtn">重置</button>
     </section>
 
@@ -40,8 +40,8 @@
       <div class="panel table-wrap primary-pipeline">
         <div class="section-head compact-head table-first-head">
           <div>
-            <div class="section-title">公司管线 / 横向主表</div>
-            <div class="sub">第一页以横向表格为主：公司 → 公司描述 → 最新估值 → 优先级 → 投资人 → 路径 → 下一步。</div>
+            <div class="section-title">全生命周期机会管线</div>
+            <div class="sub">Pre-IPO 是一个 lens；早期公司按阶段与公开证据覆盖展示，不套用 IPO 评分。</div>
           </div>
           <div id="summary" class="summary-grid table-summary"></div>
         </div>
@@ -64,7 +64,7 @@
           </aside>
           <div class="mvp8-table-area">
             <table id="companyTable" class="pipeline-table excel-pipeline">
-              <thead><tr><th>公司</th><th>公司描述</th><th>最新估值</th><th>优先级</th><th>收入 / ARR</th><th>赛道</th><th>投资人</th><th>IPO 窗口</th><th>接触路径</th><th>完整度</th><th>下一步</th></tr></thead>
+              <thead><tr><th>公司</th><th>阶段</th><th>公司描述</th><th>最新估值</th><th>优先级</th><th>收入 / ARR</th><th>赛道</th><th>投资人</th><th>流动性窗口</th><th>覆盖缺口</th></tr></thead>
               <tbody></tbody>
             </table>
             <div id="mobileCards" class="mobile-cards"></div>
@@ -72,45 +72,11 @@
         </div>
       </div>
       <aside class="panel" id="detail">
-        <div class="empty-state">点击公司查看一页卡：投资逻辑、估值、融资、投资人、接触路径、风险和下一步。</div>
+        <div class="empty-state">点击公司查看公开资料卡：公司概况、估值、融资、投资人与来源。</div>
       </aside>
     </section>
 
-    <section class="internal-only" aria-hidden="true">
-      <div id="relationshipCrm"></div><div id="missingData"></div><div id="sourceRegistry"></div>
-      <div id="fundingBoard"></div><div id="taskBoard"></div>
-    </section>
-
-    <section style="display:none">
-      <div id="priorityBoard"></div><div id="deltaView"></div><div id="dealKanban"></div>
-      <div id="icView"></div><div id="relationshipMap"></div><div id="taskAging"></div><div id="onePagerQueue"></div><div id="sources"></div>
-    </section>
   </main>
-
-  <dialog id="editDialog">
-    <form method="dialog" id="editForm">
-      <h2 id="formTitle">新增公司</h2>
-      <div class="form-grid">
-        <label>公司名<input name="name" required /></label>
-        <label>国家<input name="country" /></label>
-        <label>地区<input name="region" placeholder="Korea/Japan/US/Europe" /></label>
-        <label>赛道<input name="sector" placeholder="AI Chip / AI Infra" /></label>
-        <label>子赛道<input name="subSector" /></label>
-        <label>阶段<input name="stage" placeholder="pre_ipo/growth" /></label>
-        <label>IPO 信号<select name="ipoSignal"><option>high</option><option>medium_high</option><option>medium</option><option>medium_low</option><option>low</option><option>unknown</option></select></label>
-        <label>收入质量<select name="revenueQuality"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>medium_low</option><option>low</option><option>unknown</option></select></label>
-        <label>投资人质量<select name="investorQuality"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
-        <label>战略相关性<select name="strategicRelevance"><option>very_high</option><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
-        <label>接触可行性<select name="accessFit"><option>high</option><option>medium_high</option><option>medium</option><option>low</option></select></label>
-        <label>风险<select name="riskLevel"><option>low</option><option>medium</option><option>medium_high</option><option>high</option></select></label>
-      </div>
-      <label>估值/融资锚<textarea name="latestValuation"></textarea></label>
-      <label>投资人（逗号分隔）<textarea name="investors"></textarea></label>
-      <label>下一步动作<textarea name="nextAction"></textarea></label>
-      <label>备注<textarea name="notes"></textarea></label>
-      <menu><button value="cancel">取消</button><button id="saveBtn" value="default">保存</button></menu>
-    </form>
-  </dialog>
 
   <dialog id="companyDetailDialog" class="detail-dialog">
     <div class="dialog-shell">
@@ -119,6 +85,8 @@
     </div>
   </dialog>
 
-  <script src="/app.js?v=20"></script>
+  <script src="/connectorStatus.js?v=1"></script>
+  <script src="/lifecycle.js?v=1"></script>
+  <script src="/app.js?v=22"></script>
 </body>
 </html>

@@ -6,7 +6,6 @@ import argparse
 import datetime as dt
 import hashlib
 import json
-import shutil
 import sqlite3
 from pathlib import Path
 
@@ -37,7 +36,12 @@ def migrate(db_path: Path, migrations_dir: Path = DEFAULT_MIGRATIONS, backup_pat
     existed = db_path.exists()
     if existed and backup_path:
         backup_path.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(db_path, backup_path)
+        if db_path.resolve() == backup_path.resolve():
+            raise ValueError("BACKUP_PATH_MUST_DIFFER_FROM_DATABASE")
+        # SQLite's online backup API takes a transactionally consistent snapshot,
+        # including committed pages that are still resident in an active WAL.
+        with sqlite3.connect(db_path) as source, sqlite3.connect(backup_path) as target:
+            source.backup(target)
 
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys=ON")
