@@ -8,8 +8,8 @@
     "asOf": "2026-08-08",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-08-07T17:30:00Z",
-    "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue. Added EMEA ECM screenshot-derived private/pre-IPO opportunities: Starling Bank, Trade Republic, Zopa, Bitdefender, Bolt, Celonis, Doctolib, ElevenLabs enrichment, GetYourGuide, Infobip, Kpler, Kraken Technology; public-source enriched with valuation/funding/metrics caveats. Added second EMEA ECM screenshot batch covering Legora, Lendable, Mews, Mirakl, Multiverse Computing, n8n, Nord Security, Odoo, OQC, Personio, Poolside, Qonto, Quantexa, Thought Machine, Trendyol, Wayve, CMR Surgical, Huma, Medical Microinstruments, Owkin; patched Kraken, Lovable, Mistral AI, Synthesia. Europe refresh 2026-08-08: added Helsing; upgraded Wayve, Mistral AI and PhysicsX with current financing/strategic context, source caveats and executable diligence routes. Europe Series B+ batch 1: NEURA Robotics, ICEYE, Isar Aerospace, The Exploration Company, Alan, Flo Health, Neko Health and TravelPerk/Perk.",
+    "updatedAt": "2026-08-07T18:45:00Z",
+    "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue. Added EMEA ECM screenshot-derived private/pre-IPO opportunities: Starling Bank, Trade Republic, Zopa, Bitdefender, Bolt, Celonis, Doctolib, ElevenLabs enrichment, GetYourGuide, Infobip, Kpler, Kraken Technology; public-source enriched with valuation/funding/metrics caveats. Added second EMEA ECM screenshot batch covering Legora, Lendable, Mews, Mirakl, Multiverse Computing, n8n, Nord Security, Odoo, OQC, Personio, Poolside, Qonto, Quantexa, Thought Machine, Trendyol, Wayve, CMR Surgical, Huma, Medical Microinstruments, Owkin; patched Kraken, Lovable, Mistral AI, Synthesia. Europe refresh 2026-08-08: added Helsing; upgraded Wayve, Mistral AI and PhysicsX with current financing/strategic context, source caveats and executable diligence routes. Europe Series B+ batch 1: NEURA Robotics, ICEYE, Isar Aerospace, The Exploration Company, Alan, Flo Health, Neko Health and TravelPerk/Perk. Europe Series B+ fintech batch 2A: Revolut, Monzo and Checkout.com.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
     "uiVersion": "public-2026-06-20",
     "releaseNotes": [
@@ -58,6 +58,14 @@
           "Added eight Europe-headquartered private Series B+ companies across robotics, space, digital health and enterprise software.",
           "Separated announced maximums, primary/secondary mixes, pending regulatory closes and private credit from closed primary equity.",
           "Applied the corrected Europe universe rule: completed Series B is sufficient for inclusion; IPO timing controls action lane only."
+        ]
+      },
+      {
+        "version": "v-europe-series-b-plus-fintech-2a-20260808",
+        "date": "2026-08-08",
+        "items": [
+          "Added Revolut, Monzo and Checkout.com under Europe Series B+ scope.",
+          "Kept Revolut transaction amount undisclosed, Monzo financing media-confirmed, and Checkout.com employee/internal marks separate from primary equity."
         ]
       }
     ],
@@ -210,19 +218,19 @@
     ],
     "ipoHorizonFramework": {
       "version": "1",
-      "companyCount": 193,
+      "companyCount": 196,
       "distribution": {
         "0_12m": 4,
         "12_24m": 0,
         "24_48m": 81,
-        "48m_plus": 92,
+        "48m_plus": 95,
         "evergreen_private": 10,
         "unknown": 6
       },
-      "evidenceGapCount": 189
+      "evidenceGapCount": 192
     },
     "researchAsOf": "2026-08-08",
-    "generatedAt": "2026-08-07T17:30:00Z"
+    "generatedAt": "2026-08-07T18:45:00Z"
   },
   "companies": [
     {
@@ -20691,6 +20699,368 @@
         "audited_revenue",
         "current_transaction_terms"
       ]
+    },
+    {
+      "id": "revolut",
+      "name": "Revolut",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "sector": "Fintech / Payments / Banking",
+      "subSector": "Global digital bank and financial super-app",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "$75B valuation established by completed Nov 2025 share sale; transaction amount not disclosed in reviewed official release",
+      "latestFunding": "Completed share sale announced 24 Nov 2025; primary/secondary mix and amount not disclosed in reviewed official release",
+      "investors": [
+        "Coatue",
+        "Greenoaks",
+        "Dragoneer",
+        "Fidelity Management & Research",
+        "a16z",
+        "Franklin Templeton",
+        "T. Rowe Price",
+        "NVentures"
+      ],
+      "ipoSignals": [
+        "Public-market scale private company; no completed public listing verified as of 2026-08-08"
+      ],
+      "nextAction": "Confirm share-sale structure, fully diluted cap table, banking licences/capital, revenue mix, credit/fraud losses, country profitability and IPO jurisdiction.",
+      "tags": [
+        "UK",
+        "digital bank",
+        "secondary",
+        "profitable",
+        "Europe Series B+",
+        "2026-08-08 expansion"
+      ],
+      "evidence": [
+        {
+          "date": "2025-11-24",
+          "type": "official",
+          "note": "Revolut official release confirms completion of a share sale at $75B valuation; it does not disclose total transaction amount or primary/secondary split.",
+          "url": "https://www.revolut.com/en-US/news/revolut_completes_fundraising_process_establishing_75_billion_valuation/",
+          "confidence": "high",
+          "sourceName": "Revolut"
+        }
+      ],
+      "notes": "Added under Europe Series B+ scope; financing form and disclosed amount are preserved without inference.",
+      "dealStage": "relationship building",
+      "dataRoomStatus": "not requested",
+      "targetExchange": "TBD",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "unknown",
+      "preIpoRoundStatus": "latest public transaction verified; live allocation unverified",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": [],
+      "priorityTier": "A1｜European fintech public-handoff core",
+      "recommendation": "Revolut — 欧洲金融科技最重要的public-handoff资产之一；官方披露$75B share sale和强劲盈利，但交易金额/primary-secondary结构未披露，需从cap table与监管资本切入。",
+      "updatedAt": "2026-08-07T18:45:00Z",
+      "layer": "Fintech / Payments / Banking",
+      "whyInTrack": "Revolut — 欧洲金融科技最重要的public-handoff资产之一；官方披露$75B share sale和强劲盈利，但交易金额/primary-secondary结构未披露，需从cap table与监管资本切入。",
+      "revenueScale": "Official release: 2024 revenue $4.0B and profit before tax $1.4B; 65M+ customers and Revolut Business $1B annualized revenue in 2025.",
+      "relationshipRoute": "Coatue/Greenoaks/Dragoneer/Fidelity/a16z/NVentures routes → data room, approved secondary and IPO anchor.",
+      "investorGroup": "Global fintech growth / crossover",
+      "keyDiligence": "Confirm share-sale structure, fully diluted cap table, banking licences/capital, revenue mix, credit/fraud losses, country profitability and IPO jurisdiction.",
+      "disruptedLegacyTech": "Global digital bank and financial super-app",
+      "ipoWindow": "24–48m watch; no filing verified",
+      "companyDescription": "Global digital bank and financial super-app",
+      "latestAvailableValuation": "$75B valuation established by completed Nov 2025 share sale; transaction amount not disclosed in reviewed official release",
+      "investorSummary": "Coatue, Greenoaks, Dragoneer, Fidelity Management & Research, a16z, Franklin Templeton",
+      "investorDataQuality": "high",
+      "dataCompleteness": {
+        "hasDescription": true,
+        "hasValuation": true,
+        "investorCount": 8,
+        "evidenceCount": 1,
+        "hasRoute": true
+      },
+      "enrichedAsOf": "2026-08-08",
+      "layerZh": "金融科技 / 支付 / 数字银行",
+      "homepageDescriptionZh": "Global digital bank and financial super-app",
+      "latestValuationZh": "$75B valuation established by completed Nov 2025 share sale; transaction amount not disclosed in reviewed official release",
+      "revenueScaleZh": "Official release: 2024 revenue $4.0B and profit before tax $1.4B; 65M+ customers and Revolut Business $1B annualized revenue in 2025.",
+      "nextActionZh": "Confirm share-sale structure, fully diluted cap table, banking licences/capital, revenue mix, credit/fraud losses, country profitability and IPO jurisdiction.",
+      "priorityZh": "A1｜European fintech public-handoff core",
+      "notesClean": "欧洲Series B+扩容；不把secondary或员工股权交易误作primary。",
+      "recommendationClean": "Revolut — 欧洲金融科技最重要的public-handoff资产之一；官方披露$75B share sale和强劲盈利，但交易金额/primary-secondary结构未披露，需从cap table与监管资本切入。",
+      "presentationLanguage": "zh-CN",
+      "presentationCleanedAsOf": "2026-08-08",
+      "investmentSummaryZh": "Revolut — 欧洲金融科技最重要的public-handoff资产之一；官方披露$75B share sale和强劲盈利，但交易金额/primary-secondary结构未披露，需从cap table与监管资本切入。",
+      "riskSummaryZh": "监管、信用/欺诈、资本充足、估值及上市路径风险。",
+      "keyMetrics": [
+        "$75B share-sale valuation",
+        "2024 revenue $4.0B",
+        "2024 PBT $1.4B",
+        "65M+ customers",
+        "transaction amount undisclosed"
+      ],
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Transactional",
+      "customerType": "B2B",
+      "monetization": [
+        "Transaction fees"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence",
+        "current_transaction_terms"
+      ]
+    },
+    {
+      "id": "monzo",
+      "name": "Monzo",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "sector": "Fintech / Payments / Banking",
+      "subSector": "UK digital bank for consumers and businesses",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "~$5B valuation reported for 2024 funding; use as media-supported context",
+      "latestFunding": "2024 funding increased to $610M after an additional $190M round/extension",
+      "investors": [
+        "CapitalG",
+        "GV",
+        "HongShan Capital",
+        "Passion Capital",
+        "Tencent",
+        "General Catalyst"
+      ],
+      "ipoSignals": [
+        "Public-market scale private company; no completed public listing verified as of 2026-08-08"
+      ],
+      "nextAction": "Verify audited FY2025 revenue/PBT, deposit and loan mix, NIM sensitivity, credit losses, FCA remediation, cap table and IPO adviser status.",
+      "tags": [
+        "UK",
+        "digital bank",
+        "CapitalG",
+        "Europe Series B+",
+        "2026-08-08 expansion"
+      ],
+      "evidence": [
+        {
+          "date": "2024-05-08",
+          "type": "reputable media",
+          "note": "CNBC reports Monzo increased its 2024 funding total to $610M; the extension and total are retained as media-confirmed financing evidence.",
+          "url": "https://www.cnbc.com/2024/05/08/monzo-boosts-funding-to-610-million-to-crack-us-launch-uk-pensions.html",
+          "confidence": "medium_high",
+          "sourceName": "CNBC"
+        },
+        {
+          "date": "2025-06-04",
+          "type": "official",
+          "note": "Monzo FY2025 annual report page and audited report identify Monzo Bank Holding Group Limited as a private limited company.",
+          "url": "https://monzo.com/annual-report/2025",
+          "confidence": "high",
+          "sourceName": "Monzo"
+        }
+      ],
+      "notes": "Added under Europe Series B+ scope; financing form and disclosed amount are preserved without inference.",
+      "dealStage": "relationship building",
+      "dataRoomStatus": "not requested",
+      "targetExchange": "TBD",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "unknown",
+      "preIpoRoundStatus": "latest public transaction verified; live allocation unverified",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": [],
+      "priorityTier": "A2｜UK digital bank / IPO-readiness watch",
+      "recommendation": "Monzo — 盈利与客户规模改善的英国数字银行；已满足Series B+且具公开市场承接潜力，重点核验存款/NIM、信贷损失、监管整改和secondary价格。",
+      "updatedAt": "2026-08-07T18:45:00Z",
+      "layer": "Fintech / Payments / Banking",
+      "whyInTrack": "Monzo — 盈利与客户规模改善的英国数字银行；已满足Series B+且具公开市场承接潜力，重点核验存款/NIM、信贷损失、监管整改和secondary价格。",
+      "revenueScale": "FY2025 annual report is available from Monzo; exact operating metrics should be read from the audited report rather than financing headlines.",
+      "relationshipRoute": "CapitalG/GV/General Catalyst/HongShan routes → management access, approved secondary and IPO readiness.",
+      "investorGroup": "Global fintech growth / crossover",
+      "keyDiligence": "Verify audited FY2025 revenue/PBT, deposit and loan mix, NIM sensitivity, credit losses, FCA remediation, cap table and IPO adviser status.",
+      "disruptedLegacyTech": "UK digital bank for consumers and businesses",
+      "ipoWindow": "24–48m watch; no filing verified",
+      "companyDescription": "UK digital bank for consumers and businesses",
+      "latestAvailableValuation": "~$5B valuation reported for 2024 funding; use as media-supported context",
+      "investorSummary": "CapitalG, GV, HongShan Capital, Passion Capital, Tencent, General Catalyst",
+      "investorDataQuality": "high",
+      "dataCompleteness": {
+        "hasDescription": true,
+        "hasValuation": true,
+        "investorCount": 6,
+        "evidenceCount": 2,
+        "hasRoute": true
+      },
+      "enrichedAsOf": "2026-08-08",
+      "layerZh": "金融科技 / 支付 / 数字银行",
+      "homepageDescriptionZh": "UK digital bank for consumers and businesses",
+      "latestValuationZh": "~$5B valuation reported for 2024 funding; use as media-supported context",
+      "revenueScaleZh": "FY2025 annual report is available from Monzo; exact operating metrics should be read from the audited report rather than financing headlines.",
+      "nextActionZh": "Verify audited FY2025 revenue/PBT, deposit and loan mix, NIM sensitivity, credit losses, FCA remediation, cap table and IPO adviser status.",
+      "priorityZh": "A2｜UK digital bank / IPO-readiness watch",
+      "notesClean": "欧洲Series B+扩容；不把secondary或员工股权交易误作primary。",
+      "recommendationClean": "Monzo — 盈利与客户规模改善的英国数字银行；已满足Series B+且具公开市场承接潜力，重点核验存款/NIM、信贷损失、监管整改和secondary价格。",
+      "presentationLanguage": "zh-CN",
+      "presentationCleanedAsOf": "2026-08-08",
+      "investmentSummaryZh": "Monzo — 盈利与客户规模改善的英国数字银行；已满足Series B+且具公开市场承接潜力，重点核验存款/NIM、信贷损失、监管整改和secondary价格。",
+      "riskSummaryZh": "监管、信用/欺诈、资本充足、估值及上市路径风险。",
+      "keyMetrics": [
+        "2024 funding total $610M",
+        "~$5B media-reported valuation",
+        "FY2025 official annual report",
+        "private limited company governance"
+      ],
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Transactional",
+      "customerType": "B2C",
+      "monetization": [
+        "Transaction fees"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence",
+        "current_transaction_terms"
+      ]
+    },
+    {
+      "id": "checkout-com",
+      "name": "Checkout.com",
+      "country": "United Kingdom",
+      "region": "Europe",
+      "sector": "Fintech / Payments / Banking",
+      "subSector": "Enterprise online-payments acquiring and processing platform",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium",
+      "revenueQuality": "medium_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
+      "accessFit": "medium",
+      "riskLevel": "medium_high",
+      "latestValuation": "$40B valuation disclosed for Jan 2022 Series D; later internal/employee marks are not treated as new primary rounds",
+      "latestFunding": "$1B Series D announced Jan 2022; no newer completed primary equity round verified in this pass",
+      "investors": [
+        "Altimeter",
+        "Dragoneer",
+        "Franklin Templeton",
+        "GIC",
+        "Insight Partners",
+        "QIA",
+        "Tiger Global",
+        "Oxford Endowment Fund"
+      ],
+      "ipoSignals": [
+        "Public-market scale private company; no completed public listing verified as of 2026-08-08"
+      ],
+      "nextAction": "Verify current TPV, net take rate, gross margin, enterprise concentration, fraud/chargebacks, regional profitability, internal share price and IPO timing.",
+      "tags": [
+        "UK",
+        "payments",
+        "merchant acquiring",
+        "enterprise",
+        "Europe Series B+",
+        "2026-08-08 expansion"
+      ],
+      "evidence": [
+        {
+          "date": "2022-01",
+          "type": "official",
+          "note": "Checkout.com official release confirms $1B Series D at $40B valuation; this remains the latest completed primary round verified here.",
+          "url": "https://www.checkout.com/newsroom/checkout-com-raises-1-billion-in-series-d-amid-major-us-market-push",
+          "confidence": "high",
+          "sourceName": "Checkout.com"
+        }
+      ],
+      "notes": "Added under Europe Series B+ scope; financing form and disclosed amount are preserved without inference.",
+      "dealStage": "relationship building",
+      "dataRoomStatus": "not requested",
+      "targetExchange": "TBD",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "unknown",
+      "preIpoRoundStatus": "latest public transaction verified; live allocation unverified",
+      "contacts": [],
+      "redFlags": [],
+      "openQuestions": [],
+      "priorityTier": "A2｜Global payments platform / valuation-reset gate",
+      "recommendation": "Checkout.com — 欧洲全球支付基础设施核心私营资产；业务规模和客户质量强，但2022 $40B估值需要按当前增长、take rate、亏损/利润和员工股权交易重新校准。",
+      "updatedAt": "2026-08-07T18:45:00Z",
+      "layer": "Fintech / Payments / Banking",
+      "whyInTrack": "Checkout.com — 欧洲全球支付基础设施核心私营资产；业务规模和客户质量强，但2022 $40B估值需要按当前增长、take rate、亏损/利润和员工股权交易重新校准。",
+      "revenueScale": "Official Series D release cites enterprise payment volume tripling for a third consecutive year at that vintage; current revenue/TPV/profitability require refreshed data.",
+      "relationshipRoute": "Altimeter/Dragoneer/GIC/Insight/QIA/Tiger routes → current cap table, employee-liquidity mark and future IPO access.",
+      "investorGroup": "Global fintech growth / crossover",
+      "keyDiligence": "Verify current TPV, net take rate, gross margin, enterprise concentration, fraud/chargebacks, regional profitability, internal share price and IPO timing.",
+      "disruptedLegacyTech": "Enterprise online-payments acquiring and processing platform",
+      "ipoWindow": "24–48m watch; no filing verified",
+      "companyDescription": "Enterprise online-payments acquiring and processing platform",
+      "latestAvailableValuation": "$40B valuation disclosed for Jan 2022 Series D; later internal/employee marks are not treated as new primary rounds",
+      "investorSummary": "Altimeter, Dragoneer, Franklin Templeton, GIC, Insight Partners, QIA",
+      "investorDataQuality": "high",
+      "dataCompleteness": {
+        "hasDescription": true,
+        "hasValuation": true,
+        "investorCount": 8,
+        "evidenceCount": 1,
+        "hasRoute": true
+      },
+      "enrichedAsOf": "2026-08-08",
+      "layerZh": "金融科技 / 支付 / 数字银行",
+      "homepageDescriptionZh": "Enterprise online-payments acquiring and processing platform",
+      "latestValuationZh": "$40B valuation disclosed for Jan 2022 Series D; later internal/employee marks are not treated as new primary rounds",
+      "revenueScaleZh": "Official Series D release cites enterprise payment volume tripling for a third consecutive year at that vintage; current revenue/TPV/profitability require refreshed data.",
+      "nextActionZh": "Verify current TPV, net take rate, gross margin, enterprise concentration, fraud/chargebacks, regional profitability, internal share price and IPO timing.",
+      "priorityZh": "A2｜Global payments platform / valuation-reset gate",
+      "notesClean": "欧洲Series B+扩容；不把secondary或员工股权交易误作primary。",
+      "recommendationClean": "Checkout.com — 欧洲全球支付基础设施核心私营资产；业务规模和客户质量强，但2022 $40B估值需要按当前增长、take rate、亏损/利润和员工股权交易重新校准。",
+      "presentationLanguage": "zh-CN",
+      "presentationCleanedAsOf": "2026-08-08",
+      "investmentSummaryZh": "Checkout.com — 欧洲全球支付基础设施核心私营资产；业务规模和客户质量强，但2022 $40B估值需要按当前增长、take rate、亏损/利润和员工股权交易重新校准。",
+      "riskSummaryZh": "监管、信用/欺诈、资本充足、估值及上市路径风险。",
+      "keyMetrics": [
+        "$1B Series D",
+        "$40B Jan 2022 valuation",
+        "later employee/internal marks not primary financing"
+      ],
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Fintech/Payments/Insurtech",
+      "businessModel": "Transactional",
+      "customerType": "B2B",
+      "monetization": [
+        "Transaction fees"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "ipo_horizon_evidence",
+        "current_transaction_terms"
+      ]
     }
   ],
   "fundingRounds": [
@@ -24972,6 +25342,68 @@
       "url": "https://www.perk.com/press-release/travelperk-raises-200m-and-acquires-yokoy/",
       "confidence": "high",
       "notes": "Latest verified priced equity round."
+    },
+    {
+      "id": "revolut-2025-11-24-share-sale",
+      "companyId": "revolut",
+      "companyName": "Revolut",
+      "date": "2025-11-24",
+      "round": "Completed share sale",
+      "amount": "not disclosed",
+      "valuation": "$75B",
+      "leadInvestors": [
+        "Coatue",
+        "Greenoaks",
+        "Dragoneer",
+        "Fidelity"
+      ],
+      "participants": [
+        "a16z",
+        "Franklin Templeton",
+        "T. Rowe Price",
+        "NVentures"
+      ],
+      "sourceName": "Revolut",
+      "sourceType": "company release",
+      "url": "https://www.revolut.com/en-US/news/revolut_completes_fundraising_process_establishing_75_billion_valuation/",
+      "confidence": "high",
+      "notes": "Official release does not disclose transaction amount or primary/secondary split."
+    },
+    {
+      "id": "monzo-2024-05-08-funding-extension",
+      "companyId": "monzo",
+      "companyName": "Monzo",
+      "date": "2024-05-08",
+      "round": "2024 funding extension / total",
+      "amount": "$610M total 2024 funding",
+      "valuation": "~$5B media reported",
+      "leadInvestors": [],
+      "participants": [
+        "CapitalG",
+        "GV",
+        "HongShan"
+      ],
+      "sourceName": "CNBC",
+      "sourceType": "reputable media",
+      "url": "https://www.cnbc.com/2024/05/08/monzo-boosts-funding-to-610-million-to-crack-us-launch-uk-pensions.html",
+      "confidence": "medium_high",
+      "notes": "CNBC-reported financing total; audited annual report separately confirms private-company boundary."
+    },
+    {
+      "id": "checkout-com-2022-01-series-d",
+      "companyId": "checkout-com",
+      "companyName": "Checkout.com",
+      "date": "2022-01",
+      "round": "Series D",
+      "amount": "$1B",
+      "valuation": "$40B",
+      "leadInvestors": [],
+      "participants": [],
+      "sourceName": "Checkout.com",
+      "sourceType": "company release",
+      "url": "https://www.checkout.com/newsroom/checkout-com-raises-1-billion-in-series-d-amid-major-us-market-push",
+      "confidence": "high",
+      "notes": "Latest completed primary equity round verified in this pass."
     }
   ],
   "tasks": [
@@ -27086,6 +27518,39 @@
       "priority": "High",
       "category": "relationship + diligence",
       "notes": "Europe Series B+ expansion; verify current commercial metrics, transaction access and private-status boundary before IC use."
+    },
+    {
+      "id": "task-europe-series-b-plus-revolut-20260808",
+      "companyId": "revolut",
+      "title": "Obtain share-sale structure, cap table and banking-capital/IPO jurisdiction view",
+      "owner": "Deal Team",
+      "dueDate": "2026-08-29",
+      "status": "open",
+      "priority": "High",
+      "category": "relationship + diligence",
+      "notes": "Europe Series B+ fintech expansion; verify current transaction terms and audited operating quality."
+    },
+    {
+      "id": "task-europe-series-b-plus-monzo-20260808",
+      "companyId": "monzo",
+      "title": "Refresh audited FY2025 economics, FCA remediation and IPO-adviser status",
+      "owner": "Deal Team",
+      "dueDate": "2026-08-29",
+      "status": "open",
+      "priority": "High",
+      "category": "relationship + diligence",
+      "notes": "Europe Series B+ fintech expansion; verify current transaction terms and audited operating quality."
+    },
+    {
+      "id": "task-europe-series-b-plus-checkout-com-20260808",
+      "companyId": "checkout-com",
+      "title": "Request current TPV/take-rate/profitability and employee-liquidity mark",
+      "owner": "Deal Team",
+      "dueDate": "2026-08-29",
+      "status": "open",
+      "priority": "High",
+      "category": "relationship + diligence",
+      "notes": "Europe Series B+ fintech expansion; verify current transaction terms and audited operating quality."
     }
   ],
   "interactions": [
