@@ -5,11 +5,11 @@
       "rights": "sanitized_derived",
       "version": "private-investment-os-public-2026-08-02"
     },
-    "asOf": "2026-08-02",
+    "asOf": "2026-08-08",
     "purpose": "Investor-readable Global AI Pre-IPO / IPO Pipeline OS: company-first table, relationship routes, source registry, missing data and IC readiness.",
     "schemaVersion": 1,
-    "updatedAt": "2026-08-02T12:00:00+08:00",
-    "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue. Added EMEA ECM screenshot-derived private/pre-IPO opportunities: Starling Bank, Trade Republic, Zopa, Bitdefender, Bolt, Celonis, Doctolib, ElevenLabs enrichment, GetYourGuide, Infobip, Kpler, Kraken Technology; public-source enriched with valuation/funding/metrics caveats. Added second EMEA ECM screenshot batch covering Legora, Lendable, Mews, Mirakl, Multiverse Computing, n8n, Nord Security, Odoo, OQC, Personio, Poolside, Qonto, Quantexa, Thought Machine, Trendyol, Wayve, CMR Surgical, Huma, Medical Microinstruments, Owkin; patched Kraken, Lovable, Mistral AI, Synthesia.",
+    "updatedAt": "2026-08-07T16:53:58Z",
+    "coverage": "Updated from 2026-06-18/19 conversations: crossover funds (Coatue/Tiger/D1/Viking/ICONIQ/Sands/Altimeter/Greenoaks), Google/CapitalG/GV, Temasek, Taiwan ESB/pre-IPO, Korea/Japan, and prior AI app/infra list. PM v4 adds Delta View, Score Breakdown, and Deal Kanban with mobile-first cards. PM v5 adds IC View, Relationship Map, Task Aging, and One-Pager Queue. Added EMEA ECM screenshot-derived private/pre-IPO opportunities: Starling Bank, Trade Republic, Zopa, Bitdefender, Bolt, Celonis, Doctolib, ElevenLabs enrichment, GetYourGuide, Infobip, Kpler, Kraken Technology; public-source enriched with valuation/funding/metrics caveats. Added second EMEA ECM screenshot batch covering Legora, Lendable, Mews, Mirakl, Multiverse Computing, n8n, Nord Security, Odoo, OQC, Personio, Poolside, Qonto, Quantexa, Thought Machine, Trendyol, Wayve, CMR Surgical, Huma, Medical Microinstruments, Owkin; patched Kraken, Lovable, Mistral AI, Synthesia. Europe refresh 2026-08-08: added Helsing; upgraded Wayve, Mistral AI and PhysicsX with current financing/strategic context, source caveats and executable diligence routes.",
     "productIteration": "v6-investor-pipeline-os-mvp1-5",
     "uiVersion": "public-2026-06-20",
     "releaseNotes": [
@@ -39,6 +39,16 @@
           "Added 20 new EMEA ECM screenshot companies across TMT and Healthcare.",
           "Patched Kraken Technology, Lovable, Mistral AI and Synthesia screenshot valuation context.",
           "Preserved low-confidence caveats where screenshot valuations were not open-source corroborated."
+        ]
+      },
+      {
+        "version": "v-europe-refresh-20260808",
+        "date": "2026-08-08",
+        "items": [
+          "Added Helsing as A1 Europe defence-AI core after the official $1.8B Series E; kept $18B valuation as media-confirmed rather than company-disclosed.",
+          "Updated Wayve to the Feb 2026 $1.2B Series D / $1.5B deployment financing and $8.6B post-money; did not double-count the July $2.8B aggregate-investment headline.",
+          "Upgraded Mistral strategic context but kept the €20B Samsung mark as unconfirmed talks and added compute-economics diligence.",
+          "Promoted PhysicsX from C3 watch to A2 active diligence based on industrial workflow quality and executable Temasek route, not near-term IPO timing."
         ]
       }
     ],
@@ -191,17 +201,19 @@
     ],
     "ipoHorizonFramework": {
       "version": "1",
-      "companyCount": 184,
+      "companyCount": 185,
       "distribution": {
         "0_12m": 4,
         "12_24m": 0,
         "24_48m": 81,
-        "48m_plus": 83,
+        "48m_plus": 84,
         "evergreen_private": 10,
         "unknown": 6
       },
-      "evidenceGapCount": 180
-    }
+      "evidenceGapCount": 181
+    },
+    "researchAsOf": "2026-08-08",
+    "generatedAt": "2026-08-07T16:53:58Z"
   },
   "companies": [
     {
@@ -1407,11 +1419,11 @@
       "ipoSignal": "medium",
       "revenueQuality": "medium_low",
       "investorQuality": "very_high",
-      "strategicRelevance": "high",
+      "strategicRelevance": "very_high",
       "accessFit": "medium",
       "riskLevel": "medium_high",
-      "latestValuation": "Screenshot seed $13.7B; public/media signals around €11.7B/$13B after 2025 ASML-led round; higher funding-talk marks require verification",
-      "latestFunding": "ASML-led Series C media/official cluster; further funding talks",
+      "latestValuation": "Confirmed prior mark around €11.7B/$13B after the 2025 ASML-led round; Jul 2026 reports of Samsung investing up to €1B at €20B remain talks/unconfirmed",
+      "latestFunding": "ASML-led 2025 financing remains latest confirmed priced round; Samsung up-to-€1B discussion at €20B is a July 2026 market signal, not a closed round",
       "investors": [
         "ASML",
         "General Catalyst",
@@ -1420,12 +1432,14 @@
         "Bpifrance",
         "NVIDIA",
         "Cisco",
-        "IBM"
+        "IBM",
+        "Microsoft",
+        "Samsung (talks; unconfirmed)"
       ],
       "ipoSignals": [
         "Founder says plans IPO/not for sale; no filing"
       ],
-      "nextAction": "Wait for banker/filer signal unless pre-IPO has discount + information rights; ask ARR/gross margin/GPU obligations.",
+      "nextAction": "Ask ASML/Microsoft/Samsung/Bpifrance routes for confirmed financing status, enterprise/API ARR, Mistral Compute commitments, GPU purchase or take-or-pay obligations, gross margin and IPO governance.",
       "tags": [
         "ASML",
         "EMEA ECM screenshot 2026-07-01",
@@ -1438,48 +1452,57 @@
           "type": "media/official",
           "note": "ASML-backed funding and valuation signal; ARR/profitability needs primary diligence.",
           "url": "https://mistral.ai/"
+        },
+        {
+          "date": "2026-07-22",
+          "type": "external_rag / alphapai",
+          "note": "AlphaPai recall surfaced UBS and China sell-side references to Microsoft signing a multibillion-dollar European data-centre cooperation with Mistral and Samsung discussing up to €1B at a €20B valuation. This is secondary context; underlying transaction documents were not reviewed and the Samsung round is not recorded as closed.",
+          "url": "alphapai://RRPUS00000001323129",
+          "confidence": "medium",
+          "sourceName": "AlphaPai / UBS recall"
         }
       ],
       "notes": "Strategic watch, not high-certainty 18-month IPO.",
-      "priorityTier": "A2｜European sovereign AI / strategic pre-IPO watch",
+      "priorityTier": "A1/A2｜European sovereign AI core / compute-economics gate",
       "layer": "LLM / Foundation Model",
-      "whyInTrack": "Mistral AI — Strategic watch, not high-certainty 18-month IPO.",
+      "whyInTrack": "Mistral AI — 欧洲主权AI核心资产。微软数十亿美元级欧洲数据中心合作与Samsung潜在战略入股提升分发/算力/资本能力，但也把投资核心转向compute obligations、gross margin和估值兑现。",
       "revenueScale": "ARR/revenue not publicly audited; enterprise/API revenue and compute gross margin need data-room proof.",
       "relationshipRoute": "投资人线：ASML, Nvidia-backed ecosystem, European strategic capital",
       "investorGroup": "Strategic Semi/AI",
-      "keyDiligence": "收入质量、客户、毛利、估值、IPO timing、relationship可执行性。",
+      "keyDiligence": "Enterprise/API ARR and NRR, Mistral Compute utilization, compute take-or-pay/GPU obligations, gross margin, sovereign procurement, funding close status and IPO governance.",
       "disruptedLegacyTech": "见Layer：LLM / Foundation Model",
       "ipoWindow": "unclear",
-      "updatedAt": "2026-07-01T12:35:00Z",
+      "updatedAt": "2026-08-07T16:53:58Z",
       "companyDescription": "LLM / Foundation Model — European sovereign AI / open-weight LLM",
-      "latestAvailableValuation": "Media: €11.7B to €20B valuation signals; ARR claims need verification",
+      "latestAvailableValuation": "€11.7B/$13B prior confirmed financing context; €20B Samsung-talk mark is unconfirmed as of 2026-08-08",
       "investorSummary": "ASML, General Catalyst, Lightspeed Venture Partners, a16z, Bpifrance +3",
       "investorDataQuality": "structured from existing tracker + public/manual enrichment",
       "dataCompleteness": {
         "hasDescription": true,
         "hasValuation": true,
-        "investorCount": 8,
-        "evidenceCount": 1,
+        "investorCount": 10,
+        "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19",
+      "enrichedAsOf": "2026-08-08",
       "layerZh": "大模型 / 基础模型",
       "homepageDescriptionZh": "定位：大模型 / 基础模型；方向：European sovereign AI / open-weight LLM；地区：Europe",
-      "latestValuationZh": "媒体报道：€11.7B to €20B 估值 signals; ARR claims need verification",
+      "latestValuationZh": "上一轮确认估值约€11.7B/$13B；Samsung按€20B估值投资的报道截至2026-08-08仍按谈判信号处理。",
       "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "收入质量、客户、毛利、估值、IPO 时间表、relationship可执行性。",
+      "nextActionZh": "通过ASML/Microsoft/Samsung/Bpifrance路径核验融资是否交割、enterprise/API ARR、Mistral Compute承诺、GPU采购或take-or-pay义务、毛利和IPO治理。",
       "priorityZh": "C3｜关系观察",
       "notesClean": "Strategic watch, not high-certainty 18-month IPO.",
       "recommendationClean": "Mistral AI — Strategic watch, not high-certainty 18-month IPO.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
-      "presentationCleanedAsOf": "2026-06-19",
-      "investmentSummaryZh": "Mistral AI — 欧洲主权LLM/enterprise AI核心资产，截图$13.7B与公开ASML-led round mark大致一致；战略价值高但IPO确定性和商业毛利仍需核验。",
+      "presentationCleanedAsOf": "2026-08-08",
+      "investmentSummaryZh": "Mistral AI — 战略重要性上调，但估值口径不追高。微软基础设施合作和Samsung谈判提升资本/分发能力，必须以ARR、算力义务和毛利验证。",
       "riskSummaryZh": "风险等级：medium_high",
       "keyMetrics": [
-        "screenshot seed $13.7B",
-        "ASML strategic investor",
-        "enterprise AI + LLM developer",
-        "ARR/GM not public"
+        "prior confirmed valuation ~€11.7B/$13B",
+        "Samsung €20B talk mark unconfirmed",
+        "Microsoft multibillion infrastructure cooperation reported",
+        "enterprise/API ARR not audited publicly",
+        "compute obligations and GM need data room"
       ],
       "readinessLabel": "C：Needs data-room proof",
       "tmtVertical": "AI/Cloud/Semiconductor Infrastructure",
@@ -6031,7 +6054,7 @@
       "subSector": "Physics AI / engineering simulation / industrial AI",
       "stage": "late_growth",
       "status": "private",
-      "ipoSignal": "medium_high",
+      "ipoSignal": "medium_low",
       "revenueQuality": "medium",
       "investorQuality": "very_high",
       "strategicRelevance": "high",
@@ -6050,7 +6073,7 @@
       "ipoSignals": [
         "Temasek-led large round; industrial AI scale-up; no filing yet"
       ],
-      "nextAction": "Use Temasek alumni angle for direct intro; verify revenue, customer verticals, Siemens/industrial adoption, IPO path.",
+      "nextAction": "Use Temasek alumni route for management/data-room access; separate recurring software/API revenue from engineering services and verify customer-level deployment, NRR, gross margin and industrial data rights.",
       "tags": [
         "industrial AI",
         "engineering simulation",
@@ -6063,6 +6086,14 @@
           "type": "media",
           "note": "FT/Bloomberg/TNGlobal clusters: PhysicsX raises $300M in Temasek-led deal, valuation ~$2.35-2.4B.",
           "url": "https://news.google.com/"
+        },
+        {
+          "date": "2026-06-08",
+          "type": "official",
+          "note": "PhysicsX newsroom lists its $300M Series C announcement. Official round evidence supports financing scale; the ~$2.4B valuation remains media-reported.",
+          "url": "https://www.physicsx.ai/newsroom",
+          "confidence": "high",
+          "sourceName": "PhysicsX"
         }
       ],
       "notes": "Priority: 2 - Active Diligence Recommendation: Temasek-led industrial AI; verify software vs services revenue and industrial customer depth. Original notes: Strong fit for AI application in industrial/engineering, closer to B2B than consumer AI; IPO likely 24-36m not immediate.",
@@ -6078,15 +6109,15 @@
       ],
       "redFlags": [],
       "openQuestions": [],
-      "priorityTier": "C3｜Relationship Watch / 等待更强证据",
+      "priorityTier": "A2｜Industrial Physics AI / Temasek-access deep-check",
       "recommendation": "Temasek-led industrial AI; verify software vs services revenue and industrial customer depth.",
-      "updatedAt": "2026-06-19",
+      "updatedAt": "2026-08-07T16:53:58Z",
       "layer": "AI application / workflow layer",
-      "whyInTrack": "PhysicsX — Temasek-led industrial AI; verify software vs services revenue and industrial customer depth.",
+      "whyInTrack": "PhysicsX — 具备工业工程工作流、物理仿真和Temasek关系路径，商业质量/可接触性优于普通AI应用。虽然不是近端IPO，但应从C3观察上调为A2 active diligence。",
       "revenueScale": "未披露/待验证",
       "relationshipRoute": "投资人线：Temasek, Nvidia? media, Industrial/AI investors - verify",
       "investorGroup": "Strategic Semi/AI; SWF/CVC/Asia",
-      "keyDiligence": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "keyDiligence": "Software/API vs services revenue, NRR, gross margin, customer concentration, production deployment depth, proprietary industrial data rights and usage-based economics.",
       "disruptedLegacyTech": "见Layer：AI application / workflow layer",
       "ipoWindow": "unclear",
       "companyDescription": "AI application / workflow layer — Physics AI / engineering simulation / industrial AI",
@@ -6097,24 +6128,30 @@
         "hasDescription": true,
         "hasValuation": true,
         "investorCount": 5,
-        "evidenceCount": 1,
+        "evidenceCount": 2,
         "hasRoute": true
       },
-      "enrichedAsOf": "2026-06-19",
+      "enrichedAsOf": "2026-08-08",
       "layerZh": "AI 应用 / 工作流层",
       "homepageDescriptionZh": "定位：AI 应用 / 工作流层；方向：Physics AI / engineering simulation / industrial AI；地区：Europe",
       "latestValuationZh": "媒体报道：$2.35-2.4B 估值 in $300M Temasek-led Series C",
       "revenueScaleZh": "未披露/待验证",
-      "nextActionZh": "是否有独占数据/工作流控制/高NRR/定价权，避免被模型或agent平台压缩。",
+      "nextActionZh": "用Temasek alumni路径取得管理层/data-room；拆分软件/API recurring revenue与工程服务，核验客户级部署、NRR、毛利和工业数据权利。",
       "priorityZh": "C3｜关系观察",
       "notesClean": "Temasek-led industrial AI; verify software vs services revenue and industrial customer depth. Strong fit for AI application in industrial/engineering, closer to B2B than consumer AI; IPO likely 24-36m not immediate.",
       "recommendationClean": "Temasek-led industrial AI; verify software vs services revenue and industrial customer depth.",
       "presentationLanguage": "zh-CN cleaned from existing fields; no external facts added",
-      "presentationCleanedAsOf": "2026-06-19",
-      "investmentSummaryZh": "C3｜关系观察。公司定位为AI 应用 / 工作流层；当前看点是估值、收入质量、投资人/关系路径和 IPO 可见度是否匹配。",
+      "presentationCleanedAsOf": "2026-08-08",
+      "investmentSummaryZh": "PhysicsX — 上调至A2 active diligence。其价值在工业physics workflow和Temasek可执行关系，不在近端IPO；必须证明收入不是高比例咨询/项目制。",
       "riskSummaryZh": "风险等级：medium",
-      "keyMetrics": [],
-      "readinessLabel": "C：Needs data-room proof",
+      "keyMetrics": [
+        "$300M Series C",
+        "~$2.4B media-reported valuation",
+        "Temasek-led",
+        "industrial physics/engineering workflow",
+        "software vs services mix not public"
+      ],
+      "readinessLabel": "B：Route-ready / diligence-ready",
       "tmtVertical": "Climate/Industrial Tech",
       "businessModel": "Other",
       "customerType": "B2B",
@@ -15316,26 +15353,30 @@
       "subSector": "Embodied AI / end-to-end autonomous driving software",
       "stage": "late_growth_pre_ipo",
       "status": "private",
-      "ipoSignal": "medium_low",
+      "ipoSignal": "medium",
       "revenueQuality": "low",
-      "investorQuality": "high",
-      "strategicRelevance": "medium_high",
+      "investorQuality": "very_high",
+      "strategicRelevance": "high",
       "accessFit": "medium",
       "riskLevel": "medium_high",
-      "latestValuation": "Screenshot seed $8.6B; public May 2024 Series C amount $1.05B, valuation widely reported but not official in company release",
-      "latestFunding": "$1.05B Series C May 2024 led by SoftBank with Microsoft and NVIDIA participation",
+      "latestValuation": "$8.6B post-money valuation after the Feb 2026 $1.2B Series D / $1.5B total deployment financing; valuation supported by investor/company release cluster",
+      "latestFunding": "$1.2B Series D announced 25 Feb 2026; company/investor release describes $1.5B secured for global deployment. July 2026 reporting cites $2.8B aggregate investment, not necessarily a single new priced round.",
       "investors": [
         "SoftBank",
         "Microsoft",
         "NVIDIA",
         "Eclipse Ventures",
-        "Balderton Capital"
+        "Balderton Capital",
+        "Mercedes-Benz",
+        "Nissan",
+        "Uber",
+        "Stellantis"
       ],
       "ipoSignals": [
         "Included in EMEA ECM pre-IPO/private opportunities screenshot",
         "No filing verified unless explicitly stated in evidence"
       ],
-      "nextAction": "Verify valuation, OEM contracts, revenue/backlog, safety metrics, compute/data moat, path to production and capital needs.",
+      "nextAction": "Request Series D cap table and OEM programme economics: binding vehicle volumes, software fee per vehicle/usage, deployment milestones, safety disengagement data, compute cost and cash runway.",
       "tags": [
         "EMEA ECM screenshot 2026-07-01",
         "UK",
@@ -15357,6 +15398,22 @@
           "note": "Reuters/major media covered UK Wayve $1.05B round; valuation not official in company release.",
           "url": "https://www.reuters.com/technology/uk-autonomous-driving-startup-wayve-raises-105-bln-softbank-led-funding-2024-05-07/",
           "confidence": "medium_high"
+        },
+        {
+          "date": "2026-02-25",
+          "type": "official",
+          "note": "Wayve official press page states it secured $1.5B to deploy its global autonomy platform; search-indexed release text identifies a $1.2B Series D and investor materials cite $8.6B post-money valuation.",
+          "url": "https://wayve.ai/press",
+          "confidence": "high",
+          "sourceName": "Wayve"
+        },
+        {
+          "date": "2026-07-01",
+          "type": "media",
+          "note": "Reuters reported Wayve courting automakers with backing including NVIDIA, Mercedes-Benz and Nissan and deployment plans involving Stellantis robotaxis. Treat the widely repeated $2.8B figure as aggregate investment unless transaction documents show a separate priced round.",
+          "url": "https://www.reuters.com/technology/",
+          "confidence": "medium_high",
+          "sourceName": "Reuters Technology"
         }
       ],
       "notes": "Second EMEA ECM screenshot batch; public-source enriched as of 2026-07-01. Treat screenshot valuations as banker-list seeds unless matched to official/media priced rounds.",
@@ -15370,37 +15427,40 @@
       "contacts": [],
       "redFlags": [],
       "openQuestions": [],
-      "priorityTier": "A2｜Embodied AI strategic watch / long IPO horizon",
+      "priorityTier": "A1/A2｜Embodied AI core / OEM deployment gate",
       "layer": "EMEA ECM / TMT private opportunity",
-      "whyInTrack": "Wayve — UK embodied AI/autonomous driving核心资产，技术叙事强、投资人强；估值需核，IPO更偏中长期。",
-      "revenueScale": "Revenue likely pilot/strategic; commercial deployments and OEM contracts require data-room proof",
+      "whyInTrack": "Wayve — 2026融资和OEM/战略投资人升级后，已从长期技术观察上调为欧洲embodied AI核心deep-check。关键不是融资headline，而是Nissan/Stellantis/Uber等部署何时转为binding software revenue。",
+      "revenueScale": "Commercial deployment pipeline expanded, but recognized revenue, software take rate, vehicle volumes and OEM contract bindingness remain unverified.",
       "relationshipRoute": "EMEA ECM/private capital + existing growth/crossover/shareholder route → current secondary, primary extension, IPO anchor/cornerstone or data-room access.",
       "investorGroup": "EMEA ECM / crossover growth",
-      "keyDiligence": "Verify valuation, OEM contracts, revenue/backlog, safety metrics, compute/data moat, path to production and capital needs.",
+      "keyDiligence": "OEM contract bindingness, production SOP dates, software revenue per vehicle/usage, safety metrics, data rights, compute cost, gross margin and further capital need.",
       "disruptedLegacyTech": "EMEA private/pre-IPO capital-markets opportunity sourced from ECM list; AI-core relevance varies by company.",
       "ipoWindow": "24–48m watch",
-      "updatedAt": "2026-07-01T12:35:00Z",
+      "updatedAt": "2026-08-07T16:53:58Z",
       "companyDescription": "TMT / Autonomous driving AI — Embodied AI / end-to-end autonomous driving software",
-      "latestAvailableValuation": "Screenshot seed $8.6B; public May 2024 Series C amount $1.05B, valuation widely reported but not official in company release",
+      "latestAvailableValuation": "$8.6B post-money after Feb 2026 financing; July $2.8B headline treated as aggregate investment unless primary documents prove a new priced round",
       "investorSummary": "SoftBank, Microsoft, NVIDIA, Eclipse Ventures, Balderton Capital",
       "investorDataQuality": "medium_high",
       "dataCompleteness": "medium",
-      "enrichedAsOf": "2026-07-01",
+      "enrichedAsOf": "2026-08-08",
       "layerZh": "EMEA ECM / TMT private opportunity",
       "homepageDescriptionZh": "TMT / Autonomous driving AI — Embodied AI / end-to-end autonomous driving software",
-      "latestValuationZh": "Screenshot seed $8.6B; public May 2024 Series C amount $1.05B, valuation widely reported but not official in company release",
+      "latestValuationZh": "2026年2月融资后post-money约$8.6B；7月$2.8B先按累计投资口径，不当作单笔新融资。",
       "revenueScaleZh": "Revenue likely pilot/strategic; commercial deployments and OEM contracts require data-room proof",
-      "nextActionZh": "Verify valuation, OEM contracts, revenue/backlog, safety metrics, compute/data moat, path to production and capital needs.",
+      "nextActionZh": "获取Series D cap table及OEM项目经济性：binding车型/车辆规模、每车或按量收费、量产节点、安全数据、算力成本和现金消耗。",
       "priorityZh": "A2｜Embodied AI strategic watch / long IPO horizon",
       "notesClean": "EMEA ECM screenshot enrichment; requires banker/data-room confirmation.",
       "recommendationClean": "加入EMEA ECM观察池；以公开数据建立首版卡片，下一步核验当前可交易条款、收入质量和IPO路径。",
       "presentationLanguage": "zh-CN",
-      "presentationCleanedAsOf": "2026-07-01",
-      "investmentSummaryZh": "Wayve — UK embodied AI/autonomous driving核心资产，技术叙事强、投资人强；估值需核，IPO更偏中长期。",
+      "presentationCleanedAsOf": "2026-08-08",
+      "investmentSummaryZh": "Wayve — 上调至欧洲核心deep-check。$8.6B post-money和大额战略融资证明资本认可，但投资判断取决于OEM合同向量产收入的转化，而不是累计融资额。",
       "riskSummaryZh": "主要风险：自动驾驶商业化周期、监管/安全、OEM adoption、训练/仿真成本、Tesla/Waymo/Mobileye竞争。",
       "keyMetrics": [
-        "Revenue likely pilot/strategic",
-        "commercial deployments and OEM contracts require data-room proof"
+        "$1.2B Series D (Feb 2026)",
+        "$1.5B deployment financing announced",
+        "$8.6B post-money valuation",
+        "OEM/strategic routes: Mercedes-Benz, Nissan, Stellantis, Uber",
+        "recognized revenue not public"
       ],
       "readinessLabel": "B：Route-ready / diligence-ready",
       "tmtVertical": "Robotics/Mobility",
@@ -19536,6 +19596,156 @@
       "coverageGaps": [
         "ipo_horizon_evidence"
       ]
+    },
+    {
+      "id": "helsing",
+      "name": "Helsing",
+      "country": "Germany",
+      "region": "Europe",
+      "sector": "TMT / Defence AI and autonomous systems",
+      "subSector": "AI-enabled defence software, strike drones, autonomous aircraft, electronic warfare and tactical space systems",
+      "stage": "late_growth",
+      "status": "private",
+      "ipoSignal": "medium_low",
+      "revenueQuality": "medium_low",
+      "investorQuality": "very_high",
+      "strategicRelevance": "very_high",
+      "accessFit": "medium",
+      "riskLevel": "high",
+      "latestValuation": "$18B valuation reported by Reuters/CNBC for the Jul 2026 Series E; official company release confirms $1.8B round but valuation should be treated as media-confirmed, not company-disclosed",
+      "latestFunding": "$1.8B Series E announced 13 Jul 2026",
+      "topInvestorSignal": "Large late-stage European defence-AI round; investor roster and allocation terms require direct confirmation from the company/lead investors.",
+      "investors": [
+        "Prima Materia",
+        "Lightspeed Venture Partners",
+        "General Catalyst",
+        "Accel",
+        "Saab"
+      ],
+      "ipoSignals": [
+        "Series E size and $18B reported valuation create public-market scale",
+        "CFO appointment and US manufacturing expansion improve institutional readiness",
+        "No public IPO filing or bounded listing timetable verified as of 2026-08-08"
+      ],
+      "nextAction": "Use Lightspeed/General Catalyst/Accel/Saab and European defence-prime routes to request Series E cap table, government contract backlog, revenue recognition, gross margin by software vs hardware, export-control perimeter and next-liquidity plan.",
+      "tags": [
+        "Europe",
+        "Germany",
+        "defence AI",
+        "autonomous systems",
+        "drones",
+        "dual use",
+        "Series E",
+        "2026 Europe refresh"
+      ],
+      "evidence": [
+        {
+          "date": "2026-07-13",
+          "type": "official",
+          "note": "Helsing newsroom lists the official announcement 'Helsing raises US$1.8bn in Series E'. The company release establishes round size/date; it does not independently establish the $18B valuation used here from media.",
+          "url": "https://helsing.ai/newsroom",
+          "confidence": "high",
+          "sourceName": "Helsing"
+        },
+        {
+          "date": "2026-07-13",
+          "type": "media",
+          "note": "Reuters reported a $1.8B Series E valuing Munich-based Helsing at $18B.",
+          "url": "https://www.reuters.com/aerospace-defense/",
+          "confidence": "medium_high",
+          "sourceName": "Reuters aerospace & defence"
+        },
+        {
+          "date": "2026-07-13",
+          "type": "media",
+          "note": "CNBC separately reported the $1.8B financing and $18B valuation; use as valuation corroboration, not as audited operating evidence.",
+          "url": "https://www.cnbc.com/2026/07/13/",
+          "confidence": "medium_high",
+          "sourceName": "CNBC"
+        }
+      ],
+      "notes": "Added in the 2026-08-08 Europe refresh. Fundamental priority is high, but the July round is already closed and public revenue/backlog detail remains insufficient for underwriting. Treat as relationship/data-room rather than near-term IPO allocation.",
+      "dealStage": "relationship building",
+      "dataRoomStatus": "not requested",
+      "targetExchange": "TBD",
+      "leadUnderwriters": [],
+      "filingStatus": "not filed public",
+      "lockup": "unknown",
+      "preIpoRoundStatus": "Jul 2026 Series E announced/closed; no live primary allocation verified",
+      "contacts": [],
+      "redFlags": [
+        "Defence procurement opacity",
+        "export controls and end-use restrictions",
+        "hardware/manufacturing capital intensity",
+        "valuation requires large contract conversion"
+      ],
+      "openQuestions": [
+        "What portion of backlog is binding, funded and cancellable?",
+        "How much revenue/gross profit comes from software versus hardware and manufacturing?",
+        "What are customer and country concentrations?",
+        "What are Series E preferences, ownership and transfer restrictions?"
+      ],
+      "priorityTier": "A1｜Europe defence-AI core / post-round relationship",
+      "recommendation": "Deep-check now; seek compliant data-room/secondary route, but do not chase the $18B mark without contract economics.",
+      "updatedAt": "2026-08-07T16:53:58Z",
+      "layer": "Defence AI / autonomous systems",
+      "whyInTrack": "Helsing — 欧洲防务AI与自主系统的核心private asset。2026年7月完成$1.8B Series E、媒体估值$18B，资本和战略地位显著升级；真正要核验的是政府合同backlog、软硬件收入结构、出口管制及估值支撑。",
+      "revenueScale": "Not publicly verified in this refresh; contract announcements and platform/product breadth cannot be converted into ARR or recognized revenue without data-room evidence.",
+      "relationshipRoute": "Lightspeed / General Catalyst / Accel / Saab / European defence-prime and government-procurement network → management access, data room, approved secondary or future IPO anchor.",
+      "investorGroup": "European/US growth investors + defence strategic",
+      "keyDiligence": "Binding funded backlog, revenue recognition, software/hardware mix, gross margin, customer/country concentration, export controls, manufacturing capex, Series E preferences and next liquidity path.",
+      "disruptedLegacyTech": "Legacy defence command-and-control, ISR fusion and platform-specific autonomy stacks.",
+      "ipoWindow": "24–48m relationship watch; no filing verified",
+      "companyDescription": "Munich-founded defence technology company developing AI software and autonomous systems across drones, aircraft, electronic warfare and tactical-space applications.",
+      "latestAvailableValuation": "$18B media-reported valuation in Jul 2026 Series E; official round size $1.8B",
+      "investorSummary": "Prima Materia, Lightspeed, General Catalyst, Accel, Saab; current Series E allocation requires confirmation",
+      "investorDataQuality": "medium_high",
+      "dataCompleteness": {
+        "hasDescription": true,
+        "hasValuation": true,
+        "investorCount": 5,
+        "evidenceCount": 3,
+        "hasRoute": true
+      },
+      "enrichedAsOf": "2026-08-08",
+      "layerZh": "防务AI / 自主系统",
+      "homepageDescriptionZh": "欧洲防务AI、自主无人系统、电子战与战术空间系统平台。",
+      "latestValuationZh": "2026年7月Series E媒体报道估值$18B；公司官方确认融资$1.8B，但未在已核页面独立披露估值。",
+      "revenueScaleZh": "公开未核验；合同公告不能直接等同已确认收入或ARR。",
+      "nextActionZh": "通过现有投资人/欧洲防务产业链获取Series E cap table、binding backlog、收入确认、软硬件毛利和出口管制边界。",
+      "priorityZh": "A1｜欧洲防务AI核心 / 融资后关系推进",
+      "notesClean": "Series E已完成，当前重点是关系与data-room，不是追逐已关闭融资。",
+      "recommendationClean": "立即深挖基本面与合规交易路径；没有合同经济性和条款保护，不按$18B headline直接承接secondary。",
+      "presentationLanguage": "zh-CN",
+      "presentationCleanedAsOf": "2026-08-08",
+      "investmentSummaryZh": "Helsing — 欧洲新增最高优先级。防务AI需求与预算有结构性支持，但$18B估值需要以binding backlog、软件毛利和规模交付能力验证。",
+      "riskSummaryZh": "主要风险：政府采购透明度、出口管制/MNPI边界、硬件量产和营运资本、单一国家/项目集中、估值过度透支。",
+      "keyMetrics": [
+        "$1.8B Series E announced 2026-07-13",
+        "$18B valuation reported by Reuters/CNBC",
+        "no verified public revenue/backlog",
+        "no public IPO filing"
+      ],
+      "readinessLabel": "B：Route-ready / diligence-ready",
+      "tmtVertical": "Space/Communications",
+      "businessModel": "Other",
+      "customerType": "B2G",
+      "monetization": [
+        "Other"
+      ],
+      "classificationMethod": "deterministic_legacy_mapping",
+      "classificationConfidence": "derived",
+      "ipoHorizon": "48m_plus",
+      "ipoHorizonConfidence": "low",
+      "ipoHorizonBasis": "insufficient_evidence",
+      "ipoHorizonClassificationMethod": "explicit_ipo_window",
+      "coverageGaps": [
+        "audited_revenue",
+        "binding_backlog",
+        "gross_margin",
+        "cap_table",
+        "ipo_horizon_evidence"
+      ]
     }
   ],
   "fundingRounds": [
@@ -23633,6 +23843,46 @@
       "url": "",
       "confidence": "low",
       "notes": "Screenshot seed valuation; public unicorn/financing history requires latest current-mark verification."
+    },
+    {
+      "id": "helsing-2026-07-13-series-e",
+      "companyId": "helsing",
+      "companyName": "Helsing",
+      "date": "2026-07-13",
+      "round": "Series E",
+      "amount": "$1.8B",
+      "valuation": "$18B (Reuters/CNBC reported; not company-disclosed on reviewed page)",
+      "leadInvestors": [],
+      "participants": [
+        "current investor roster requires direct round-allocation confirmation"
+      ],
+      "sourceName": "Helsing official + Reuters/CNBC",
+      "sourceType": "company newsroom + media valuation corroboration",
+      "url": "https://helsing.ai/newsroom",
+      "confidence": "high round / medium-high valuation",
+      "notes": "Official source confirms amount/date; media establishes valuation. Round appears completed, so current action is data-room/secondary/next-liquidity relationship work."
+    },
+    {
+      "id": "wayve-2026-02-25-series-d",
+      "companyId": "wayve",
+      "companyName": "Wayve",
+      "date": "2026-02-25",
+      "round": "Series D / deployment financing",
+      "amount": "$1.2B Series D; $1.5B total secured",
+      "valuation": "$8.6B post-money",
+      "leadInvestors": [],
+      "participants": [
+        "NVIDIA",
+        "Mercedes-Benz",
+        "Nissan",
+        "Uber",
+        "existing investors"
+      ],
+      "sourceName": "Wayve / Balderton official release cluster",
+      "sourceType": "company and investor press release",
+      "url": "https://wayve.ai/press",
+      "confidence": "high",
+      "notes": "Do not treat the July $2.8B aggregate-investment headline as a separate priced round without primary transaction evidence."
     }
   ],
   "tasks": [
@@ -25615,6 +25865,50 @@
       "priority": "Medium",
       "category": "diligence",
       "notes": "Added from second EMEA ECM screenshot batch 2026-07-01; current live secondary/primary availability still requires banker/data-room confirmation."
+    },
+    {
+      "id": "task-europe-refresh-helsing-contract-economics-20260808",
+      "companyId": "helsing",
+      "title": "Obtain Series E cap table and contract-economics data room through investor/defence-prime route",
+      "owner": "Deal Team",
+      "dueDate": "2026-08-22",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": "Minimum gate: funded binding backlog, cancellation rights, revenue recognition, software/hardware gross margin, country/customer concentration, export controls and Series E preferences."
+    },
+    {
+      "id": "task-europe-refresh-wayve-oem-economics-20260808",
+      "companyId": "wayve",
+      "title": "Verify binding OEM deployment economics and Series D cap table",
+      "owner": "Deal Team",
+      "dueDate": "2026-08-22",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": "Separate signed/binding production contracts from pilots and strategic-investor announcements; quantify revenue per vehicle/usage and SOP dates."
+    },
+    {
+      "id": "task-europe-refresh-mistral-compute-economics-20260808",
+      "companyId": "mistral-ai",
+      "title": "Confirm Samsung financing status and Mistral Compute obligation/gross-margin bridge",
+      "owner": "Deal Team",
+      "dueDate": "2026-08-22",
+      "status": "open",
+      "priority": "High",
+      "category": "diligence",
+      "notes": "Do not promote the €20B talk mark to a closed round without primary evidence. Obtain ARR, NRR, compute commitments, utilization and GM."
+    },
+    {
+      "id": "task-europe-refresh-physicsx-software-services-20260808",
+      "companyId": "physicsx",
+      "title": "Use Temasek route to split PhysicsX recurring software from engineering services",
+      "owner": "Deal Team",
+      "dueDate": "2026-08-29",
+      "status": "open",
+      "priority": "High",
+      "category": "relationship + diligence",
+      "notes": "Request ARR/revenue mix, NRR, GM, customer concentration, production deployments and industrial data rights."
     }
   ],
   "interactions": [
